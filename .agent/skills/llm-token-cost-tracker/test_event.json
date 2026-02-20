@@ -1,0 +1,14 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "project": "test-project",
+    "feature": "verification",
+    "usage_raw": {
+        "prompt_tokens": 1000,
+        "completion_tokens": 200,
+        "total_tokens": 1200,
+        "prompt_tokens_details": {
+            "cached_tokens": 500
+        }
+    }
+}

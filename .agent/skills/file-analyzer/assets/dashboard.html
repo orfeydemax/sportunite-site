@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File System Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #1a1a2e;
+            --card-bg: #16213e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #4ecca3;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        h1 {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .stats-table th {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .stats-table th:hover {
+            color: var(--text-primary);
+        }
+
+        .stats-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* Drill down styles */
+        .file-list-row {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .file-list {
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 0;
+            padding: 1rem;
+            list-style: none;
+        }
+
+        .file-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+
+        .file-path {
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px;
+            margin-right: 1rem;
+        }
+
+        .file-size {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .row-expand-icon {
+            display: inline-block;
+            transition: transform 0.2s;
+            margin-right: 5px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>File Report: <span style="color:var(--accent);">{{PATH}}</span></h1>
+
+        <!-- Size Chart -->
+        <div class="card">
+            <h2>Size Breakdown</h2>
+            <div class="chart-container">
+                <canvas id="sizeChart"></canvas>
+            </div>
+            <div style="margin-top:1rem; font-size: 1.5rem; font-weight:bold;">
+                {{TOTAL_SIZE}}
+            </div>
+        </div>
+
+        <!-- Files Detail -->
+        <div class="card">
+            <h2>Details</h2>
+            <div style="width:100%; text-align:right; margin-bottom:0.5rem; font-size:0.8rem; color:#888;">
+                Click on a row to see Top 50 files
+            </div>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable('Category')">Category <span id="sort-Category"></span></th>
+                        <th onclick="sortTable('Count')">Files <span id="sort-Count"></span></th>
+                        <th onclick="sortTable('SizeBytes')">Size <span id="sort-SizeBytes">▼</span></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            Generated by file-analyzer • {{DATE}}
+        </div>
+    </div>
+
+    <script>
+        const data = /*{{DATA_JSON}}*/ { categories: {} };
+
+        // Colors for categories
+        const colors = {
+            'GoPro': '#e67e22',       // Orange (Distinct)
+            'Images': '#e74c3c',      // Red
+            'Video': '#f1c40f',       // Yellow
+            'Audio': '#3498db',       // Blue
+            'E-Books': '#9b59b6',     // Purple (Distinct)
+            'Documents': '#2ecc71',   // Green
+            'Code': '#8e44ad',        // Dark Purple
+            'Archives': '#f39c12',    // Dark Orange
+            'System': '#95a5a6',      // Grey
+            'Other': '#bdc3c7'        // Light Grey
+        };
+
+        // Descriptions for categories
+        const descriptions = {
+            'GoPro': 'Action Cam files: .360 (Panorama), .LRV (Low Res Video/Proxy), .THM (Thumbnails)',
+            'Images': 'Pictures and photos (JPG, PNG, etc.)',
+            'Video': 'Standard video files (MP4, MOV, etc.)',
+            'Audio': 'Music and sound recordings',
+            'E-Books': 'Electronic books (FB2, EPUB, MOBI, DJVU)',
+            'Documents': 'Office documents, PDF, text files',
+            'Code': 'Source code and scripts',
+            'Archives': 'Compressed files (ZIP, RAR)',
+            'System': 'Executables and system files',
+            'Other': 'Unknown file types'
+        };
+
+        // Filter empty categories logic
+        let labels = Object.keys(data.categories).filter(cat => data.categories[cat].SizeBytes > 0);
+
+        // Sort labels by size descending initially
+        labels.sort((a, b) => data.categories[b].SizeBytes - data.categories[a].SizeBytes);
+
+        // Render Chart
+        const sizes = labels.map(cat => data.categories[cat].SizeBytes);
+        const bgColors = labels.map(cat => colors[cat] || '#888');
+
+        const ctx = document.getElementById('sizeChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: sizes,
+                    backgroundColor: bgColors,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#ffffff', // WHITE LEGEND TEXT
+                            generateLabels: (chart) => {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map((label, i) => {
+                                        const ds = data.datasets[0];
+                                        return {
+                                            text: label,
+                                            fillStyle: ds.backgroundColor[i],
+                                            hidden: isNaN(ds.data[i]) || chart.getDatasetMeta(0).data[i].hidden,
+                                            index: i,
+                                            fontColor: '#ffffff'
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        },
+                        onClick: (e, legendItem, legend) => {
+                            const index = legendItem.index;
+                            const ci = legend.chart;
+                            if (ci.isDatasetVisible(0)) {
+                                const meta = ci.getDatasetMeta(0);
+                                const item = meta.data[index];
+                                item.hidden = !item.hidden;
+                                ci.update();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Sorting Logic for Table
+        let currentSort = { field: 'SizeBytes', dir: 'desc' };
+        let expandedRows = {}; // Track expanded rows
+
+        function sortTable(field) {
+            if (currentSort.field === field) {
+                currentSort.dir = currentSort.dir === 'desc' ? 'asc' : 'desc';
+            } else {
+                currentSort.field = field;
+                currentSort.dir = 'desc';
+                if (field === 'Category') currentSort.dir = 'asc';
+            }
+            renderTable();
+        }
+
+        function toggleDetails(cat) {
+            expandedRows[cat] = !expandedRows[cat];
+            renderTable(); // Re-render to show/hide details
+            // Or just toggle DOM element, but re-render is cleaner with sorting
+            // Wait, re-rendering closes everything if I don't track state.
+            // I am tracking state in expandedRows.
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            const field = currentSort.field;
+            const dir = currentSort.dir;
+
+            // Sort logic based on filtered labels
+            const sortedCats = [...labels].sort((a, b) => {
+                let valA, valB;
+
+                if (field === 'Category') {
+                    valA = a;
+                    valB = b;
+                } else {
+                    valA = data.categories[a][field];
+                    valB = data.categories[b][field];
+                }
+
+                if (typeof valA === 'string') {
+                    return dir === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+                }
+                return dir === 'asc' ? valA - valB : valB - valA;
+            });
+
+            // Update Header Icons
+            ['Category', 'Count', 'SizeBytes'].forEach(f => {
+                const el = document.getElementById('sort-' + f);
+                if (el) el.textContent = '';
+            });
+            const arrow = dir === 'asc' ? '▲' : '▼';
+            const activeEl = document.getElementById('sort-' + currentSort.field);
+            if (activeEl) activeEl.textContent = arrow;
+
+            // Render Rows
+            sortedCats.forEach(cat => {
+                const info = data.categories[cat];
+                const color = colors[cat] || '#888';
+                const desc = descriptions[cat] || '';
+                const isExpanded = expandedRows[cat];
+                const topFiles = info.TopFiles || [];
+
+                // Main Row
+                const row = document.createElement('tr');
+                row.style.cursor = 'pointer';
+                row.onclick = () => toggleDetails(cat);
+
+                row.innerHTML = `
+                    <td>
+                        <div style="display:flex; align-items:center;">
+                            <span class="row-expand-icon" style="transform: rotate(${isExpanded ? '90deg' : '0deg'});">▶</span>
+                            <span class="color-dot" style="background:${color}"></span>
+                            <div>
+                                <div style="font-weight:bold;">${cat}</div>
+                                <div style="font-size:0.75rem; color:#888;">${desc}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${info.Count}</td>
+                    <td>${formatBytes(info.SizeBytes)}</td>
+                `;
+                tbody.appendChild(row);
+
+                // Details Row
+                if (isExpanded) {
+                    const detailsRow = document.createElement('tr');
+                    detailsRow.className = 'file-list-row';
+
+                    let filesHtml = '';
+                    if (topFiles.length > 0) {
+                        filesHtml = `<ul class="file-list">` +
+                            topFiles.map(f => `
+                                <li>
+                                    <div class="file-path" title="${f.Path}">${f.Name} <span style="opacity:0.5; font-size:0.8em;">(${f.Path})</span></div>
+                                    <div class="file-size">${formatBytes(f.Size)}</div>
+                                </li>
+                            `).join('') +
+                            `</ul>`;
+                    } else {
+                        filesHtml = '<div style="padding:1rem; opacity:0.6; font-style:italic;">No files found or list empty.</div>';
+                    }
+
+                    detailsRow.innerHTML = `
+                        <td colspan="3" style="padding:0;">
+                            ${filesHtml}
+                        </td>
+                    `;
+                    tbody.appendChild(detailsRow);
+                }
+            });
+        }
+
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+
+        // Initial render
+        renderTable();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+{
+    "version": "2025-02-14",
+    "last_updated": "2025-02-14",
+    "currency": "USD",
+    "providers": {
+        "openai": {
+            "models": {
+                "gpt-4o": {
+                    "input_cost_per_million": 2.50,
+                    "output_cost_per_million": 10.00,
+                    "cached_input_cost_per_million": 1.25,
+                    "audio_input_cost_per_million": 10.00,
+                    "audio_output_cost_per_million": 20.00
+                },
+                "gpt-4o-2024-05-13": {
+                    "input_cost_per_million": 5.00,
+                    "output_cost_per_million": 15.00
+                },
+                "gpt-4o-mini": {
+                    "input_cost_per_million": 0.15,
+                    "output_cost_per_million": 0.60,
+                    "cached_input_cost_per_million": 0.075
+                },
+                "o1": {
+                    "input_cost_per_million": 15.00,
+                    "output_cost_per_million": 60.00,
+                    "cached_input_cost_per_million": 7.50
+                },
+                "o1-mini": {
+                    "input_cost_per_million": 3.00,
+                    "output_cost_per_million": 12.00,
+                    "cached_input_cost_per_million": 1.50
+                },
+                "o3-mini": {
+                    "input_cost_per_million": 1.10,
+                    "output_cost_per_million": 4.40,
+                    "cached_input_cost_per_million": 0.55
+                }
+            },
+            "extra_charges": {
+                "reasoning_tokens_as_output": true
+            }
+        },
+        "anthropic": {
+            "models": {
+                "claude-3-7-sonnet-latest": {
+                    "input_cost_per_million": 3.00,
+                    "output_cost_per_million": 15.00,
+                    "cache_write_cost_per_million": 3.75,
+                    "cache_read_cost_per_million": 0.30
+                },
+                "claude-3-5-sonnet-latest": {
+                    "input_cost_per_million": 3.00,
+                    "output_cost_per_million": 15.00,
+                    "cache_write_cost_per_million": 3.75,
+                    "cache_read_cost_per_million": 0.30
+                },
+                "claude-3-5-haiku-latest": {
+                    "input_cost_per_million": 0.80,
+                    "output_cost_per_million": 4.00,
+                    "cache_write_cost_per_million": 1.00,
+                    "cache_read_cost_per_million": 0.08
+                },
+                "claude-3-opus-latest": {
+                    "input_cost_per_million": 15.00,
+                    "output_cost_per_million": 75.00,
+                    "cache_write_cost_per_million": 18.75,
+                    "cache_read_cost_per_million": 1.50
+                }
+            },
+            "conditions": {
+                "batch_discount_multiplier": 0.5
+            }
+        },
+        "gemini": {
+            "models": {
+                "gemini-2.0-flash": {
+                    "input_cost_per_million": 0.10,
+                    "output_cost_per_million": 0.40,
+                    "cached_input_cost_per_million": 0.025
+                },
+                "gemini-2.0-flash-lite": {
+                    "input_cost_per_million": 0.075,
+                    "output_cost_per_million": 0.30,
+                    "cached_input_cost_per_million": 0.02
+                },
+                "gemini-1.5-pro": {
+                    "input_cost_per_million": 1.25,
+                    "output_cost_per_million": 5.00,
+                    "cached_input_cost_per_million": 0.3125,
+                    "conditions": {
+                        "prompt_gt_128k": {
+                            "input_cost_per_million": 2.50,
+                            "output_cost_per_million": 10.00,
+                            "cached_input_cost_per_million": 0.625
+                        }
+                    }
+                },
+                "gemini-1.5-flash": {
+                    "input_cost_per_million": 0.075,
+                    "output_cost_per_million": 0.30,
+                    "cached_input_cost_per_million": 0.01875,
+                    "conditions": {
+                        "prompt_gt_128k": {
+                            "input_cost_per_million": 0.15,
+                            "output_cost_per_million": 0.60,
+                            "cached_input_cost_per_million": 0.0375
+                        }
+                    }
+                }
+            },
+            "extra_charges": {
+                "search_grounding_per_1k": 35.00
+            }
+        },
+        "xai": {
+            "models": {
+                "grok-2": {
+                    "input_cost_per_million": 2.00,
+                    "output_cost_per_million": 10.00
+                },
+                "grok-2-mini": {
+                    "input_cost_per_million": 1.00,
+                    "output_cost_per_million": 5.00
+                }
+            },
+            "extra_charges": {
+                "image_generation_usd_per_image": 0.04
+            }
+        },
+        "cohere": {
+            "models": {
+                "command-r-plus": {
+                    "input_cost_per_million": 2.50,
+                    "output_cost_per_million": 10.00
+                },
+                "command-r": {
+                    "input_cost_per_million": 0.50,
+                    "output_cost_per_million": 1.50
+                }
+            }
+        },
+        "bedrock": {
+            "models": {
+                "amazon.nova-pro-v1:0": {
+                    "input_cost_per_million": 0.80,
+                    "output_cost_per_million": 3.20
+                },
+                "amazon.nova-lite-v1:0": {
+                    "input_cost_per_million": 0.06,
+                    "output_cost_per_million": 0.24
+                },
+                "amazon.nova-micro-v1:0": {
+                    "input_cost_per_million": 0.035,
+                    "output_cost_per_million": 0.14
+                },
+                "us.anthropic.claude-3-5-sonnet-20241022-v2:0": {
+                    "input_cost_per_million": 3.00,
+                    "output_cost_per_million": 15.00
+                }
+            }
+        }
+    }
+}
