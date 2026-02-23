@@ -43,6 +43,12 @@
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+
     <link rel="stylesheet" href="styles/main.css">
 
     <!-- Scripts (Defer for performance) -->
@@ -67,6 +73,7 @@
                 <a href="#results" class="nav__link">Результаты</a>
                 <a href="#rehab" class="nav__link">Реабилитация</a>
                 <a href="#prices" class="nav__link">Цены</a>
+                <a href="#map" class="nav__link">Клубы</a>
                 <a href="#reviews" class="nav__link">Отзывы</a>
             </nav>
 
@@ -159,7 +166,7 @@
                         <span class="stat__label">направлений</span>
                     </div>
                     <div class="stat">
-                        <span class="stat__number" data-count="5">0</span>
+                        <span class="stat__number" data-count="10">0</span>
                         <span class="stat__label">тренеров</span>
                     </div>
                 </div>
@@ -375,7 +382,8 @@
                 <div class="method__card" data-animate>
                     <div class="method__step">01</div>
                     <h3 class="method__card-title">Диагностика</h3>
-                    <p>Оценим текущее состояние тела, выявим ограничения и составим план. Не «въёбываем» — а готовим
+                    <p>Оценим текущее состояние тела, выявим ограничения и составим план. Не «Не работаем на износ» — а
+                        готовим
                         тело к нагрузкам.</p>
                 </div>
 
@@ -749,7 +757,51 @@
                 <div class="price-card">
                     <div class="price-card__header">
                         <h3 class="price-card__title">Групповые</h3>
-                        <p class="price-card__subtitle">ММА, Бокс, Кикбоксинг, BJJ, Кроссфит</p>
+                        <p class="price-card__subtitle">Бокс, Кикбоксинг, BJJ, Грэпплинг, Фитнес, Кроссфит</p>
+                    </div>
+                    <div class="price-card__body">
+                        <div class="price-card__option price-card__option--single">
+                            <span class="price-card__freq">Разовая</span>
+                            <span class="price-card__amount">300 000 ₫</span>
+                        </div>
+                        <div class="price-card__option">
+                            <span class="price-card__freq">2 занятия / нед</span>
+                            <span class="price-card__amount">1 400 000 ₫</span>
+                        </div>
+                        <div class="price-card__option">
+                            <span class="price-card__freq">3 занятия / нед</span>
+                            <span class="price-card__amount">1 700 000 ₫</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ММА -->
+                <div class="price-card">
+                    <div class="price-card__header">
+                        <h3 class="price-card__title">ММА</h3>
+                        <p class="price-card__subtitle">Смешанные единоборства (Взрослые)</p>
+                    </div>
+                    <div class="price-card__body">
+                        <div class="price-card__option price-card__option--single">
+                            <span class="price-card__freq">Разовая</span>
+                            <span class="price-card__amount">350 000 ₫</span>
+                        </div>
+                        <div class="price-card__option">
+                            <span class="price-card__freq">2 занятия / нед</span>
+                            <span class="price-card__amount">1 500 000 ₫</span>
+                        </div>
+                        <div class="price-card__option">
+                            <span class="price-card__freq">3 занятия / нед</span>
+                            <span class="price-card__amount">1 900 000 ₫</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Детские занятия -->
+                <div class="price-card">
+                    <div class="price-card__header">
+                        <h3 class="price-card__title">Детские</h3>
+                        <p class="price-card__subtitle">Бокс, Кикбоксинг, Джиу-джитсу</p>
                     </div>
                     <div class="price-card__body">
                         <div class="price-card__option price-card__option--single">
@@ -757,12 +809,16 @@
                             <span class="price-card__amount">200 000 ₫</span>
                         </div>
                         <div class="price-card__option">
-                            <span class="price-card__freq">8 занятий / мес</span>
-                            <span class="price-card__amount">1 200 000 ₫</span>
+                            <span class="price-card__freq">2 занятия / нед</span>
+                            <span class="price-card__amount">1 100 000 ₫</span>
                         </div>
                         <div class="price-card__option">
-                            <span class="price-card__freq">12 занятий / мес</span>
-                            <span class="price-card__amount">1 600 000 ₫</span>
+                            <span class="price-card__freq">3 занятия / нед</span>
+                            <span class="price-card__amount">1 300 000 ₫</span>
+                        </div>
+                        <div class="price-card__option">
+                            <span class="price-card__freq">Безлимит</span>
+                            <span class="price-card__amount">2 000 000 ₫</span>
                         </div>
                     </div>
                 </div>
@@ -772,17 +828,17 @@
                     <span class="price-card__badge">Популярный</span>
                     <div class="price-card__header">
                         <h3 class="price-card__title">Безлимит</h3>
-                        <p class="price-card__subtitle">Все групповые направления без ограничений</p>
+                        <p class="price-card__subtitle">Все групповые направления (Взрослые)</p>
                     </div>
                     <div class="price-card__body">
                         <div class="price-card__option price-card__option--big">
-                            <span class="price-card__amount">2 500 000 ₫</span>
+                            <span class="price-card__amount">3 000 000 ₫</span>
                             <span class="price-card__freq">/ месяц</span>
                         </div>
                         <ul class="price-card__perks">
                             <li>Все групповые направления</li>
-                            <li>Без ограничений по количеству</li>
-                            <li>Приоритет в записи</li>
+                            <li>Более 3-х посещений в неделю</li>
+                            <li>Посещение разных занятий</li>
                             <li>Диагностика тела в подарок</li>
                         </ul>
                     </div>
@@ -792,20 +848,20 @@
                 <div class="price-card">
                     <div class="price-card__header">
                         <h3 class="price-card__title">Персональные</h3>
-                        <p class="price-card__subtitle">Индивидуальная работа 1 на 1 с тренером</p>
+                        <p class="price-card__subtitle">От разных тренеров — индивидуальный подход</p>
                     </div>
                     <div class="price-card__body">
                         <div class="price-card__option price-card__option--single">
                             <span class="price-card__freq">Разовая</span>
-                            <span class="price-card__amount">500 000 ₫</span>
+                            <span class="price-card__amount">от 600 000 ₫</span>
                         </div>
                         <div class="price-card__option">
-                            <span class="price-card__freq">8 занятий / мес</span>
-                            <span class="price-card__amount">3 200 000 ₫</span>
+                            <span class="price-card__freq">Пакет 12 занятий</span>
+                            <span class="price-card__amount">от 6 000 000 ₫</span>
                         </div>
                         <div class="price-card__option">
-                            <span class="price-card__freq">12 занятий / мес</span>
-                            <span class="price-card__amount">4 200 000 ₫</span>
+                            <span class="price-card__freq">Максимальный пакет</span>
+                            <span class="price-card__amount">до 10 000 000 ₫</span>
                         </div>
                     </div>
                 </div>
@@ -898,6 +954,70 @@
                 <div class="reviews__trust-item">
                     <strong>92%</strong>
                     <span>продлевают абонемент</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== КАРТА КЛУБОВ ========== -->
+    <section class="map-section" id="map">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">Локации</span>
+                <h2 class="section-title">Наши <span class="accent">клубы</span></h2>
+                <p class="section-desc">3 зала в Нячанге — выбери ближайший</p>
+            </div>
+
+            <div class="map-grid" data-animate>
+                <!-- Карта (Leaflet Canvas) -->
+                <div class="map-canvas" id="map-canvas"></div>
+
+                <!-- Карточки локаций -->
+                <div class="map-cards">
+                    <a href="https://www.google.com/maps/place/NT+SPORT+UNITE+%7C+boxing,+mma,+Jiu-Jitsu,+kick-boxing/@12.2710042,109.201132,17.51z"
+                        class="map-card" data-club="north" target="_blank" rel="noopener">
+                        <div class="map-card__marker"></div>
+                        <div class="map-card__body">
+                            <span class="map-card__zone">Север</span>
+                            <h4 class="map-card__name">NT Sport Unite</h4>
+                            <p class="map-card__desc">Boxing, MMA, Jiu-Jitsu, Kick-boxing</p>
+                        </div>
+                        <svg class="map-card__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7" />
+                            <path d="M7 7h10v10" />
+                        </svg>
+                    </a>
+
+                    <a href="https://www.google.com/maps/place/NHA+TRANG+SPORT+UNITE/@12.2368571,109.1781285,16.75z"
+                        class="map-card" data-club="center" target="_blank" rel="noopener">
+                        <div class="map-card__marker"></div>
+                        <div class="map-card__body">
+                            <span class="map-card__zone">Центр</span>
+                            <h4 class="map-card__name">Nha Trang Sport Unite</h4>
+                            <p class="map-card__desc">Все направления единоборств и фитнес</p>
+                        </div>
+                        <svg class="map-card__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7" />
+                            <path d="M7 7h10v10" />
+                        </svg>
+                    </a>
+
+                    <a href="https://maps.app.goo.gl/mLtQqDTU3aovY4Dh7" class="map-card" data-club="anvien"
+                        target="_blank" rel="noopener">
+                        <div class="map-card__marker"></div>
+                        <div class="map-card__body">
+                            <span class="map-card__zone">An Viên</span>
+                            <h4 class="map-card__name">Sport Unite An Viên</h4>
+                            <p class="map-card__desc">Клуб единоборств на юге Нячанга</p>
+                        </div>
+                        <svg class="map-card__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7" />
+                            <path d="M7 7h10v10" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>

@@ -466,4 +466,96 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ---- Интерактивная карта клубов (Leaflet) ----
+    const mapCanvas = document.getElementById('map-canvas');
+    if (mapCanvas && typeof L !== 'undefined') {
+        const mapCards = document.querySelectorAll('.map-card');
+
+        // Инициализация карты (отключаем интерактивность, чтобы работало как фон)
+        const map = L.map('map-canvas', {
+            zoomControl: false,
+            scrollWheelZoom: false,
+            dragging: false,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false,
+            attributionControl: false
+        }).setView([12.240, 109.185], 13); // Центр Нячанга, зум чтоб влезли все 3
+
+        // Тёмный минималистичный слой карты (CartoDB Dark Matter)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        // Координаты клубов (на основе реальной географии)
+        const coords = {
+            north: [12.2710042, 109.201132], // Hòn Chồng (Север)
+            center: [12.2385, 109.1900],     // Phước Hải (Центр, вправо от реки)
+            anvien: [12.2030, 109.2150]      // An Viên (Юг)
+        };
+
+        const leafMarkers = {};
+
+        // Создание HTML-иконки
+        const createCustomIcon = (clubId) => {
+            return L.divIcon({
+                className: 'custom-leaflet-marker',
+                html: `<div class="map-marker-dot" id="marker-dot-${clubId}"></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+        };
+
+        // Добавляем маркеры на карту
+        Object.keys(coords).forEach(clubId => {
+            leafMarkers[clubId] = L.marker(coords[clubId], {
+                icon: createCustomIcon(clubId),
+                interactive: true
+            }).addTo(map);
+
+            // Клик по маркеру на карте
+            leafMarkers[clubId].on('click', () => {
+                const card = document.querySelector(`.map-card[data-club="${clubId}"]`);
+                if (card) card.click();
+            });
+
+            // Ховер на маркере
+            leafMarkers[clubId].on('mouseover', () => {
+                const dot = document.getElementById(`marker-dot-${clubId}`);
+                if (dot) dot.classList.add('is-active');
+                const card = document.querySelector(`.map-card[data-club="${clubId}"]`);
+                if (card) card.classList.add('is-active');
+            });
+
+            leafMarkers[clubId].on('mouseout', () => {
+                const dot = document.getElementById(`marker-dot-${clubId}`);
+                if (dot) dot.classList.remove('is-active');
+                const card = document.querySelector(`.map-card[data-club="${clubId}"]`);
+                if (card) card.classList.remove('is-active');
+            });
+        });
+
+        // Связь: hover карточка → подсветка маркера на карте
+        mapCards.forEach(card => {
+            const clubId = card.getAttribute('data-club');
+            const dot = document.getElementById(`marker-dot-${clubId}`);
+
+            card.addEventListener('mouseenter', () => {
+                if (dot) dot.classList.add('is-active');
+                card.classList.add('is-active');
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (dot) dot.classList.remove('is-active');
+                card.classList.remove('is-active');
+            });
+        });
+
+        // Фикс для мобильных: принудительно пересчитываем размер контейнера после рендера, 
+        // чтобы тайлы не загружались обрезанными в CSS-grid
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 300);
+    }
+
 });
