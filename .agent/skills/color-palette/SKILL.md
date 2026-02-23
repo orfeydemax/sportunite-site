@@ -1,46 +1,46 @@
 ---
 name: color-palette
 description: >
-  Generate complete, accessible colour palettes from a single brand hex.
-  Produces 11-shade scale (50-950), semantic tokens, dark mode variants,
-  and Tailwind v4 CSS output. Includes WCAG contrast checking.
-  Use when setting up design systems, creating Tailwind themes, building brand
-  colours from a hex value, or checking colour accessibility.
+  Генерируйте полные, доступные цветовые палитры на основе одного hex-кода бренда.
+  Создает шкалу из 11 оттенков (50-950), семантические токены, варианты для темной темы
+  и CSS-вывод для Tailwind v4. Включает проверку контрастности WCAG.
+  Используйте при настройке дизайн-систем, создании тем Tailwind, разработке фирменных
+  цветов или проверке доступности.
 ---
 
-# Colour Palette Generator
+# Генератор цветовых палитр
 
-Generate a complete, accessible colour system from a single brand hex. Produces Tailwind v4 CSS ready to paste into your project.
+Создайте полную, доступную цветовую систему на основе одного hex-кода бренда. Генерирует CSS для Tailwind v4, готовый к использованию в вашем проекте.
 
-## Workflow
+## Рабочий процесс
 
-### Step 1: Get the Brand Hex
+### Шаг 1: Получение hex-кода бренда
 
-Ask for the primary brand colour. A single hex like `#0D9488` is enough.
+Запросите основной цвет бренда. Достаточно одного hex-кода, например `#0D9488`.
 
-### Step 2: Generate 11-Shade Scale
+### Шаг 2: Генерация шкалы из 11 оттенков
 
-Convert hex to HSL, then generate shades by varying lightness while keeping hue constant:
+Преобразуйте hex в HSL, затем создайте оттенки, изменяя яркость (lightness) при неизменном тоне (hue):
 
-| Shade | Lightness | Use Case |
+| Оттенок | Яркость | Случай использования |
 |-------|-----------|----------|
-| 50 | 97% | Subtle backgrounds |
-| 100 | 94% | Hover states |
-| 200 | 87% | Borders, dividers |
-| 300 | 75% | Disabled states |
-| 400 | 62% | Placeholder text |
-| 500 | 48% | **Brand colour** |
-| 600 | 40% | Primary actions |
-| 700 | 33% | Hover on primary |
-| 800 | 27% | Active states |
-| 900 | 20% | Text on light bg |
-| 950 | 10% | Darkest accents |
+| 50 | 97% | Тонкие фоны |
+| 100 | 94% | Состояния при наведении |
+| 200 | 87% | Гравировки, разделители |
+| 300 | 75% | Заблокированные состояния |
+| 400 | 62% | Текст-заполнитель |
+| 500 | 48% | **Цвет бренда** |
+| 600 | 40% | Основные действия |
+| 700 | 33% | Наведение на основные элементы |
+| 800 | 27% | Активные состояния |
+| 900 | 20% | Текст на светлом фоне |
+| 950 | 10% | Самые темные акценты |
 
-See `references/shade-generation.md` for the conversion formula.
+Подробную формулу конвертации см. в `references/shade-generation.md`.
 
-### Step 3: Map Semantic Tokens
+### Шаг 3: Маппинг семантических токенов
 
-**Light mode:**
+**Светлая тема:**
 ```css
 --background: white;
 --foreground: primary-950;
@@ -53,7 +53,7 @@ See `references/shade-generation.md` for the conversion formula.
 --border: primary-200;
 ```
 
-**Dark mode** — invert lightness while preserving relationships:
+**Темная тема** — инвертируйте яркость, сохраняя взаимосвязи:
 ```css
 --background: primary-950;
 --foreground: primary-50;
@@ -66,15 +66,15 @@ See `references/shade-generation.md` for the conversion formula.
 --border: primary-800;
 ```
 
-### Step 4: Check Contrast
+### Шаг 4: Проверка контрастности
 
-WCAG minimum ratios:
-- **Text (AA)**: 4.5:1 normal, 3:1 large (18px+)
-- **UI Elements**: 3:1
+Минимальные коэффициенты WCAG:
+- **Текст (AA)**: 4.5:1 для обычного, 3:1 для крупного (18px+)
+- **Элементы UI**: 3:1
 
-Quick check: `primary-600` on `white` and `white` on `primary-600`. See `references/contrast-checking.md` for formula.
+Быстрая проверка: `primary-600` на `white` и `white` на `primary-600`. Формулу см. в `references/contrast-checking.md`.
 
-### Step 5: Output Tailwind v4 CSS
+### Шаг 5: Вывод CSS для Tailwind v4
 
 ```css
 @theme {
@@ -96,23 +96,23 @@ Quick check: `primary-600` on `white` and `white` on `primary-600`. See `referen
 }
 ```
 
-Copy `assets/tailwind-colors.css` as a starting template.
+Используйте `assets/tailwind-colors.css` в качестве шаблона.
 
 ---
 
-## Common Adjustments
+## Обычные настройки
 
-- **Too vibrant at light shades**: Reduce saturation by 10-20%
-- **Poor contrast on primary**: Use shade 700+ for text
-- **Dark mode too dark**: Use shade 900 instead of 950 for backgrounds
-- **Brand colour too light/dark**: Adjust to shade 500-600 range
+- **Слишком яркие светлые оттенки**: Уменьшите насыщенность на 10-20%.
+- **Плохая контрастность основного цвета**: Используйте оттенок 700+ для текста.
+- **Темная тема слишком темная**: Используйте оттенок 900 вместо 950 для фонов.
+- **Цвет бренда слишком светлый/темный**: Скорректируйте его в диапазоне 500-600.
 
-## Reference Files
+## Справочные файлы
 
-| File | Purpose |
+| Файл | Назначение |
 |------|---------|
-| `references/shade-generation.md` | Hex to HSL conversion, lightness values |
-| `references/semantic-mapping.md` | Token mapping for light/dark modes |
-| `references/dark-mode-palette.md` | Inversion patterns |
-| `references/contrast-checking.md` | WCAG formulas, quick check table |
-| `assets/tailwind-colors.css` | Complete CSS output template |
+| `references/shade-generation.md` | Конвертация Hex в HSL, значения яркости |
+| `references/semantic-mapping.md` | Маппинг токенов для светлой/темной тем |
+| `references/dark-mode-palette.md` | Паттерны инверсии |
+| `references/contrast-checking.md` | Формулы WCAG, таблица быстрой проверки |
+| `assets/tailwind-colors.css` | Полный шаблон CSS-вывода |

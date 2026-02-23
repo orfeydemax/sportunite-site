@@ -1,45 +1,45 @@
 ---
 name: agent-browser
-description: "Browser automation for AI agents via inference.sh. Navigate web pages, interact with elements using @e refs, take screenshots, record video. Capabilities: web scraping, form filling, clicking, typing, drag-drop, file upload, JavaScript execution. Use for: web automation, data extraction, testing, agent browsing, research. Triggers: browser, web automation, scrape, navigate, click, fill form, screenshot, browse web, playwright, headless browser, web agent, surf internet, record video"
+description: "Автоматизация браузера для ИИ-агентов через inference.sh. Навигация по страницам, взаимодействие с элементами через ссылки @e, создание скриншотов и запись видео. Возможности: веб-скрейпинг, заполнение форм, клики, ввод текста, drag-and-drop, загрузка файлов, выполнение JavaScript. Применение: автоматизация веб-задач, извлечение данных, тестирование, поиск информации ИИ-агентами. Триггеры: browser, web automation, scrape, navigate, click, fill form, screenshot, browse web, playwright, headless browser, web agent, surf internet, record video"
 allowed-tools: Bash(infsh *)
 ---
 
-# Agentic Browser
+# Агентный браузер
 
-Browser automation for AI agents via [inference.sh](https://inference.sh). Uses Playwright under the hood with a simple `@e` ref system for element interaction.
+Автоматизация браузера для ИИ-агентов через [inference.sh](https://inference.sh). Использует Playwright под капотом с простой системой ссылок `@e` для взаимодействия с элементами.
 
-![Agentic Browser](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgjw8atdxgkrsr8a2t5peq7b.jpeg)
+![Агентный браузер](https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgjw8atdxgkrsr8a2t5peq7b.jpeg)
 
-## Quick Start
+## Быстрый старт
 
 ```bash
-# Install CLI
+# Установка CLI
 curl -fsSL https://cli.inference.sh | sh && infsh login
 
-# Open a page and get interactive elements
+# Открыть страницу и получить интерактивные элементы
 infsh app run agent-browser --function open --input '{"url": "https://example.com"}' --session new
 ```
 
-> **Install note:** The [install script](https://cli.inference.sh) only detects your OS/architecture, downloads the matching binary from `dist.inference.sh`, and verifies its SHA-256 checksum. No elevated permissions or background processes. [Manual install & verification](https://dist.inference.sh/cli/checksums.txt) available.
+> **Примечание по установке:** [Скрипт установки](https://cli.inference.sh) только определяет вашу ОС/архитектуру, загружает соответствующий бинарный файл с `dist.inference.sh` и проверяет его контрольную сумму SHA-256. Не требуются повышенные привилегии или фоновые процессы. Доступна [ручная установка и проверка](https://dist.inference.sh/cli/checksums.txt).
 
-## Core Workflow
+## Основной рабочий процесс
 
-Every browser automation follows this pattern:
+Любая автоматизация браузера следует этому шаблону:
 
-1. **Open** - Navigate to URL, get `@e` refs for elements
-2. **Interact** - Use refs to click, fill, drag, etc.
-3. **Re-snapshot** - After navigation/changes, get fresh refs
-4. **Close** - End session (returns video if recording)
+1. **Open** — Переход по URL, получение ссылок `@e` для элементов.
+2. **Interact** — Использование ссылок для кликов, заполнения форм, перетаскивания и т.д.
+3. **Re-snapshot** — После навигации или изменений получение свежих ссылок.
+4. **Close** — Завершение сессии (возвращает видео, если велась запись).
 
 ```bash
-# 1. Start session
+# 1. Запуск сессии
 RESULT=$(infsh app run agent-browser --function open --session new --input '{
   "url": "https://example.com/login"
 }')
 SESSION_ID=$(echo $RESULT | jq -r '.session_id')
-# Elements: @e1 [input] "Email", @e2 [input] "Password", @e3 [button] "Sign In"
+# Элементы: @e1 [input] "Email", @e2 [input] "Password", @e3 [button] "Sign In"
 
-# 2. Fill and submit
+# 2. Заполнение и отправка
 infsh app run agent-browser --function interact --session $SESSION_ID --input '{
   "action": "fill", "ref": "@e1", "text": "user@example.com"
 }'
@@ -50,47 +50,47 @@ infsh app run agent-browser --function interact --session $SESSION_ID --input '{
   "action": "click", "ref": "@e3"
 }'
 
-# 3. Re-snapshot after navigation
+# 3. Снятие обновленного снимка после навигации
 infsh app run agent-browser --function snapshot --session $SESSION_ID --input '{}'
 
-# 4. Close when done
+# 4. Закрытие сессии по завершении
 infsh app run agent-browser --function close --session $SESSION_ID --input '{}'
 ```
 
-## Functions
+## Функции
 
-| Function | Description |
+| Функция | Описание |
 |----------|-------------|
-| `open` | Navigate to URL, configure browser (viewport, proxy, video recording) |
-| `snapshot` | Re-fetch page state with `@e` refs after DOM changes |
-| `interact` | Perform actions using `@e` refs (click, fill, drag, upload, etc.) |
-| `screenshot` | Take page screenshot (viewport or full page) |
-| `execute` | Run JavaScript code on the page |
-| `close` | Close session, returns video if recording was enabled |
+| `open` | Переход по URL, настройка браузера (viewport, прокси, запись видео) |
+| `snapshot` | Повторное получение состояния страницы со ссылками `@e` после изменений DOM |
+| `interact` | Выполнение действий с использованием ссылок `@e` (клик, заполнение, перетаскивание, загрузка и т.д.) |
+| `screenshot` | Создание скриншота страницы (область просмотра или вся страница) |
+| `execute` | Выполнение JavaScript-кода на странице |
+| `close` | Закрытие сессии, возвращает видео, если запись была включена |
 
-## Interact Actions
+## Действия взаимодействия (Interact Actions)
 
-| Action | Description | Required Fields |
+| Действие | Описание | Обязательные поля |
 |--------|-------------|-----------------|
-| `click` | Click element | `ref` |
-| `dblclick` | Double-click element | `ref` |
-| `fill` | Clear and type text | `ref`, `text` |
-| `type` | Type text (no clear) | `text` |
-| `press` | Press key (Enter, Tab, etc.) | `text` |
-| `select` | Select dropdown option | `ref`, `text` |
-| `hover` | Hover over element | `ref` |
-| `check` | Check checkbox | `ref` |
-| `uncheck` | Uncheck checkbox | `ref` |
-| `drag` | Drag and drop | `ref`, `target_ref` |
-| `upload` | Upload file(s) | `ref`, `file_paths` |
-| `scroll` | Scroll page | `direction` (up/down/left/right), `scroll_amount` |
-| `back` | Go back in history | - |
-| `wait` | Wait milliseconds | `wait_ms` |
-| `goto` | Navigate to URL | `url` |
+| `click` | Клик по элементу | `ref` |
+| `dblclick` | Двойной клик по элементу | `ref` |
+| `fill` | Очистка и ввод текста | `ref`, `text` |
+| `type` | Ввод текста (без очистки) | `text` |
+| `press` | Нажатие клавиши (Enter, Tab и т.д.) | `text` |
+| `select` | Выбор опции в выпадающем списке | `ref`, `text` |
+| `hover` | Наведение курсора на элемент | `ref` |
+| `check` | Отметить чекбокс | `ref` |
+| `uncheck` | Снять отметку с чекбокса | `ref` |
+| `drag` | Перетаскивание (Drag-and-drop) | `ref`, `target_ref` |
+| `upload` | Загрузка файла(ов) | `ref`, `file_paths` |
+| `scroll` | Прокрутка страницы | `direction` (up/down/left/right), `scroll_amount` |
+| `back` | Перейти назад в истории | - |
+| `wait` | Ожидание в миллисекундах | `wait_ms` |
+| `goto` | Переход по URL | `url` |
 
-## Element Refs
+## Ссылки на элементы (@e refs)
 
-Elements are returned with `@e` refs:
+Элементы возвращаются со ссылками `@e`:
 
 ```
 @e1 [a] "Home" href="/"
@@ -100,35 +100,35 @@ Elements are returned with `@e` refs:
 @e5 [input type="checkbox"] name="agree"
 ```
 
-**Important:** Refs are invalidated after navigation. Always re-snapshot after:
-- Clicking links/buttons that navigate
-- Form submissions
-- Dynamic content loading
+**Важно:** Ссылки становятся недействительными после навигации. Всегда делайте `snapshot` после:
+- Клика по ссылкам/кнопкам, которые вызывают переход.
+- Отправки форм.
+- Динамической загрузки контента.
 
-## Features
+## Особенности
 
-### Video Recording
+### Запись видео
 
-Record browser sessions for debugging or documentation:
+Записывайте сессии браузера для отладки или документации:
 
 ```bash
-# Start with recording enabled (optionally show cursor indicator)
+# Запуск с включенной записью (опционально с индикатором курсора)
 SESSION=$(infsh app run agent-browser --function open --session new --input '{
   "url": "https://example.com",
   "record_video": true,
   "show_cursor": true
 }' | jq -r '.session_id')
 
-# ... perform actions ...
+# ... выполнение действий ...
 
-# Close to get the video file
+# Закрытие для получения файла видео
 infsh app run agent-browser --function close --session $SESSION --input '{}'
-# Returns: {"success": true, "video": <File>}
+# Возвращает: {"success": true, "video": <File>}
 ```
 
-### Cursor Indicator
+### Индикатор курсора
 
-Show a visible cursor in screenshots and video (useful for demos):
+Показывает видимый курсор на скриншотах и видео (полезно для демо):
 
 ```bash
 infsh app run agent-browser --function open --session new --input '{
@@ -138,11 +138,11 @@ infsh app run agent-browser --function open --session new --input '{
 }'
 ```
 
-The cursor appears as a red dot that follows mouse movements and shows click feedback.
+Курсор отображается как красная точка, которая следует за движениями мыши и показывает визуальный отклик при кликах.
 
-### Proxy Support
+### Поддержка прокси
 
-Route traffic through a proxy server:
+Маршрутизация трафика через прокси-сервер:
 
 ```bash
 infsh app run agent-browser --function open --session new --input '{
@@ -153,9 +153,9 @@ infsh app run agent-browser --function open --session new --input '{
 }'
 ```
 
-### File Upload
+### Загрузка файлов
 
-Upload files to file inputs:
+Загрузка файлов в элементы `input` типа `file`:
 
 ```bash
 infsh app run agent-browser --function interact --session $SESSION --input '{
@@ -165,9 +165,9 @@ infsh app run agent-browser --function interact --session $SESSION --input '{
 }'
 ```
 
-### Drag and Drop
+### Перетаскивание (Drag and Drop)
 
-Drag elements to targets:
+Перетаскивание элементов на цели:
 
 ```bash
 infsh app run agent-browser --function interact --session $SESSION --input '{
@@ -177,64 +177,64 @@ infsh app run agent-browser --function interact --session $SESSION --input '{
 }'
 ```
 
-### JavaScript Execution
+### Выполнение JavaScript
 
-Run custom JavaScript:
+Выполнение произвольного JavaScript-кода:
 
 ```bash
 infsh app run agent-browser --function execute --session $SESSION --input '{
   "code": "document.querySelectorAll(\"h2\").length"
 }'
-# Returns: {"result": "5", "screenshot": <File>}
+# Возвращает: {"result": "5", "screenshot": <File>}
 ```
 
-## Deep-Dive Documentation
+## Углубленная документация
 
-| Reference | Description |
+| Ссылка | Описание |
 |-----------|-------------|
-| [references/commands.md](references/commands.md) | Full function reference with all options |
-| [references/snapshot-refs.md](references/snapshot-refs.md) | Ref lifecycle, invalidation rules, troubleshooting |
-| [references/session-management.md](references/session-management.md) | Session persistence, parallel sessions |
-| [references/authentication.md](references/authentication.md) | Login flows, OAuth, 2FA handling |
-| [references/video-recording.md](references/video-recording.md) | Recording workflows for debugging |
-| [references/proxy-support.md](references/proxy-support.md) | Proxy configuration, geo-testing |
+| [references/commands.md](references/commands.md) | Полный справочник функций со всеми опциями |
+| [references/snapshot-refs.md](references/snapshot-refs.md) | Жизненный цикл ссылок, правила аннулирования, решение проблем |
+| [references/session-management.md](references/session-management.md) | Управление сессиями, параллельные сессии |
+| [references/authentication.md](references/authentication.md) | Процессы входа (login), OAuth, обработка 2FA |
+| [references/video-recording.md](references/video-recording.md) | Рабочие процессы записи для отладки |
+| [references/proxy-support.md](references/proxy-support.md) | Настройка прокси, гео-тестирование |
 
-## Ready-to-Use Templates
+## Готовые шаблоны
 
-| Template | Description |
+| Шаблон | Описание |
 |----------|-------------|
-| [templates/form-automation.sh](templates/form-automation.sh) | Form filling with validation |
-| [templates/authenticated-session.sh](templates/authenticated-session.sh) | Login once, reuse session |
-| [templates/capture-workflow.sh](templates/capture-workflow.sh) | Content extraction with screenshots |
+| [templates/form-automation.sh](templates/form-automation.sh) | Автоматизация заполнения форм с валидацией |
+| [templates/authenticated-session.sh](templates/authenticated-session.sh) | Однократный вход и повторное использование сессии |
+| [templates/capture-workflow.sh](templates/capture-workflow.sh) | Извлечение контента со скриншотами |
 
-## Examples
+## Примеры
 
-### Form Submission
+### Отправка формы
 
 ```bash
 SESSION=$(infsh app run agent-browser --function open --session new --input '{
   "url": "https://example.com/contact"
 }' | jq -r '.session_id')
 
-# Get elements: @e1 [input] "Name", @e2 [input] "Email", @e3 [textarea], @e4 [button] "Send"
+# Получение элементов: @e1 [input] "Name", @e2 [input] "Email", @e3 [textarea], @e4 [button] "Send"
 
 infsh app run agent-browser --function interact --session $SESSION --input '{"action": "fill", "ref": "@e1", "text": "John Doe"}'
 infsh app run agent-browser --function interact --session $SESSION --input '{"action": "fill", "ref": "@e2", "text": "john@example.com"}'
-infsh app run agent-browser --function interact --session $SESSION --input '{"action": "fill", "ref": "@e3", "text": "Hello!"}'
+infsh app run agent-browser --function interact --session $SESSION --input '{"action": "fill", "ref": "@e3", "text": "Привет!"}'
 infsh app run agent-browser --function interact --session $SESSION --input '{"action": "click", "ref": "@e4"}'
 
 infsh app run agent-browser --function snapshot --session $SESSION --input '{}'
 infsh app run agent-browser --function close --session $SESSION --input '{}'
 ```
 
-### Search and Extract
+### Поиск и извлечение данных
 
 ```bash
 SESSION=$(infsh app run agent-browser --function open --session new --input '{
   "url": "https://google.com"
 }' | jq -r '.session_id')
 
-infsh app run agent-browser --function interact --session $SESSION --input '{"action": "fill", "ref": "@e1", "text": "weather today"}'
+infsh app run agent-browser --function interact --session $SESSION --input '{"action": "fill", "ref": "@e1", "text": "погода сегодня"}'
 infsh app run agent-browser --function interact --session $SESSION --input '{"action": "press", "text": "Enter"}'
 infsh app run agent-browser --function interact --session $SESSION --input '{"action": "wait", "wait_ms": 2000}'
 
@@ -242,7 +242,7 @@ infsh app run agent-browser --function snapshot --session $SESSION --input '{}'
 infsh app run agent-browser --function close --session $SESSION --input '{}'
 ```
 
-### Screenshot with Video
+### Скриншот с видео
 
 ```bash
 SESSION=$(infsh app run agent-browser --function open --session new --input '{
@@ -250,35 +250,35 @@ SESSION=$(infsh app run agent-browser --function open --session new --input '{
   "record_video": true
 }' | jq -r '.session_id')
 
-# Take full page screenshot
+# Создание скриншота всей страницы
 infsh app run agent-browser --function screenshot --session $SESSION --input '{
   "full_page": true
 }'
 
-# Close and get video
+# Закрытие и получение видео
 RESULT=$(infsh app run agent-browser --function close --session $SESSION --input '{}')
 echo $RESULT | jq '.video'
 ```
 
-## Sessions
+## Сессии
 
-Browser state persists within a session. Always:
+Состояние браузера сохраняется внутри сессии. Всегда:
 
-1. Start with `--session new` on first call
-2. Use returned `session_id` for subsequent calls
-3. Close session when done
+1. Начинайте с `--session new` при первом вызове.
+2. Используйте полученный `session_id` для последующих вызовов.
+3. Закрывайте сессию по завершении.
 
-## Related Skills
+## Связанные навыки
 
 ```bash
-# Web search (for research + browse)
+# Веб-поиск (для исследований + браузинга)
 npx skills add inference-sh/skills@web-search
 
-# LLM models (analyze extracted content)
+# LLM модели (анализ извлеченного контента)
 npx skills add inference-sh/skills@llm-models
 ```
 
-## Documentation
+## Документация
 
-- [inference.sh Sessions](https://inference.sh/docs/extend/sessions) - Session management
-- [Multi-function Apps](https://inference.sh/docs/extend/multi-function-apps) - How functions work
+- [inference.sh Sessions](https://inference.sh/docs/extend/sessions) — Управление сессиями
+- [Multi-function Apps](https://inference.sh/docs/extend/multi-function-apps) — Как работают функции

@@ -1,39 +1,39 @@
 ---
 name: bats-testing-patterns
-description: Master Bash Automated Testing System (Bats) for comprehensive shell script testing. Use when writing tests for shell scripts, CI/CD pipelines, or requiring test-driven development of shell utilities.
+description: Освойте Bash Automated Testing System (Bats) для всестороннего тестирования shell-скриптов. Используйте при написании тестов для shell-скриптов, конвейеров CI/CD или при необходимости разработки через тестирование (TDD) для системных утилит.
 ---
 
-# Bats Testing Patterns
+# Паттерны тестирования Bats
 
-Comprehensive guidance for writing comprehensive unit tests for shell scripts using Bats (Bash Automated Testing System), including test patterns, fixtures, and best practices for production-grade shell testing.
+Подробное руководство по написанию комплексных модульных тестов для shell-скриптов с использованием Bats (Bash Automated Testing System), включая паттерны тестов, фикстуры и лучшие практики для промышленного тестирования оболочки.
 
-## When to Use This Skill
+## Когда использовать этот навык
 
-- Writing unit tests for shell scripts
-- Implementing test-driven development (TDD) for scripts
-- Setting up automated testing in CI/CD pipelines
-- Testing edge cases and error conditions
-- Validating behavior across different shell environments
-- Building maintainable test suites for scripts
-- Creating fixtures for complex test scenarios
-- Testing multiple shell dialects (bash, sh, dash)
+- Написание модульных тестов для shell-скриптов.
+- Реализация разработки через тестирование (TDD) для скриптов.
+- Настройка автоматизированного тестирования в конвейерах CI/CD.
+- Тестирование граничных случаев и условий ошибок.
+- Проверка поведения в различных средах оболочки.
+- Создание поддерживаемых тестовых наборов для скриптов.
+- Создание фикстур для сложных тестовых сценариев.
+- Тестирование различных диалектов оболочки (bash, sh, dash).
 
-## Bats Fundamentals
+## Основы Bats
 
-### What is Bats?
+### Что такое Bats?
 
-Bats (Bash Automated Testing System) is a TAP (Test Anything Protocol) compliant testing framework for shell scripts that provides:
+Bats (Bash Automated Testing System) — это среда тестирования для shell-скриптов, совместимая с протоколом TAP (Test Anything Protocol), которая обеспечивает:
 
-- Simple, natural test syntax
-- TAP output format compatible with CI systems
-- Fixtures and setup/teardown support
-- Assertion helpers
-- Parallel test execution
+- Простой и естественный синтаксис тестов.
+- Формат вывода TAP, совместимый с системами CI.
+- Поддержку фикстур и функций setup/teardown.
+- Вспомогательные функции для утверждений (assertions).
+- Параллельное выполнение тестов.
 
-### Installation
+### Установка
 
 ```bash
-# macOS with Homebrew
+# macOS с Homebrew
 brew install bats-core
 
 # Ubuntu/Debian
@@ -41,14 +41,14 @@ git clone https://github.com/bats-core/bats-core.git
 cd bats-core
 ./install.sh /usr/local
 
-# From npm (Node.js)
+# Через npm (Node.js)
 npm install --global bats
 
-# Verify installation
+# Проверка установки
 bats --version
 ```
 
-### File Structure
+### Структура файлов
 
 ```
 project/
@@ -66,102 +66,102 @@ project/
 └── README.md
 ```
 
-## Basic Test Structure
+## Базовая структура теста
 
-### Simple Test File
+### Простой тестовый файл
 
 ```bash
 #!/usr/bin/env bats
 
-# Load test helper if present
+# Загрузка тестового помощника, если он есть
 load test_helper
 
-# Setup runs before each test
+# setup запускается перед каждым тестом
 setup() {
     export TMPDIR=$(mktemp -d)
 }
 
-# Teardown runs after each test
+# teardown запускается после каждого теста
 teardown() {
     rm -rf "$TMPDIR"
 }
 
-# Test: simple assertion
-@test "Function returns 0 on success" {
+# Тест: простое утверждение
+@test "Функция возвращает 0 при успехе" {
     run my_function "input"
     [ "$status" -eq 0 ]
 }
 
-# Test: output verification
-@test "Function outputs correct result" {
+# Тест: проверка вывода
+@test "Функция выводит правильный результат" {
     run my_function "test"
     [ "$output" = "expected output" ]
 }
 
-# Test: error handling
-@test "Function returns 1 on missing argument" {
+# Тест: обработка ошибок
+@test "Функция возвращает 1 при отсутствии аргумента" {
     run my_function
     [ "$status" -eq 1 ]
 }
 ```
 
-## Assertion Patterns
+## Паттерны утверждений (Assertion Patterns)
 
-### Exit Code Assertions
+### Утверждения кода выхода (Exit Code)
 
 ```bash
 #!/usr/bin/env bats
 
-@test "Command succeeds" {
+@test "Команда завершается успешно" {
     run true
     [ "$status" -eq 0 ]
 }
 
-@test "Command fails as expected" {
+@test "Команда завершается с ошибкой, как и ожидалось" {
     run false
     [ "$status" -ne 0 ]
 }
 
-@test "Command returns specific exit code" {
+@test "Команда возвращает конкретный код выхода" {
     run my_function --invalid
     [ "$status" -eq 127 ]
 }
 
-@test "Can capture command result" {
+@test "Можно захватить результат команды" {
     run echo "hello"
     [ $status -eq 0 ]
     [ "$output" = "hello" ]
 }
 ```
 
-### Output Assertions
+### Утверждения вывода (Output)
 
 ```bash
 #!/usr/bin/env bats
 
-@test "Output matches string" {
+@test "Вывод совпадает со строкой" {
     result=$(echo "hello world")
     [ "$result" = "hello world" ]
 }
 
-@test "Output contains substring" {
+@test "Вывод содержит подстроку" {
     result=$(echo "hello world")
     [[ "$result" == *"world"* ]]
 }
 
-@test "Output matches pattern" {
+@test "Вывод соответствует шаблону" {
     result=$(date +%Y)
     [[ "$result" =~ ^[0-9]{4}$ ]]
 }
 
-@test "Multi-line output" {
+@test "Многострочный вывод" {
     run printf "line1\nline2\nline3"
     [ "$output" = "line1
 line2
 line3" ]
 }
 
-@test "Lines variable contains output" {
+@test "Переменная lines содержит вывод" {
     run printf "line1\nline2\nline3"
     [ "${lines[0]}" = "line1" ]
     [ "${lines[1]}" = "line2" ]
@@ -169,81 +169,81 @@ line3" ]
 }
 ```
 
-### File Assertions
+### Утверждения файлов (File Assertions)
 
 ```bash
 #!/usr/bin/env bats
 
-@test "File is created" {
+@test "Файл создан" {
     [ ! -f "$TMPDIR/output.txt" ]
     my_function > "$TMPDIR/output.txt"
     [ -f "$TMPDIR/output.txt" ]
 }
 
-@test "File contents match expected" {
+@test "Содержимое файла соответствует ожидаемому" {
     my_function > "$TMPDIR/output.txt"
     [ "$(cat "$TMPDIR/output.txt")" = "expected content" ]
 }
 
-@test "File is readable" {
+@test "Файл доступен для чтения" {
     touch "$TMPDIR/test.txt"
     [ -r "$TMPDIR/test.txt" ]
 }
 
-@test "File has correct permissions" {
+@test "Файл имеет правильные права доступа" {
     touch "$TMPDIR/test.txt"
     chmod 644 "$TMPDIR/test.txt"
     [ "$(stat -f %OLp "$TMPDIR/test.txt")" = "644" ]
 }
 
-@test "File size is correct" {
+@test "Размер файла правильный" {
     echo -n "12345" > "$TMPDIR/test.txt"
     [ "$(wc -c < "$TMPDIR/test.txt")" -eq 5 ]
 }
 ```
 
-## Setup and Teardown Patterns
+## Паттерны настройки и очистки (Setup/Teardown)
 
-### Basic Setup and Teardown
+### Базовые Setup и Teardown
 
 ```bash
 #!/usr/bin/env bats
 
 setup() {
-    # Create test directory
+    # Создание тестовой директории
     TEST_DIR=$(mktemp -d)
     export TEST_DIR
 
-    # Source script under test
+    # Подключение тестируемого скрипта
     source "${BATS_TEST_DIRNAME}/../bin/script.sh"
 }
 
 teardown() {
-    # Clean up temporary directory
+    # Удаление временной директории
     rm -rf "$TEST_DIR"
 }
 
-@test "Test using TEST_DIR" {
+@test "Тест с использованием TEST_DIR" {
     touch "$TEST_DIR/file.txt"
     [ -f "$TEST_DIR/file.txt" ]
 }
 ```
 
-### Setup with Resources
+### Setup с ресурсами
 
 ```bash
 #!/usr/bin/env bats
 
 setup() {
-    # Create directory structure
+    # Создание структуры директорий
     mkdir -p "$TMPDIR/data/input"
     mkdir -p "$TMPDIR/data/output"
 
-    # Create test fixtures
+    # Создание тестовых фикстур
     echo "line1" > "$TMPDIR/data/input/file1.txt"
     echo "line2" > "$TMPDIR/data/input/file2.txt"
 
-    # Initialize environment
+    # Инициализация окружения
     export DATA_DIR="$TMPDIR/data"
     export INPUT_DIR="$DATA_DIR/input"
     export OUTPUT_DIR="$DATA_DIR/output"
@@ -253,72 +253,72 @@ teardown() {
     rm -rf "$TMPDIR/data"
 }
 
-@test "Processes input files" {
+@test "Обрабатывает входные файлы" {
     run my_process_script "$INPUT_DIR" "$OUTPUT_DIR"
     [ "$status" -eq 0 ]
     [ -f "$OUTPUT_DIR/file1.txt" ]
 }
 ```
 
-### Global Setup/Teardown
+### Глобальные Setup/Teardown
 
 ```bash
 #!/usr/bin/env bats
 
-# Load shared setup from test_helper.sh
+# Загрузка общего setup из test_helper.sh
 load test_helper
 
-# setup_file runs once before all tests
+# setup_file запускается один раз перед всеми тестами
 setup_file() {
     export SHARED_RESOURCE=$(mktemp -d)
     echo "Expensive setup" > "$SHARED_RESOURCE/data.txt"
 }
 
-# teardown_file runs once after all tests
+# teardown_file запускается один раз после всех тестов
 teardown_file() {
     rm -rf "$SHARED_RESOURCE"
 }
 
-@test "First test uses shared resource" {
+@test "Первый тест использует общий ресурс" {
     [ -f "$SHARED_RESOURCE/data.txt" ]
 }
 
-@test "Second test uses shared resource" {
+@test "Второй тест использует общий ресурс" {
     [ -d "$SHARED_RESOURCE" ]
 }
 ```
 
-## Mocking and Stubbing Patterns
+## Паттерны мокинга и стаббинга
 
-### Function Mocking
+### Мокинг функций (Function Mocking)
 
 ```bash
 #!/usr/bin/env bats
 
-# Mock external command
+# Мок внешней команды
 my_external_tool() {
     echo "mocked output"
     return 0
 }
 
-@test "Function uses mocked tool" {
+@test "Функция использует мок инструмента" {
     export -f my_external_tool
     run my_function
     [[ "$output" == *"mocked output"* ]]
 }
 ```
 
-### Command Stubbing
+### Стаббинг команд (Command Stubbing)
 
 ```bash
 #!/usr/bin/env bats
 
 setup() {
-    # Create stub directory
+    # Создание директории для стабов
     STUBS_DIR="$TMPDIR/stubs"
     mkdir -p "$STUBS_DIR"
 
-    # Add to PATH
+    # Добавление в PATH
     export PATH="$STUBS_DIR:$PATH"
 }
 
@@ -335,26 +335,26 @@ EOF
     chmod +x "$STUBS_DIR/$cmd"
 }
 
-@test "Function works with stubbed curl" {
+@test "Функция работает со стабом curl" {
     create_stub curl "{ \"status\": \"ok\" }" 0
     run my_api_function
     [ "$status" -eq 0 ]
 }
 ```
 
-### Variable Stubbing
+### Стаббинг переменных
 
 ```bash
 #!/usr/bin/env bats
 
-@test "Function handles environment override" {
+@test "Функция обрабатывает переопределение переменной окружения" {
     export MY_SETTING="override_value"
     run my_function
     [ "$status" -eq 0 ]
     [[ "$output" == *"override_value"* ]]
 }
 
-@test "Function uses default when var unset" {
+@test "Функция использует значение по умолчанию, если переменная не задана" {
     unset MY_SETTING
     run my_function
     [ "$status" -eq 0 ]
@@ -362,14 +362,14 @@ EOF
 }
 ```
 
-## Fixture Management
+## Управление фикстурами (Fixture Management)
 
-### Using Fixture Files
+### Использование файлов-фикстур
 
 ```bash
 #!/usr/bin/env bats
 
-# Fixture directory: tests/fixtures/
+# Директория фикстур: tests/fixtures/
 
 setup() {
     FIXTURES_DIR="${BATS_TEST_DIRNAME}/fixtures"
@@ -381,19 +381,19 @@ teardown() {
     rm -rf "$WORK_DIR"
 }
 
-@test "Process fixture file" {
-    # Copy fixture to work directory
+@test "Обработка файла-фикстуры" {
+    # Копирование фикстуры в рабочую директорию
     cp "$FIXTURES_DIR/input.txt" "$WORK_DIR/input.txt"
 
-    # Run function
+    # Запуск функции
     run my_process_function "$WORK_DIR/input.txt"
 
-    # Compare output
+    # Сравнение вывода
     diff "$WORK_DIR/output.txt" "$FIXTURES_DIR/expected_output.txt"
 }
 ```
 
-### Dynamic Fixture Generation
+### Динамическая генерация фикстур
 
 ```bash
 #!/usr/bin/env bats
@@ -407,7 +407,7 @@ generate_fixture() {
     done
 }
 
-@test "Handle large input file" {
+@test "Обработка большого входного файла" {
     generate_fixture 1000 "$TMPDIR/large.txt"
     run my_function "$TMPDIR/large.txt"
     [ "$status" -eq 0 ]
@@ -415,88 +415,87 @@ generate_fixture() {
 }
 ```
 
-## Advanced Patterns
+## Продвинутые паттерны
 
-### Testing Error Conditions
+### Тестирование условий ошибок
 
 ```bash
 #!/usr/bin/env bats
 
-@test "Function fails with missing file" {
+@test "Функция завершается ошибкой при отсутствии файла" {
     run my_function "/nonexistent/file.txt"
     [ "$status" -ne 0 ]
     [[ "$output" == *"not found"* ]]
 }
 
-@test "Function fails with invalid input" {
+@test "Функция завершается ошибкой при некорректном вводе" {
     run my_function ""
     [ "$status" -ne 0 ]
 }
 
-@test "Function fails with permission denied" {
+@test "Функция завершается ошибкой при отсутствии прав доступа" {
     touch "$TMPDIR/readonly.txt"
     chmod 000 "$TMPDIR/readonly.txt"
     run my_function "$TMPDIR/readonly.txt"
     [ "$status" -ne 0 ]
-    chmod 644 "$TMPDIR/readonly.txt"  # Cleanup
+    chmod 644 "$TMPDIR/readonly.txt"  # Очистка
 }
 
-@test "Function provides helpful error message" {
+@test "Функция выводит полезное сообщение об ошибке" {
     run my_function --invalid-option
     [ "$status" -ne 0 ]
     [[ "$output" == *"Usage:"* ]]
 }
 ```
 
-### Testing with Dependencies
+### Тестирование с зависимостями
 
 ```bash
 #!/usr/bin/env bats
 
 setup() {
-    # Check for required tools
+    # Проверка обязательных инструментов
     if ! command -v jq &>/dev/null; then
-        skip "jq is not installed"
+        skip "jq не установлен"
     fi
 
     export SCRIPT="${BATS_TEST_DIRNAME}/../bin/script.sh"
 }
 
-@test "JSON parsing works" {
-    skip_if ! command -v jq &>/dev/null
+@test "Парсинг JSON работает" {
     run my_json_parser '{"key": "value"}'
     [ "$status" -eq 0 ]
 }
 ```
 
-### Testing Shell Compatibility
+### Тестирование совместимости оболочек
 
 ```bash
 #!/usr/bin/env bats
 
-@test "Script works in bash" {
+@test "Скрипт работает в bash" {
     bash "${BATS_TEST_DIRNAME}/../bin/script.sh" arg1
 }
 
-@test "Script works in sh (POSIX)" {
+@test "Скрипт работает в sh (POSIX)" {
     sh "${BATS_TEST_DIRNAME}/../bin/script.sh" arg1
 }
 
-@test "Script works in dash" {
+@test "Скрипт работает в dash" {
     if command -v dash &>/dev/null; then
         dash "${BATS_TEST_DIRNAME}/../bin/script.sh" arg1
     else
-        skip "dash not installed"
+        skip "dash не установлен"
     fi
 }
 ```
 
-### Parallel Execution
+### Параллельное выполнение
 
 ```bash
 #!/usr/bin/env bats
 
-@test "Multiple independent operations" {
+@test "Несколько независимых операций" {
     run bash -c 'for i in {1..10}; do
         my_operation "$i" &
     done
@@ -504,7 +503,7 @@ setup() {
     [ "$status" -eq 0 ]
 }
 
-@test "Concurrent file operations" {
+@test "Конкурентные операции с файлами" {
     for i in {1..5}; do
         my_function "$TMPDIR/file$i" &
     done
@@ -514,20 +513,20 @@ setup() {
 }
 ```
 
-## Test Helper Pattern
+## Паттерн тестового помощника (Test Helper)
 
 ### test_helper.sh
 
 ```bash
 #!/usr/bin/env bash
 
-# Source script under test
+# Путь к тестируемым скриптам
 export SCRIPT_DIR="${BATS_TEST_DIRNAME%/*}/bin"
 
-# Common test utilities
+# Общие утилиты для тестов
 assert_file_exists() {
     if [ ! -f "$1" ]; then
-        echo "Expected file to exist: $1"
+        echo "Ожидалось появление файла: $1"
         return 1
     fi
 }
@@ -537,20 +536,20 @@ assert_file_equals() {
     local expected="$2"
 
     if [ ! -f "$file" ]; then
-        echo "File does not exist: $file"
+        echo "Файл не существует: $file"
         return 1
     fi
 
     local actual=$(cat "$file")
     if [ "$actual" != "$expected" ]; then
-        echo "File contents do not match"
-        echo "Expected: $expected"
-        echo "Actual: $actual"
+        echo "Содержимое файла не совпадает"
+        echo "Ожидалось: $expected"
+        echo "Фактически: $actual"
         return 1
     fi
 }
 
-# Create temporary test directory
+# Создание временной тестовой директории
 setup_test_dir() {
     export TEST_DIR=$(mktemp -d)
 }
@@ -560,9 +559,9 @@ cleanup_test_dir() {
 }
 ```
 
-## Integration with CI/CD
+## Интеграция с CI/CD
 
-### GitHub Actions Workflow
+### Workflow GitHub Actions
 
 ```yaml
 name: Tests
@@ -589,7 +588,7 @@ jobs:
           bats tests/*.bats --tap | tee test_output.tap
 ```
 
-### Makefile Integration
+### Интеграция с Makefile
 
 ```makefile
 .PHONY: test test-verbose test-tap
@@ -607,25 +606,25 @@ test-parallel:
 	bats tests/*.bats --parallel 4
 
 coverage: test
-	# Optional: Generate coverage reports
+	# Опционально: генерация отчетов о покрытии
 ```
 
-## Best Practices
+## Лучшие практики
 
-1. **Test one thing per test** - Single responsibility principle
-2. **Use descriptive test names** - Clearly states what is being tested
-3. **Clean up after tests** - Always remove temporary files in teardown
-4. **Test both success and failure paths** - Don't just test happy path
-5. **Mock external dependencies** - Isolate unit under test
-6. **Use fixtures for complex data** - Makes tests more readable
-7. **Run tests in CI/CD** - Catch regressions early
-8. **Test across shell dialects** - Ensure portability
-9. **Keep tests fast** - Run in parallel when possible
-10. **Document complex test setup** - Explain unusual patterns
+1. **Один тест — одна проверка** — принцип единственной ответственности.
+2. **Используйте описательные названия тестов** — четко указывайте, что проверяется.
+3. **Очистка после тестов** — всегда удаляйте временные файлы в teardown.
+4. **Тестируйте как успешные, так и ошибочные пути** — не ограничивайтесь только «happy path».
+5. **Мокайте внешние зависимости** — изолируйте тестируемый модуль.
+6. **Используйте фикстуры для сложных данных** — это делает тесты более читаемыми.
+7. **Запускайте тесты в CI/CD** — находите регрессии как можно раньше.
+8. **Тестируйте на разных диалектах оболочки** — обеспечивайте переносимость.
+9. **Поддерживайте высокую скорость тестов** — запускайте их параллельно, где возможно.
+10. **Документируйте сложную настройку тестов** — объясняйте необычные паттерны.
 
-## Resources
+## Ресурсы
 
 - **Bats GitHub**: https://github.com/bats-core/bats-core
-- **Bats Documentation**: https://bats-core.readthedocs.io/
-- **TAP Protocol**: https://testanything.org/
-- **Test-Driven Development**: https://en.wikipedia.org/wiki/Test-driven_development
+- **Документация Bats**: https://bats-core.readthedocs.io/
+- **Протокол TAP**: https://testanything.org/
+- **Разработка через тестирование (TDD)**: https://en.wikipedia.org/wiki/Test-driven_development

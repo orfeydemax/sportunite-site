@@ -1,199 +1,195 @@
 ---
 name: lead-research-assistant
-description: Identifies high-quality leads for your product or service by analyzing your business, searching for target companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing professionals.
+description: Находит высококачественных лидов для вашего продукта или услуги путем анализа вашего бизнеса, поиска целевых компаний и предоставления действенных стратегий контакта. Идеально подходит для специалистов по продажам, развитию бизнеса и маркетингу.
 ---
 
-# Lead Research Assistant
+# Ассистент по поиску лидов (Lead Research Assistant)
 
-This skill helps you identify and qualify potential leads for your business by analyzing your product/service, understanding your ideal customer profile, and providing actionable outreach strategies.
+Этот навык поможет вам находить и квалифицировать потенциальных лидов для вашего бизнеса путем анализа вашего продукта/услуги, понимания профиля вашего идеального клиента и предоставления действенных стратегий охвата.
 
-## When to Use This Skill
+## Когда использовать этот навык
 
-- Finding potential customers or clients for your product/service
-- Building a list of companies to reach out to for partnerships
-- Identifying target accounts for sales outreach
-- Researching companies that match your ideal customer profile
-- Preparing for business development activities
+- Поиск потенциальных потребителей или клиентов для вашего продукта/услуги.
+- Создание списка компаний для установления партнерских отношений.
+- Определение целевых аккаунтов для активных продаж.
+- Поиск компаний, соответствующих профилю вашего идеального клиента (ICP).
+- Подготовка к деятельности по развитию бизнеса.
 
-## What This Skill Does
+## Что делает этот навык
 
-1. **Understands Your Business**: Analyzes your product/service, value proposition, and target market
-2. **Identifies Target Companies**: Finds companies that match your ideal customer profile based on:
-   - Industry and sector
-   - Company size and location
-   - Technology stack and tools they use
-   - Growth stage and funding
-   - Pain points your product solves
-3. **Prioritizes Leads**: Ranks companies based on fit score and relevance
-4. **Provides Contact Strategies**: Suggests how to approach each lead with personalized messaging
-5. **Enriches Data**: Gathers relevant information about decision-makers and company context
+1. **Анализирует ваш бизнес**: Изучает ваш продукт/услугу, ценностное предложение и целевой рынок.
+2. **Определяет целевые компании**: Находит компании, соответствующие профилю вашего идеального клиента на основе:
+   - Индустрии и сектора.
+   - Размера компании и местоположения.
+   - Технологического стека и используемых инструментов.
+   - Стадии роста и финансирования.
+   - "Болей", которые решает ваш продукт.
+3. **Приоритизирует лидов**: Ранжирует компании на основе оценки соответствия и релевантности.
+4. **Предоставляет стратегии контакта**: Предлагает подходы к каждому лиду с персонализированными сообщениями.
+5. **Обогащает данные**: Собирает релевантную информацию о лицах, принимающих решения, и контексте компании.
 
-## How to Use
+## Как использовать
 
-### Basic Usage
+### Базовое использование
 
-Simply describe your product/service and what you're looking for:
-
-```
-I'm building [product description]. Find me 10 companies in [location/industry] 
-that would be good leads for this.
-```
-
-### With Your Codebase
-
-For even better results, run this from your product's source code directory:
+Просто опишите ваш продукт/услугу и то, что вы ищете:
 
 ```
-Look at what I'm building in this repository and identify the top 10 companies 
-in [location/industry] that would benefit from this product.
+Я создаю [описание продукта]. Найди мне 10 компаний в [местоположение/индустрия], которые были бы хорошими лидами для этого.
 ```
 
-### Advanced Usage
+### С использованием вашей кодовой базы
 
-For more targeted research:
+Для получения еще более точных результатов запустите этот навык из директории с исходным кодом вашего продукта:
 
 ```
-My product: [description]
-Ideal customer profile:
-- Industry: [industry]
-- Company size: [size range]
-- Location: [location]
-- Current pain points: [pain points]
-- Technologies they use: [tech stack]
-
-Find me 20 qualified leads with contact strategies for each.
+Посмотри, что я создаю в этом репозитории, и определи топ-10 компаний в [местоположение/индустрия], которые выиграют от использования этого продукта.
 ```
 
-## Instructions
+### Продвинутое использование
 
-When a user requests lead research:
+Для более целенаправленного исследования:
 
-1. **Understand the Product/Service**
-   - If in a code directory, analyze the codebase to understand the product
-   - Ask clarifying questions about the value proposition
-   - Identify key features and benefits
-   - Understand what problems it solves
+```
+Мой продукт: [описание]
+Идеальный профиль клиента:
+- Индустрия: [индустрия]
+- Размер компании: [диапазон размеров]
+- Местоположение: [местоположение]
+- Текущие болевые точки: [боли]
+- Используемые технологии: [технологический стек]
 
-2. **Define Ideal Customer Profile**
-   - Determine target industries and sectors
-   - Identify company size ranges
-   - Consider geographic preferences
-   - Understand relevant pain points
-   - Note any technology requirements
+Найди мне 20 квалифицированных лидов со стратегиями контакта для каждого.
+```
 
-3. **Research and Identify Leads**
-   - Search for companies matching the criteria
-   - Look for signals of need (job postings, tech stack, recent news)
-   - Consider growth indicators (funding, expansion, hiring)
-   - Identify companies with complementary products/services
-   - Check for budget indicators
+## Инструкции
 
-4. **Prioritize and Score**
-   - Create a fit score (1-10) for each lead
-   - Consider factors like:
-     - Alignment with ICP
-     - Signals of immediate need
-     - Budget availability
-     - Competitive landscape
-     - Timing indicators
+Когда пользователь запрашивает исследование лидов:
 
-5. **Provide Actionable Output**
+1. **Поймите продукт/услугу**
+   - Если вы находитесь в директории с кодом, проанализируйте кодовую базу, чтобы понять продукт.
+   - Задайте уточняющие вопросы о ценностном предложении.
+   - Определите ключевые функции и преимущества.
+   - Поймите, какие проблемы решает продукт.
+
+2. **Определите профиль идеального клиента (ICP)**
+   - Определите целевые отрасли и сектора.
+   - Укажите диапазоны размеров компаний.
+   - Учтите географические предпочтения.
+   - Поймите релевантные "боли".
+   - Отметьте любые технологические требования.
+
+3. **Исследуйте и найдите лидов**
+   - Ищите компании, соответствующие критериям.
+   - Ищите сигналы потребности (вакансии, техстек, недавние новости).
+   - Учитывайте индикаторы роста (финансирование, расширение, найм).
+   - Найдите компании с дополняющими продуктами/услугами.
+   - Проверьте индикаторы бюджета.
+
+4. **Приоритизируйте и оценивайте**
+   - Создайте оценку соответствия (1-10) для каждого лида.
+   - Учитывайте такие факторы, как:
+     - Соответствие ICP.
+     - Сигналы немедленной потребности.
+     - Доступность бюджета.
+     - Конкурентная среда.
+     - Индикаторы времени (timing).
+
+5. **Предоставьте действенный результат**
    
-   For each lead, provide:
-   - **Company Name** and website
-   - **Why They're a Good Fit**: Specific reasons based on their business
-   - **Priority Score**: 1-10 with explanation
-   - **Decision Maker**: Role/title to target (e.g., "VP of Engineering")
-   - **Contact Strategy**: Personalized approach suggestions
-   - **Value Proposition**: How your product solves their specific problem
-   - **Conversation Starters**: Specific points to mention in outreach
-   - **LinkedIn URL**: If available, for easy connection
+   Для каждого лида укажите:
+   - **Название компании** и сайт.
+   - **Почему они подходят**: Конкретные причины, основанные на их бизнесе.
+   - **Оценка приоритета**: 1-10 с объяснением.
+   - **Лицо, принимающее решение (ЛПР)**: Роль/должность для таргетинга (например, "Вице-президент по разработке").
+   - **Стратегия контакта**: Предложения по персонализированному подходу.
+   - **Ценностное предложение**: Как ваш продукт решает их конкретную проблему.
+   - **Темы для начала разговора**: Конкретные моменты для упоминания при обращении.
+   - **URL в LinkedIn**: Если доступно, для легкого установления связи.
 
-6. **Format the Output**
+6. **Форматируйте вывод**
 
-   Present results in a clear, scannable format:
+   Представляйте результаты в четком, легко читаемом формате:
 
    ```markdown
-   # Lead Research Results
+   # Результаты исследования лидов
    
-   ## Summary
-   - Total leads found: [X]
-   - High priority (8-10): [X]
-   - Medium priority (5-7): [X]
-   - Average fit score: [X]
-   
-   ---
-   
-   ## Lead 1: [Company Name]
-   
-   **Website**: [URL]
-   **Priority Score**: [X/10]
-   **Industry**: [Industry]
-   **Size**: [Employee count/revenue range]
-   
-   **Why They're a Good Fit**:
-   [2-3 specific reasons based on their business]
-   
-   **Target Decision Maker**: [Role/Title]
-   **LinkedIn**: [URL if available]
-   
-   **Value Proposition for Them**:
-   [Specific benefit for this company]
-   
-   **Outreach Strategy**:
-   [Personalized approach - mention specific pain points, recent company news, or relevant context]
-   
-   **Conversation Starters**:
-   - [Specific point 1]
-   - [Specific point 2]
+   ## Сводка
+   - Всего найдено лидов: [X]
+   - Высокий приоритет (8-10): [X]
+   - Средний приоритет (5-7): [X]
+   - Средняя оценка соответствия: [X]
    
    ---
    
-   [Repeat for each lead]
+   ## Лид 1: [Название компании]
+   
+   **Сайт**: [URL]
+   **Оценка приоритета**: [X/10]
+   **Индустрия**: [Индустрия]
+   **Размер**: [Количество сотрудников/диапазон выручки]
+   
+   **Почему они подходят**:
+   [2-3 конкретные причины, основанные на их бизнесе]
+   
+   **Целевой ЛПР**: [Роль/Должность]
+   **LinkedIn**: [URL, если доступен]
+   
+   **Ценностное предложение для них**:
+   [Конкретная выгода для этой компании]
+   
+   **Стратегия охвата**:
+   [Персонализированный подход — упоминание конкретных болей, недавних новостей компании или соответствующего контекста]
+   
+   **Темы для начала разговора**:
+   - [Момент 1]
+   - [Момент 2]
+   
+   ---
+   
+   [Повторить для каждого лида]
    ```
 
-7. **Offer Next Steps**
-   - Suggest saving results to a CSV for CRM import
-   - Offer to draft personalized outreach messages
-   - Recommend prioritization based on timing
-   - Suggest follow-up research for top leads
+7. **Предложите следующие шаги**
+   - Предложите сохранить результаты в CSV для импорта в CRM.
+   - Предложите составить черновики персонализированных сообщений для охвата.
+   - Рекомендуйте приоритизацию на основе наиболее подходящего времени.
+   - Предложите дополнительное исследование для топовых лидов.
 
-## Examples
+## Примеры
 
-### Example 1: From Lenny's Newsletter
+### Пример 1: Из рассылки Lenny
+**Пользователь**: "Я создаю инструмент, который маскирует конфиденциальные данные в запросах к ИИ-ассистентам по коду. Найди потенциальных лидов."
 
-**User**: "I'm building a tool that masks sensitive data in AI coding assistant queries. Find potential leads."
+**Результат**: Создает приоритизированный список компаний, которые:
+- Используют ИИ-ассистентов по коду (Copilot, Cursor и т. д.).
+- Работают с конфиденциальными данными (финтех, здравоохранение, юридические услуги).
+- В их репозиториях GitHub есть признаки использования кодинг-агентов.
+- Могли случайно раскрыть конфиденциальные данные в коде.
+- Включает URL в LinkedIn соответствующих ЛПР.
 
-**Output**: Creates a prioritized list of companies that:
-- Use AI coding assistants (Copilot, Cursor, etc.)
-- Handle sensitive data (fintech, healthcare, legal)
-- Have evidence in their GitHub repos of using coding agents
-- May have accidentally exposed sensitive data in code
-- Includes LinkedIn URLs of relevant decision-makers
+### Пример 2: Локальный бизнес
+**Пользователь**: "Я руковожу консалтинговой практикой по продуктивности удаленных команд. Найди мне 10 компаний в районе залива Сан-Франциско, которые недавно перешли на удаленку."
 
-### Example 2: Local Business
+**Результат**: Определяет компании, которые:
+- Недавно опубликовали вакансии для удаленной работы.
+- Объявили о политике "удаленка прежде всего" (remote-first).
+- Нанимают распределенные команды.
+- Показывают признаки проблем с удаленной работой.
+- Предоставляет персонализированные стратегии охвата для каждой.
 
-**User**: "I run a consulting practice for remote team productivity. Find me 10 companies in the Bay Area that recently went remote."
+## Советы для лучших результатов
 
-**Output**: Identifies companies that:
-- Recently posted remote job listings
-- Announced remote-first policies
-- Are hiring distributed teams
-- Show signs of remote work challenges
-- Provides personalized outreach strategies for each
+- **Будьте конкретны** в описании вашего продукта и его уникальной ценности.
+- **Запускайте из кодовой базы**, если применимо, для автоматического получения контекста.
+- **Предоставьте контекст** о профиле вашего идеального клиента.
+- **Укажите ограничения**, такие как отрасль, местоположение или размер компании.
+- **Запрашивайте дополнительное исследование** по многообещающим лидам для более глубокого понимания.
 
-## Tips for Best Results
+## Связанные варианты использования
 
-- **Be specific** about your product and its unique value
-- **Run from your codebase** if applicable for automatic context
-- **Provide context** about your ideal customer profile
-- **Specify constraints** like industry, location, or company size
-- **Request follow-up** research on promising leads for deeper insights
-
-## Related Use Cases
-
-- Drafting personalized outreach emails after identifying leads
-- Building a CRM-ready CSV of qualified prospects
-- Researching specific companies in detail
-- Analyzing competitor customer bases
-- Identifying partnership opportunities
+- Составление персонализированных писем после идентификации лидов.
+- Создание готового для CRM CSV-файла квалифицированных проспектов.
+- Подробное изучение конкретных компаний.
+- Анализ клиентской базы конкурентов.
+- Поиск возможностей для партнерства.

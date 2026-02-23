@@ -1,6 +1,6 @@
 ---
 name: facebook
-description: "Integrate with Facebook for social media management. Use when you need to: (1) post updates to Facebook pages, (2) share content and media, or (3) automate Facebook page workflows."
+description: "Интеграция с Facebook для управления социальными сетями. Используйте, когда вам нужно: (1) публиковать обновления на страницах Facebook, (2) делиться контентом и медиафайлами или (3) автоматизировать рабочие процессы страниц Facebook."
 version: 1.0.0
 skillId: skp-ary4qi0tx153f8ms8iwsxsmr
 workflowId: c-opg0f8e7j3m1fmjhjakmhpfk
@@ -10,54 +10,54 @@ category: action
 
 # Facebook
 
-Integrate with Facebook for social media management. Use when you need to: (1) post updates to Facebook pages, (2) share content and media, or (3) automate Facebook page workflows.
+Интеграция с Facebook для управления социальными сетями. Используйте, когда вам нужно: (1) публиковать обновления на страницах Facebook, (2) делиться контентом и медиафайлами или (3) автоматизировать рабочие процессы страниц Facebook.
 
-## Input
+## Входные данные
 
-Provide input as JSON:
+Предоставьте входные данные в формате JSON:
 
 ```json
 {
-  "post_content": "The content text for your Facebook post",
-  "page_id": "Your Facebook Page ID (optional, leave empty to post to personal timeline)",
-  "post_type": "Type of post: status, photo, video, or link"
+  "post_content": "Текст вашего поста в Facebook",
+  "page_id": "ID вашей страницы Facebook (необязательно, оставьте пустым для публикации в личный профиль)",
+  "post_type": "Тип поста: status, photo, video, или link"
 }
 ```
 
-## Execution (Pattern C: Action)
+## Выполнение (Паттерн C: Действие)
 
-### Step 1: Run the Skill and Get Run ID
+### Шаг 1: Запуск навыка и получение Run ID
 
 ```bash
 RESULT=$(refly skill run --id skpi-nyozn1z7255wdo122km3efhb --input '{
   "page_id": "your-page-id",
-  "message": "Check out our latest product update!"
+  "message": "Ознакомьтесь с нашим последним обновлением продукта!"
 }')
 RUN_ID=$(echo "$RESULT" | jq -r '.payload.workflowExecutions[0].id')
-# RUN_ID is we-xxx format, use this for workflow commands
+# RUN_ID имеет формат we-xxx, используйте его для команд воркфлоу
 ```
 
-### Step 2: Open Workflow in Browser and Wait for Completion
+### Шаг 2: Открытие рабочего процесса в браузере и ожидание завершения
 
 ```bash
 open "https://refly.ai/workflow/c-opg0f8e7j3m1fmjhjakmhpfk"
 refly workflow status "$RUN_ID" --watch --interval 30000
 ```
 
-### Step 3: Confirm Action Status
+### Шаг 3: Подтверждение статуса действия
 
 ```bash
-# Confirm post published
+# Подтверждение публикации поста
 STATUS=$(refly workflow detail "$RUN_ID" | jq -r '.payload.status')
-echo "Action completed with status: $STATUS"
+echo "Действие завершено со статусом: $STATUS"
 ```
 
-## Expected Output
+## Ожидаемый результат
 
-- **Type**: API Response
-- **Format**: JSON post confirmation (post ID, link)
-- **Action**: Confirm post published successfully
+- **Тип**: Ответ API
+- **Формат**: JSON подтверждение поста (ID поста, ссылка)
+- **Действие**: Подтверждение успешной публикации поста
 
-## Rules
+## Правила
 
-Follow base skill workflow: `~/.claude/skills/refly/SKILL.md`
+Следуйте базовому рабочему процессу навыков: `~/.claude/skills/refly/SKILL.md`

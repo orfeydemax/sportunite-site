@@ -1,36 +1,35 @@
 ---
 name: motion
-description: Use when adding animations with Motion Vue (motion-v) - provides motion component API, gesture animations, scroll-linked effects, layout transitions, and composables for Vue 3/Nuxt
-license: MIT
+description: Используйте при добавлении анимаций с помощью Motion Vue (motion-v) — предоставляет компонентный API для анимаций, анимацию жестов, эффекты прокрутки, переходы макета и композиблы для Vue 3/Nuxt.
 ---
 
 # Motion Vue (motion-v)
 
-Animation library for Vue 3 and Nuxt. Production-ready, hardware-accelerated animations with minimal bundle size.
+Библиотека анимации для Vue 3 и Nuxt. Готовые к использованию в продакшене анимации с аппаратным ускорением и минимальным размером бандла.
 
-**Current stable:** motion-v 1.x - Vue port of Motion (formerly Framer Motion)
+**Текущая стабильная версия:** motion-v 1.x — порт Motion (ранее Framer Motion) для Vue.
 
-## Overview
+## Обзор
 
-Progressive reference for Motion Vue animations. Load only files relevant to current task (~200 tokens base, 500-1500 per sub-file).
+Прогрессивный справочник для анимаций Motion Vue. Загружайте только те файлы, которые относятся к текущей задаче (~200 токенов база, 500-1500 на каждый подфайл).
 
-## When to Use
+## Когда использовать
 
-**Use Motion Vue for:**
+**Используйте Motion Vue для:**
 
-- Simple declarative animations (fade, slide, scale)
-- Gesture-based interactions (hover, tap, drag)
-- Scroll-linked animations
-- Layout animations and shared element transitions
-- Spring physics animations
+- Простых декларативных анимаций (fade, slide, scale).
+- Взаимодействий на основе жестов (наведение, нажатие, перетаскивание).
+- Анимаций, связанных с прокруткой (scroll-linked).
+- Анимаций макета и переходов общих элементов.
+- Анимаций с использованием пружинной физики (spring physics).
 
-**Consider alternatives:**
+**Рассмотрите альтернативы:**
 
-- **GSAP** - Complex timelines, SVG morphing, scroll-triggered sequences
-- **@vueuse/motion** - Simpler API, less features, smaller bundle
-- **CSS animations** - Simple transitions without JS
+- **GSAP** — для сложных таймлайнов, морфинга SVG, последовательностей, запускаемых прокруткой.
+- **@vueuse/motion** — более простой API, меньше функций, меньший размер бандла.
+- **CSS-анимации** — простые переходы без использования JS.
 
-## Installation
+## Установка
 
 ```bash
 # Vue 3
@@ -41,35 +40,35 @@ pnpm add motion-v @vueuse/nuxt
 ```
 
 ```ts
-// nuxt.config.ts - Nuxt 3 setup
+// nuxt.config.ts — настройка для Nuxt 3
 export default defineNuxtConfig({
   modules: ['motion-v/nuxt'],
 })
 ```
 
-## Quick Reference
+## Быстрая справка
 
-| Working on...                | Load file                 |
+| Работаю над...                | Загрузить файл             |
 | ---------------------------- | ------------------------- |
-| Motion component, gestures   | references/components.md  |
+| Компонент Motion, жесты      | references/components.md  |
 | useMotionValue, useScroll    | references/composables.md |
-| Animation examples, patterns | references/examples.md    |
+| Примеры анимаций, паттерны   | references/examples.md    |
 
-## Loading Files
+## Загрузка файлов
 
-**Consider loading these reference files based on your task:**
+**Рассмотрите возможность загрузки этих справочных файлов в зависимости от вашей задачи:**
 
-- [ ] [references/components.md](references/components.md) - if using Motion component, gestures, or layout animations
-- [ ] [references/composables.md](references/composables.md) - if using useMotionValue, useScroll, useSpring, or animate()
-- [ ] [references/examples.md](references/examples.md) - if looking for animation patterns or inspiration
+- [ ] [references/components.md](references/components.md) — если используете компонент Motion, жесты или анимации макета.
+- [ ] [references/composables.md](references/composables.md) — если используете useMotionValue, useScroll, useSpring или animate().
+- [ ] [references/examples.md](references/examples.md) — если ищете паттерны анимации или вдохновение.
 
-**DO NOT load all files at once.** Load only what's relevant to your current task.
+**НЕ загружайте все файлы сразу.** Загружайте только то, что относится к вашей текущей задаче.
 
-## Core Concepts
+## Основные концепции
 
-### Motion Component
+### Компонент Motion
 
-Render any HTML/SVG element with animation capabilities:
+Отрисовка любого HTML/SVG элемента с возможностями анимации:
 
 ```vue
 <script setup lang="ts">
@@ -83,12 +82,12 @@ import { motion } from 'motion-v'
     :exit="{ opacity: 0, y: -20 }"
     :transition="{ duration: 0.3 }"
   >
-    Animated content
+    Анимированный контент
   </motion.div>
 </template>
 ```
 
-### Gesture Animations
+### Анимация жестов
 
 ```vue
 <motion.button
@@ -96,11 +95,11 @@ import { motion } from 'motion-v'
   :whilePress="{ scale: 0.95 }"
   :transition="{ type: 'spring', stiffness: 400 }"
 >
-  Click me
+  Нажми на меня
 </motion.button>
 ```
 
-### Scroll Animations
+### Анимация при прокрутке
 
 ```vue
 <motion.div
@@ -108,14 +107,14 @@ import { motion } from 'motion-v'
   :whileInView="{ opacity: 1 }"
   :viewport="{ once: true, margin: '-100px' }"
 >
-  Appears on scroll
+  Появляется при прокрутке
 </motion.div>
 ```
 
-## Available Guidance
+## Доступные руководства
 
-**[references/components.md](references/components.md)** - Motion component variants, animation props, gesture props, layout animations, transition configuration
+**[references/components.md](references/components.md)** — варианты компонентов Motion, пропсы анимации, пропсы жестов, анимации макета, конфигурация переходов.
 
-**[references/composables.md](references/composables.md)** - useMotionValue, useSpring, useTransform, useScroll, useInView, animate()
+**[references/composables.md](references/composables.md)** — useMotionValue, useSpring, useTransform, useScroll, useInView, animate().
 
-**[references/examples.md](references/examples.md)** - External resources, component libraries, animation patterns and inspiration
+**[references/examples.md](references/examples.md)** — внешние ресурсы, библиотеки компонентов, паттерны анимаций и вдохновение.

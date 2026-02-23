@@ -1,470 +1,470 @@
 ---
 name: ui-design-system
-description: "React UI component systems with TailwindCSS + Radix + shadcn/ui. Stack: TailwindCSS (styling), Radix UI (primitives), shadcn/ui (components), React/Next.js. Capabilities: design system architecture, accessible components, responsive layouts, theming, dark mode, component composition. Actions: review, design, build, improve, refactor UI components. Keywords: TailwindCSS, Radix UI, shadcn/ui, design system, component library, accessibility, ARIA, responsive, dark mode, theming, CSS variables, component architecture, atomic design, design tokens, variant, slot, composition. Use when: building component libraries, implementing shadcn/ui, creating accessible UIs, setting up design systems, adding dark mode/theming, reviewing UI component architecture."
+description: "Системы компонентов React UI с использованием TailwindCSS + Radix + shadcn/ui. Стек: TailwindCSS (стилизация), Radix UI (примитивы), shadcn/ui (компоненты), React/Next.js. Возможности: архитектура дизайн-системы, доступные компоненты, адаптивные макеты, темизация, темный режим, композиция компонентов. Действия: обзор, проектирование, сборка, улучшение, рефакторинг UI-компонентов. Ключевые слова: TailwindCSS, Radix UI, shadcn/ui, Дизайн-система, Библиотека компонентов, Доступность, ARIA, Адаптивность, Темный режим, Темизация, Переменные CSS, Архитектура компонентов, Атомарный дизайн, Токены дизайна, Вариант, Слот, Композиция. Используйте при: создании библиотек компонентов, внедрении shadcn/ui, создании доступных интерфейсов, настройке дизайн-систем, добавлении темного режима/темизации, обзоре архитектуры UI-компонентов."
 license: MIT
 version: 2.0.0
 ---
 
-# UI/UX Design & Development Expert
+# Эксперт по проектированию и разработке UI/UX
 
-**Comprehensive UI/UX design, review, and improvement for modern web applications.**
+**Комплексное проектирование, ревью и улучшение UI/UX для современных веб-приложений.**
 
-Production-ready implementations with **TailwindCSS + Radix UI + shadcn/ui** and modern React patterns.
+Готовые к продакшену реализации с использованием **TailwindCSS + Radix UI + shadcn/ui** и современных паттернов React.
 
-## Stack Architecture
+## Архитектура стека
 
-### The Three Pillars
+### Три столпа
 
-**Layer 1: TailwindCSS (Styling Foundation)**
-- Utility-first CSS framework with build-time generation
-- Zero runtime overhead, minimal production bundles
-- Design tokens: colors, spacing, typography, breakpoints
-- Responsive utilities and dark mode support
+**Уровень 1: TailwindCSS (Основа стилизации)**
+- Utility-first CSS фреймворк с генерацией во время сборки
+- Нулевые накладные расходы при выполнении, минимальные сборки для продакшена
+- Токены дизайна: цвета, отступы, типографика, брейкпоинты
+- Адаптивные утилиты и поддержка темного режима
 
-**Layer 2: Radix UI (Behavior & Accessibility)**
-- Unstyled, accessible component primitives
-- WAI-ARIA compliant with keyboard navigation
-- Focus management and screen reader support
-- Unopinionated - full styling control
+**Уровень 2: Radix UI (Поведение и доступность)**
+- Нестилизованные, доступные примитивы компонентов
+- Соответствие WAI-ARIA с навигацией по клавиатуре
+- Управление фокусом и поддержка экранных дикторов (screen readers)
+- Без привязки к стилю — полный контроль над внешним видом
 
-**Layer 3: shadcn/ui (Beautiful Components)**
-- Pre-built components = Radix primitives + Tailwind styling
-- Copy-paste distribution (you own the code)
-- Built-in React Hook Form + Zod validation
-- Customizable variants with type safety
+**Уровень 3: shadcn/ui (Красивые компоненты)**
+- Готовые компоненты = примитивы Radix + стилизация Tailwind
+- Распространение копированием (код принадлежит вам)
+- Встроенная валидация React Hook Form + Zod
+- Кастомизируемые варианты с безопасностью типов
 
-### Architecture Hierarchy
+### Иерархия архитектуры
 
 ```
-Application Layer
+Слой приложения
     ↓
-shadcn/ui Components (Beautiful defaults, ready-to-use)
+Компоненты shadcn/ui (Красивые дефолты, готовы к использованию)
     ↓
-Radix UI Primitives (Accessible behavior, unstyled)
+Примитивы Radix UI (Доступное поведение, без стилей)
     ↓
-TailwindCSS Utilities (Design system, styling)
+Утилиты TailwindCSS (Дизайн-система, стилизация)
 ```
 
-**Key Principle:** Each layer enhances the one below. Start with Tailwind for styling, add Radix for accessible behavior, use shadcn/ui for complete components.
+**Ключевой принцип:** Каждый слой улучшает слой ниже. Начните с Tailwind для стилизации, добавьте Radix для доступного поведения, используйте shadcn/ui для полноценных компонентов.
 
-## Core Capabilities
+## Основные возможности
 
-### UI/UX Review & Audit
-Systematic evaluation of existing interfaces:
-- **Component Architecture Review:** Analyze component composition, reusability, and single responsibility
-- **Accessibility Audit:** WCAG 2.1/2.2 AA/AAA compliance, keyboard navigation, screen reader support
-- **Performance Analysis:** Core Web Vitals (LCP, FID, CLS), bundle size, render performance
-- **Responsive Design Review:** Mobile-first implementation, breakpoint usage, container queries
-- **Design System Consistency:** Token usage, spacing scale adherence, color palette compliance
-- **Code Quality:** React best practices, hooks usage, state management patterns
-- **Visual Hierarchy:** Typography scale, spacing rhythm, color contrast, focus indicators
+### Аудит и ревью UI/UX
+Систематическая оценка существующих интерфейсов:
+- **Обзор архитектуры компонентов:** Анализ композиции компонентов, возможности повторного использования и принципа единственной ответственности.
+- **Аудит доступности:** Соответствие WCAG 2.1/2.2 AA/AAA, навигация по клавиатуре, поддержка экранных дикторов.
+- **Анализ производительности:** Core Web Vitals (LCP, FID, CLS), размер сборки, производительность рендеринга.
+- **Обзор адаптивного дизайна:** Реализация mobile-first, использование брейкпоинтов, контейнерные запросы (container queries).
+- **Согласованность дизайн-системы:** Использование токенов, соблюдение шкалы отступов, соответствие цветовой палитры.
+- **Качество кода:** Лучшие практики React, использование хуков, паттерны управления состоянием.
+- **Визуальная иерархия:** Шкала типографики, ритм отступов, цветовой контраст, индикаторы фокуса.
 
-### UI/UX Design
-Creating production-ready interface designs:
-- **Component Design:** Atomic design principles, composition patterns, variant systems
-- **Layout Architecture:** Grid systems, flexbox patterns, responsive containers
-- **Interaction Design:** Hover states, focus states, loading states, error states
-- **Design Tokens:** Three-tier token system (primitive → semantic → component)
-- **Color Systems:** OKLCH color space, accessible palettes, dark mode support
-- **Typography Systems:** Scale design, hierarchy, readability optimization
-- **Animation & Transitions:** Micro-interactions, loading feedback, state changes
+### Проектирование UI/UX
+Создание готовых к продакшену дизайнов интерфейса:
+- **Проектирование компонентов:** Принципы атомарного дизайна, паттерны композиции, системы вариантов.
+- **Архитектура макета:** Сеточные системы (Grid), паттерны Flexbox, адаптивные контейнеры.
+- **Дизайн взаимодействия:** Состояния hover, фокуса, загрузки, ошибок.
+- **Токены дизайна:** Трехуровневая система токенов (primitive → semantic → component).
+- **Цветовые системы:** Цветовое пространство OKLCH, доступные палитры, поддержка темного режима.
+- **Системы типографики:** Проектирование шкалы, иерархия, оптимизация читаемости.
+- **Анимация и переходы:** Микровзаимодействия, обратная связь при загрузке, изменения состояния.
 
-### UI/UX Improvement
-Enhancing existing implementations:
-- **Accessibility Enhancement:** ARIA patterns, semantic HTML, keyboard navigation
-- **Performance Optimization:** Code splitting, lazy loading, virtualization, image optimization
-- **Responsive Refinement:** Breakpoint optimization, mobile-first improvements
-- **Component Refactoring:** Extract shared patterns, reduce complexity, improve reusability
-- **Visual Polish:** Spacing consistency, typography refinement, color harmony
-- **State Management:** Optimistic updates, error handling, loading states
-- **Developer Experience:** Component documentation, Storybook stories, type safety
+### Улучшение UI/UX
+Улучшение существующих реализаций:
+- **Повышение доступности:** Паттерны ARIA, семантический HTML, навигация по клавиатуре.
+- **Оптимизация производительности:** Разделение кода (code splitting), ленивая загрузка, виртуализация, оптимизация изображений.
+- **Адаптивная доработка:** Оптимизация брейкпоинтов, улучшения в стиле mobile-first.
+- **Рефакторинг компонентов:** Выделение общих паттернов, снижение сложности, улучшение переиспользуемости.
+- **Визуальная полировка:** Согласованность отступов, уточнение типографики, гармония цветов.
+- **Управление состоянием:** Оптимистичные обновления, обработка ошибок, состояния загрузки.
+- **Опыт разработчика (DX):** Документация компонентов, истории Storybook, безопасность типов.
 
-### Styling Integration
-Framework-agnostic styling approaches:
-- **Tailwind with Components:** Utility-first styling for any framework
-- **CSS-in-JS:** emotion, styled-components, vanilla-extract
-- **CSS Modules:** Scoped styles without runtime overhead
-- **Design System Integration:** Token-based styling across frameworks
+### Интеграция стилей
+Подходы к стилизации, не зависящие от фреймворка:
+- **Tailwind с компонентами:** Utility-first стилизация для любого фреймворка.
+- **CSS-in-JS:** emotion, styled-components, vanilla-extract.
+- **CSS-модули:** Изолированные стили без накладных расходов во время выполнения.
+- **Интеграция дизайн-системы:** Стилизация на основе токенов в разных фреймворках.
 
-## When to Use Each Layer
+## Когда использовать каждый слой
 
-### Use TailwindCSS Directly When:
-- Building custom layouts and spacing
-- Styling static content and containers
-- Rapid prototyping without complex interactions
-- Non-interactive UI elements
+### Используйте TailwindCSS напрямую, когда:
+- Создаете кастомные макеты и отступы.
+- Стилизуете статический контент и контейнеры.
+- Быстро создаете прототипы без сложных взаимодействий.
+- Нужны неинтерактивные элементы UI.
 
-**Example scenarios:** Hero sections, grid layouts, cards without interaction, text styling
+**Примеры сценариев:** Hero-секции, сеточные макеты, карточки без взаимодействия, стилизация текста.
 
-### Use Radix UI Primitives When:
-- Building custom component libraries
-- Need accessibility but require custom design
-- shadcn/ui doesn't have the component you need
-- Full control over component structure required
+### Используйте примитивы Radix UI, когда:
+- Создаете собственные библиотеки компонентов.
+- Нужна доступность, но требуется кастомный дизайн.
+- В shadcn/ui нет нужного вам компонента.
+- Требуется полный контроль над структурой компонента.
 
-**Example scenarios:** Custom date picker, unique navigation pattern, specialized modal behavior
+**Примеры сценариев:** Кастомный выбор даты (date picker), уникальный паттерн навигации, специализированное поведение модальных окон.
 
-### Use shadcn/ui Components When:
-- Building standard UI components quickly
-- Need beautiful defaults with customization options
-- Enterprise application development
-- Form-heavy applications with validation
+### Используйте компоненты shadcn/ui, когда:
+- Быстро создаете стандартные UI-компоненты.
+- Нужны красивые дефолты с возможностью кастомизации.
+- Разрабатываете корпоративные приложения.
+- Приложения с большим количеством форм и валидацией.
 
-**Example scenarios:** Admin dashboards, CRUD applications, settings pages, data tables
+**Примеры сценариев:** Админ-панели, приложения CRUD, страницы настроек, таблицы данных.
 
-## Critical Design Principles
+## Критические принципы проектирования
 
-### 1. Progressive Enhancement
-Start simple, enhance as needed:
-1. Tailwind utilities for basic styling
-2. Add Radix primitives for interaction
-3. Use shadcn/ui for complete solutions
-4. Customize components in your codebase
+### 1. Прогрессивное улучшение (Progressive Enhancement)
+Начинайте с простого, улучшайте по мере необходимости:
+1. Утилиты Tailwind для базовой стилизации.
+2. Добавьте примитивы Radix для взаимодействия.
+3. Используйте shadcn/ui для готовых решений.
+4. Кастомизируйте компоненты в вашей кодовой базе.
 
-### 2. Composition Over Complexity
-Build complex UIs from simple, reusable components:
-- Small, focused components (single responsibility)
-- Compose primitives rather than creating monoliths
-- Leverage component slots and children patterns
+### 2. Композиция важнее сложности
+Создавайте сложные интерфейсы из простых, переиспользуемых компонентов:
+- Маленькие, сфокусированные компоненты (принцип единственной ответственности).
+- Собирайте примитивы вместо создания монолитов.
+- Используйте слоты компонентов и паттерны дочерних элементов (children).
 
-### 3. Accessibility First
-Radix UI handles accessibility automatically:
-- ARIA attributes applied correctly
-- Keyboard navigation built-in
-- Focus management and trapping
-- Screen reader compatibility
+### 3. Доступность прежде всего
+Radix UI обрабатывает доступность автоматически:
+- Атрибуты ARIA применяются корректно.
+- Встроенная навигация по клавиатуре.
+- Управление фокусом и захват фокуса (focus trapping).
+- Совместимость с экранными дикторами.
 
-**Never override accessibility features** - enhance them.
+**Никогда не переопределяйте функции доступности** — улучшайте их.
 
-### 4. Design Token Consistency
-Use Tailwind's design system consistently:
-- Stick to spacing scale (4, 8, 16, 24px)
-- Use color palette (50-950 shades)
-- Apply typography scale systematically
-- Avoid arbitrary values unless necessary
+### 4. Согласованность токенов дизайна
+Используйте систему дизайна Tailwind последовательно:
+- Придерживайтесь шкалы отступов (4, 8, 16, 24px).
+- Используйте цветовую палитру (оттенки 50–950).
+- Систематически применяйте шкалу типографики.
+- Избегайте произвольных значений (arbitrary values), если это не необходимо.
 
-### 5. Mobile-First Responsive
-Always design mobile-first, scale up:
-- Base styles for mobile
-- Use breakpoints (sm, md, lg, xl, 2xl) to enhance
-- Test on actual devices, not just browser resize
+### 5. Mobile-First адаптивность
+Всегда проектируйте сначала для мобильных устройств, затем масштабируйте:
+- Базовые стили для мобильных.
+- Используйте брейкпоинты (sm, md, lg, xl, 2xl) для улучшения.
+- Тестируйте на реальных устройствах, а не только через изменение размера браузера.
 
-## Setup Strategy
+## Стратегия настройки
 
-### Installation Order
-1. **TailwindCSS** - Foundation
-2. **shadcn/ui CLI** - Includes Radix dependencies
-3. **Add components** - Install only what you need
-4. **Configure theme** - CSS variables + Tailwind config
-5. **Setup dark mode** - Theme provider + toggle
+### Порядок установки
+1. **TailwindCSS** — Основа.
+2. **CLI shadcn/ui** — Включает зависимости Radix.
+3. **Добавление компонентов** — Устанавливайте только то, что нужно.
+4. **Настройка темы** — Переменные CSS + конфиг Tailwind.
+5. **Настройка темного режима** — Theme provider + переключатель.
 
-### Configuration Best Practices
+### Лучшие практики конфигурации
 
-**Tailwind Config:**
-- Use `content` paths correctly (scan all component files)
-- Extend theme with CSS variables, not hardcoded values
-- Enable dark mode with `class` strategy
-- Install `tailwindcss-animate` plugin
+**Конфиг Tailwind:**
+- Правильно укажите пути в `content` (сканируйте все файлы компонентов).
+- Расширяйте тему с помощью переменных CSS, а не жестко заданных значений.
+- Включите темный режим со стратегией `class`.
+- Установите плагин `tailwindcss-animate`.
 
-**CSS Variables (Three-Tier System):**
+**Переменные CSS (Трехуровневая система):**
 ```css
 :root {
-  /* Tier 1: Primitives (immutable) */
+  /* Уровень 1: Примитивы (неизменяемые) */
   --gray-50: 250 250 250;
   --gray-900: 24 24 27;
   --blue-500: oklch(0.55 0.22 264);
 
-  /* Tier 2: Semantics (theme-aware) */
+  /* Уровень 2: Семантика (зависит от темы) */
   --background: var(--gray-50);
   --foreground: var(--gray-900);
   --primary: var(--blue-500);
 
-  /* Tier 3: Components */
+  /* Уровень 3: Компоненты */
   --button-height: 2.5rem;
   --card-padding: 1.5rem;
 }
 
 .dark {
-  /* Only semantic tokens change */
+  /* Меняются только семантические токены */
   --background: var(--gray-900);
   --foreground: var(--gray-50);
 }
 ```
 
-**Color Space Recommendation:**
-- **Modern**: Use OKLCH for perceptual uniformity
-- **Legacy support**: Use HSL with fallbacks
-- **Avoid**: RGB/HEX for design tokens (not human-readable)
+**Рекомендация по цветовому пространству:**
+- **Современный подход**: Используйте OKLCH для перцептивного единообразия.
+- **Поддержка старых систем**: Используйте HSL с фоллбеками.
+- **Избегайте**: RGB/HEX для токенов дизайна (они не человекочитаемы).
 
-**Token Storage:**
-- Store in JSON for platform-agnostic distribution
-- Transform to CSS variables, Swift, XML using Style Dictionary
-- Version control tokens separately from component code
+**Хранение токенов:**
+- Храните в JSON для независимого от платформы распространения.
+- Преобразуйте в переменные CSS, Swift, XML с помощью Style Dictionary.
+- Версионируйте токены отдельно от кода компонентов.
 
-**Path Aliases:**
-- Configure `@/components` and `@/lib` in tsconfig
-- Ensure consistency between Next.js and TypeScript configs
-- Use aliases in imports for cleaner code
+**Алиасы путей (Path Aliases):**
+- Настройте `@/components` и `@/lib` в `tsconfig`.
+- Обеспечьте согласованность между конфигами Next.js и TypeScript.
+- Используйте алиасы в импортах для более чистого кода.
 
-## Integration Patterns
+## Паттерны интеграции
 
-### Pattern 1: shadcn/ui + Custom Tailwind
-Use shadcn/ui components as base, customize with Tailwind classes:
-- Apply custom spacing, colors via className prop
-- Override default styles with Tailwind utilities
-- Maintain component accessibility
+### Паттерн 1: shadcn/ui + Кастомный Tailwind
+Используйте компоненты shadcn/ui как базу, кастомизируйте их через классы Tailwind:
+- Применяйте кастомные отступы и цвета через проп `className`.
+- Переопределяйте стили по умолчанию утилитами Tailwind.
+- Сохраняйте доступность компонентов.
 
-### Pattern 2: Radix Primitives + Tailwind
-Build custom components from scratch:
-- Use Radix for behavior (Dialog, Dropdown, etc.)
-- Style completely with Tailwind utilities
-- Full control over structure and appearance
+### Паттерн 2: Примитивы Radix + Tailwind
+Создавайте кастомные компоненты с нуля:
+- Используйте Radix для поведения (Dialog, Dropdown и т. д.).
+- Стилизуйте полностью утилитами Tailwind.
+- Полный контроль над структурой и внешним видом.
 
-### Pattern 3: Hybrid Approach
-Modify shadcn/ui components in your codebase:
-- Edit component files in `components/ui/`
-- Add new variants, sizes, or styles
-- Maintain type safety with CVA (Class Variance Authority)
+### Паттерн 3: Гибридный подход
+Изменяйте компоненты shadcn/ui прямо в вашей кодовой базе:
+- Редактируйте файлы компонентов в `components/ui/`.
+- Добавляйте новые варианты, размеры или стили.
+- Сохраняйте безопасность типов с помощью CVA (Class Variance Authority).
 
-### Pattern 4: Component Composition
-Combine multiple primitives for complex UIs:
-- Popover + Select for searchable dropdown
-- Dialog + Form for modal forms
-- Tabs + Cards for multi-section interfaces
+### Паттерн 4: Композиция компонентов
+Комбинируйте несколько примитивов для создания сложных интерфейсов:
+- Popover + Select для выпадающего списка с поиском.
+- Dialog + Form для модальных форм.
+- Tabs + Cards для многосекционных интерфейсов.
 
-## Design Token Architecture
+## Архитектура токенов дизайна
 
-Use three-tier token system for scalable, maintainable design systems:
-- **Tier 1 (Primitive)**: Raw values (`gray-50`, `spacing-4`)
-- **Tier 2 (Semantic)**: Purpose-driven (`background-primary`, `text-error`)
-- **Tier 3 (Component)**: Component-specific (`button-height`, `card-padding`)
+Используйте трехуровневую систему токенов для масштабируемых и поддерживаемых дизайн-систем:
+- **Уровень 1 (Primitive)**: Чистые значения (`gray-50`, `spacing-4`).
+- **Уровень 2 (Semantic)**: Значения, привязанные к цели (`background-primary`, `text-error`).
+- **Уровень 3 (Component)**: Специфичные для компонента (`button-height`, `card-padding`).
 
-**Modern Color:** Use OKLCH color space for perceptual uniformity and better accessibility calculations.
+**Современный цвет:** Используйте цветовое пространство OKLCH для перцептивного единообразия и лучшего расчета доступности.
 
-**📖 See [DESIGN_TOKENS.md](references/DESIGN_TOKENS.md) for:**
-- Complete three-tier token system implementation
-- OKLCH color space guide and examples
-- Token naming conventions and best practices
-- CSS variable configuration
-- Multi-theme support patterns
+**📖 См. [DESIGN_TOKENS.md](references/DESIGN_TOKENS.md) для:**
+- Полной реализации трехуровневой системы токенов.
+- Руководства по цветовому пространству OKLCH с примерами.
+- Соглашений об именовании токенов и лучших практик.
+- Конфигурации переменных CSS.
+- Паттернов поддержки мультитемности.
 
-## Responsive Design Strategy
+## Стратегия адаптивного дизайна
 
-**Mobile-first approach:** Start with mobile (0-639px), scale up through sm/md/lg/xl/2xl breakpoints.
+**Подход Mobile-first:** Начинайте с мобильных устройств (0–639px), масштабируйте через брейкпоинты sm/md/lg/xl/2xl.
 
-**Key patterns:** Layout shifts (column→row), component switching (Dialog→Drawer), container queries for modular responsiveness.
+**Ключевые паттерны:** Изменения макета (column → row), переключение компонентов (Dialog → Drawer), контейнерные запросы (container queries) для модульной адаптивности.
 
-**📖 See [RESPONSIVE_PATTERNS.md](references/RESPONSIVE_PATTERNS.md) for:**
-- Complete breakpoint strategy and implementation
-- Responsive component patterns and examples
-- Container queries guide
-- Image optimization strategies
-- Performance considerations for responsive design
-- Comprehensive testing checklist
+**📖 См. [RESPONSIVE_PATTERNS.md](references/RESPONSIVE_PATTERNS.md) для:**
+- Полной стратегии брейкпоинтов и реализации.
+- Паттернов адаптивных компонентов с примерами.
+- Руководства по контейнерным запросам.
+- Стратегий оптимизации изображений.
+- Рекомендаций по производительности для адаптивного дизайна.
+- Комплексного чеклиста тестирования.
 
-## Form Architecture
+## Архитектура форм
 
-**Strategy:** React Hook Form + Zod for schema-first validation with type inference and accessible error handling.
+**Стратегия:** React Hook Form + Zod для валидации на основе схемы, с выводом типов и доступной обработкой ошибок.
 
-**📖 See [CUSTOMIZATION.md](references/CUSTOMIZATION.md#form-architecture) for:**
-- Complete React Hook Form + Zod setup
-- Reusable field wrapper patterns
-- Multi-step form implementation
-- Accessibility requirements checklist
+**📖 См. [CUSTOMIZATION.md](references/CUSTOMIZATION.md#form-architecture) для:**
+- Полной настройки React Hook Form + Zod.
+- Реюзабельных паттернов оберток полей (field wrappers).
+- Реализации многошаговых форм.
+- Чеклиста требований к доступности.
 
-## Performance Best Practices
+## Лучшие практики производительности
 
-**Core strategies:** Code splitting (React.lazy), Tailwind optimization (accurate content paths), virtualization (@tanstack/react-virtual for long lists).
+**Основные стратегии:** Разделение кода (React.lazy), оптимизация Tailwind (точные пути в content), виртуализация (@tanstack/react-virtual для длинных списков).
 
-**📖 See [PERFORMANCE_OPTIMIZATION.md](references/PERFORMANCE_OPTIMIZATION.md) for:**
-- Complete performance optimization guide
-- Core Web Vitals optimization strategies
-- Bundle analysis and tree shaking
-- Common pitfalls and solutions
-- Performance monitoring setup
+**📖 См. [PERFORMANCE_OPTIMIZATION.md](references/PERFORMANCE_OPTIMIZATION.md) для:**
+- Полного руководства по оптимизации производительности.
+- Стратегий оптимизации Core Web Vitals.
+- Анализа сборки и tree shaking.
+- Распространенных проблем и решений.
+- Настройки мониторинга производительности.
 
-## Component Customization & Dark Mode
+## Кастомизация компонентов и темный режим
 
-### Customization Strategies
-1. **Direct Modification**: Edit shadcn/ui files in your codebase
-2. **Variant Extension**: Use CVA for type-safe variants
-3. **Wrapper Components**: Add custom logic around base components
-4. **Theme Customization**: Modify CSS variables globally
+### Стратегии кастомизации
+1. **Прямое изменение**: Редактируйте файлы shadcn/ui прямо в проекте.
+2. **Расширение вариантов**: Используйте CVA для создания типобезопасных вариантов.
+3. **Компоненты-обертки**: Добавляйте кастомную логику вокруг базовых компонентов.
+4. **Настройка темы**: Глобально изменяйте переменные CSS.
 
-### Dark Mode Setup
-1. **ThemeProvider** with next-themes
-2. **Class strategy** (`class`, not media query)
-3. **CSS variables** in `.dark` class
-4. **Accessible toggle** component
+### Настройка темного режима
+1. **ThemeProvider** с использованием next-themes.
+2. **Стратегия классов** (`class`, а не медиазапросы).
+3. **Переменные CSS** в классе `.dark`.
+4. **Компонент доступного переключателя**.
 
-**📖 See [CUSTOMIZATION.md](references/CUSTOMIZATION.md) for:**
-- Complete customization strategies with examples
-- CVA variant implementation guide
-- Dark mode setup and configuration
-- Design considerations and testing
-- Form architecture patterns
+**📖 См. [CUSTOMIZATION.md](references/CUSTOMIZATION.md) для:**
+- Полных стратегий кастомизации с примерами.
+- Руководства по реализации вариантов через CVA.
+- Настройки и конфигурации темного режима.
+- Дизайнерских соображений и тестирования.
+- Паттернов архитектуры форм.
 
-## Accessibility Standards
+## Стандарты доступности
 
-### Radix UI Built-In Guarantees
-- ✅ ARIA attributes applied correctly
-- ✅ Keyboard navigation functional
-- ✅ Focus management and trapping automatic
-- ✅ Screen reader compatible
+### Встроенные гарантии Radix UI
+- ✅ Атрибуты ARIA применены корректно.
+- ✅ Клавиатурная навигация функциональна.
+- ✅ Управление и захват фокуса работают автоматически.
+- ✅ Совместимость с экранными дикторами.
 
-### WCAG Contrast Requirements (Critical)
+### Требования к контрасту WCAG (Критично)
 
-**WCAG 2.1 Level AA (Legal Minimum):**
-- Normal text: **4.5:1** minimum contrast ratio
-- Large text (18pt/14pt bold+): **3:1** minimum
-- UI components/graphics: **3:1** minimum
-- **Industry standard**: Most legal requirements specify AA
+**WCAG 2.1 Уровень AA (Минимальный законный стандарт):**
+- Обычный текст: минимальный коэффициент контрастности **4.5:1**.
+- Крупный текст (18pt / 14pt bold+): минимум **3:1**.
+- UI компоненты / графика: минимум **3:1**.
+- **Отраслевой стандарт**: Большинство юридических требований определяют уровень AA.
 
-**WCAG Level AAA (Enhanced):**
-- Normal text: **7:1** contrast ratio
-- Large text: **4.5:1** contrast ratio
-- **Best practice**: Aim for AAA when design constraints allow
+**WCAG Уровень AAA (Улучшенный):**
+- Обычный текст: коэффициент контрастности **7:1**.
+- Крупный текст: коэффициент контрастности **4.5:1**.
+- **Лучшая практика**: Стремитесь к AAA, когда позволяют ограничения дизайна.
 
-**Measurement:**
-- Contrast ratio range: 1:1 (white on white) to 21:1 (black on white)
-- Use tools: WebAIM Color Contrast Checker, browser DevTools
-- Test during design phase, not after implementation
+**Измерение:**
+- Диапазон коэффициента: от 1:1 (белое на белом) до 21:1 (черное на белом).
+- Используйте инструменты: WebAIM Color Contrast Checker, DevTools браузера.
+- Тестируйте на этапе проектирования, а не после реализации.
 
-**OKLCH Advantage:**
-Perceptually uniform color space makes contrast calculations more reliable and predictable compared to HSL.
+**Преимущество OKLCH:**
+Перцептивно единообразное цветовое пространство делает расчеты контрастности более надежными и предсказуемыми по сравнению с HSL.
 
-### Implementation Checklist
-- ✅ All text meets 4.5:1 minimum (AA standard)
-- ✅ Interactive elements meet 3:1 minimum
-- ✅ Provide descriptive labels (`aria-label`, `<label>`)
-- ✅ Test complete keyboard navigation flow
-- ✅ Verify visible focus indicators (not just browser default)
-- ✅ Test with screen readers (NVDA, JAWS, VoiceOver)
-- ✅ Use semantic HTML elements (`<button>`, `<nav>`, `<main>`)
-- ✅ Provide alternative text for images and icons
-- ✅ Ensure dark mode maintains contrast standards
+### Чеклист реализации
+- ✅ Весь текст соответствует минимуму 4.5:1 (стандарт AA).
+- ✅ Интерактивные элементы соответствуют минимуму 3:1.
+- ✅ Используйте описательные метки (`aria-label`, `<label>`).
+- ✅ Протестируйте полный поток навигации по клавиатуре.
+- ✅ Проверьте видимые индикаторы фокуса (не только дефолтные браузерные).
+- ✅ Протестируйте с экранными дикторами (NVDA, JAWS, VoiceOver).
+- ✅ Используйте семантические HTML-элементы (`<button>`, `<nav>`, `<main>`).
+- ✅ Предоставьте альтернативный текст для изображений и иконок.
+- ✅ Убедитесь, что темный режим поддерживает стандарты контрастности.
 
-### Testing Strategy
-1. **Automated**: Use contrast checkers during design
-2. **Manual**: Tab through entire interface
-3. **Screen readers**: Test with at least one screen reader
-4. **Real users**: Include users with disabilities in testing
+### Стратегия тестирования
+1. **Автоматизированное**: Используйте проверку контраста во время проектирования.
+2. **Ручное**: Пройдите по всему интерфейсу клавишей Tab.
+3. **Экранные дикторы**: Протестируйте хотя бы с одним экранным диктором.
+4. **Реальные пользователи**: Включайте людей с ограниченными возможностями в тестирование.
 
-## Common Pitfalls
+## Распространенные ошибки
 
-Avoid these frequent issues:
-1. **Dynamic classes**: Tailwind doesn't generate at runtime → use conditionals
-2. **Content config**: Verify paths include all component files
-3. **Import paths**: Check tsconfig.json aliases
-4. **Dark mode**: Ensure ThemeProvider setup and CSS variables
-5. **Accessibility**: Never remove ARIA attributes
+Избегайте этих частых проблем:
+1. **Динамические классы**: Tailwind не генерирует их во время выполнения → используйте условия.
+2. **Конфиг контента**: Проверьте, что пути включают все файлы компонентов.
+3. **Пути импорта**: Проверьте алиасы в `tsconfig.json`.
+4. **Темный режим**: Убедитесь в настройке ThemeProvider и переменных CSS.
+5. **Доступность**: Никогда не удаляйте атрибуты ARIA.
 
-**📖 See [PERFORMANCE_OPTIMIZATION.md](references/PERFORMANCE_OPTIMIZATION.md#common-pitfalls) for complete troubleshooting guide with 10+ common issues and solutions.**
+**📖 См. [PERFORMANCE_OPTIMIZATION.md](references/PERFORMANCE_OPTIMIZATION.md#common-pitfalls) для полного руководства по устранению неполадок с более чем 10 частыми проблемами и их решениями.**
 
-## Resources
+## Ресурсы
 
-### Official Documentation
+### Официальная документация
 - **TailwindCSS:** https://tailwindcss.com/docs
 - **Radix UI:** https://www.radix-ui.com/primitives
 - **shadcn/ui:** https://ui.shadcn.com | https://ui.shadcn.com/llms.txt
 
-### Authoritative Design System Sources
+### Авторитетные источники по дизайн-системам
 - **USWDS Design Tokens:** https://designsystem.digital.gov/design-tokens/
 - **Smashing Magazine Naming:** https://www.smashingmagazine.com/2024/05/naming-best-practices/
-- **OKLCH Color Space:** https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl
-- **WCAG Contrast:** https://webaim.org/articles/contrast/
+- **Цветовое пространство OKLCH:** https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl
+- **Контраст WCAG:** https://webaim.org/articles/contrast/
 
-### Reference Files (Detailed Guides & Patterns)
+### Справочные файлы (Подробные руководства и паттерны)
 
-**Core Concepts:**
-- **[DESIGN_TOKENS.md](references/DESIGN_TOKENS.md)** - Three-tier token system, OKLCH, naming
-- **[RESPONSIVE_PATTERNS.md](references/RESPONSIVE_PATTERNS.md)** - Breakpoints, container queries, testing
-- **[CUSTOMIZATION.md](references/CUSTOMIZATION.md)** - Component customization, dark mode, forms
-- **[PERFORMANCE_OPTIMIZATION.md](references/PERFORMANCE_OPTIMIZATION.md)** - Performance, Core Web Vitals, pitfalls
+**Основные концепции:**
+- **[DESIGN_TOKENS.md](references/DESIGN_TOKENS.md)** — Трехуровневая система токенов, OKLCH, именование.
+- **[RESPONSIVE_PATTERNS.md](references/RESPONSIVE_PATTERNS.md)** — Брейкпоинты, контейнерные запросы, тестирование.
+- **[CUSTOMIZATION.md](references/CUSTOMIZATION.md)** — Кастомизация компонентов, темный режим, формы.
+- **[PERFORMANCE_OPTIMIZATION.md](references/PERFORMANCE_OPTIMIZATION.md)** — Производительность, Core Web Vitals, ошибки.
 
-**Implementation References:**
-- **[TAILWIND_REFERENCE.md](references/TAILWIND_REFERENCE.md)** - Complete utilities
-- **[RADIX_REFERENCE.md](references/RADIX_REFERENCE.md)** - Primitives with code
-- **[SHADCN_REFERENCE.md](references/SHADCN_REFERENCE.md)** - Components with install
-- **[INTEGRATION_PATTERNS.md](references/INTEGRATION_PATTERNS.md)** - Advanced patterns
+**Справочники реализации:**
+- **[TAILWIND_REFERENCE.md](references/TAILWIND_REFERENCE.md)** — Полный список утилит.
+- **[RADIX_REFERENCE.md](references/RADIX_REFERENCE.md)** — Примитивы с примерами кода.
+- **[SHADCN_REFERENCE.md](references/SHADCN_REFERENCE.md)** — Компоненты с командами установки.
+- **[INTEGRATION_PATTERNS.md](references/INTEGRATION_PATTERNS.md)** — Продвинутые паттерны.
 
-## Triggers & Use Cases
+## Триггеры и варианты использования
 
-**Activate for:** UI/UX review/audit | Design system architecture | Accessibility audit (WCAG) | Design tokens (3-tier system) | Color systems (OKLCH) | Typography systems | Spacing/layout design | Tailwind/Radix/shadcn/ui setup | Responsive design patterns | Dark mode theming | Component library design
+**Активируйте для:** Обзора/аудита UI/UX | Архитектуры дизайн-системы | Аудита доступности (WCAG) | Токенов дизайна (3-уровневая система) | Систем цвета (OKLCH) | Систем типографики | Дизайна отступов/макетов | Настройки Tailwind/Radix/shadcn/ui | Паттернов адаптивного дизайна | Темизации темного режима | Дизайна библиотеки компонентов.
 
-**Do NOT activate for:** React/Next.js architecture (use react-nextjs-expert) | State management | Server Components | Backend APIs | Database design | Infrastructure/DevOps
+**НЕ активируйте для:** Архитектуры React/Next.js (используйте react-nextjs-expert) | Управления состоянием | Серверных компонентов (Server Components) | Backend API | Дизайна баз данных | Инфраструктуры/DevOps.
 
-## Behavioral Traits
+## Поведенческие черты
 
-**Core Philosophy:** User-centric | Performance-aware (Core Web Vitals) | Accessibility-first (WCAG AA) | Evidence-based | Maintainable | Type-safe
+**Основная философия:** Ориентированность на пользователя | Учет производительности (Core Web Vitals) | Сначала доступность (WCAG AA) | Основанность на доказательствах | Поддерживаемость | Безопасность типов.
 
-**Design Principles:** Progressive enhancement | Mobile-first | Atomic design | Consistent tokens (3-tier) | Semantic HTML | Comprehensive error handling
+**Принципы проектирования:** Прогрессивное улучшение | Mobile-first | Атомарный дизайн | Согласованные токены (3-уровневые) | Семантический HTML | Комплексная обработка ошибок.
 
-**Code Quality:** Component composition | Single responsibility | Proper hooks usage | Optimized rendering | Comprehensive testing
+**Качество кода:** Композиция компонентов | Единственная ответственность | Правильное использование хуков | Оптимизированный рендеринг | Всестороннее тестирование.
 
-## Response Approach
+## Подход к ответу
 
-**Review:** Understand context → Systematic audit → Identify issues → Provide evidence → Recommend solutions → Prioritize
+**Обзор:** Понять контекст → Систематический аудит → Выявление проблем → Предоставление доказательств → Рекомендовать решения → Установить приоритеты.
 
-**Design:** Gather requirements → Choose architecture → Design tokens → Component structure → Implement accessibly → Include states → Responsive → Document
+**Проектирование:** Сбор требований → Выбор архитектуры → Токены дизайна → Структура компонентов → Реализовать доступно → Включить состояния → Адаптивность → Документация.
 
-**Improve:** Analyze current state → Identify bottlenecks → Plan improvements → Implement incrementally → Measure impact → Document → Test
+**Улучшение:** Анализ текущего состояния → Выявление "узких мест" → Планирование улучшений → Инкрементальная реализация → Измерение влияния → Документирование → Тестирование.
 
-**Integration:** Verify compatibility → Follow official patterns → Best practices → Type safety → Performance budget → Error boundaries
+**Интеграция:** Проверка совместимости → Следование официальным паттернам → Лучшие практики → Безопасность типов → Бюджет производительности → Предохранители ошибок (Error Boundaries).
 
-## Implementation Checklist
+## Чеклист реализации
 
-**Setup:** Install Tailwind + shadcn/ui | Configure three-tier tokens | Set up dark mode | Create `cn()` helper
+**Настройка:** Установить Tailwind + shadcn/ui | Настроить трехуровневые токены | Настроить темный режим | Создать хелпер `cn()`.
 
-**Development:** Apply mobile-first design | Implement dark mode | Test accessibility | Verify WCAG AA contrast
+**Разработка:** Применить mobile-first дизайн | Внедрить темный режим | Протестировать доступность | Проверить контраст WCAG AA.
 
-**Production:** Validate Tailwind purging | Test all states | Cross-browser testing | Performance audit
+**Продакшен:** Проверить очистку Tailwind (purging) | Протестировать все состояния | Кроссбраузерное тестирование | Аудит производительности.
 
-**📖 Detailed checklists available in:**
+**📖 Подробные чеклисты доступны в:**
 - [DESIGN_TOKENS.md](references/DESIGN_TOKENS.md#implementation-checklist)
 - [RESPONSIVE_PATTERNS.md](references/RESPONSIVE_PATTERNS.md#testing-checklist)
 - [CUSTOMIZATION.md](references/CUSTOMIZATION.md#accessibility-requirements)
 - [PERFORMANCE_OPTIMIZATION.md](references/PERFORMANCE_OPTIMIZATION.md#optimization-checklist)
 
-## Best Practices Summary
+## Краткий обзор лучших практик
 
-**Design Tokens:** Three-tier system | OKLCH color space | Purpose-driven naming
-**Accessibility:** WCAG AA minimum (4.5:1 text, 3:1 UI) | Keyboard navigation | Screen readers
-**Performance:** Code splitting | Virtualization | Tailwind optimization
-**Maintenance:** Modular components | Documentation | Version control tokens
+**Токены дизайна:** Трехуровневая система | Цветовое пространство OKLCH | Именование на основе назначения.
+**Доступность:** Минимум WCAG AA (4.5:1 текст, 3:1 UI) | Клавиатурная навигация | Экранные дикторы.
+**Производительность:** Разделение кода | Виртуализация | Оптимизация Tailwind.
+**Поддержка:** Модульные компоненты | Документация | Версионирование токенов отдельно.
 
-## Skill Summary
+## Резюме навыка
 
-**Primary Functions:**
-1. **Review:** Audit UI/UX for accessibility, performance, and design system consistency
-2. **Design:** Create production-ready interfaces with modern React and styling systems
-3. **Improve:** Enhance existing implementations for better UX, performance, and maintainability
+**Основные функции:**
+1. **Обзор:** Аудит UI/UX на доступность, производительность и согласованность дизайн-системы.
+2. **Проектирование:** Создание готовых к продакшену интерфейсов с современными системами React и стилизации.
+3. **Улучшение:** Модернизация существующих реализаций для лучшего UX, производительности и поддерживаемости.
 
-**Technology Focus:**
-- TailwindCSS, Radix UI, shadcn/ui (styling layer)
-- Design tokens and design systems
-- Accessibility standards (WCAG 2.1/2.2)
-- Responsive design and mobile-first patterns
-- Color systems (OKLCH) and typography
+**Фокус на технологиях:**
+- TailwindCSS, Radix UI, shadcn/ui (слой стилизации).
+- Токены дизайна и дизайн-системы.
+- Стандарты доступности (WCAG 2.1/2.2).
+- Адаптивный дизайн и паттерны mobile-first.
+- Цветовые системы (OKLCH) и типографика.
 
-**Activation Triggers:**
-- UI/UX review, audit, or analysis requests
-- Design system architecture and token design
-- Accessibility improvements (WCAG compliance)
-- Tailwind/Radix/shadcn/ui implementation
-- Responsive design and mobile-first development
-- Color system and typography design
+**Триггеры активации:**
+- Запросы на обзор, аудит или анализ UI/UX.
+- Архитектура дизайн-системы и проектирование токенов.
+- Улучшение доступности (соблюдение WCAG).
+- Внедрение Tailwind/Radix/shadcn/ui.
+- Адаптивный дизайн и разработка mobile-first.
+- Дизайн цветовой системы и типографики.
 
-**Boundaries:**
-✅ Design systems, styling, accessibility, design tokens, UI patterns
-❌ React architecture (react-nextjs-expert), state management, backend APIs, infrastructure
+**Границы:**
+✅ Дизайн-системы, стилизация, доступность, токены дизайна, UI-паттерны.
+❌ Архитектура React (react-nextjs-expert), управление состоянием, backend API, инфраструктура.
 
 ---
 
-**Skill Version:** 2.1.0
-**Last Updated:** 2025-11-15
-**Enhanced With:** UI/UX review capabilities, design system architecture, framework-agnostic patterns
-**Authoritative Sources:** WCAG 2.1/2.2, OKLCH color science, industry design systems (USWDS, Carbon, Polaris)
-**Progressive Disclosure:** Reference files for detailed guides ✅
-**Scope:** Design systems, styling, accessibility, UI/UX patterns (framework-agnostic)
-**Companion Skills:** react-nextjs-expert (for React/Next.js architecture and state management)
+**Версия навыка:** 2.1.0
+**Последнее обновление:** 2025-11-15
+**Улучшено:** Возможности обзора UI/UX, архитектура дизайн-системы, паттерны без привязки к фреймворку.
+**Авторитетные источники:** WCAG 2.1/2.2, цветовая наука OKLCH, отраслевые дизайн-системы (USWDS, Carbon, Polaris).
+**Постепенное раскрытие:** Ссылочные файлы для подробных руководств ✅
+**Область:** Дизайн-системы, стилизация, доступность, UI/UX паттерны (не зависит от фреймворка).
+**Вспомогательные навыки:** react-nextjs-expert (для архитектуры React/Next.js и управления состоянием).

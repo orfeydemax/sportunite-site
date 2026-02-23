@@ -1,42 +1,42 @@
 ---
-name: Agent Development
-description: This skill should be used when the user asks to "create an agent", "add an agent", "write a subagent", "agent frontmatter", "when to use description", "agent examples", "agent tools", "agent colors", "autonomous agent", or needs guidance on agent structure, system prompts, triggering conditions, or agent development best practices for Claude Code plugins.
+name: Разработка агентов
+description: Этот навык следует использовать, когда пользователь просит «создать агента», «добавить агента», «написать субагента», спрашивает про «фронтматтер агента», «когда использовать описание», просит «примеры агентов», «инструменты агента», «цвета агента», «автономного агента» или нуждается в руководстве по структуре агентов, системным промптам, условиям запуска или лучшим практикам разработки агентов для плагинов Claude Code.
 version: 0.1.0
 ---
 
-# Agent Development for Claude Code Plugins
+# Разработка агентов для плагинов Claude Code
 
-## Overview
+## Обзор
 
-Agents are autonomous subprocesses that handle complex, multi-step tasks independently. Understanding agent structure, triggering conditions, and system prompt design enables creating powerful autonomous capabilities.
+Агенты — это автономные подпроцессы, которые самостоятельно обрабатывают сложные многоэтапные задачи. Понимание структуры агентов, условий их запуска и проектирования системных промптов позволяет создавать мощные автономные возможности.
 
-**Key concepts:**
-- Agents are FOR autonomous work, commands are FOR user-initiated actions
-- Markdown file format with YAML frontmatter
-- Triggering via description field with examples
-- System prompt defines agent behavior
-- Model and color customization
+**Ключевые концепции:**
+- Агенты предназначены ДЛЯ автономной работы, команды — ДЛЯ действий, инициируемых пользователем.
+- Формат файла — Markdown с YAML фронтматтером.
+- Запуск через поле `description` с примерами.
+- Системный промпт определяет поведение агента.
+- Настройка модели и цвета.
 
-## Agent File Structure
+## Структура файла агента
 
-### Complete Format
+### Полный формат
 
 ```markdown
 ---
 name: agent-identifier
-description: Use this agent when [triggering conditions]. Examples:
+description: Используйте этого агента, когда [условия запуска]. Примеры:
 
 <example>
-Context: [Situation description]
-user: "[User request]"
-assistant: "[How assistant should respond and use this agent]"
+Контекст: [Описание ситуации]
+user: "[Запрос пользователя]"
+assistant: "[Как ассистент должен ответить и использовать этого агента]"
 <commentary>
-[Why this agent should be triggered]
+[Почему этот агент должен быть запущен]
 </commentary>
 </example>
 
 <example>
-[Additional example...]
+[Дополнительный пример...]
 </example>
 
 model: inherit
@@ -44,249 +44,249 @@ color: blue
 tools: ["Read", "Write", "Grep"]
 ---
 
-You are [agent role description]...
+Вы являетесь [описание роли агента]...
 
-**Your Core Responsibilities:**
-1. [Responsibility 1]
-2. [Responsibility 2]
+**Ваши основные обязанности:**
+1. [Обязанность 1]
+2. [Обязанность 2]
 
-**Analysis Process:**
-[Step-by-step workflow]
+**Процесс анализа:**
+[Пошаговый рабочий процесс]
 
-**Output Format:**
-[What to return]
+**Формат вывода:**
+[Что вернуть]
 ```
 
-## Frontmatter Fields
+## Поля фронтматтера (Frontmatter Fields)
 
-### name (required)
+### name (обязательно)
 
-Agent identifier used for namespacing and invocation.
+Идентификатор агента, используемый для пространства имен и вызова.
 
-**Format:** lowercase, numbers, hyphens only
-**Length:** 3-50 characters
-**Pattern:** Must start and end with alphanumeric
+**Формат:** только строчные буквы, цифры, дефисы.
+**Длина:** 3–50 символов.
+**Шаблон:** Должен начинаться и заканчиваться буквенно-цифровым символом.
 
-**Good examples:**
+**Хорошие примеры:**
 - `code-reviewer`
 - `test-generator`
 - `api-docs-writer`
 - `security-analyzer`
 
-**Bad examples:**
-- `helper` (too generic)
-- `-agent-` (starts/ends with hyphen)
-- `my_agent` (underscores not allowed)
-- `ag` (too short, < 3 chars)
+**Плохие примеры:**
+- `helper` (слишком обобщенно)
+- `-agent-` (начинается/заканчивается дефисом)
+- `my_agent` (подчеркивания не допускаются)
+- `ag` (слишком коротко, < 3 символов)
 
-### description (required)
+### description (обязательно)
 
-Defines when Claude should trigger this agent. **This is the most critical field.**
+Определяет, когда Claude должен запустить этого агента. **Это самое критически важное поле.**
 
-**Must include:**
-1. Triggering conditions ("Use this agent when...")
-2. Multiple `<example>` blocks showing usage
-3. Context, user request, and assistant response in each example
-4. `<commentary>` explaining why agent triggers
+**Должно включать:**
+1. Условия запуска («Используйте этого агента, когда...»).
+2. Несколько блоков `<example>`, показывающих использование.
+3. Контекст, запрос пользователя и ответ ассистента в каждом примере.
+4. Тег `<commentary>`, объясняющий, почему запускается агент.
 
-**Format:**
+**Формат:**
 ```
-Use this agent when [conditions]. Examples:
+Используйте этого агента, когда [условия]. Примеры:
 
 <example>
-Context: [Scenario description]
-user: "[What user says]"
-assistant: "[How Claude should respond]"
+Контекст: [Описание сценария]
+user: "[Что говорит пользователь]"
+assistant: "[Как должен ответить Claude]"
 <commentary>
-[Why this agent is appropriate]
+[Почему этот агент подходит]
 </commentary>
 </example>
 
-[More examples...]
+[Больше примеров...]
 ```
 
-**Best practices:**
-- Include 2-4 concrete examples
-- Show proactive and reactive triggering
-- Cover different phrasings of same intent
-- Explain reasoning in commentary
-- Be specific about when NOT to use the agent
+**Лучшие практики:**
+- Включайте 2–4 конкретных примера.
+- Показывайте как проактивный, так и реактивный запуск.
+- Охватывайте разные формулировки одного и того же намерения.
+- Объясняйте логику в комментарии.
+- Четко указывайте, когда НЕ следует использовать агента.
 
-### model (required)
+### model (обязательно)
 
-Which model the agent should use.
+Какую модель должен использовать агент.
 
-**Options:**
-- `inherit` - Use same model as parent (recommended)
-- `sonnet` - Claude Sonnet (balanced)
-- `opus` - Claude Opus (most capable, expensive)
-- `haiku` - Claude Haiku (fast, cheap)
+**Варианты:**
+- `inherit` — Использовать ту же модель, что и родитель (рекомендуется).
+- `sonnet` — Claude Sonnet (сбалансированная).
+- `opus` — Claude Opus (самая мощная, дорогая).
+- `haiku` — Claude Haiku (быстрая, дешевая).
 
-**Recommendation:** Use `inherit` unless agent needs specific model capabilities.
+**Рекомендация:** Используйте `inherit`, если агенту не требуются специфические возможности конкретной модели.
 
-### color (required)
+### color (обязательно)
 
-Visual identifier for agent in UI.
+Визуальный идентификатор агента в интерфейсе.
 
-**Options:** `blue`, `cyan`, `green`, `yellow`, `magenta`, `red`
+**Варианты:** `blue`, `cyan`, `green`, `yellow`, `magenta`, `red`
 
-**Guidelines:**
-- Choose distinct colors for different agents in same plugin
-- Use consistent colors for similar agent types
-- Blue/cyan: Analysis, review
-- Green: Success-oriented tasks
-- Yellow: Caution, validation
-- Red: Critical, security
-- Magenta: Creative, generation
+**Рекомендации:**
+- Выбирайте разные цвета для разных агентов в одном плагине.
+- Используйте последовательные цвета для похожих типов агентов.
+- Синий/циан: Анализ, обзор.
+- Зеленый: Задачи, ориентированные на успех.
+- Желтый: Предостережение, валидация.
+- Красный: Критические задачи, безопасность.
+- Маджента: Творчество, генерация.
 
-### tools (optional)
+### tools (опционально)
 
-Restrict agent to specific tools.
+Ограничение агента специфическими инструментами.
 
-**Format:** Array of tool names
+**Формат:** Массив имен инструментов.
 
 ```yaml
 tools: ["Read", "Write", "Grep", "Bash"]
 ```
 
-**Default:** If omitted, agent has access to all tools
+**По умолчанию:** Если опущено, агент имеет доступ ко всем инструментам.
 
-**Best practice:** Limit tools to minimum needed (principle of least privilege)
+**Лучшая практика:** Ограничивайте инструменты минимумом необходимых (принцип наименьших привилегий).
 
-**Common tool sets:**
-- Read-only analysis: `["Read", "Grep", "Glob"]`
-- Code generation: `["Read", "Write", "Grep"]`
-- Testing: `["Read", "Bash", "Grep"]`
-- Full access: Omit field or use `["*"]`
+**Общие наборы инструментов:**
+- Анализ только для чтения: `["Read", "Grep", "Glob"]`
+- Генерация кода: `["Read", "Write", "Grep"]`
+- Тестирование: `["Read", "Bash", "Grep"]`
+- Полный доступ: Опустите поле или используйте `["*"]`
 
-## System Prompt Design
+## Проектирование системного промпта
 
-The markdown body becomes the agent's system prompt. Write in second person, addressing the agent directly.
+Тело Markdown становится системным промптом агента. Пишите во втором лице, обращаясь к агенту напрямую.
 
-### Structure
+### Структура
 
-**Standard template:**
+**Стандартный шаблон:**
 ```markdown
-You are [role] specializing in [domain].
+Вы являетесь [роль], специализирующимся на [область].
 
-**Your Core Responsibilities:**
-1. [Primary responsibility]
-2. [Secondary responsibility]
-3. [Additional responsibilities...]
+**Ваши основные обязанности:**
+1. [Основная обязанность]
+2. [Вторичная обязанность]
+3. [Дополнительные обязанности...]
 
-**Analysis Process:**
-1. [Step one]
-2. [Step two]
-3. [Step three]
+**Процесс анализа:**
+1. [Шаг первый]
+2. [Шаг второй]
+3. [Шаг третий]
 [...]
 
-**Quality Standards:**
-- [Standard 1]
-- [Standard 2]
+**Стандарты качества:**
+- [Стандарт 1]
+- [Стандарт 2]
 
-**Output Format:**
-Provide results in this format:
-- [What to include]
-- [How to structure]
+**Формат вывода:**
+Предоставляйте результаты в следующем формате:
+- [Что включить]
+- [Как структурировать]
 
-**Edge Cases:**
-Handle these situations:
-- [Edge case 1]: [How to handle]
-- [Edge case 2]: [How to handle]
+**Граничные случаи:**
+Обрабатывайте следующие ситуации:
+- [Граничный случай 1]: [Как обрабатывать]
+- [Граничный случай 2]: [Как обрабатывать]
 ```
 
-### Best Practices
+### Лучшие практики
 
-✅ **DO:**
-- Write in second person ("You are...", "You will...")
-- Be specific about responsibilities
-- Provide step-by-step process
-- Define output format
-- Include quality standards
-- Address edge cases
-- Keep under 10,000 characters
+✅ **ЧТО ДЕЛАТЬ:**
+- Писать во втором лице («Вы...», «Вы будете...»).
+- Четко определять обязанности.
+- Предоставлять пошаговый процесс.
+- Определять формат вывода.
+- Включать стандарты качества.
+- Описывать граничные случаи.
+- Укладываться в лимит 10 000 символов.
 
-❌ **DON'T:**
-- Write in first person ("I am...", "I will...")
-- Be vague or generic
-- Omit process steps
-- Leave output format undefined
-- Skip quality guidance
-- Ignore error cases
+❌ **ЧЕГО НЕ ДЕЛАТЬ:**
+- Писать в первом лице («Я...», «Я буду...»).
+- Использовать расплывчатые или общие формулировки.
+- Пропускать шаги процесса.
+- Оставлять формат вывода неопределенным.
+- Игнорировать рекомендации по качеству.
+- Пропускать обработку ошибок.
 
-## Creating Agents
+## Создание агентов
 
-### Method 1: AI-Assisted Generation
+### Метод 1: ИИ-генерация
 
-Use this prompt pattern (extracted from Claude Code):
+Используйте этот шаблон промпта (взято из Claude Code):
 
 ```
-Create an agent configuration based on this request: "[YOUR DESCRIPTION]"
+Создай конфигурацию агента на основе этого запроса: "[ВАШЕ ОПИСАНИЕ]"
 
-Requirements:
-1. Extract core intent and responsibilities
-2. Design expert persona for the domain
-3. Create comprehensive system prompt with:
-   - Clear behavioral boundaries
-   - Specific methodologies
-   - Edge case handling
-   - Output format
-4. Create identifier (lowercase, hyphens, 3-50 chars)
-5. Write description with triggering conditions
-6. Include 2-3 <example> blocks showing when to use
+Требования:
+1. Выдели основное намерение и обязанности.
+2. Спроектируй экспертную персону для данной области.
+3. Создай подробный системный промпт с:
+   - Четкими границами поведения.
+   - Конкретными методологиями.
+   - Обработкой граничных случаев.
+   - Форматом вывода.
+4. Создай идентификатор (строчные буквы, дефисы, 3–50 символов).
+5. Напиши описание с условиями запуска.
+6. Включи 2–3 блока <example>, показывающих, когда использовать.
 
-Return JSON with:
+Верни JSON:
 {
   "identifier": "agent-name",
-  "whenToUse": "Use this agent when... Examples: <example>...</example>",
-  "systemPrompt": "You are..."
+  "whenToUse": "Используйте этого агента, когда... Примеры: <example>...</example>",
+  "systemPrompt": "Вы..."
 }
 ```
 
-Then convert to agent file format with frontmatter.
+Затем преобразуйте это в формат файла агента с фронтматтером.
 
-See `examples/agent-creation-prompt.md` for complete template.
+Полный шаблон см. в `examples/agent-creation-prompt.md`.
 
-### Method 2: Manual Creation
+### Метод 2: Ручное создание
 
-1. Choose agent identifier (3-50 chars, lowercase, hyphens)
-2. Write description with examples
-3. Select model (usually `inherit`)
-4. Choose color for visual identification
-5. Define tools (if restricting access)
-6. Write system prompt with structure above
-7. Save as `agents/agent-name.md`
+1. Выберите идентификатор агента (3–50 символов, строчные буквы, дефисы).
+2. Напишите описание с примерами.
+3. Выберите модель (обычно `inherit`).
+4. Выберите цвет для визуальной идентификации.
+5. Определите инструменты (если ограничиваете доступ).
+6. Напишите системный промпт согласно структуре выше.
+7. Сохраните как `agents/agent-name.md`.
 
-## Validation Rules
+## Правила валидации
 
-### Identifier Validation
+### Валидация идентификатора
 
 ```
-✅ Valid: code-reviewer, test-gen, api-analyzer-v2
-❌ Invalid: ag (too short), -start (starts with hyphen), my_agent (underscore)
+✅ Верно: code-reviewer, test-gen, api-analyzer-v2
+❌ Неверно: ag (слишком коротко), -start (начинается с дефиса), my_agent (подчеркивание)
 ```
 
-**Rules:**
-- 3-50 characters
-- Lowercase letters, numbers, hyphens only
-- Must start and end with alphanumeric
-- No underscores, spaces, or special characters
+**Правила:**
+- 3–50 символов.
+- Только строчные буквы, цифры, дефисы.
+- Должен начинаться и заканчиваться буквенно-цифровым символом.
+- Никаких подчеркиваний, пробелов или специальных символов.
 
-### Description Validation
+### Валидация описания
 
-**Length:** 10-5,000 characters
-**Must include:** Triggering conditions and examples
-**Best:** 200-1,000 characters with 2-4 examples
+**Длина:** 10–5 000 символов.
+**Должно включать:** Условия запуска и примеры.
+**Оптимально:** 200–1 000 символов с 2–4 примерами.
 
-### System Prompt Validation
+### Валидация системного промпта
 
-**Length:** 20-10,000 characters
-**Best:** 500-3,000 characters
-**Structure:** Clear responsibilities, process, output format
+**Длина:** 20–10 000 символов.
+**Оптимально:** 500–3 000 символов.
+**Структура:** Четкие обязанности, процесс, формат вывода.
 
-## Agent Organization
+## Организация агентов
 
-### Plugin Agents Directory
+### Директория агентов плагина
 
 ```
 plugin-name/
@@ -296,120 +296,120 @@ plugin-name/
     └── generator.md
 ```
 
-All `.md` files in `agents/` are auto-discovered.
+Все файлы `.md` в папке `agents/` обнаруживаются автоматически.
 
-### Namespacing
+### Пространства имен (Namespacing)
 
-Agents are namespaced automatically:
-- Single plugin: `agent-name`
-- With subdirectories: `plugin:subdir:agent-name`
+Пространства имен назначаются автоматически:
+- Один плагин: `agent-name`
+- С поддиректориями: `plugin:subdir:agent-name`
 
-## Testing Agents
+## Тестирование агентов
 
-### Test Triggering
+### Тестирование запуска (Triggering)
 
-Create test scenarios to verify agent triggers correctly:
+Создайте тестовые сценарии, чтобы убедиться, что агент запускается правильно:
 
-1. Write agent with specific triggering examples
-2. Use similar phrasing to examples in test
-3. Check Claude loads the agent
-4. Verify agent provides expected functionality
+1. Напишите агента со специфическими примерами запуска.
+2. Используйте в тесте формулировки, похожие на примеры.
+3. Проверьте, что Claude загружает агента.
+4. Убедитесь, что агент предоставляет ожидаемую функциональность.
 
-### Test System Prompt
+### Тестирование системного промпта
 
-Ensure system prompt is complete:
+Убедитесь, что системный промпт полон:
 
-1. Give agent typical task
-2. Check it follows process steps
-3. Verify output format is correct
-4. Test edge cases mentioned in prompt
-5. Confirm quality standards are met
+1. Дайте агенту типичную задачу.
+2. Проверьте, следует ли он шагам процесса.
+3. Убедитесь, что формат вывода правильный.
+4. Протестируйте граничные случаи, упомянутые в промпте.
+5. Подтвердите соблюдение стандартов качества.
 
-## Quick Reference
+## Краткий справочник
 
-### Minimal Agent
+### Минималистичный агент
 
 ```markdown
 ---
 name: simple-agent
-description: Use this agent when... Examples: <example>...</example>
+description: Используйте этого агента, когда... Примеры: <example>...</example>
 model: inherit
 color: blue
 ---
 
-You are an agent that [does X].
+Вы — агент, который [делает X].
 
-Process:
-1. [Step 1]
-2. [Step 2]
+Процесс:
+1. [Шаг 1]
+2. [Шаг 2]
 
-Output: [What to provide]
+Вывод: [Что предоставить]
 ```
 
-### Frontmatter Fields Summary
+### Сводка полей фронтматтера
 
-| Field | Required | Format | Example |
+| Поле | Обязательно | Формат | Пример |
 |-------|----------|--------|---------|
-| name | Yes | lowercase-hyphens | code-reviewer |
-| description | Yes | Text + examples | Use when... <example>... |
-| model | Yes | inherit/sonnet/opus/haiku | inherit |
-| color | Yes | Color name | blue |
-| tools | No | Array of tool names | ["Read", "Grep"] |
+| name | Да | lowercase-hyphens | code-reviewer |
+| description | Да | Текст + примеры | Используйте, когда... <example>... |
+| model | Да | inherit/sonnet/opus/haiku | inherit |
+| color | Да | Имя цвета | blue |
+| tools | Нет | Массив имен инструментов | ["Read", "Grep"] |
 
-### Best Practices
+### Лучшие практики
 
-**DO:**
-- ✅ Include 2-4 concrete examples in description
-- ✅ Write specific triggering conditions
-- ✅ Use `inherit` for model unless specific need
-- ✅ Choose appropriate tools (least privilege)
-- ✅ Write clear, structured system prompts
-- ✅ Test agent triggering thoroughly
+**ЧТО ДЕЛАТЬ:**
+- ✅ Включайте 2–4 конкретных примера в описание.
+- ✅ Пишите четкие условия запуска.
+- ✅ Используйте `inherit` для модели, если нет особой нужды.
+- ✅ Выбирайте соответствующие инструменты (принцип минимальных прав).
+- ✅ Пишите понятные структурированные системные промпты.
+- ✅ Тщательно тестируйте запуск агента.
 
-**DON'T:**
-- ❌ Use generic descriptions without examples
-- ❌ Omit triggering conditions
-- ❌ Give all agents same color
-- ❌ Grant unnecessary tool access
-- ❌ Write vague system prompts
-- ❌ Skip testing
+**ЧЕГО НЕ ДЕЛАТЬ:**
+- ❌ Использовать общие описания без примеров.
+- ❌ Пропускать условия запуска.
+- ❌ Назначать всем агентам один и тот же цвет.
+- ❌ Давать избыточный доступ к инструментам.
+- ❌ Писать расплывчатые системные промпты.
+- ❌ Пропускать этап тестирования.
 
-## Additional Resources
+## Дополнительные ресурсы
 
-### Reference Files
+### Справочные файлы
 
-For detailed guidance, consult:
+Для получения подробных инструкций см.:
 
-- **`references/system-prompt-design.md`** - Complete system prompt patterns
-- **`references/triggering-examples.md`** - Example formats and best practices
-- **`references/agent-creation-system-prompt.md`** - The exact prompt from Claude Code
+- **`references/system-prompt-design.md`** — Полные шаблоны системных промптов.
+- **`references/triggering-examples.md`** — Форматы примеров и лучшие практики.
+- **`references/agent-creation-system-prompt.md`** — Тот самый промпт из Claude Code.
 
-### Example Files
+### Примеры файлов
 
-Working examples in `examples/`:
+Рабочие примеры в `examples/`:
 
-- **`agent-creation-prompt.md`** - AI-assisted agent generation template
-- **`complete-agent-examples.md`** - Full agent examples for different use cases
+- **`agent-creation-prompt.md`** — Шаблон генерации агента с помощью ИИ.
+- **`complete-agent-examples.md`** — Полные примеры агентов для различных случаев.
 
-### Utility Scripts
+### Утилитарные скрипты
 
-Development tools in `scripts/`:
+Инструменты разработки в `scripts/`:
 
-- **`validate-agent.sh`** - Validate agent file structure
-- **`test-agent-trigger.sh`** - Test if agent triggers correctly
+- **`validate-agent.sh`** — Валидация структуры файла агента.
+- **`test-agent-trigger.sh`** — Тест корректности запуска агента.
 
-## Implementation Workflow
+## Рабочий процесс реализации
 
-To create an agent for a plugin:
+Чтобы создать агента для плагина:
 
-1. Define agent purpose and triggering conditions
-2. Choose creation method (AI-assisted or manual)
-3. Create `agents/agent-name.md` file
-4. Write frontmatter with all required fields
-5. Write system prompt following best practices
-6. Include 2-4 triggering examples in description
-7. Validate with `scripts/validate-agent.sh`
-8. Test triggering with real scenarios
-9. Document agent in plugin README
+1. Определите цель агента и условия его запуска.
+2. Выберите метод создания (с помощью ИИ или вручную).
+3. Создайте файл `agents/agent-name.md`.
+4. Напишите фронтматтер со всеми обязательными полями.
+5. Напишите системный промпт согласно лучшим практикам.
+6. Включите 2–4 примера запуска в описание.
+7. Проверьте с помощью `scripts/validate-agent.sh`.
+8. Протестируйте запуск в реальных сценариях.
+9. Документируйте агента в README плагина.
 
-Focus on clear triggering conditions and comprehensive system prompts for autonomous operation.
+Сосредоточьтесь на четких условиях запуска и исчерпывающих системных промптах для автономной работы.

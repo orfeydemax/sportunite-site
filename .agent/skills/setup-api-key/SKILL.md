@@ -1,56 +1,56 @@
 ---
 name: setup-api-key
-description: Guides users through the process of setting up an ElevenLabs API key for use with ElevenLabs MCP tools. Use when the user needs to configure an ElevenLabs API key, when ElevenLabs tools fail due to missing API key, or when the user mentions needing access to ElevenLabs.
+description: Руководит пользователями в процессе настройки API-ключа ElevenLabs для использования с инструментами ElevenLabs MCP. Используйте, когда пользователю нужно настроить API-ключ ElevenLabs, когда инструменты ElevenLabs не работают из-за отсутствия API-ключа или когда пользователь упоминает необходимость доступа к ElevenLabs.
 license: MIT
-compatibility: Requires internet access to elevenlabs.io and api.elevenlabs.io.
+compatibility: Требуется доступ к интернету для elevenlabs.io и api.elevenlabs.io.
 ---
 
-# ElevenLabs API Key Setup
+# Настройка API-ключа ElevenLabs
 
-Guide the user through obtaining and configuring an ElevenLabs API key.
+Помогите пользователю получить и настроить API-ключ ElevenLabs.
 
-## Workflow
+## Рабочий процесс
 
-### Step 1: Request the API key
+### Шаг 1: Запрос API-ключа
 
-Tell the user:
+Скажите пользователю:
 
-> To set up ElevenLabs, open the API keys page: https://elevenlabs.io/app/settings/api-keys
+> Чтобы настроить ElevenLabs, откройте страницу API-ключей: https://elevenlabs.io/app/settings/api-keys
 >
-> (Need an account? Create one at https://elevenlabs.io/app/sign-up first)
+> (Нужен аккаунт? Сначала создайте его на https://elevenlabs.io/app/sign-up)
 >
-> If you don't have an API key yet:
-> 1. Click "Create key"
-> 2. Name it (or use the default)
-> 3. Set permission for your key. If you provide a key with "User" permission set to "Read" this skill will automatically verify if your key works
-> 4. Click "Create key" to confirm
-> 5. **Copy the key immediately** - it's only shown once!
+> Если у вас еще нет API-ключа:
+> 1. Нажмите "Create key"
+> 2. Дайте ему имя (или используйте имя по умолчанию)
+> 3. Установите разрешения для вашего ключа. Если вы предоставите ключ с разрешением "User" в состоянии "Read", этот навык автоматически проверит работоспособность ключа
+> 4. Нажмите "Create key" для подтверждения
+> 5. **Скопируйте ключ немедленно** — он отображается только один раз!
 >
-> Paste your API key here when ready.
+> Вставьте ваш API-ключ сюда, когда будете готовы.
 
-Then wait for the user's next message which should contain the API key.
+Затем ждите следующего сообщения пользователя, которое должно содержать API-ключ.
 
-### Step 2: Validate and configure
+### Шаг 2: Валидация и настройка
 
-Once the user provides the API key:
+Как только пользователь предоставит API-ключ:
 
-1. **Validate the key** by making a request:
+1. **Проверьте ключ**, сделав запрос:
    ```
    GET https://api.elevenlabs.io/v1/user
-   Header: xi-api-key: <the-api-key>
+   Header: xi-api-key: <ваш-api-ключ>
    ```
 
-2. **If validation fails:**
-   - Tell the user the API key appears to be invalid
-   - Ask them to try again
-   - Remind them of the URL: https://elevenlabs.io/app/settings/api-keys
-   - If it fails a second time, display an error and exit
+2. **Если валидация не удалась:**
+   - Скажите пользователю, что API-ключ кажется недействительным
+   - Попросите его попробовать еще раз
+   - Напомните URL: https://elevenlabs.io/app/settings/api-keys
+   - Если ошибка повторится второй раз, выведите сообщение об ошибке и завершите процесс
 
-3. **If validation succeeds**, save the API key in a `.env` file:
+3. **Если валидация прошла успешно**, сохраните API-ключ в файле `.env`:
    ```
-   ELEVENLABS_API_KEY=<the-api-key>
+   ELEVENLABS_API_KEY=<ваш-api-ключ>
    ```
 
-4. **Confirm success:**
-   > Done! Your key is stored as an environment variable in .env
-   > Keep the key safe! Don't share it with anyone!
+4. **Подтвердите успех:**
+   > Готово! Ваш ключ сохранен как переменная окружения в файле .env
+   > Храните ключ в безопасности! Не делитесь им ни с кем!

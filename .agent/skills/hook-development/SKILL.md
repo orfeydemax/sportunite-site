@@ -1,47 +1,47 @@
 ---
 name: Hook Development
-description: This skill should be used when the user asks to "create a hook", "add a PreToolUse/PostToolUse/Stop hook", "validate tool use", "implement prompt-based hooks", "use ${CLAUDE_PLUGIN_ROOT}", "set up event-driven automation", "block dangerous commands", or mentions hook events (PreToolUse, PostToolUse, Stop, SubagentStop, SessionStart, SessionEnd, UserPromptSubmit, PreCompact, Notification). Provides comprehensive guidance for creating and implementing Claude Code plugin hooks with focus on advanced prompt-based hooks API.
+description: Используйте этот навык, когда пользователь просит "создать хук", "добавить хук PreToolUse/PostToolUse/Stop", "валидировать использование инструментов", "реализовать хуки на основе промптов", "использовать ${CLAUDE_PLUGIN_ROOT}", "настроить автоматизацию на основе событий", "заблокировать опасные команды" или упоминает события хуков (PreToolUse, PostToolUse, Stop, SubagentStop, SessionStart, SessionEnd, UserPromptSubmit, PreCompact, Notification). Предоставляет подробное руководство по созданию и реализации хуков для плагинов Claude Code с упором на продвинутый API хуков на основе промптов.
 version: 0.1.0
 ---
 
-# Hook Development for Claude Code Plugins
+# Разработка хуков для плагинов Claude Code (Hook Development)
 
-## Overview
+## Обзор
 
-Hooks are event-driven automation scripts that execute in response to Claude Code events. Use hooks to validate operations, enforce policies, add context, and integrate external tools into workflows.
+Хуки — это скрипты автоматизации на основе событий, которые выполняются в ответ на события Claude Code. Используйте хуки для проверки операций, обеспечения соблюдения политик, добавления контекста и интеграции внешних инструментов в рабочие процессы.
 
-**Key capabilities:**
-- Validate tool calls before execution (PreToolUse)
-- React to tool results (PostToolUse)
-- Enforce completion standards (Stop, SubagentStop)
-- Load project context (SessionStart)
-- Automate workflows across the development lifecycle
+**Основные возможности:**
+- Валидация вызовов инструментов перед выполнением (PreToolUse)
+- Реакция на результаты работы инструментов (PostToolUse)
+- Обеспечение стандартов завершения (Stop, SubagentStop)
+- Загрузка контекста проекта (SessionStart)
+- Автоматизация рабочих процессов на протяжении всего жизненного цикла разработки
 
-## Hook Types
+## Типы хуков
 
-### Prompt-Based Hooks (Recommended)
+### Хуки на основе промптов (Рекомендуется)
 
-Use LLM-driven decision making for context-aware validation:
+Используйте принятие решений на основе LLM для валидации с учетом контекста:
 
 ```json
 {
   "type": "prompt",
-  "prompt": "Evaluate if this tool use is appropriate: $TOOL_INPUT",
+  "prompt": "Оцените, уместно ли использование этого инструмента: $TOOL_INPUT",
   "timeout": 30
 }
 ```
 
-**Supported events:** Stop, SubagentStop, UserPromptSubmit, PreToolUse
+**Поддерживаемые события:** Stop, SubagentStop, UserPromptSubmit, PreToolUse
 
-**Benefits:**
-- Context-aware decisions based on natural language reasoning
-- Flexible evaluation logic without bash scripting
-- Better edge case handling
-- Easier to maintain and extend
+**Преимущества:**
+- Контекстно-зависимые решения на основе рассуждений на естественном языке
+- Гибкая логика оценки без написания bash-скриптов
+- Улучшенная обработка пограничных случаев
+- Проще поддерживать и расширять
 
-### Command Hooks
+### Командные хуки
 
-Execute bash commands for deterministic checks:
+Выполняют bash-команды для детерминированных проверок:
 
 ```json
 {
@@ -51,21 +51,21 @@ Execute bash commands for deterministic checks:
 }
 ```
 
-**Use for:**
-- Fast deterministic validations
-- File system operations
-- External tool integrations
-- Performance-critical checks
+**Используйте для:**
+- Быстрых детерминированных валидаций
+- Операций с файловой системой
+- Интеграции внешних инструментов
+- Проверок, критичных к производительности
 
-## Hook Configuration Formats
+## Форматы конфигурации хуков
 
-### Plugin hooks.json Format
+### Формат hooks.json для плагина
 
-**For plugin hooks** in `hooks/hooks.json`, use wrapper format:
+**Для хуков плагина** в `hooks/hooks.json` используйте формат-обертку:
 
 ```json
 {
-  "description": "Brief explanation of hooks (optional)",
+  "description": "Краткое описание хуков (необязательно)",
   "hooks": {
     "PreToolUse": [...],
     "Stop": [...],
@@ -74,15 +74,15 @@ Execute bash commands for deterministic checks:
 }
 ```
 
-**Key points:**
-- `description` field is optional
-- `hooks` field is required wrapper containing actual hook events
-- This is the **plugin-specific format**
+**Ключевые моменты:**
+- Поле `description` необязательно.
+- Поле `hooks` является обязательной оберткой, содержащей фактические события хуков.
+- Это **формат, специфичный для плагина**.
 
-**Example:**
+**Пример:**
 ```json
 {
-  "description": "Validation hooks for code quality",
+  "description": "Хуки валидации качества кода",
   "hooks": {
     "PreToolUse": [
       {
@@ -99,9 +99,9 @@ Execute bash commands for deterministic checks:
 }
 ```
 
-### Settings Format (Direct)
+### Формат настроек (Прямой)
 
-**For user settings** in `.claude/settings.json`, use direct format:
+**Для пользовательских настроек** в `.claude/settings.json` используйте прямой формат:
 
 ```json
 {
@@ -111,20 +111,20 @@ Execute bash commands for deterministic checks:
 }
 ```
 
-**Key points:**
-- No wrapper - events directly at top level
-- No description field
-- This is the **settings format**
+**Ключевые моменты:**
+- Без обертки — события располагаются непосредственно на верхнем уровне.
+- Поле description отсутствует.
+- Это **формат настроек**.
 
-**Important:** The examples below show the hook event structure that goes inside either format. For plugin hooks.json, wrap these in `{"hooks": {...}}`.
+**Важно:** Приведенные ниже примеры показывают структуру события хука, которая вставляется в любой из форматов. Для hooks.json плагина оберните их в `{"hooks": {...}}`.
 
-## Hook Events
+## События хуков
 
 ### PreToolUse
 
-Execute before any tool runs. Use to approve, deny, or modify tool calls.
+Выполняется перед запуском любого инструмента. Используется для одобрения, отклонения или изменения вызовов инструментов.
 
-**Example (prompt-based):**
+**Пример (на основе промпта):**
 ```json
 {
   "PreToolUse": [
@@ -133,7 +133,7 @@ Execute before any tool runs. Use to approve, deny, or modify tool calls.
       "hooks": [
         {
           "type": "prompt",
-          "prompt": "Validate file write safety. Check: system paths, credentials, path traversal, sensitive content. Return 'approve' or 'deny'."
+          "prompt": "Проверьте безопасность записи в файл. Проверьте: системные пути, учетные данные, обход пути (path traversal), конфиденциальный контент. Верните 'approve' или 'deny'."
         }
       ]
     }
@@ -141,22 +141,22 @@ Execute before any tool runs. Use to approve, deny, or modify tool calls.
 }
 ```
 
-**Output for PreToolUse:**
+**Вывод для PreToolUse:**
 ```json
 {
   "hookSpecificOutput": {
     "permissionDecision": "allow|deny|ask",
     "updatedInput": {"field": "modified_value"}
   },
-  "systemMessage": "Explanation for Claude"
+  "systemMessage": "Объяснение для Claude"
 }
 ```
 
 ### PostToolUse
 
-Execute after tool completes. Use to react to results, provide feedback, or log.
+Выполняется после завершения работы инструмента. Используется для реакции на результаты, предоставления обратной связи или логирования.
 
-**Example:**
+**Пример:**
 ```json
 {
   "PostToolUse": [
@@ -165,7 +165,7 @@ Execute after tool completes. Use to react to results, provide feedback, or log.
       "hooks": [
         {
           "type": "prompt",
-          "prompt": "Analyze edit result for potential issues: syntax errors, security vulnerabilities, breaking changes. Provide feedback."
+          "prompt": "Проанализируйте результат редактирования на наличие потенциальных проблем: синтаксических ошибок, уязвимостей безопасности, критических изменений. Предоставьте обратную связь."
         }
       ]
     }
@@ -173,16 +173,16 @@ Execute after tool completes. Use to react to results, provide feedback, or log.
 }
 ```
 
-**Output behavior:**
-- Exit 0: stdout shown in transcript
-- Exit 2: stderr fed back to Claude
-- systemMessage included in context
+**Поведение вывода:**
+- Exit 0: stdout отображается в транскрипте
+- Exit 2: stderr возвращается Claude
+- systemMessage включается в контекст
 
 ### Stop
 
-Execute when main agent considers stopping. Use to validate completeness.
+Выполняется, когда основной агент решает остановиться. Используется для проверки полноты выполнения задачи.
 
-**Example:**
+**Пример:**
 ```json
 {
   "Stop": [
@@ -191,7 +191,7 @@ Execute when main agent considers stopping. Use to validate completeness.
       "hooks": [
         {
           "type": "prompt",
-          "prompt": "Verify task completion: tests run, build succeeded, questions answered. Return 'approve' to stop or 'block' with reason to continue."
+          "prompt": "Проверьте завершение задачи: запущены ли тесты, прошла ли сборка, даны ли ответы на вопросы. Верните 'approve' для остановки или 'block' с указанием причины для продолжения."
         }
       ]
     }
@@ -199,26 +199,26 @@ Execute when main agent considers stopping. Use to validate completeness.
 }
 ```
 
-**Decision output:**
+**Вывод решения:**
 ```json
 {
   "decision": "approve|block",
-  "reason": "Explanation",
-  "systemMessage": "Additional context"
+  "reason": "Объяснение",
+  "systemMessage": "Дополнительный контекст"
 }
 ```
 
 ### SubagentStop
 
-Execute when subagent considers stopping. Use to ensure subagent completed its task.
+Выполняется, когда субагент решает остановиться. Используется для обеспечения выполнения задачи субагентом.
 
-Similar to Stop hook, but for subagents.
+Аналогично хуку Stop, но для субагентов.
 
 ### UserPromptSubmit
 
-Execute when user submits a prompt. Use to add context, validate, or block prompts.
+Выполняется, когда пользователь отправляет промпт. Используется для добавления контекста, валидации или блокировки промптов.
 
-**Example:**
+**Пример:**
 ```json
 {
   "UserPromptSubmit": [
@@ -227,7 +227,7 @@ Execute when user submits a prompt. Use to add context, validate, or block promp
       "hooks": [
         {
           "type": "prompt",
-          "prompt": "Check if prompt requires security guidance. If discussing auth, permissions, or API security, return relevant warnings."
+          "prompt": "Проверьте, требует ли промпт рекомендаций по безопасности. Если обсуждаются авторизация, разрешения или безопасность API, верните соответствующие предупреждения."
         }
       ]
     }
@@ -237,9 +237,9 @@ Execute when user submits a prompt. Use to add context, validate, or block promp
 
 ### SessionStart
 
-Execute when Claude Code session begins. Use to load context and set environment.
+Выполняется при начале сессии Claude Code. Используется для загрузки контекста и настройки окружения.
 
-**Example:**
+**Пример:**
 ```json
 {
   "SessionStart": [
@@ -256,50 +256,50 @@ Execute when Claude Code session begins. Use to load context and set environment
 }
 ```
 
-**Special capability:** Persist environment variables using `$CLAUDE_ENV_FILE`:
+**Особая возможность:** Сохранение переменных окружения с помощью `$CLAUDE_ENV_FILE`:
 ```bash
 echo "export PROJECT_TYPE=nodejs" >> "$CLAUDE_ENV_FILE"
 ```
 
-See `examples/load-context.sh` for complete example.
+Полный пример см. в `examples/load-context.sh`.
 
 ### SessionEnd
 
-Execute when session ends. Use for cleanup, logging, and state preservation.
+Выполняется при завершении сессии. Используется для очистки, логирования и сохранения состояния.
 
 ### PreCompact
 
-Execute before context compaction. Use to add critical information to preserve.
+Выполняется перед уплотнением (compaction) контекста. Используется для добавления критически важной информации для сохранения.
 
 ### Notification
 
-Execute when Claude sends notifications. Use to react to user notifications.
+Выполняется, когда Claude отправляет уведомления. Используется для реакции на уведомления пользователя.
 
-## Hook Output Format
+## Формат вывода хуков
 
-### Standard Output (All Hooks)
+### Стандартный вывод (все хуки)
 
 ```json
 {
   "continue": true,
   "suppressOutput": false,
-  "systemMessage": "Message for Claude"
+  "systemMessage": "Сообщение для Claude"
 }
 ```
 
-- `continue`: If false, halt processing (default true)
-- `suppressOutput`: Hide output from transcript (default false)
-- `systemMessage`: Message shown to Claude
+- `continue`: Если false, обработка прекращается (по умолчанию true)
+- `suppressOutput`: Скрыть вывод из транскрипта (по умолчанию false)
+- `systemMessage`: Сообщение, отображаемое Claude
 
-### Exit Codes
+### Коды выхода (Exit Codes)
 
-- `0` - Success (stdout shown in transcript)
-- `2` - Blocking error (stderr fed back to Claude)
-- Other - Non-blocking error
+- `0` - Успех (stdout отображается в транскрипте)
+- `2` - Блокирующая ошибка (stderr возвращается Claude)
+- Другие - Неблокирующая ошибка
 
-## Hook Input Format
+## Формат ввода хуков
 
-All hooks receive JSON via stdin with common fields:
+Все хуки получают JSON через stdin с общими полями:
 
 ```json
 {
@@ -311,24 +311,24 @@ All hooks receive JSON via stdin with common fields:
 }
 ```
 
-**Event-specific fields:**
+**Поля, специфичные для событий:**
 
 - **PreToolUse/PostToolUse:** `tool_name`, `tool_input`, `tool_result`
 - **UserPromptSubmit:** `user_prompt`
 - **Stop/SubagentStop:** `reason`
 
-Access fields in prompts using `$TOOL_INPUT`, `$TOOL_RESULT`, `$USER_PROMPT`, etc.
+Доступ к полям в промптах осуществляется через `$TOOL_INPUT`, `$TOOL_RESULT`, `$USER_PROMPT` и т. д.
 
-## Environment Variables
+## Переменные окружения
 
-Available in all command hooks:
+Доступны во всех командных хуках:
 
-- `$CLAUDE_PROJECT_DIR` - Project root path
-- `$CLAUDE_PLUGIN_ROOT` - Plugin directory (use for portable paths)
-- `$CLAUDE_ENV_FILE` - SessionStart only: persist env vars here
-- `$CLAUDE_CODE_REMOTE` - Set if running in remote context
+- `$CLAUDE_PROJECT_DIR` - Путь к корню проекта
+- `$CLAUDE_PLUGIN_ROOT` - Директория плагина (используйте для переносимых путей)
+- `$CLAUDE_ENV_FILE` - Только для SessionStart: сохраняйте переменные окружения здесь
+- `$CLAUDE_CODE_REMOTE` - Устанавливается при запуске в удаленном контексте
 
-**Always use ${CLAUDE_PLUGIN_ROOT} in hook commands for portability:**
+**Всегда используйте ${CLAUDE_PLUGIN_ROOT} в командах хуков для переносимости:**
 
 ```json
 {
@@ -337,9 +337,9 @@ Available in all command hooks:
 }
 ```
 
-## Plugin Hook Configuration
+## Конфигурация хуков плагина
 
-In plugins, define hooks in `hooks/hooks.json`:
+В плагинах определяйте хуки в `hooks/hooks.json`:
 
 ```json
 {
@@ -349,7 +349,7 @@ In plugins, define hooks in `hooks/hooks.json`:
       "hooks": [
         {
           "type": "prompt",
-          "prompt": "Validate file write safety"
+          "prompt": "Проверьте безопасность записи в файл"
         }
       ]
     }
@@ -360,7 +360,7 @@ In plugins, define hooks in `hooks/hooks.json`:
       "hooks": [
         {
           "type": "prompt",
-          "prompt": "Verify task completion"
+          "prompt": "Проверьте завершение задачи"
         }
       ]
     }
@@ -380,55 +380,55 @@ In plugins, define hooks in `hooks/hooks.json`:
 }
 ```
 
-Plugin hooks merge with user's hooks and run in parallel.
+Хуки плагина объединяются с пользовательскими хуками и запускаются параллельно.
 
-## Matchers
+## Матчеры (Matchers)
 
-### Tool Name Matching
+### Сопоставление имен инструментов
 
-**Exact match:**
+**Точное совпадение:**
 ```json
 "matcher": "Write"
 ```
 
-**Multiple tools:**
+**Несколько инструментов:**
 ```json
 "matcher": "Read|Write|Edit"
 ```
 
-**Wildcard (all tools):**
+**Wildcard (все инструменты):**
 ```json
 "matcher": "*"
 ```
 
-**Regex patterns:**
+**Regex-паттерны:**
 ```json
-"matcher": "mcp__.*__delete.*"  // All MCP delete tools
+"matcher": "mcp__.*__delete.*"  // Все инструменты удаления MCP
 ```
 
-**Note:** Matchers are case-sensitive.
+**Примечание:** Матчеры чувствительны к регистру.
 
-### Common Patterns
+### Общие паттерны
 
 ```json
-// All MCP tools
+// Все инструменты MCP
 "matcher": "mcp__.*"
 
-// Specific plugin's MCP tools
+// Инструменты MCP конкретного плагина
 "matcher": "mcp__plugin_asana_.*"
 
-// All file operations
+// Все операции с файлами
 "matcher": "Read|Write|Edit"
 
-// Bash commands only
+// Только команды Bash
 "matcher": "Bash"
 ```
 
-## Security Best Practices
+## Лучшие практики безопасности
 
-### Input Validation
+### Валидация входных данных
 
-Always validate inputs in command hooks:
+Всегда валидируйте входные данные в командных хуках:
 
 ```bash
 #!/bin/bash
@@ -437,48 +437,48 @@ set -euo pipefail
 input=$(cat)
 tool_name=$(echo "$input" | jq -r '.tool_name')
 
-# Validate tool name format
+# Валидация формата имени инструмента
 if [[ ! "$tool_name" =~ ^[a-zA-Z0-9_]+$ ]]; then
   echo '{"decision": "deny", "reason": "Invalid tool name"}' >&2
   exit 2
 fi
 ```
 
-### Path Safety
+### Безопасность путей
 
-Check for path traversal and sensitive files:
+Проверяйте на обход путей и конфиденциальные файлы:
 
 ```bash
 file_path=$(echo "$input" | jq -r '.tool_input.file_path')
 
-# Deny path traversal
+# Отклонение обхода пути
 if [[ "$file_path" == *".."* ]]; then
   echo '{"decision": "deny", "reason": "Path traversal detected"}' >&2
   exit 2
 fi
 
-# Deny sensitive files
+# Отклонение конфиденциальных файлов
 if [[ "$file_path" == *".env"* ]]; then
   echo '{"decision": "deny", "reason": "Sensitive file"}' >&2
   exit 2
 fi
 ```
 
-See `examples/validate-write.sh` and `examples/validate-bash.sh` for complete examples.
+Полные примеры см. в `examples/validate-write.sh` и `examples/validate-bash.sh`.
 
-### Quote All Variables
+### Кавычки для всех переменных
 
 ```bash
-# GOOD: Quoted
+# ХОРОШО: В кавычках
 echo "$file_path"
 cd "$CLAUDE_PROJECT_DIR"
 
-# BAD: Unquoted (injection risk)
+# ПЛОХО: Без кавычек (риск инъекции)
 echo $file_path
 cd $CLAUDE_PROJECT_DIR
 ```
 
-### Set Appropriate Timeouts
+### Установка подходящих таймаутов
 
 ```json
 {
@@ -488,13 +488,13 @@ cd $CLAUDE_PROJECT_DIR
 }
 ```
 
-**Defaults:** Command hooks (60s), Prompt hooks (30s)
+**Значения по умолчанию:** Командные хуки (60с), хуки на основе промптов (30с).
 
-## Performance Considerations
+## Рекомендации по производительности
 
-### Parallel Execution
+### Параллельное выполнение
 
-All matching hooks run **in parallel**:
+Все подходящие хуки запускаются **параллельно**:
 
 ```json
 {
@@ -502,114 +502,114 @@ All matching hooks run **in parallel**:
     {
       "matcher": "Write",
       "hooks": [
-        {"type": "command", "command": "check1.sh"},  // Parallel
-        {"type": "command", "command": "check2.sh"},  // Parallel
-        {"type": "prompt", "prompt": "Validate..."}   // Parallel
+        {"type": "command", "command": "check1.sh"},  // Параллельно
+        {"type": "command", "command": "check2.sh"},  // Параллельно
+        {"type": "prompt", "prompt": "Проверка..."}   // Параллельно
       ]
     }
   ]
 }
 ```
 
-**Design implications:**
-- Hooks don't see each other's output
-- Non-deterministic ordering
-- Design for independence
+**Последствия для проектирования:**
+- Хуки не видят вывод друг друга.
+- Детерминированный порядок отсутствует.
+- Проектируйте хуки независимыми.
 
-### Optimization
+### Оптимизация
 
-1. Use command hooks for quick deterministic checks
-2. Use prompt hooks for complex reasoning
-3. Cache validation results in temp files
-4. Minimize I/O in hot paths
+1. Используйте командные хуки для быстрых детерминированных проверок.
+2. Используйте хуки на основе промптов для сложных рассуждений.
+3. Кэшируйте результаты валидации во временных файлах.
+4. Минимизируйте I/O в часто используемых путях.
 
-## Temporarily Active Hooks
+## Временно активные хуки
 
-Create hooks that activate conditionally by checking for a flag file or configuration:
+Создавайте хуки, которые активируются условно, проверяя файл-флаг или конфигурацию:
 
-**Pattern: Flag file activation**
+**Паттерн: Активация через файл-флаг**
 ```bash
 #!/bin/bash
-# Only active when flag file exists
+# Активен только при наличии файла-флага
 FLAG_FILE="$CLAUDE_PROJECT_DIR/.enable-strict-validation"
 
 if [ ! -f "$FLAG_FILE" ]; then
-  # Flag not present, skip validation
+  # Флаг отсутствует, пропустить валидацию
   exit 0
 fi
 
-# Flag present, run validation
+# Флаг присутствует, запустить валидацию
 input=$(cat)
-# ... validation logic ...
+# ... логика валидации ...
 ```
 
-**Pattern: Configuration-based activation**
+**Паттерн: Активация через конфигурацию**
 ```bash
 #!/bin/bash
-# Check configuration for activation
+# Проверка конфигурации для активации
 CONFIG_FILE="$CLAUDE_PROJECT_DIR/.claude/plugin-config.json"
 
 if [ -f "$CONFIG_FILE" ]; then
   enabled=$(jq -r '.strictMode // false' "$CONFIG_FILE")
   if [ "$enabled" != "true" ]; then
-    exit 0  # Not enabled, skip
+    exit 0  # Не включено, пропустить
   fi
 fi
 
-# Enabled, run hook logic
+# Включено, запустить логику хука
 input=$(cat)
-# ... hook logic ...
+# ... логика хука ...
 ```
 
-**Use cases:**
-- Enable strict validation only when needed
-- Temporary debugging hooks
-- Project-specific hook behavior
-- Feature flags for hooks
+**Варианты использования:**
+- Включение строгой валидации только при необходимости.
+- Временные хуки для отладки.
+- Поведение хуков, специфичное для проекта.
+- Feature flags для хуков.
 
-**Best practice:** Document activation mechanism in plugin README so users know how to enable/disable temporary hooks.
+**Лучшая практика:** Документируйте механизм активации в README плагина, чтобы пользователи знали, как включать/выключать временные хуки.
 
-## Hook Lifecycle and Limitations
+## Жизненный цикл хуков и ограничения
 
-### Hooks Load at Session Start
+### Хуки загружаются при старте сессии
 
-**Important:** Hooks are loaded when Claude Code session starts. Changes to hook configuration require restarting Claude Code.
+**Важно:** Хуки загружаются при запуске сессии Claude Code. Изменения в конфигурации хуков требуют перезапуска Claude Code.
 
-**Cannot hot-swap hooks:**
-- Editing `hooks/hooks.json` won't affect current session
-- Adding new hook scripts won't be recognized
-- Changing hook commands/prompts won't update
-- Must restart Claude Code: exit and run `claude` again
+**Невозможно горячая замена хуков:**
+- Редактирование `hooks/hooks.json` не повлияет на текущую сессию.
+- Добавление новых скриптов хуков не будет распознано.
+- Изменение команд/промптов хуков не обновится.
+- Необходимо перезапустить Claude Code: выйти и снова запустить `claude`.
 
-**To test hook changes:**
-1. Edit hook configuration or scripts
-2. Exit Claude Code session
-3. Restart: `claude` or `cc`
-4. New hook configuration loads
-5. Test hooks with `claude --debug`
+**Для тестирования изменений хуков:**
+1. Отредактируйте конфигурацию или скрипты хуков.
+2. Выйдите из сессии Claude Code.
+3. Перезапустите: `claude` или `cc`.
+4. Загрузится новая конфигурация хуков.
+5. Протестируйте хуки с флагом `claude --debug`.
 
-### Hook Validation at Startup
+### Валидация хуков при запуске
 
-Hooks are validated when Claude Code starts:
-- Invalid JSON in hooks.json causes loading failure
-- Missing scripts cause warnings
-- Syntax errors reported in debug mode
+Хуки валидируются при запуске Claude Code:
+- Некорректный JSON в hooks.json приводит к ошибке загрузки.
+- Отсутствующие скрипты вызывают предупреждения.
+- Синтаксические ошибки отображаются в режиме отладки.
 
-Use `/hooks` command to review loaded hooks in current session.
+Используйте команду `/hooks` для просмотра загруженных хуков в текущей сессии.
 
-## Debugging Hooks
+## Отладка хуков
 
-### Enable Debug Mode
+### Включение режима отладки
 
 ```bash
 claude --debug
 ```
 
-Look for hook registration, execution logs, input/output JSON, and timing information.
+Ищите логи регистрации хуков, выполнения, входной/выходной JSON и информацию о времени выполнения.
 
-### Test Hook Scripts
+### Тестирование скриптов хуков
 
-Test command hooks directly:
+Тестируйте командные хуки напрямую:
 
 ```bash
 echo '{"tool_name": "Write", "tool_input": {"file_path": "/test"}}' | \
@@ -618,95 +618,95 @@ echo '{"tool_name": "Write", "tool_input": {"file_path": "/test"}}' | \
 echo "Exit code: $?"
 ```
 
-### Validate JSON Output
+### Валидация вывода JSON
 
-Ensure hooks output valid JSON:
+Убедитесь, что хуки выводят корректный JSON:
 
 ```bash
 output=$(./your-hook.sh < test-input.json)
 echo "$output" | jq .
 ```
 
-## Quick Reference
+## Быстрая справка
 
-### Hook Events Summary
+### Сводка событий хуков
 
-| Event | When | Use For |
+| Событие | Когда | Для чего |
 |-------|------|---------|
-| PreToolUse | Before tool | Validation, modification |
-| PostToolUse | After tool | Feedback, logging |
-| UserPromptSubmit | User input | Context, validation |
-| Stop | Agent stopping | Completeness check |
-| SubagentStop | Subagent done | Task validation |
-| SessionStart | Session begins | Context loading |
-| SessionEnd | Session ends | Cleanup, logging |
-| PreCompact | Before compact | Preserve context |
-| Notification | User notified | Logging, reactions |
+| PreToolUse | Перед инструментом | Валидация, модификация |
+| PostToolUse | После инструмента | Обратная связь, логирование |
+| UserPromptSubmit | Пользовательский ввод | Контекст, валидация |
+| Stop | Остановка агента | Проверка полноты |
+| SubagentStop | Субагент завершил работу | Валидация задачи |
+| SessionStart | Начало сессии | Загрузка контекста |
+| SessionEnd | Конец сессии | Очистка, логирование |
+| PreCompact | Перед уплотнением | Сохранение контекста |
+| Notification | Уведомление пользователя | Логирование, реакции |
 
-### Best Practices
+### Лучшие практики
 
-**DO:**
-- ✅ Use prompt-based hooks for complex logic
-- ✅ Use ${CLAUDE_PLUGIN_ROOT} for portability
-- ✅ Validate all inputs in command hooks
-- ✅ Quote all bash variables
-- ✅ Set appropriate timeouts
-- ✅ Return structured JSON output
-- ✅ Test hooks thoroughly
+**НУЖНО:**
+- ✅ Используйте хуки на основе промптов для сложной логики.
+- ✅ Используйте ${CLAUDE_PLUGIN_ROOT} для переносимости.
+- ✅ Валидируйте все входные данные в командных хуках.
+- ✅ Берете все bash-переменные в кавычки.
+- ✅ Устанавливайте подходящие таймауты.
+- ✅ Возвращайте структурированный вывод JSON.
+- ✅ Тщательно тестируйте хуки.
 
-**DON'T:**
-- ❌ Use hardcoded paths
-- ❌ Trust user input without validation
-- ❌ Create long-running hooks
-- ❌ Rely on hook execution order
-- ❌ Modify global state unpredictably
-- ❌ Log sensitive information
+**НЕЛЬЗЯ:**
+- ❌ Использовать захардкоженные пути.
+- ❌ Доверять пользовательскому вводу без валидации.
+- ❌ Создавать долго работающие хуки.
+- ❌ Полагаться на порядок выполнения хуков.
+- ❌ Непредсказуемо изменять глобальное состояние.
+- ❌ Логировать конфиденциальную информацию.
 
-## Additional Resources
+## Дополнительные ресурсы
 
-### Reference Files
+### Справочные файлы
 
-For detailed patterns and advanced techniques, consult:
+Для получения подробных паттернов и продвинутых техник обратитесь к:
 
-- **`references/patterns.md`** - Common hook patterns (8+ proven patterns)
-- **`references/migration.md`** - Migrating from basic to advanced hooks
-- **`references/advanced.md`** - Advanced use cases and techniques
+- **`references/patterns.md`** - Общие паттерны хуков (8+ проверенных паттернов).
+- **`references/migration.md`** - Миграция с базовых на продвинутые хуки.
+- **`references/advanced.md`** - Продвинутые варианты использования и техники.
 
-### Example Hook Scripts
+### Примеры скриптов хуков
 
-Working examples in `examples/`:
+Рабочие примеры в `examples/`:
 
-- **`validate-write.sh`** - File write validation example
-- **`validate-bash.sh`** - Bash command validation example
-- **`load-context.sh`** - SessionStart context loading example
+- **`validate-write.sh`** - Пример валидации записи в файл.
+- **`validate-bash.sh`** - Пример валидации команд bash.
+- **`load-context.sh`** - Пример загрузки контекста SessionStart.
 
-### Utility Scripts
+### Утилиты
 
-Development tools in `scripts/`:
+Инструменты разработки в `scripts/`:
 
-- **`validate-hook-schema.sh`** - Validate hooks.json structure and syntax
-- **`test-hook.sh`** - Test hooks with sample input before deployment
-- **`hook-linter.sh`** - Check hook scripts for common issues and best practices
+- **`validate-hook-schema.sh`** - Валидация структуры и синтаксиса hooks.json.
+- **`test-hook.sh`** - Тестирование хуков с образцом ввода перед развертыванием.
+- **`hook-linter.sh`** - Проверка скриптов хуков на наличие общих проблем.
 
-### External Resources
+### Внешние ресурсы
 
-- **Official Docs**: https://docs.claude.com/en/docs/claude-code/hooks
-- **Examples**: See security-guidance plugin in marketplace
-- **Testing**: Use `claude --debug` for detailed logs
-- **Validation**: Use `jq` to validate hook JSON output
+- **Официальная документация**: https://docs.claude.com/en/docs/claude-code/hooks
+- **Примеры**: См. плагин security-guidance в маркетплейсе.
+- **Тестирование**: Используйте `claude --debug` для подробных логов.
+- **Валидация**: Используйте `jq` для проверки вывода JSON хука.
 
-## Implementation Workflow
+## Рабочий процесс реализации
 
-To implement hooks in a plugin:
+Чтобы реализовать хуки в плагине:
 
-1. Identify events to hook into (PreToolUse, Stop, SessionStart, etc.)
-2. Decide between prompt-based (flexible) or command (deterministic) hooks
-3. Write hook configuration in `hooks/hooks.json`
-4. For command hooks, create hook scripts
-5. Use ${CLAUDE_PLUGIN_ROOT} for all file references
-6. Validate configuration with `scripts/validate-hook-schema.sh hooks/hooks.json`
-7. Test hooks with `scripts/test-hook.sh` before deployment
-8. Test in Claude Code with `claude --debug`
-9. Document hooks in plugin README
+1. Определите события для подключения (PreToolUse, Stop, SessionStart и т. д.).
+2. Выберите между хуками на основе промптов (гибкие) или командными (детерминированные).
+3. Напишите конфигурацию хуков в `hooks/hooks.json`.
+4. Для командных хуков создайте скрипты хуков.
+5. Используйте ${CLAUDE_PLUGIN_ROOT} для всех ссылок на файлы.
+6. Проверьте конфигурацию с помощью `scripts/validate-hook-schema.sh hooks/hooks.json`.
+7. Протестируйте хуки с помощью `scripts/test-hook.sh` перед развертыванием.
+8. Протестируйте в Claude Code с флагом `claude --debug`.
+9. Задокументируйте хуки в README плагина.
 
-Focus on prompt-based hooks for most use cases. Reserve command hooks for performance-critical or deterministic checks.
+Сосредоточьтесь на хуках на основе промптов для большинства случаев. Оставьте командные хуки для проверок, критичных к производительности или требующих детерминированности.

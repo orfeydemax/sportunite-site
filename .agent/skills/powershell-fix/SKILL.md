@@ -1,48 +1,48 @@
 ---
 name: powershell-fix
-description: Advanced wrapper for PowerShell execution to prevent Antigravity IDE freezes. Handles zombie processes, enforces timeouts, and ensures clean exit codes.
+description: Продвинутая обертка для выполнения PowerShell, предотвращающая зависания IDE Antigravity. Управляет "зомби"-процессами, принудительно соблюдает таймауты и гарантирует чистые коды завершения.
 license: MIT
 ---
 
-# PowerShell Fix & Robust Execution
+# Исправление PowerShell и Надежное Выполнение
 
-This skill provides tools to execute PowerShell commands safely within Antigravity, avoiding the common "hanging" or "zombie process" issues.
+Этот навык предоставляет инструменты для безопасного выполнения команд PowerShell внутри Antigravity, избегая распространенных проблем с "зависанием" или "зомби-процессами".
 
-## ⚠️ The Problem
-Antigravity can freeze if:
-1. A PowerShell process doesn't close `stdout` properly.
-2. "Zombie" `conhost.exe` or `powershell.exe` processes accumulate.
-3. Interactive prompts (Y/N) block execution effectively forever.
+## ⚠️ Проблема
+Antigravity может замереть, если:
+1. Процесс PowerShell не закрывает `stdout` должным образом.
+2. Накапливаются "зомби"-процессы `conhost.exe` или `powershell.exe`.
+3. Интерактивные запросы (Y/N) блокируют выполнение практически навсегда.
 
-## 🛠 The Solution: `safe_run.js`
+## 🛠 Решение: `safe_run.js`
 
-Use the included Node.js wrapper to run commands. It wraps the native spawn process with:
-- **Timeout Enforcers**: Kills process if it runs longer than X seconds (default: 60s).
-- **Zombie Cleanup**: Scans and kills distinct PowerShell processes before start.
-- **Non-Interactive Mode**: Sets flags to discourage interaction.
-- **Output Streaming**: Pipes output directly to console so you see progress.
+Используйте включенную обертку Node.js для запуска команд. Она оборачивает нативный процесс spawn следующими функциями:
+- **Контроль таймаута**: Убивает процесс, если он работает дольше X секунд (по умолчанию: 60с).
+- **Очистка зомби**: Сканирует и убивает отдельные процессы PowerShell перед запуском.
+- **Неинтерактивный режим**: Устанавливает флаги, препятствующие взаимодействию.
+- **Потоковый вывод**: Направляет вывод напрямую в консоль, чтобы вы видели прогресс.
 
-## Usage
+## Использование
 
-### 1. Run a Command Safely
-Instead of running `npm run dev` directly, use:
+### 1. Безопасный запуск команды
+Вместо прямого запуска `npm run dev`, используйте:
 
 ```bash
 node .agent/skills/powershell-fix/scripts/safe_run.js "npm run dev" --timeout 300000
 ```
 
-### 2. Deep Clean Environment
-If the terminal is already stuck, run the cleanup script directly:
+### 2. Глубокая очистка окружения
+Если терминал уже застрял, запустите скрипт очистки напрямую:
 
 ```powershell
 .agent/skills/powershell-fix/scripts/cleanup.ps1
 ```
 
-## Configuration
-The `safe_run.js` script accepts:
-- `--timeout <ms>`: Max execution time (default 60000ms).
-- `--no-clean`: Skip pre-execution zombie killing.
-- `--debug`: Show wrapper internal logs.
+## Конфигурация
+Скрипт `safe_run.js` принимает:
+- `--timeout <ms>`: Максимальное время выполнения (по умолчанию 60000 мс).
+- `--no-clean`: Пропустить уничтожение зомби перед выполнением.
+- `--debug`: Показать внутренние логи обертки.
 
-## Troubleshooting
-If this skill fails, manually kill all `node.exe` and `powershell.exe` via Task Manager.
+## Устранение неполадок
+Если этот навык не помогает, вручную завершите все процессы `node.exe` и `powershell.exe` через Диспетчер задач.

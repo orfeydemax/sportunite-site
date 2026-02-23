@@ -1,133 +1,133 @@
 ---
 name: self-learning
-description: "Autonomous skill generator that learns new technologies from the web. Use when, users want to learn about a new library/framework/tool, need to create a skill for an unfamiliar technology, want to research and document a technology's usage patterns, or invoke with `/learn <topic>`. This skill uses web search and browser tools to discover, extract, and synthesize documentation into a reusable skill."
+description: "Автономный генератор навыков, который изучает новые технологии в вебе. Используйте, когда пользователи хотят узнать о новой библиотеке/фреймворке/инструменте, нужно создать навык для незнакомой технологии, требуется исследовать и задокументировать паттерны использования технологии, или при вызове команд `/learn <topic>`. Этот навык использует веб-поиск и браузерные инструменты для обнаружения, извлечения и синтеза документации в переиспользуемый навык."
 ---
 
-# Self-Learning Skill Generator
+# Генератор навыков самообучения (Self-Learning Skill Generator)
 
-Autonomously research and learn new technologies from the web, then generate a reusable skill.
+Автономно исследуйте и изучайте новые технологии в вебе, а затем создавайте переиспользуемые навыки.
 
-## Usage
+## Использование
 
 ```
 /learn <topic>
 ```
 
-If `<topic>` is missing, show usage. If topic is ambiguous, ask to clarify:
+Если `<topic>` отсутствует, показать справку по использованию. Если тема неоднозначна, попросите уточнить:
 
-- "react" → "React for web, React Native, or a specific library like react-query?"
-- "apollo" → "Apollo GraphQL client, Apollo Server, or Apollo Federation?"
-- "aws" → "Which AWS service? (S3, Lambda, DynamoDB, etc.)"
+- "react" → "React для веба, React Native или конкретная библиотека типа react-query?"
+- "apollo" → "Клиент Apollo GraphQL, Apollo Server или Apollo Federation?"
+- "aws" → "Какой сервис AWS? (S3, Lambda, DynamoDB и т. д.)"
 
-Normalize to **kebab-case** for filenames.
+Используйте **kebab-case** для имен файлов.
 
-### 2. Discover Sources (Web Search)
+### 2. Поиск источников (Веб-поиск)
 
-Use web search tool to find authoritative documentation:
+Используйте инструменты веб-поиска для поиска авторитетной документации:
 
-**Search queries to try:**
+**Поисковые запросы для проверки:**
 1. `<topic> official documentation`
 2. `<topic> getting started guide`
 3. `<topic> API reference`
 4. `<topic> GitHub repository`
 
-**Source prioritization:**
-1. Official docs sites (e.g., docs.*, *.dev)
-2. Official GitHub repositories (README, /docs)
-3. Official blogs/announcements
+**Приоритетность источников:**
+1. Официальные сайты документации (например, docs.*, *.dev)
+2. Официальные репозитории GitHub (README, /docs)
+3. Официальные блоги/анонсы
 
-Select **3–5 high-quality URLs** maximum.
+Выберите максимум **3–5 высококачественных URL-адресов**.
 
-If no credible sources found, ask user to provide a URL.
-
----
-
-### 3. Extract Content (URL Reading)
-
-For each selected URL, read the content:
-
-**Extract only relevant sections:**
-- Installation / setup
-- Core concepts
-- API reference / key functions
-- Common patterns / examples
-- Version information
-
-**Skip irrelevant content:**
-- Navigation, ads, login prompts
-- Unrelated sidebar content
-- Comments, forums
-
-If reading the content fails (JavaScript-heavy sites), fall back to browser agent:
-
-```
-Task: Navigate to <URL> and extract the main content including:
-- Installation instructions
-- Core concepts and API reference
-- Code examples
-Return the extracted content as markdown.
-```
-
-Record scrape timestamp for each source (use current date: YYYY-MM-DD format).
+Если надежные источники не найдены, попросите пользователя предоставить URL.
 
 ---
 
-### 4. Generate Skill
+### 3. Извлечение контента (Чтение URL)
 
-Skills are modular, self-contained packages. Every skill consists of a required `SKILL.md` file and optional bundled resources:
+Для каждого выбранного URL-адреса прочитайте содержимое:
+
+**Извлекайте только релевантные разделы:**
+- Установка / настройка
+- Основные концепции
+- Справочник API / ключевые функции
+- Общие паттерны / примеры
+- Информация о версии
+
+**Пропускайте нерелевантный контент:**
+- Навигация, реклама, запросы на вход
+- Несвязанный контент боковых панелей
+- Комментарии, форумы
+
+Если чтение контента не удается (сайты с тяжелым JavaScript), используйте браузерного агента:
+
+```
+Задача: Перейти на <URL> и извлечь основной контент, включая:
+- Инструкции по установке
+- Основные концепции и справочник API
+- Примеры кода
+Вернуть извлеченный контент в формате markdown.
+```
+
+Записывайте временную метку сбора данных для каждого источника (используйте формат ГГГГ-ММ-ДД).
+
+---
+
+### 4. Генерация навыка
+
+Навыки — это модульные самодостаточные пакеты. Каждый навык состоит из обязательного файла `SKILL.md` и дополнительных пакетных ресурсов:
 
 ```
 skill-name/
-├── SKILL.md (required)
-│   ├── YAML frontmatter metadata (required)
-│   │   ├── name: (required)
-│   │   └── description: (required)
-│   └── Markdown instructions (required)
-└── Bundled Resources (optional)
-    ├── scripts/          - Executable code (Python/Bash/etc.)
-    ├── references/       - Documentation intended to be loaded into context as needed
-    └── assets/           - Files used in output (templates, icons, fonts, etc.)
+├── SKILL.md (обязательно)
+│   ├── Метаданные YAML frontmatter (обязательно)
+│   │   ├── name: (обязательно)
+│   │   └── description: (обязательно)
+│   └── Инструкции Markdown (обязательно)
+└── Пакетные ресурсы (опционально)
+    ├── scripts/          - Исполняемый код (Python/Bash и т. д.)
+    ├── references/       - Документация, предназначенная для загрузки в контекст по мере необходимости
+    └── assets/           - Файлы, используемые в выводе (шаблоны, иконки, шрифты и т. д.)
 ```
 
-1. Read `references/skill_creation_guide.md` to understand the format and principles.
-2. Synthesize the learned and extracted information into a new skill.
-    - **Trigger:** Write a description that clearly defines when to use it.
-    - **Workflow:** Create step-by-step instructions.
-    - **Format:** Ensure valid YAML frontmatter and proper file structure.
+1. Прочитайте `references/skill_creation_guide.md`, чтобы понять формат и принципы.
+2. Синтезируйте изученную и извлеченную информацию в новый навык.
+    - **Триггер:** Напишите описание, которое четко определяет, когда использовать этот навык.
+    - **Рабочий процесс:** Создайте пошаговые инструкции.
+    - **Формат:** Обеспечьте валидный YAML frontmatter и правильную структуру файлов.
 
-### 5. Save the Skill
+### 5. Сохранение навыка
 
-Antigravity supports two types of skills, save a global-workspace if asked. 
+Antigravity поддерживает два типа навыков, сохраняйте в глобальное рабочее пространство, если попросят.
 
-- `.agent/skills/<skill-folder>/`	Workspace-specific
-- `~/.gemini/antigravity/skills/<skill-folder>/`	Global (all workspaces)
+- `.agent/skills/<skill-folder>/`	Для конкретного рабочего пространства
+- `~/.gemini/antigravity/skills/<skill-folder>/`	Глобально (все рабочие пространства)
 
-Create directory if it doesn't exist, warn user before overwriting existing skill.
+Создайте директорию, если она не существует, предупредите пользователя перед перезаписью существующего навыка.
 
 ---
 
-### 6. Confirm to User
+### 6. Подтверждение пользователю
 
-Report:
+Отчет:
 ```
-✓ Created skill: <topic>
-  Sources scraped: <N>
-  Saved to: .agent/skills/<topic>/SKILL.md
-  This skill will auto-trigger when working with <topic>.
+✓ Создан навык: <topic>
+  Источников получено: <N>
+  Сохранено в: .agent/skills/<topic>/SKILL.md
+  Этот навык будет срабатывать автоматически при работе с <topic>.
 ```
 
 ---
 
-## Tool Reference
+## Справочник инструментов
 
-- `search_web`: Discover documentation URLs
-- `read_url_content`: Extract content from static pages
-- `browser_subagent`: Extract content from JavaScript-heavy sites
-- `write_to_file`: Save the generated skill
+- `search_web`: Обнаружение URL документации
+- `read_url_content`: Извлечение контента со статических страниц
+- `browser_subagent`: Извлечение контента с сайтов с тяжелым JavaScript
+- `write_to_file`: Сохранение сгенерированного навыка
 
-## Critical Rules
+## Критические правила
 
-1. **Never hallucinate documentation:** Only include information from scraped sources.
-2. **Never invent APIs:** If documentation is unclear, ask the user what to do.
-3. **Ask for URLs:** If automated discovery fails, ask user for specific URLs.
-4. **Verify sources:** Prefer official sources over third-party tutorials.
+1. **Никогда не галлюцинируйте документацию:** Включайте только информацию из полученных источников.
+2. **Никогда не выдумывайте API:** Если документация неясна, спросите пользователя, что делать.
+3. **Запрашивайте URL:** Если автоматическое обнаружение не удалось, попросите у пользователя конкретные URL.
+4. **Проверяйте источники:** Отдавайте предпочтение официальным источникам перед сторонними руководствами.

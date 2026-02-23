@@ -1,116 +1,116 @@
 ---
 name: jscodeshift
-description: jscodeshift codemod development best practices from Facebook/Meta. This skill should be used when writing, reviewing, or debugging jscodeshift codemods. Triggers on tasks involving AST transformation, code migration, automated refactoring, or codemod development.
+description: Лучшие практики разработки кодмодов jscodeshift от Facebook/Meta. Используйте этот навык при написании, проверке или отладке кодмодов jscodeshift. Активируется при выполнении задач, связанных с трансформацией AST, миграцией кода, автоматизированным рефакторингом или разработкой кодмодов.
 ---
 
-# Facebook/Meta jscodeshift Best Practices
+# Лучшие практики jscodeshift от Facebook/Meta
 
-Comprehensive best practices guide for jscodeshift codemod development, designed for AI agents and LLMs. Contains 40 rules across 8 categories, prioritized by impact from critical (parser configuration, AST traversal) to incremental (advanced patterns). Each rule includes detailed explanations, real-world examples, and specific impact metrics.
+Комплексное руководство по лучшим практикам разработки кодмодов jscodeshift, предназначенное для ИИ-агентов и LLM. Содержит 40 правил в 8 категориях, приоритизированных по уровню влияния: от критических (конфигурация парсера, обход AST) до дополнительных (продвинутые паттерны). Каждое правило включает подробные объяснения, реальные примеры и конкретные метрики влияния.
 
-## When to Apply
+## Когда применять
 
-Reference these guidelines when:
-- Writing new jscodeshift codemods for code migrations
-- Debugging transform failures or unexpected behavior
-- Optimizing codemod performance on large codebases
-- Reviewing codemod code for correctness
-- Testing codemods for edge cases and regressions
+Обращайтесь к этому руководству при:
+- Написании новых кодмодов jscodeshift для миграции кода
+- Отладке сбоев трансформации или неожиданного поведения
+- Оптимизации производительности кодмодов на крупных кодовых базах
+- Проверке кода кодмодов на корректность
+- Тестировании кодмодов на граничные случаи и регрессии
 
-## Rule Categories by Priority
+## Категории правил по приоритету
 
-| Priority | Category | Impact | Prefix |
+| Приоритет | Категория | Влияние | Префикс |
 |----------|----------|--------|--------|
-| 1 | Parser Configuration | CRITICAL | `parser-` |
-| 2 | AST Traversal Patterns | CRITICAL | `traverse-` |
-| 3 | Node Filtering | HIGH | `filter-` |
-| 4 | AST Transformation | HIGH | `transform-` |
-| 5 | Code Generation | MEDIUM | `codegen-` |
-| 6 | Testing Strategies | MEDIUM | `test-` |
-| 7 | Runner Optimization | LOW-MEDIUM | `runner-` |
-| 8 | Advanced Patterns | LOW | `advanced-` |
+| 1 | Конфигурация парсера | КРИТИЧЕСКОЕ | `parser-` |
+| 2 | Паттерны обхода AST | КРИТИЧЕСКОЕ | `traverse-` |
+| 3 | Фильтрация узлов | ВЫСОКОЕ | `filter-` |
+| 4 | Трансформация AST | ВЫСОКОЕ | `transform-` |
+| 5 | Генерация кода | СРЕДНЕЕ | `codegen-` |
+| 6 | Стратегии тестирования | СРЕДНЕЕ | `test-` |
+| 7 | Оптимизация раннера | НИЗКОЕ-СРЕДНЕЕ | `runner-` |
+| 8 | Продвинутые паттерны | НИЗКОЕ | `advanced-` |
 
-## Quick Reference
+## Быстрая справка
 
-### 1. Parser Configuration (CRITICAL)
+### 1. Конфигурация парсера (КРИТИЧЕСКОЕ)
 
-- [`parser-typescript-config`](references/parser-typescript-config.md) - Use correct parser for TypeScript files
-- [`parser-flow-annotation`](references/parser-flow-annotation.md) - Use Flow parser for Flow-typed code
-- [`parser-babel5-compat`](references/parser-babel5-compat.md) - Avoid default babel5compat for modern syntax
-- [`parser-export-declaration`](references/parser-export-declaration.md) - Export parser from transform module
-- [`parser-astexplorer-match`](references/parser-astexplorer-match.md) - Match AST Explorer parser to jscodeshift parser
+- [`parser-typescript-config`](references/parser-typescript-config.md) — используйте правильный парсер для файлов TypeScript
+- [`parser-flow-annotation`](references/parser-flow-annotation.md) — используйте парсер Flow для кода с типизацией Flow
+- [`parser-babel5-compat`](references/parser-babel5-compat.md) — избегайте default babel5compat для современного синтаксиса
+- [`parser-export-declaration`](references/parser-export-declaration.md) — экспортируйте парсер из модуля трансформации
+- [`parser-astexplorer-match`](references/parser-astexplorer-match.md) — сопоставляйте парсер AST Explorer с парсером jscodeshift
 
-### 2. AST Traversal Patterns (CRITICAL)
+### 2. Паттерны обхода AST (КРИТИЧЕСКОЕ)
 
-- [`traverse-find-specific-type`](references/traverse-find-specific-type.md) - Use specific node types in find() calls
-- [`traverse-two-pass-pattern`](references/traverse-two-pass-pattern.md) - Use two-pass pattern for complex transforms
-- [`traverse-early-return`](references/traverse-early-return.md) - Return early when no transformation needed
-- [`traverse-find-filter-pattern`](references/traverse-find-filter-pattern.md) - Use find() with filter object over filter() chain
-- [`traverse-closest-scope`](references/traverse-closest-scope.md) - Use closestScope() for scope-aware transforms
-- [`traverse-avoid-repeated-find`](references/traverse-avoid-repeated-find.md) - Avoid repeated find() calls for same node type
+- [`traverse-find-specific-type`](references/traverse-find-specific-type.md) — используйте конкретные типы узлов в вызовах find()
+- [`traverse-two-pass-pattern`](references/traverse-two-pass-pattern.md) — используйте двухпроходный паттерн для сложных трансформаций
+- [`traverse-early-return`](references/traverse-early-return.md) — делайте ранний возврат, если трансформация не требуется
+- [`traverse-find-filter-pattern`](references/traverse-find-filter-pattern.md) — используйте find() с объектом фильтра вместо цепочки filter()
+- [`traverse-closest-scope`](references/traverse-closest-scope.md) — используйте closestScope() для трансформаций с учетом области видимости
+- [`traverse-avoid-repeated-find`](references/traverse-avoid-repeated-find.md) — избегайте повторных вызовов find() для одного и того же типа узла
 
-### 3. Node Filtering (HIGH)
+### 3. Фильтрация узлов (ВЫСОКОЕ)
 
-- [`filter-path-parent-check`](references/filter-path-parent-check.md) - Check parent path before transformation
-- [`filter-import-binding`](references/filter-import-binding.md) - Track import bindings for accurate usage detection
-- [`filter-nullish-checks`](references/filter-nullish-checks.md) - Add nullish checks before property access
-- [`filter-jsx-context`](references/filter-jsx-context.md) - Distinguish JSX context from regular JavaScript
-- [`filter-computed-properties`](references/filter-computed-properties.md) - Handle computed property keys in filters
+- [`filter-path-parent-check`](references/filter-path-parent-check.md) — проверяйте родительский путь перед трансформацией
+- [`filter-import-binding`](references/filter-import-binding.md) — отслеживайте привязки импорта для точного обнаружения использования
+- [`filter-nullish-checks`](references/filter-nullish-checks.md) — добавляйте проверки на null/undefined перед доступом к свойствам
+- [`filter-jsx-context`](references/filter-jsx-context.md) — отличайте контекст JSX от обычного JavaScript
+- [`filter-computed-properties`](references/filter-computed-properties.md) — обрабатывайте вычисляемые ключи свойств в фильтрах
 
-### 4. AST Transformation (HIGH)
+### 4. Трансформация AST (ВЫСОКОЕ)
 
-- [`transform-builder-api`](references/transform-builder-api.md) - Use builder API for creating AST nodes
-- [`transform-replacewith-callback`](references/transform-replacewith-callback.md) - Use replaceWith callback for context-aware transforms
-- [`transform-insert-import`](references/transform-insert-import.md) - Insert imports at correct position
-- [`transform-preserve-comments`](references/transform-preserve-comments.md) - Preserve comments when replacing nodes
-- [`transform-renameto`](references/transform-renameto.md) - Use renameTo for variable renaming
-- [`transform-remove-unused-imports`](references/transform-remove-unused-imports.md) - Remove unused imports after transformation
+- [`transform-builder-api`](references/transform-builder-api.md) — используйте API билдера для создания узлов AST
+- [`transform-replacewith-callback`](references/transform-replacewith-callback.md) — используйте колбэк replaceWith для трансформаций с учетом контекста
+- [`transform-insert-import`](references/transform-insert-import.md) — вставляйте импорты в правильную позицию
+- [`transform-preserve-comments`](references/transform-preserve-comments.md) — сохраняйте комментарии при замене узлов
+- [`transform-renameto`](references/transform-renameto.md) — используйте renameTo для переименования переменных
+- [`transform-remove-unused-imports`](references/transform-remove-unused-imports.md) — удаляйте неиспользуемые импорты после трансформации
 
-### 5. Code Generation (MEDIUM)
+### 5. Генерация кода (СРЕДНЕЕ)
 
-- [`codegen-tosource-options`](references/codegen-tosource-options.md) - Configure toSource() for consistent formatting
-- [`codegen-preserve-style`](references/codegen-preserve-style.md) - Preserve original code style with recast
-- [`codegen-template-literals`](references/codegen-template-literals.md) - Use template literals for complex node creation
-- [`codegen-print-width`](references/codegen-print-width.md) - Set appropriate print width for long lines
+- [`codegen-tosource-options`](references/codegen-tosource-options.md) — настраивайте параметры toSource() для согласованного форматирования
+- [`codegen-preserve-style`](references/codegen-preserve-style.md) — сохраняйте оригинальный стиль кода с помощью recast
+- [`codegen-template-literals`](references/codegen-template-literals.md) — используйте шаблонные литералы для создания сложных узлов
+- [`codegen-print-width`](references/codegen-print-width.md) — устанавливайте подходящую ширину печати для длинных строк
 
-### 6. Testing Strategies (MEDIUM)
+### 6. Стратегии тестирования (СРЕДНЕЕ)
 
-- [`test-inline-snapshots`](references/test-inline-snapshots.md) - Use defineInlineTest for input/output verification
-- [`test-negative-cases`](references/test-negative-cases.md) - Write negative test cases first
-- [`test-dry-run-exploration`](references/test-dry-run-exploration.md) - Use dry run mode for codebase exploration
-- [`test-fixture-files`](references/test-fixture-files.md) - Use fixture files for complex test cases
-- [`test-parse-errors`](references/test-parse-errors.md) - Test for parse error handling
+- [`test-inline-snapshots`](references/test-inline-snapshots.md) — используйте defineInlineTest для проверки ввода/вывода
+- [`test-negative-cases`](references/test-negative-cases.md) — пишите негативные тест-кейсы в первую очередь
+- [`test-dry-run-exploration`](references/test-dry-run-exploration.md) — используйте режим dry run для исследования кодовой базы
+- [`test-fixture-files`](references/test-fixture-files.md) — используйте файлы фикстур для сложных тест-кейсов
+- [`test-parse-errors`](references/test-parse-errors.md) — тестируйте обработку ошибок парсинга
 
-### 7. Runner Optimization (LOW-MEDIUM)
+### 7. Оптимизация раннера (НИЗКОЕ-СРЕДНЕЕ)
 
-- [`runner-parallel-workers`](references/runner-parallel-workers.md) - Configure worker count for optimal parallelization
-- [`runner-ignore-patterns`](references/runner-ignore-patterns.md) - Use ignore patterns to skip non-source files
-- [`runner-extensions-filter`](references/runner-extensions-filter.md) - Filter files by extension
-- [`runner-batch-processing`](references/runner-batch-processing.md) - Process large codebases in batches
-- [`runner-verbose-output`](references/runner-verbose-output.md) - Use verbose output for debugging transforms
+- [`runner-parallel-workers`](references/runner-parallel-workers.md) — настраивайте количество воркеров для оптимального распараллеливания
+- [`runner-ignore-patterns`](references/runner-ignore-patterns.md) — используйте паттерны игнорирования для пропуска неисходных файлов
+- [`runner-extensions-filter`](references/runner-extensions-filter.md) — фильтруйте файлы по расширению
+- [`runner-batch-processing`](references/runner-batch-processing.md) — обрабатывайте крупные кодовые базы пакетами
+- [`runner-verbose-output`](references/runner-verbose-output.md) — используйте подробный вывод для отладки трансформаций
 
-### 8. Advanced Patterns (LOW)
+### 8. Продвинутые паттерны (НИЗКОЕ)
 
-- [`advanced-compose-transforms`](references/advanced-compose-transforms.md) - Compose multiple transforms into pipelines
-- [`advanced-scope-analysis`](references/advanced-scope-analysis.md) - Use scope analysis for safe variable transforms
-- [`advanced-multi-file-state`](references/advanced-multi-file-state.md) - Share state across files with options
-- [`advanced-custom-collections`](references/advanced-custom-collections.md) - Create custom collection methods
+- [`advanced-compose-transforms`](references/advanced-compose-transforms.md) — объединяйте несколько трансформаций в конвейеры (pipelines)
+- [`advanced-scope-analysis`](references/advanced-scope-analysis.md) — используйте анализ области видимости для безопасных трансформаций переменных
+- [`advanced-multi-file-state`](references/advanced-multi-file-state.md) — разделяйте состояние между файлами с помощью опций
+- [`advanced-custom-collections`](references/advanced-custom-collections.md) — создавайте пользовательские методы коллекций
 
-## How to Use
+## Как использовать
 
-Read individual reference files for detailed explanations and code examples:
+Читайте отдельные справочные файлы для получения подробных объяснений и примеров кода:
 
-- [Section definitions](references/_sections.md) - Category structure and impact levels
-- [Rule template](assets/templates/_template.md) - Template for adding new rules
+- [Определения разделов](references/_sections.md) — структура категорий и уровни влияния
+- [Шаблон правила](assets/templates/_template.md) — шаблон для добавления новых правил
 
-## Full Compiled Document
+## Полный скомпилированный документ
 
-For a single comprehensive document containing all rules, see [AGENTS.md](AGENTS.md).
+Для получения единого комплексного документа, содержащего все правила, см. [AGENTS.md](AGENTS.md).
 
-## Reference Files
+## Справочные файлы
 
-| File | Description |
+| Файл | Описание |
 |------|-------------|
-| [AGENTS.md](AGENTS.md) | Complete compiled guide with all rules |
-| [references/_sections.md](references/_sections.md) | Category definitions and ordering |
-| [assets/templates/_template.md](assets/templates/_template.md) | Template for new rules |
-| [metadata.json](metadata.json) | Version and reference information |
+| [AGENTS.md](AGENTS.md) | Полное скомпилированное руководство со всеми правилами |
+| [references/_sections.md](references/_sections.md) | Определения категорий и порядок |
+| [assets/templates/_template.md](assets/templates/_template.md) | Шаблон для новых правил |
+| [metadata.json](metadata.json) | Информация о версии и ссылки |
