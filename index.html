@@ -36,6 +36,14 @@
     <link rel="apple-touch-icon"
         href="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png">
 
+    <!-- Preconnect к Supabase Storage (изображения) -->
+    <link rel="preconnect" href="https://knazzfxnzklentpbsnnl.supabase.co" crossorigin>
+    <link rel="dns-prefetch" href="https://knazzfxnzklentpbsnnl.supabase.co">
+
+    <!-- Meta: robots, referrer -->
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,13 +51,19 @@
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Leaflet CSS & JS -->
+    <!-- Leaflet CSS — отложенная загрузка (не блокирует рендеринг) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" media="print"
+        onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    </noscript>
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css?v=1.0.2">
 
     <!-- Scripts (Defer for performance) -->
     <script src="js/main.js" defer></script>
@@ -62,11 +76,11 @@
         <div class="container header__inner">
             <a href="/" class="logo">
                 <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png"
-                    alt="SPORT UNITE" class="logo__img" width="40" height="40">
+                    alt="SPORT UNITE" class="logo__img" width="40" height="40" fetchpriority="high">
                 <span class="logo__text">SPORT<span class="logo__accent">UNITE</span></span>
             </a>
 
-            <nav class="nav" id="nav">
+            <nav class="nav" id="nav" role="navigation" aria-label="Главное меню">
                 <a href="#directions" class="nav__link">Направления</a>
                 <a href="#about" class="nav__link">О клубе</a>
                 <a href="#gallery" class="nav__link">Галерея</a>
@@ -78,7 +92,7 @@
             </nav>
 
             <div class="header__actions">
-                <a href="https://t.me/sportunite" class="btn btn--outline header__cta" target="_blank">
+                <a href="https://t.me/sportunite" class="btn btn--outline header__cta" target="_blank" rel="noopener">
                     <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.1.154.234.169.327.016.093.035.306.02.472z" />
@@ -145,7 +159,8 @@
                 </p>
 
                 <div class="hero__cta-group" data-animate>
-                    <a href="https://t.me/sportunite" class="btn btn--primary btn--large" target="_blank">
+                    <a href="https://t.me/sportunite" class="btn btn--primary btn--large" target="_blank"
+                        rel="noopener">
                         <span class="btn__pulse"></span>
                         Записаться на пробную
                     </a>
@@ -735,7 +750,7 @@
                         </div>
                     </div>
 
-                    <a href="https://t.me/sportunite" class="btn btn--green btn--large" target="_blank">
+                    <a href="https://t.me/sportunite" class="btn btn--green btn--large" target="_blank" rel="noopener">
                         Записаться на диагностику
                     </a>
                 </div>
@@ -1031,7 +1046,7 @@
                 <h2 class="final-cta__title">Готов начать <span class="accent">сейчас</span>?</h2>
                 <p class="final-cta__text">Первая тренировка — бесплатно. Без обязательств. Просто приходи и попробуй.
                 </p>
-                <a href="https://t.me/sportunite" class="btn btn--primary btn--xl" target="_blank">
+                <a href="https://t.me/sportunite" class="btn btn--primary btn--xl" target="_blank" rel="noopener">
                     <span class="btn__pulse"></span>
                     Написать в Telegram
                 </a>
@@ -1066,7 +1081,7 @@
                     <h4 class="footer__heading">Контакты</h4>
                     <p>📍 Нячанг, Вьетнам</p>
                     <p>Районы: Север · Центр · An Viên</p>
-                    <a href="https://t.me/sportunite" class="footer__tg" target="_blank">
+                    <a href="https://t.me/sportunite" class="footer__tg" target="_blank" rel="noopener">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path
                                 d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.1.154.234.169.327.016.093.035.306.02.472z" />
@@ -1141,14 +1156,57 @@
 
     <!-- ========== LIGHTBOX ========== -->
     <div class="lightbox" id="lightbox">
-        <button class="lightbox__close" id="lightbox-close">&times;</button>
-        <button class="lightbox__prev" id="lightbox-prev">&#10094;</button>
-        <button class="lightbox__next" id="lightbox-next">&#10095;</button>
+        <button class="lightbox__close" id="lightbox-close" aria-label="Закрыть галерею">&times;</button>
+        <button class="lightbox__prev" id="lightbox-prev" aria-label="Предыдущее фото">&#10094;</button>
+        <button class="lightbox__next" id="lightbox-next" aria-label="Следующее фото">&#10095;</button>
         <div class="lightbox__content">
-            <img class="lightbox__img" id="lightbox-img" src="" alt="">
+            <img class="lightbox__img" id="lightbox-img" src="" alt="Фото из галереи SPORT UNITE">
         </div>
         <div class="lightbox__counter" id="lightbox-counter"></div>
     </div>
+
+    <!-- JSON-LD: Структурированные данные LocalBusiness -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "SPORT UNITE",
+        "description": "Экспертный клуб единоборств в Нячанге. ММА, бокс, кикбоксинг, BJJ, реабилитация.",
+        "url": "https://mvprofi.org/",
+        "logo": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+        "image": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nha Trang",
+            "addressCountry": "VN"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 12.2451,
+            "longitude": 109.1943
+        },
+        "sameAs": [
+            "https://t.me/sportunite",
+            "https://www.facebook.com/nhatrangsportuniteclub",
+            "https://www.instagram.com/nhatrang_sportunite/",
+            "https://www.youtube.com/@alekseifilonenko3781"
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "07:00",
+            "closes": "21:00"
+        },
+        "priceRange": "200000-10000000 VND",
+        "currenciesAccepted": "VND",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "500",
+            "bestRating": "5"
+        }
+    }
+    </script>
 </body>
 
 </html>
