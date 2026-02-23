@@ -1759,6 +1759,26 @@ button {
     opacity: 0.8;
 }
 
+.footer__socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.footer__contact .footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    transition: var(--transition-fast);
+    padding: 0;
+}
+
+.footer__contact .footer__social-link:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
 .footer__bottom {
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
