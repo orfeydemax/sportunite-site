@@ -1,70 +1,70 @@
 ---
 name: pptx
-description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill."
-license: Proprietary. LICENSE.txt has complete terms
+description: Используйте этот навык в любое время, когда файл .pptx задействован любым образом — как входные данные, выходные данные или и то, и другое. Это включает: создание слайдов, питч-деков или презентаций; чтение, парсинг или извлечение текста из любого файла .pptx (даже если извлеченный контент будет использоваться в другом месте, например, в электронном письме или сводке); редактирование, модификацию или обновление существующих презентаций; объединение или разделение файлов слайдов; работу с шаблонами, макетами, заметками докладчика или комментариями. Запускайте всякий раз, когда пользователь упоминает "дек", "слайды", "презентация" или ссылается на имя файла .pptx, независимо от того, что он планирует делать с контентом впоследствии. Если файл .pptx нужно открыть, создать или коснуться его, используйте этот навык.
+license: Proprietary. Полные условия в LICENSE.txt
 ---
 
-# PPTX Skill
+# Навык PPTX
 
-## Quick Reference
+## Краткий Справочник
 
-| Task | Guide |
-|------|-------|
-| Read/analyze content | `python -m markitdown presentation.pptx` |
-| Edit or create from template | Read [editing.md](editing.md) |
-| Create from scratch | Read [pptxgenjs.md](pptxgenjs.md) |
+| Задача | Руководство |
+|--------|-------------|
+| Чтение/анализ контента | `python -m markitdown presentation.pptx` |
+| Редактирование или создание из шаблона | Читайте [editing.md](editing.md) |
+| Создание с нуля | Читайте [pptxgenjs.md](pptxgenjs.md) |
 
 ---
 
-## Reading Content
+## Чтение Контента
 
 ```bash
-# Text extraction
+# Извлечение текста
 python -m markitdown presentation.pptx
 
-# Visual overview
+# Визуальный обзор
 python scripts/thumbnail.py presentation.pptx
 
-# Raw XML
+# Сырой XML
 python scripts/office/unpack.py presentation.pptx unpacked/
 ```
 
 ---
 
-## Editing Workflow
+## Рабочий Процесс Редактирования
 
-**Read [editing.md](editing.md) for full details.**
+**Читайте [editing.md](editing.md) для полных деталей.**
 
-1. Analyze template with `thumbnail.py`
-2. Unpack → manipulate slides → edit content → clean → pack
-
----
-
-## Creating from Scratch
-
-**Read [pptxgenjs.md](pptxgenjs.md) for full details.**
-
-Use when no template or reference presentation is available.
+1. Анализируйте шаблон с `thumbnail.py`
+2. Распаковка → манипуляция слайдами → редактирование контента → очистка → запаковка
 
 ---
 
-## Design Ideas
+## Создание с Нуля
 
-**Don't create boring slides.** Plain bullets on a white background won't impress anyone. Consider ideas from this list for each slide.
+**Читайте [pptxgenjs.md](pptxgenjs.md) для полных деталей.**
 
-### Before Starting
+Используйте, когда нет шаблона или эталонной презентации.
 
-- **Pick a bold, content-informed color palette**: The palette should feel designed for THIS topic. If swapping your colors into a completely different presentation would still "work," you haven't made specific enough choices.
-- **Dominance over equality**: One color should dominate (60-70% visual weight), with 1-2 supporting tones and one sharp accent. Never give all colors equal weight.
-- **Dark/light contrast**: Dark backgrounds for title + conclusion slides, light for content ("sandwich" structure). Or commit to dark throughout for a premium feel.
-- **Commit to a visual motif**: Pick ONE distinctive element and repeat it — rounded image frames, icons in colored circles, thick single-side borders. Carry it across every slide.
+---
 
-### Color Palettes
+## Идеи Дизайна
 
-Choose colors that match your topic — don't default to generic blue. Use these palettes as inspiration:
+**Не создавайте скучные слайды.** Простые маркеры на белом фоне никого не впечатлят. Рассмотрите идеи из этого списка для каждого слайда.
 
-| Theme | Primary | Secondary | Accent |
-|-------|---------|-----------|--------|
+### Перед Началом
+
+- **Выберите смелую цветовую палитру, основанную на контенте**: Палитра должна ощущаться разработанной для ЭТОЙ темы. Если замена ваших цветов в совершенно другую презентацию все еще "сработает", вы сделали недостаточно конкретный выбор.
+- **Доминирование над равенством**: Один цвет должен доминировать (60-70% визуального веса), с 1-2 поддерживающими тонами и одним резким акцентом. Никогда не давайте всем цветам равный вес.
+- **Контраст темного/светлого**: Темные фоны для слайдов с заголовком + заключением, светлые для контента (структура "сэндвич"). Или придерживайтесь темного стиля везде для премиального ощущения.
+- **Придерживайтесь визуального мотива**: Выберите ОДИН отличительный элемент и повторяйте его — закругленные рамки изображений, иконки в цветных кругах, толстые границы с одной стороны. Переносите его на каждый слайд.
+
+### Цветовые Палитры
+
+Выбирайте цвета, которые соответствуют вашей теме — не используйте generic синий по умолчанию. Используйте эти палитры для вдохновения:
+
+| Тема | Основной | Вторичный | Акцент |
+|------|----------|-----------|--------|
 | **Midnight Executive** | `1E2761` (navy) | `CADCFC` (ice blue) | `FFFFFF` (white) |
 | **Forest & Moss** | `2C5F2D` (forest) | `97BC62` (moss) | `F5F5F5` (cream) |
 | **Coral Energy** | `F96167` (coral) | `F9E795` (gold) | `2F3C7E` (navy) |
@@ -76,31 +76,31 @@ Choose colors that match your topic — don't default to generic blue. Use these
 | **Sage Calm** | `84B59F` (sage) | `69A297` (eucalyptus) | `50808E` (slate) |
 | **Cherry Bold** | `990011` (cherry) | `FCF6F5` (off-white) | `2F3C7E` (navy) |
 
-### For Each Slide
+### Для Каждого Слайда
 
-**Every slide needs a visual element** — image, chart, icon, or shape. Text-only slides are forgettable.
+**Каждому слайду нужен визуальный элемент** — изображение, график, иконка или фигура. Слайды только с текстом забываются.
 
-**Layout options:**
-- Two-column (text left, illustration on right)
-- Icon + text rows (icon in colored circle, bold header, description below)
-- 2x2 or 2x3 grid (image on one side, grid of content blocks on other)
-- Half-bleed image (full left or right side) with content overlay
+**Варианты макета:**
+- Две колонки (текст слева, иллюстрация справа)
+- Ряды иконка + текст (иконка в цветном круге, жирный заголовок, описание ниже)
+- Сетка 2x2 или 2x3 (изображение на одной стороне, сетка блоков контента на другой)
+- Изображение на пол-листа (вся левая или правая сторона) с наложением контента
 
-**Data display:**
-- Large stat callouts (big numbers 60-72pt with small labels below)
-- Comparison columns (before/after, pros/cons, side-by-side options)
-- Timeline or process flow (numbered steps, arrows)
+**Отображение данных:**
+- Крупные выноски статистики (большие цифры 60-72pt с маленькими подписями ниже)
+- Колонки сравнения (до/после, за/против, опции бок о бок)
+- Временная шкала или поток процесса (пронумерованные шаги, стрелки)
 
-**Visual polish:**
-- Icons in small colored circles next to section headers
-- Italic accent text for key stats or taglines
+**Визуальная полировка:**
+- Иконки в маленьких цветных кругах рядом с заголовками разделов
+- Курсивный акцентный текст для ключевой статистики или слоганов
 
-### Typography
+### Типографика
 
-**Choose an interesting font pairing** — don't default to Arial. Pick a header font with personality and pair it with a clean body font.
+**Выберите интересную пару шрифтов** — не используйте Arial по умолчанию. Выберите шрифт заголовка с характером и сочетайте его с чистым шрифтом тела.
 
-| Header Font | Body Font |
-|-------------|-----------|
+| Шрифт Заголовка | Шрифт Тела |
+|-----------------|------------|
 | Georgia | Calibri |
 | Arial Black | Arial |
 | Calibri | Calibri Light |
@@ -110,112 +110,112 @@ Choose colors that match your topic — don't default to generic blue. Use these
 | Palatino | Garamond |
 | Consolas | Calibri |
 
-| Element | Size |
-|---------|------|
-| Slide title | 36-44pt bold |
-| Section header | 20-24pt bold |
-| Body text | 14-16pt |
-| Captions | 10-12pt muted |
+| Элемент | Размер |
+|---------|--------|
+| Заголовок слайда | 36-44pt bold |
+| Заголовок раздела | 20-24pt bold |
+| Текст тела | 14-16pt |
+| Подписи | 10-12pt приглушенный |
 
-### Spacing
+### Интервалы
 
-- 0.5" minimum margins
-- 0.3-0.5" between content blocks
-- Leave breathing room—don't fill every inch
+- 0.5" минимальные поля
+- 0.3-0.5" между блоками контента
+- Оставляйте пространство для дыхания — не заполняйте каждый дюйм
 
-### Avoid (Common Mistakes)
+### Избегайте (Частые Ошибки)
 
-- **Don't repeat the same layout** — vary columns, cards, and callouts across slides
-- **Don't center body text** — left-align paragraphs and lists; center only titles
-- **Don't skimp on size contrast** — titles need 36pt+ to stand out from 14-16pt body
-- **Don't default to blue** — pick colors that reflect the specific topic
-- **Don't mix spacing randomly** — choose 0.3" or 0.5" gaps and use consistently
-- **Don't style one slide and leave the rest plain** — commit fully or keep it simple throughout
-- **Don't create text-only slides** — add images, icons, charts, or visual elements; avoid plain title + bullets
-- **Don't forget text box padding** — when aligning lines or shapes with text edges, set `margin: 0` on the text box or offset the shape to account for padding
-- **Don't use low-contrast elements** — icons AND text need strong contrast against the background; avoid light text on light backgrounds or dark text on dark backgrounds
-- **NEVER use accent lines under titles** — these are a hallmark of AI-generated slides; use whitespace or background color instead
+- **Не повторяйте один и тот же макет** — варьируйте колонки, карточки и выноски на разных слайдах
+- **Не центрируйте текст тела** — выравнивайте параграфы и списки по левому краю; центрируйте только заголовки
+- **Не экономьте на контрасте размеров** — заголовки должны быть 36pt+, чтобы выделяться на фоне тела 14-16pt
+- **Не используйте синий по умолчанию** — выбирайте цвета, отражающие конкретную тему
+- **Не смешивайте интервалы случайно** — выберите пропуски 0.3" или 0.5" и используйте последовательно
+- **Не стилизуйте один слайд, оставляя остальные простыми** — придерживайтесь стиля полностью или оставьте все простым
+- **Не создавайте слайды только с текстом** — добавляйте изображения, иконки, графики или визуальные элементы; избегайте простого заголовка + маркеров
+- **Не забывайте про отступы текстовых полей** — при выравнивании линий или фигур с краями текста, установите `margin: 0` на текстовом поле или сместите фигуру для учета отступа
+- **Не используйте элементы с низким контрастом** — иконки И текст нуждаются в сильном контрасте с фоном; избегайте светлого текста на светлом фоне или темного текста на темном фоне
+- **НИКОГДА не используйте акцентные линии под заголовками** — это признак слайдов, сгенерированных ИИ; используйте пробелы или цвет фона вместо этого
 
 ---
 
-## QA (Required)
+## QA (Обязательно)
 
-**Assume there are problems. Your job is to find them.**
+**Предполагайте, что есть проблемы. Ваша работа — найти их.**
 
-Your first render is almost never correct. Approach QA as a bug hunt, not a confirmation step. If you found zero issues on first inspection, you weren't looking hard enough.
+Ваш первый рендер почти никогда не бывает правильным. Подходите к QA как к охоте на баги, а не как к шагу подтверждения. Если вы не нашли проблем при первой проверке, вы недостаточно хорошо смотрели.
 
-### Content QA
+### QA Контента
 
 ```bash
 python -m markitdown output.pptx
 ```
 
-Check for missing content, typos, wrong order.
+Проверяйте на пропущенный контент, опечатки, неправильный порядок.
 
-**When using templates, check for leftover placeholder text:**
+**При использовании шаблонов, проверяйте на оставшийся текст-заглушку:**
 
 ```bash
 python -m markitdown output.pptx | grep -iE "xxxx|lorem|ipsum|this.*(page|slide).*layout"
 ```
 
-If grep returns results, fix them before declaring success.
+Если grep возвращает результаты, исправьте их перед объявлением успеха.
 
-### Visual QA
+### Визуальный QA
 
-**⚠️ USE SUBAGENTS** — even for 2-3 slides. You've been staring at the code and will see what you expect, not what's there. Subagents have fresh eyes.
+**⚠️ ИСПОЛЬЗУЙТЕ СУБАГЕНТОВ** — даже для 2-3 слайдов. Вы смотрели на код и увидите то, что ожидаете, а не то, что есть. У субагентов свежий взгляд.
 
-Convert slides to images (see [Converting to Images](#converting-to-images)), then use this prompt:
+Конвертируйте слайды в изображения (см. [Конвертация в Изображения](#converting-to-images)), затем используйте этот промпт:
 
 ```
-Visually inspect these slides. Assume there are issues — find them.
+Визуально проинспектируйте эти слайды. Предполагайте, что есть проблемы — найдите их.
 
-Look for:
-- Overlapping elements (text through shapes, lines through words, stacked elements)
-- Text overflow or cut off at edges/box boundaries
-- Decorative lines positioned for single-line text but title wrapped to two lines
-- Source citations or footers colliding with content above
-- Elements too close (< 0.3" gaps) or cards/sections nearly touching
-- Uneven gaps (large empty area in one place, cramped in another)
-- Insufficient margin from slide edges (< 0.5")
-- Columns or similar elements not aligned consistently
-- Low-contrast text (e.g., light gray text on cream-colored background)
-- Low-contrast icons (e.g., dark icons on dark backgrounds without a contrasting circle)
-- Text boxes too narrow causing excessive wrapping
-- Leftover placeholder content
+Ищите:
+- Перекрывающиеся элементы (текст сквозь фигуры, линии сквозь слова, наслоенные элементы)
+- Переполнение текста или обрезка по краям/границам боксов
+- Декоративные линии, расположенные для однострочного текста, но заголовок перенесен на две строки
+- Ссылки на источники или футеры, сталкивающиеся с контентом выше
+- Элементы слишком близко (< 0.3" зазоры) или карточки/разделы почти касаются
+- Неравномерные зазоры (большая пустая область в одном месте, тесно в другом)
+- Недостаточное поле от краев слайда (< 0.5")
+- Колонки или подобные элементы не выровнены последовательно
+- Низкоконтрастный текст (например, светло-серый текст на кремовом фоне)
+- Низкоконтрастные иконки (например, темные иконки на темном фоне без контрастного круга)
+- Текстовые поля слишком узкие, вызывающие чрезмерный перенос
+- Оставшийся контент-заглушка
 
-For each slide, list issues or areas of concern, even if minor.
+Для каждого слайда перечислите проблемы или области беспокойства, даже если они незначительны.
 
-Read and analyze these images:
-1. /path/to/slide-01.jpg (Expected: [brief description])
-2. /path/to/slide-02.jpg (Expected: [brief description])
+Прочитайте и проанализируйте эти изображения:
+1. /path/to/slide-01.jpg (Ожидается: [краткое описание])
+2. /path/to/slide-02.jpg (Ожидается: [краткое описание])
 
-Report ALL issues found, including minor ones.
+Сообщите обо ВСЕХ найденных проблемах, включая незначительные.
 ```
 
-### Verification Loop
+### Цикл Верификации
 
-1. Generate slides → Convert to images → Inspect
-2. **List issues found** (if none found, look again more critically)
-3. Fix issues
-4. **Re-verify affected slides** — one fix often creates another problem
-5. Repeat until a full pass reveals no new issues
+1. Генерируйте слайды → Конвертируйте в изображения → Инспектируйте
+2. **Перечислите найденные проблемы** (если ничего не найдено, посмотрите снова более критично)
+3. Исправьте проблемы
+4. **Перепроверьте затронутые слайды** — одно исправление часто создает другую проблему
+5. Повторяйте, пока полный проход не выявит новых проблем
 
-**Do not declare success until you've completed at least one fix-and-verify cycle.**
+**Не объявляйте успех, пока не завершите хотя бы один цикл исправления-и-верификации.**
 
 ---
 
-## Converting to Images
+## Конвертация в Изображения
 
-Convert presentations to individual slide images for visual inspection:
+Конвертируйте презентации в отдельные изображения слайдов для визуальной инспекции:
 
 ```bash
 python scripts/office/soffice.py --headless --convert-to pdf output.pptx
 pdftoppm -jpeg -r 150 output.pdf slide
 ```
 
-This creates `slide-01.jpg`, `slide-02.jpg`, etc.
+Это создает `slide-01.jpg`, `slide-02.jpg` и т.д.
 
-To re-render specific slides after fixes:
+Чтобы перерендерить конкретные слайды после исправлений:
 
 ```bash
 pdftoppm -jpeg -r 150 -f N -l N output.pdf slide-fixed
@@ -223,10 +223,10 @@ pdftoppm -jpeg -r 150 -f N -l N output.pdf slide-fixed
 
 ---
 
-## Dependencies
+## Зависимости
 
-- `pip install "markitdown[pptx]"` - text extraction
-- `pip install Pillow` - thumbnail grids
-- `npm install -g pptxgenjs` - creating from scratch
-- LibreOffice (`soffice`) - PDF conversion (auto-configured for sandboxed environments via `scripts/office/soffice.py`)
-- Poppler (`pdftoppm`) - PDF to images
+- `pip install "markitdown[pptx]"` - извлечение текста
+- `pip install Pillow` - сетки миниатюр
+- `npm install -g pptxgenjs` - создание с нуля
+- LibreOffice (`soffice`) - конвертация PDF (авто-настроено для изолированных сред через `scripts/office/soffice.py`)
+- Poppler (`pdftoppm`) - PDF в изображения

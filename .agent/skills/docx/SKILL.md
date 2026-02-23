@@ -1,51 +1,51 @@
 ---
 name: docx
-description: "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of \"Word doc\", \"word document\", \".docx\", or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a \"report\", \"memo\", \"letter\", \"template\", or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation."
-license: Proprietary. LICENSE.txt has complete terms
+description: Используйте этот навык, когда пользователь хочет создать, прочитать, отредактировать или манипулировать документами Word (файлы .docx). Триггеры включают: любое упоминание "Word doc", "word document", ".docx" или запросы на создание профессиональных документов с форматированием, таким как оглавление, заголовки, номера страниц или фирменные бланки. Также используйте при извлечении или реорганизации контента из файлов .docx, вставке или замене изображений в документах, выполнении поиска и замены в файлах Word, работе с отслеживаемыми изменениями или комментариями, или преобразовании контента в отполированный документ Word. Если пользователь просит "отчет", "меморандум", "письмо", "шаблон" или подобный результат в виде Word или .docx файла, используйте этот навык. НЕ используйте для PDF, электронных таблиц, Google Docs или общих задач кодирования, не связанных с генерацией документов.
+license: Proprietary. Полные условия в LICENSE.txt
 ---
 
-# DOCX creation, editing, and analysis
+# Создание, редактирование и анализ DOCX
 
-## Overview
+## Обзор
 
-A .docx file is a ZIP archive containing XML files.
+Файл .docx — это ZIP-архив, содержащий XML-файлы.
 
-## Quick Reference
+## Краткий Справочник
 
-| Task | Approach |
-|------|----------|
-| Read/analyze content | `pandoc` or unpack for raw XML |
-| Create new document | Use `docx-js` - see Creating New Documents below |
-| Edit existing document | Unpack → edit XML → repack - see Editing Existing Documents below |
+| Задача | Подход |
+|--------|--------|
+| Чтение/анализ контента | `pandoc` или распаковка для сырого XML |
+| Создание нового документа | Используйте `docx-js` - см. Создание Новых Документов ниже |
+| Редактирование существующего | Распаковать → редактировать XML → запаковать - см. Редактирование Существующих Документов ниже |
 
-### Converting .doc to .docx
+### Конвертация .doc в .docx
 
-Legacy `.doc` files must be converted before editing:
+Старые файлы `.doc` должны быть конвертированы перед редактированием:
 
 ```bash
 python scripts/office/soffice.py --headless --convert-to docx document.doc
 ```
 
-### Reading Content
+### Чтение Контента
 
 ```bash
-# Text extraction with tracked changes
+# Извлечение текста с отслеживаемыми изменениями
 pandoc --track-changes=all document.docx -o output.md
 
-# Raw XML access
+# Доступ к сырому XML
 python scripts/office/unpack.py document.docx unpacked/
 ```
 
-### Converting to Images
+### Конвертация в Изображения
 
 ```bash
 python scripts/office/soffice.py --headless --convert-to pdf document.docx
 pdftoppm -jpeg -r 150 document.pdf page
 ```
 
-### Accepting Tracked Changes
+### Принятие Отслеживаемых Изменений
 
-To produce a clean document with all tracked changes accepted (requires LibreOffice):
+Чтобы создать чистый документ со всеми принятыми изменениями (требуется LibreOffice):
 
 ```bash
 python scripts/accept_changes.py input.docx output.docx
@@ -53,11 +53,11 @@ python scripts/accept_changes.py input.docx output.docx
 
 ---
 
-## Creating New Documents
+## Создание Новых Документов
 
-Generate .docx files with JavaScript, then validate. Install: `npm install -g docx`
+Генерируйте файлы .docx с помощью JavaScript, затем проверяйте. Установите: `npm install -g docx`
 
-### Setup
+### Настройка
 ```javascript
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, ImageRun,
         Header, Footer, AlignmentType, PageOrientation, LevelFormat, ExternalHyperlink,
@@ -68,61 +68,61 @@ const doc = new Document({ sections: [{ children: [/* content */] }] });
 Packer.toBuffer(doc).then(buffer => fs.writeFileSync("doc.docx", buffer));
 ```
 
-### Validation
-After creating the file, validate it. If validation fails, unpack, fix the XML, and repack.
+### Валидация
+После создания файла, проверьте его. Если валидация не прошла, распакуйте, исправьте XML и запакуйте.
 ```bash
 python scripts/office/validate.py doc.docx
 ```
 
-### Page Size
+### Размер Страницы
 
 ```javascript
-// CRITICAL: docx-js defaults to A4, not US Letter
-// Always set page size explicitly for consistent results
+// КРИТИЧНО: docx-js по умолчанию использует A4, а не US Letter
+// Всегда устанавливайте размер страницы явно для последовательных результатов
 sections: [{
   properties: {
     page: {
       size: {
-        width: 12240,   // 8.5 inches in DXA
-        height: 15840   // 11 inches in DXA
+        width: 12240,   // 8.5 дюймов в DXA
+        height: 15840   // 11 дюймов в DXA
       },
-      margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } // 1 inch margins
+      margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } // поля 1 дюйм
     }
   },
   children: [/* content */]
 }]
 ```
 
-**Common page sizes (DXA units, 1440 DXA = 1 inch):**
+**Общие размеры страниц (единицы DXA, 1440 DXA = 1 дюйм):**
 
-| Paper | Width | Height | Content Width (1" margins) |
+| Бумага | Ширина | Высота | Ширина контента (поля 1") |
 |-------|-------|--------|---------------------------|
 | US Letter | 12,240 | 15,840 | 9,360 |
-| A4 (default) | 11,906 | 16,838 | 9,026 |
+| A4 (по умолчанию) | 11,906 | 16,838 | 9,026 |
 
-**Landscape orientation:** docx-js swaps width/height internally, so pass portrait dimensions and let it handle the swap:
+**Ландшафтная ориентация:** docx-js меняет местами ширину/высоту внутри, поэтому передавайте портретные размеры и позвольте ему сделать замену:
 ```javascript
 size: {
-  width: 12240,   // Pass SHORT edge as width
-  height: 15840,  // Pass LONG edge as height
-  orientation: PageOrientation.LANDSCAPE  // docx-js swaps them in the XML
+  width: 12240,   // Передавайте КОРОТКИЙ край как ширину
+  height: 15840,  // Передавайте ДЛИННЫЙ край как высоту
+  orientation: PageOrientation.LANDSCAPE  // docx-js меняет их местами в XML
 },
-// Content width = 15840 - left margin - right margin (uses the long edge)
+// Ширина контента = 15840 - левое поле - правое поле (использует длинный край)
 ```
 
-### Styles (Override Built-in Headings)
+### Стили (Переопределение Встроенных Заголовков)
 
-Use Arial as the default font (universally supported). Keep titles black for readability.
+Используйте Arial как шрифт по умолчанию (универсально поддерживается). Держите заголовки черными для читаемости.
 
 ```javascript
 const doc = new Document({
   styles: {
-    default: { document: { run: { font: "Arial", size: 24 } } }, // 12pt default
+    default: { document: { run: { font: "Arial", size: 24 } } }, // 12pt по умолчанию
     paragraphStyles: [
-      // IMPORTANT: Use exact IDs to override built-in styles
+      // ВАЖНО: Используйте точные ID для переопределения встроенных стилей
       { id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "Normal", quickFormat: true,
         run: { size: 32, bold: true, font: "Arial" },
-        paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 } }, // outlineLevel required for TOC
+        paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 } }, // outlineLevel обязателен для TOC
       { id: "Heading2", name: "Heading 2", basedOn: "Normal", next: "Normal", quickFormat: true,
         run: { size: 28, bold: true, font: "Arial" },
         paragraph: { spacing: { before: 180, after: 180 }, outlineLevel: 1 } },
@@ -136,14 +136,14 @@ const doc = new Document({
 });
 ```
 
-### Lists (NEVER use unicode bullets)
+### Списки (НИКОГДА не используйте unicode маркеры)
 
 ```javascript
-// ❌ WRONG - never manually insert bullet characters
-new Paragraph({ children: [new TextRun("• Item")] })  // BAD
-new Paragraph({ children: [new TextRun("\u2022 Item")] })  // BAD
+// ❌ НЕПРАВИЛЬНО - никогда вручную не вставляйте символы маркеров
+new Paragraph({ children: [new TextRun("• Item")] })  // ПЛОХО
+new Paragraph({ children: [new TextRun("\u2022 Item")] })  // ПЛОХО
 
-// ✅ CORRECT - use numbering config with LevelFormat.BULLET
+// ✅ ПРАВИЛЬНО - используйте конфигурацию нумерации с LevelFormat.BULLET
 const doc = new Document({
   numbering: {
     config: [
@@ -165,32 +165,32 @@ const doc = new Document({
   }]
 });
 
-// ⚠️ Each reference creates INDEPENDENT numbering
-// Same reference = continues (1,2,3 then 4,5,6)
-// Different reference = restarts (1,2,3 then 1,2,3)
+// ⚠️ Каждая ссылка создает НЕЗАВИСИМУЮ нумерацию
+// Та же ссылка = продолжается (1,2,3 затем 4,5,6)
+// Другая ссылка = перезапускается (1,2,3 затем 1,2,3)
 ```
 
-### Tables
+### Таблицы
 
-**CRITICAL: Tables need dual widths** - set both `columnWidths` on the table AND `width` on each cell. Without both, tables render incorrectly on some platforms.
+**КРИТИЧНО: Таблицы нуждаются в двойной ширине** - установите и `columnWidths` в таблице, И `width` в каждой ячейке. Без обоих параметров таблицы рендерятся некорректно на некоторых платформах.
 
 ```javascript
-// CRITICAL: Always set table width for consistent rendering
-// CRITICAL: Use ShadingType.CLEAR (not SOLID) to prevent black backgrounds
+// КРИТИЧНО: Всегда устанавливайте ширину таблицы для последовательного рендеринга
+// КРИТИЧНО: Используйте ShadingType.CLEAR (не SOLID) для предотвращения черных фонов
 const border = { style: BorderStyle.SINGLE, size: 1, color: "CCCCCC" };
 const borders = { top: border, bottom: border, left: border, right: border };
 
 new Table({
-  width: { size: 9360, type: WidthType.DXA }, // Always use DXA (percentages break in Google Docs)
-  columnWidths: [4680, 4680], // Must sum to table width (DXA: 1440 = 1 inch)
+  width: { size: 9360, type: WidthType.DXA }, // Всегда используйте DXA (проценты ломаются в Google Docs)
+  columnWidths: [4680, 4680], // Должно суммироваться в ширину таблицы (DXA: 1440 = 1 дюйм)
   rows: [
     new TableRow({
       children: [
         new TableCell({
           borders,
-          width: { size: 4680, type: WidthType.DXA }, // Also set on each cell
-          shading: { fill: "D5E8F0", type: ShadingType.CLEAR }, // CLEAR not SOLID
-          margins: { top: 80, bottom: 80, left: 120, right: 120 }, // Cell padding (internal, not added to width)
+          width: { size: 4680, type: WidthType.DXA }, // Также установите на каждой ячейке
+          shading: { fill: "D5E8F0", type: ShadingType.CLEAR }, // CLEAR не SOLID
+          margins: { top: 80, bottom: 80, left: 120, right: 120 }, // Отступы ячейки (внутренние, не добавляются к ширине)
           children: [new Paragraph({ children: [new TextRun("Cell")] })]
         })
       ]
@@ -199,61 +199,61 @@ new Table({
 })
 ```
 
-**Table width calculation:**
+**Расчет ширины таблицы:**
 
-Always use `WidthType.DXA` — `WidthType.PERCENTAGE` breaks in Google Docs.
+Всегда используйте `WidthType.DXA` — `WidthType.PERCENTAGE` ломается в Google Docs.
 
 ```javascript
-// Table width = sum of columnWidths = content width
-// US Letter with 1" margins: 12240 - 2880 = 9360 DXA
+// Ширина таблицы = сумма columnWidths = ширина контента
+// US Letter с полями 1": 12240 - 2880 = 9360 DXA
 width: { size: 9360, type: WidthType.DXA },
-columnWidths: [7000, 2360]  // Must sum to table width
+columnWidths: [7000, 2360]  // Должно суммироваться в ширину таблицы
 ```
 
-**Width rules:**
-- **Always use `WidthType.DXA`** — never `WidthType.PERCENTAGE` (incompatible with Google Docs)
-- Table width must equal the sum of `columnWidths`
-- Cell `width` must match corresponding `columnWidth`
-- Cell `margins` are internal padding - they reduce content area, not add to cell width
-- For full-width tables: use content width (page width minus left and right margins)
+**Правила ширины:**
+- **Всегда используйте `WidthType.DXA`** — никогда `WidthType.PERCENTAGE` (несовместимо с Google Docs)
+- Ширина таблицы должна равняться сумме `columnWidths`
+- `width` ячейки должна соответствовать соответствующей `columnWidth`
+- `margins` ячейки — это внутренние отступы — они уменьшают область контента, а не добавляют к ширине ячейки
+- Для таблиц во всю ширину: используйте ширину контента (ширина страницы минус левое и правое полe)
 
-### Images
+### Изображения
 
 ```javascript
-// CRITICAL: type parameter is REQUIRED
+// КРИТИЧНО: параметр type ОБЯЗАТЕЛЕН
 new Paragraph({
   children: [new ImageRun({
-    type: "png", // Required: png, jpg, jpeg, gif, bmp, svg
+    type: "png", // Обязательно: png, jpg, jpeg, gif, bmp, svg
     data: fs.readFileSync("image.png"),
     transformation: { width: 200, height: 150 },
-    altText: { title: "Title", description: "Desc", name: "Name" } // All three required
+    altText: { title: "Title", description: "Desc", name: "Name" } // Все три обязательны
   })]
 })
 ```
 
-### Page Breaks
+### Разрывы Страниц
 
 ```javascript
-// CRITICAL: PageBreak must be inside a Paragraph
+// КРИТИЧНО: PageBreak должен быть внутри Paragraph
 new Paragraph({ children: [new PageBreak()] })
 
-// Or use pageBreakBefore
+// Или используйте pageBreakBefore
 new Paragraph({ pageBreakBefore: true, children: [new TextRun("New page")] })
 ```
 
-### Table of Contents
+### Оглавление (TOC)
 
 ```javascript
-// CRITICAL: Headings must use HeadingLevel ONLY - no custom styles
+// КРИТИЧНО: Заголовки должны использовать ТОЛЬКО HeadingLevel - никаких пользовательских стилей
 new TableOfContents("Table of Contents", { hyperlink: true, headingStyleRange: "1-3" })
 ```
 
-### Headers/Footers
+### Верхние/Нижние Колонтитулы
 
 ```javascript
 sections: [{
   properties: {
-    page: { margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } // 1440 = 1 inch
+    page: { margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 } } // 1440 = 1 дюйм
   },
   headers: {
     default: new Header({ children: [new Paragraph({ children: [new TextRun("Header")] })] })
@@ -267,110 +267,110 @@ sections: [{
 }]
 ```
 
-### Critical Rules for docx-js
+### Критические Правила для docx-js
 
-- **Set page size explicitly** - docx-js defaults to A4; use US Letter (12240 x 15840 DXA) for US documents
-- **Landscape: pass portrait dimensions** - docx-js swaps width/height internally; pass short edge as `width`, long edge as `height`, and set `orientation: PageOrientation.LANDSCAPE`
-- **Never use `\n`** - use separate Paragraph elements
-- **Never use unicode bullets** - use `LevelFormat.BULLET` with numbering config
-- **PageBreak must be in Paragraph** - standalone creates invalid XML
-- **ImageRun requires `type`** - always specify png/jpg/etc
-- **Always set table `width` with DXA** - never use `WidthType.PERCENTAGE` (breaks in Google Docs)
-- **Tables need dual widths** - `columnWidths` array AND cell `width`, both must match
-- **Table width = sum of columnWidths** - for DXA, ensure they add up exactly
-- **Always add cell margins** - use `margins: { top: 80, bottom: 80, left: 120, right: 120 }` for readable padding
-- **Use `ShadingType.CLEAR`** - never SOLID for table shading
-- **TOC requires HeadingLevel only** - no custom styles on heading paragraphs
-- **Override built-in styles** - use exact IDs: "Heading1", "Heading2", etc.
-- **Include `outlineLevel`** - required for TOC (0 for H1, 1 for H2, etc.)
+- **Устанавливайте размер страницы явно** - docx-js по умолчанию использует A4; используйте US Letter (12240 x 15840 DXA) для документов США
+- **Ландшафт: передавайте портретные размеры** - docx-js меняет ширину/высоту внутри; передавайте короткий край как `width`, длинный как `height`, и устанавливайте `orientation: PageOrientation.LANDSCAPE`
+- **Никогда не используйте `\n`** - используйте отдельные элементы Paragraph
+- **Никогда не используйте unicode маркеры** - используйте `LevelFormat.BULLET` с конфигурацией нумерации
+- **PageBreak должен быть в Paragraph** - сам по себе создает невалидный XML
+- **ImageRun требует `type`** - всегда указывайте png/jpg/etc
+- **Всегда устанавливайте `width` таблицы в DXA** - никогда `WidthType.PERCENTAGE` (ломается в Google Docs)
+- **Таблицы нуждаются в двойной ширине** - массив `columnWidths` И `width` ячейки, оба должны совпадать
+- **Ширина таблицы = сумма columnWidths** - для DXA, убедитесь, что они складываются точно
+- **Всегда добавляйте отступы ячеек** - используйте `margins: { top: 80, bottom: 80, left: 120, right: 120 }` для читаемых отступов
+- **Используйте `ShadingType.CLEAR`** - никогда SOLID для заливки таблицы
+- **TOC требует только HeadingLevel** - никаких пользовательских стилей на параграфах заголовков
+- **Переопределяйте встроенные стили** - используйте точные ID: "Heading1", "Heading2", и т.д.
+- **Включайте `outlineLevel`** - обязательно для TOC (0 для H1, 1 для H2, и т.д.)
 
 ---
 
-## Editing Existing Documents
+## Редактирование Существующих Документов
 
-**Follow all 3 steps in order.**
+**Следуйте всем 3 шагам по порядку.**
 
-### Step 1: Unpack
+### Шаг 1: Распаковка
 ```bash
 python scripts/office/unpack.py document.docx unpacked/
 ```
-Extracts XML, pretty-prints, merges adjacent runs, and converts smart quotes to XML entities (`&#x201C;` etc.) so they survive editing. Use `--merge-runs false` to skip run merging.
+Извлекает XML, форматирует его, объединяет смежные прогоны (runs) и конвертирует умные кавычки в XML-сущности (`&#x201C;` и т.д.), чтобы они пережили редактирование. Используйте `--merge-runs false`, чтобы пропустить объединение прогонов.
 
-### Step 2: Edit XML
+### Шаг 2: Редактирование XML
 
-Edit files in `unpacked/word/`. See XML Reference below for patterns.
+Редактируйте файлы в `unpacked/word/`. См. Справочник XML ниже для паттернов.
 
-**Use "Claude" as the author** for tracked changes and comments, unless the user explicitly requests use of a different name.
+**Используйте "Claude" как автора** для отслеживаемых изменений и комментариев, если пользователь явно не попросит использовать другое имя.
 
-**Use the Edit tool directly for string replacement. Do not write Python scripts.** Scripts introduce unnecessary complexity. The Edit tool shows exactly what is being replaced.
+**Используйте инструмент Edit (Редактирование) напрямую для замены строк. Не пишите Python скрипты.** Скрипты вводят ненужную сложность. Инструмент Edit показывает именно то, что заменяется.
 
-**CRITICAL: Use smart quotes for new content.** When adding text with apostrophes or quotes, use XML entities to produce smart quotes:
+**КРИТИЧНО: Используйте умные кавычки для нового контента.** При добавлении текста с апострофами или кавычками используйте XML-сущности для получения умных кавычек:
 ```xml
-<!-- Use these entities for professional typography -->
+<!-- Используйте эти сущности для профессиональной типографики -->
 <w:t>Here&#x2019;s a quote: &#x201C;Hello&#x201D;</w:t>
 ```
-| Entity | Character |
+| Сущность | Символ |
 |--------|-----------|
-| `&#x2018;` | ‘ (left single) |
-| `&#x2019;` | ’ (right single / apostrophe) |
-| `&#x201C;` | “ (left double) |
-| `&#x201D;` | ” (right double) |
+| `&#x2018;` | ‘ (левая одинарная) |
+| `&#x2019;` | ’ (правая одинарная / апостроф) |
+| `&#x201C;` | “ (левая двойная) |
+| `&#x201D;` | ” (правая двойная) |
 
-**Adding comments:** Use `comment.py` to handle boilerplate across multiple XML files (text must be pre-escaped XML):
+**Добавление комментариев:** Используйте `comment.py` для обработки шаблона в нескольких XML файлах (текст должен быть предварительно экранированным XML):
 ```bash
 python scripts/comment.py unpacked/ 0 "Comment text with &amp; and &#x2019;"
-python scripts/comment.py unpacked/ 1 "Reply text" --parent 0  # reply to comment 0
-python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # custom author name
+python scripts/comment.py unpacked/ 1 "Reply text" --parent 0  # ответ на комментарий 0
+python scripts/comment.py unpacked/ 0 "Text" --author "Custom Author"  # пользовательское имя автора
 ```
-Then add markers to document.xml (see Comments in XML Reference).
+Затем добавьте маркеры в document.xml (см. Комментарии в Справочнике XML).
 
-### Step 3: Pack
+### Шаг 3: Запаковка
 ```bash
 python scripts/office/pack.py unpacked/ output.docx --original document.docx
 ```
-Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate false` to skip.
+Валидирует с авто-исправлением, сжимает XML и создает DOCX. Используйте `--validate false`, чтобы пропустить.
 
-**Auto-repair will fix:**
-- `durableId` >= 0x7FFFFFFF (regenerates valid ID)
-- Missing `xml:space="preserve"` on `<w:t>` with whitespace
+**Авто-исправление починит:**
+- `durableId` >= 0x7FFFFFFF (регенерирует валидный ID)
+- Отсутствующий `xml:space="preserve"` на `<w:t>` с пробелами
 
-**Auto-repair won't fix:**
-- Malformed XML, invalid element nesting, missing relationships, schema violations
+**Авто-исправление не починит:**
+- Искаженный XML, невалидную вложенность элементов, отсутствующие отношения, нарушения схемы
 
-### Common Pitfalls
+### Частые Ошибки
 
-- **Replace entire `<w:r>` elements**: When adding tracked changes, replace the whole `<w:r>...</w:r>` block with `<w:del>...<w:ins>...` as siblings. Don't inject tracked change tags inside a run.
-- **Preserve `<w:rPr>` formatting**: Copy the original run's `<w:rPr>` block into your tracked change runs to maintain bold, font size, etc.
+- **Заменяйте целые элементы `<w:r>`**: При добавлении отслеживаемых изменений, заменяйте весь блок `<w:r>...</w:r>` на `<w:del>...<w:ins>...` как соседей. Не внедряйте теги отслеживаемых изменений внутри прогона (run).
+- **Сохраняйте форматирование `<w:rPr>`**: Копируйте блок `<w:rPr>` оригинального прогона в ваши прогоны отслеживаемых изменений, чтобы сохранить жирность, размер шрифта и т.д.
 
 ---
 
-## XML Reference
+## Справочник XML
 
-### Schema Compliance
+### Соответствие Схеме
 
-- **Element order in `<w:pPr>`**: `<w:pStyle>`, `<w:numPr>`, `<w:spacing>`, `<w:ind>`, `<w:jc>`, `<w:rPr>` last
-- **Whitespace**: Add `xml:space="preserve"` to `<w:t>` with leading/trailing spaces
-- **RSIDs**: Must be 8-digit hex (e.g., `00AB1234`)
+- **Порядок элементов в `<w:pPr>`**: `<w:pStyle>`, `<w:numPr>`, `<w:spacing>`, `<w:ind>`, `<w:jc>`, `<w:rPr>` последним
+- **Пробелы**: Добавьте `xml:space="preserve"` к `<w:t>` с ведущими/замыкающими пробелами
+- **RSID**: Должны быть 8-значными hex (например, `00AB1234`)
 
-### Tracked Changes
+### Отслеживаемые Изменения
 
-**Insertion:**
+**Вставка:**
 ```xml
 <w:ins w:id="1" w:author="Claude" w:date="2025-01-01T00:00:00Z">
   <w:r><w:t>inserted text</w:t></w:r>
 </w:ins>
 ```
 
-**Deletion:**
+**Удаление:**
 ```xml
 <w:del w:id="2" w:author="Claude" w:date="2025-01-01T00:00:00Z">
   <w:r><w:delText>deleted text</w:delText></w:r>
 </w:del>
 ```
 
-**Inside `<w:del>`**: Use `<w:delText>` instead of `<w:t>`, and `<w:delInstrText>` instead of `<w:instrText>`.
+**Внутри `<w:del>`**: Используйте `<w:delText>` вместо `<w:t>`, и `<w:delInstrText>` вместо `<w:instrText>`.
 
-**Minimal edits** - only mark what changes:
+**Минимальные правки** - отмечайте только то, что меняется:
 ```xml
 <!-- Change "30 days" to "60 days" -->
 <w:r><w:t>The term is </w:t></w:r>
@@ -383,11 +383,11 @@ Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate fal
 <w:r><w:t> days.</w:t></w:r>
 ```
 
-**Deleting entire paragraphs/list items** - when removing ALL content from a paragraph, also mark the paragraph mark as deleted so it merges with the next paragraph. Add `<w:del/>` inside `<w:pPr><w:rPr>`:
+**Удаление целых параграфов/элементов списка** - при удалении ВСЕГО контента из параграфа, также помечайте метку параграфа как удаленную, чтобы она слилась со следующим параграфом. Добавьте `<w:del/>` внутри `<w:pPr><w:rPr>`:
 ```xml
 <w:p>
   <w:pPr>
-    <w:numPr>...</w:numPr>  <!-- list numbering if present -->
+    <w:numPr>...</w:numPr>  <!-- нумерация списка, если есть -->
     <w:rPr>
       <w:del w:id="1" w:author="Claude" w:date="2025-01-01T00:00:00Z"/>
     </w:rPr>
@@ -397,9 +397,9 @@ Validates with auto-repair, condenses XML, and creates DOCX. Use `--validate fal
   </w:del>
 </w:p>
 ```
-Without the `<w:del/>` in `<w:pPr><w:rPr>`, accepting changes leaves an empty paragraph/list item.
+Без `<w:del/>` в `<w:pPr><w:rPr>`, принятие изменений оставляет пустой параграф/элемент списка.
 
-**Rejecting another author's insertion** - nest deletion inside their insertion:
+**Отклонение вставки другого автора** - вложите удаление внутрь их вставки:
 ```xml
 <w:ins w:author="Jane" w:id="5">
   <w:del w:author="Claude" w:id="10">
@@ -408,7 +408,7 @@ Without the `<w:del/>` in `<w:pPr><w:rPr>`, accepting changes leaves an empty pa
 </w:ins>
 ```
 
-**Restoring another author's deletion** - add insertion after (don't modify their deletion):
+**Восстановление удаления другого автора** - добавьте вставку после (не изменяйте их удаление):
 ```xml
 <w:del w:author="Jane" w:id="5">
   <w:r><w:delText>deleted text</w:delText></w:r>
@@ -418,14 +418,14 @@ Without the `<w:del/>` in `<w:pPr><w:rPr>`, accepting changes leaves an empty pa
 </w:ins>
 ```
 
-### Comments
+### Комментарии
 
-After running `comment.py` (see Step 2), add markers to document.xml. For replies, use `--parent` flag and nest markers inside the parent's.
+После запуска `comment.py` (см. Шаг 2), добавьте маркеры в document.xml. Для ответов используйте флаг `--parent` и вкладывайте маркеры внутрь родительских.
 
-**CRITICAL: `<w:commentRangeStart>` and `<w:commentRangeEnd>` are siblings of `<w:r>`, never inside `<w:r>`.**
+**КРИТИЧНО: `<w:commentRangeStart>` и `<w:commentRangeEnd>` являются соседями `<w:r>`, никогда внутри `<w:r>`.**
 
 ```xml
-<!-- Comment markers are direct children of w:p, never inside w:r -->
+<!-- Маркеры комментариев - прямые дети w:p, никогда внутри w:r -->
 <w:commentRangeStart w:id="0"/>
 <w:del w:id="1" w:author="Claude" w:date="2025-01-01T00:00:00Z">
   <w:r><w:delText>deleted</w:delText></w:r>
@@ -434,7 +434,7 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 <w:commentRangeEnd w:id="0"/>
 <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="0"/></w:r>
 
-<!-- Comment 0 with reply 1 nested inside -->
+<!-- Комментарий 0 с ответом 1, вложенным внутри -->
 <w:commentRangeStart w:id="0"/>
   <w:commentRangeStart w:id="1"/>
   <w:r><w:t>text</w:t></w:r>
@@ -444,22 +444,22 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 <w:r><w:rPr><w:rStyle w:val="CommentReference"/></w:rPr><w:commentReference w:id="1"/></w:r>
 ```
 
-### Images
+### Изображения
 
-1. Add image file to `word/media/`
-2. Add relationship to `word/_rels/document.xml.rels`:
+1. Добавьте файл изображения в `word/media/`
+2. Добавьте отношение в `word/_rels/document.xml.rels`:
 ```xml
 <Relationship Id="rId5" Type=".../image" Target="media/image1.png"/>
 ```
-3. Add content type to `[Content_Types].xml`:
+3. Добавьте тип контента в `[Content_Types].xml`:
 ```xml
 <Default Extension="png" ContentType="image/png"/>
 ```
-4. Reference in document.xml:
+4. Ссылка в document.xml:
 ```xml
 <w:drawing>
   <wp:inline>
-    <wp:extent cx="914400" cy="914400"/>  <!-- EMUs: 914400 = 1 inch -->
+    <wp:extent cx="914400" cy="914400"/>  <!-- EMUs: 914400 = 1 дюйм -->
     <a:graphic>
       <a:graphicData uri=".../picture">
         <pic:pic>
@@ -473,9 +473,9 @@ After running `comment.py` (see Step 2), add markers to document.xml. For replie
 
 ---
 
-## Dependencies
+## Зависимости
 
-- **pandoc**: Text extraction
-- **docx**: `npm install -g docx` (new documents)
-- **LibreOffice**: PDF conversion (auto-configured for sandboxed environments via `scripts/office/soffice.py`)
-- **Poppler**: `pdftoppm` for images
+- **pandoc**: Извлечение текста
+- **docx**: `npm install -g docx` (новые документы)
+- **LibreOffice**: Конвертация PDF (авто-настроено для изолированных сред через `scripts/office/soffice.py`)
+- **Poppler**: `pdftoppm` для изображений

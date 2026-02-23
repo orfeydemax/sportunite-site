@@ -1,35 +1,35 @@
 ---
 name: pdf
-description: Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.
-license: Proprietary. LICENSE.txt has complete terms
+description: Используйте этот навык, когда пользователь хочет сделать что-то с PDF-файлами. Это включает чтение или извлечение текста/таблиц из PDF, объединение нескольких PDF в один, разделение PDF, поворот страниц, добавление водяных знаков, создание новых PDF, заполнение PDF-форм, шифрование/дешифрование PDF, извлечение изображений и OCR на сканированных PDF, чтобы сделать их доступными для поиска. Если пользователь упоминает .pdf файл или просит создать его, используйте этот навык.
+license: Proprietary. Полные условия в LICENSE.txt
 ---
 
-# PDF Processing Guide
+# Руководство по Обработке PDF
 
-## Overview
+## Обзор
 
-This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced features, JavaScript libraries, and detailed examples, see REFERENCE.md. If you need to fill out a PDF form, read FORMS.md and follow its instructions.
+Это руководство охватывает основные операции обработки PDF с использованием библиотек Python и инструментов командной строки. Для продвинутых функций, библиотек JavaScript и детальных примеров см. REFERENCE.md. Если вам нужно заполнить PDF-форму, прочитайте FORMS.md и следуйте инструкциям в нем.
 
-## Quick Start
+## Быстрый Старт
 
 ```python
 from pypdf import PdfReader, PdfWriter
 
-# Read a PDF
+# Чтение PDF
 reader = PdfReader("document.pdf")
 print(f"Pages: {len(reader.pages)}")
 
-# Extract text
+# Извлечение текста
 text = ""
 for page in reader.pages:
     text += page.extract_text()
 ```
 
-## Python Libraries
+## Библиотеки Python
 
-### pypdf - Basic Operations
+### pypdf - Основные Операции
 
-#### Merge PDFs
+#### Объединение PDF
 ```python
 from pypdf import PdfWriter, PdfReader
 
@@ -43,7 +43,7 @@ with open("merged.pdf", "wb") as output:
     writer.write(output)
 ```
 
-#### Split PDF
+#### Разделение PDF
 ```python
 reader = PdfReader("input.pdf")
 for i, page in enumerate(reader.pages):
@@ -53,7 +53,7 @@ for i, page in enumerate(reader.pages):
         writer.write(output)
 ```
 
-#### Extract Metadata
+#### Извлечение Метаданных
 ```python
 reader = PdfReader("document.pdf")
 meta = reader.metadata
@@ -63,22 +63,22 @@ print(f"Subject: {meta.subject}")
 print(f"Creator: {meta.creator}")
 ```
 
-#### Rotate Pages
+#### Поворот Страниц
 ```python
 reader = PdfReader("input.pdf")
 writer = PdfWriter()
 
 page = reader.pages[0]
-page.rotate(90)  # Rotate 90 degrees clockwise
+page.rotate(90)  # Повернуть на 90 градусов по часовой стрелке
 writer.add_page(page)
 
 with open("rotated.pdf", "wb") as output:
     writer.write(output)
 ```
 
-### pdfplumber - Text and Table Extraction
+### pdfplumber - Извлечение Текста и Таблиц
 
-#### Extract Text with Layout
+#### Извлечение Текста с Макетом
 ```python
 import pdfplumber
 
@@ -88,7 +88,7 @@ with pdfplumber.open("document.pdf") as pdf:
         print(text)
 ```
 
-#### Extract Tables
+#### Извлечение Таблиц
 ```python
 with pdfplumber.open("document.pdf") as pdf:
     for i, page in enumerate(pdf.pages):
@@ -99,7 +99,7 @@ with pdfplumber.open("document.pdf") as pdf:
                 print(row)
 ```
 
-#### Advanced Table Extraction
+#### Продвинутое Извлечение Таблиц
 ```python
 import pandas as pd
 
@@ -108,19 +108,19 @@ with pdfplumber.open("document.pdf") as pdf:
     for page in pdf.pages:
         tables = page.extract_tables()
         for table in tables:
-            if table:  # Check if table is not empty
+            if table:  # Проверка, не пуста ли таблица
                 df = pd.DataFrame(table[1:], columns=table[0])
                 all_tables.append(df)
 
-# Combine all tables
+# Объединение всех таблиц
 if all_tables:
     combined_df = pd.concat(all_tables, ignore_index=True)
     combined_df.to_excel("extracted_tables.xlsx", index=False)
 ```
 
-### reportlab - Create PDFs
+### reportlab - Создание PDF
 
-#### Basic PDF Creation
+#### Создание Простого PDF
 ```python
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -128,18 +128,18 @@ from reportlab.pdfgen import canvas
 c = canvas.Canvas("hello.pdf", pagesize=letter)
 width, height = letter
 
-# Add text
+# Добавление текста
 c.drawString(100, height - 100, "Hello World!")
 c.drawString(100, height - 120, "This is a PDF created with reportlab")
 
-# Add a line
+# Добавление линии
 c.line(100, height - 140, 400, height - 140)
 
-# Save
+# Сохранение
 c.save()
 ```
 
-#### Create PDF with Multiple Pages
+#### Создание PDF с Несколькими Страницами
 ```python
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
@@ -149,7 +149,7 @@ doc = SimpleDocTemplate("report.pdf", pagesize=letter)
 styles = getSampleStyleSheet()
 story = []
 
-# Add content
+# Добавление контента
 title = Paragraph("Report Title", styles['Title'])
 story.append(title)
 story.append(Spacer(1, 12))
@@ -158,88 +158,82 @@ body = Paragraph("This is the body of the report. " * 20, styles['Normal'])
 story.append(body)
 story.append(PageBreak())
 
-# Page 2
+# Страница 2
 story.append(Paragraph("Page 2", styles['Heading1']))
 story.append(Paragraph("Content for page 2", styles['Normal']))
 
-# Build PDF
+# Сборка PDF
 doc.build(story)
 ```
 
-#### Subscripts and Superscripts
+#### Подстрочные и Надстрочные Индексы
 
-**IMPORTANT**: Never use Unicode subscript/superscript characters (₀₁₂₃₄₅₆₇₈₉, ⁰¹²³⁴⁵⁶⁷⁸⁹) in ReportLab PDFs. The built-in fonts do not include these glyphs, causing them to render as solid black boxes.
+**ВАЖНО**: Никогда не используйте символы Unicode для подстрочных/надстрочных индексов (₀₁₂₃₄₅₆₇₈₉, ⁰¹²³⁴⁵⁶⁷⁸⁹) в PDF ReportLab. Встроенные шрифты не включают эти глифы, что приводит к их отображению в виде черных квадратов.
 
-Instead, use ReportLab's XML markup tags in Paragraph objects:
+Вместо этого используйте теги XML разметки ReportLab в объектах Paragraph:
 ```python
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 
 styles = getSampleStyleSheet()
 
-# Subscripts: use <sub> tag
+# Подстрочные: используйте тег <sub>
 chemical = Paragraph("H<sub>2</sub>O", styles['Normal'])
 
-# Superscripts: use <super> tag
+# Надстрочные: используйте тег <super>
 squared = Paragraph("x<super>2</super> + y<super>2</super>", styles['Normal'])
 ```
 
-For canvas-drawn text (not Paragraph objects), manually adjust font the size and position rather than using Unicode subscripts/superscripts.
+Для текста, нарисованного на canvas (не объекты Paragraph), вручную регулируйте размер шрифта и позицию, а не используйте подстрочные/надстрочные символы Unicode.
 
-## Command-Line Tools
+## Инструменты Командной Строки
 
 ### pdftotext (poppler-utils)
 ```bash
-# Extract text
+# Извлечение текста
 pdftotext input.pdf output.txt
 
-# Extract text preserving layout
+# Извлечение текста с сохранением макета
 pdftotext -layout input.pdf output.txt
 
-# Extract specific pages
-pdftotext -f 1 -l 5 input.pdf output.txt  # Pages 1-5
+# Извлечение конкретных страниц
+pdftotext -f 1 -l 5 input.pdf output.txt  # Страницы 1-5
 ```
 
 ### qpdf
 ```bash
-# Merge PDFs
+# Объединение PDF
 qpdf --empty --pages file1.pdf file2.pdf -- merged.pdf
 
-# Split pages
+# Разделение страниц
 qpdf input.pdf --pages . 1-5 -- pages1-5.pdf
 qpdf input.pdf --pages . 6-10 -- pages6-10.pdf
 
-# Rotate pages
-qpdf input.pdf output.pdf --rotate=+90:1  # Rotate page 1 by 90 degrees
-
-# Remove password
-qpdf --password=mypassword --decrypt encrypted.pdf decrypted.pdf
+# Поворот страниц
+qpdf input.pdf output.pdf --rotate=+90:1  # Повернуть страницу 1 на 90 градусов
 ```
 
-### pdftk (if available)
+### pdftk (если доступен)
 ```bash
-# Merge
+# Объединение
 pdftk file1.pdf file2.pdf cat output merged.pdf
 
-# Split
+# Разделение
 pdftk input.pdf burst
-
-# Rotate
-pdftk input.pdf rotate 1east output rotated.pdf
 ```
 
-## Common Tasks
+## Частые Задачи
 
-### Extract Text from Scanned PDFs
+### Извлечение Текста из Сканированных PDF
 ```python
-# Requires: pip install pytesseract pdf2image
+# Требуется: pip install pytesseract pdf2image
 import pytesseract
 from pdf2image import convert_from_path
 
-# Convert PDF to images
+# Конвертация PDF в изображения
 images = convert_from_path('scanned.pdf')
 
-# OCR each page
+# OCR каждой страницы
 text = ""
 for i, image in enumerate(images):
     text += f"Page {i+1}:\n"
@@ -249,14 +243,14 @@ for i, image in enumerate(images):
 print(text)
 ```
 
-### Add Watermark
+### Добавление Водяного Знака
 ```python
 from pypdf import PdfReader, PdfWriter
 
-# Create watermark (or load existing)
+# Создание водяного знака (или загрузка существующего)
 watermark = PdfReader("watermark.pdf").pages[0]
 
-# Apply to all pages
+# Применение ко всем страницам
 reader = PdfReader("document.pdf")
 writer = PdfWriter()
 
@@ -268,15 +262,15 @@ with open("watermarked.pdf", "wb") as output:
     writer.write(output)
 ```
 
-### Extract Images
+### Извлечение Изображений
 ```bash
-# Using pdfimages (poppler-utils)
+# Использование pdfimages (poppler-utils)
 pdfimages -j input.pdf output_prefix
 
-# This extracts all images as output_prefix-000.jpg, output_prefix-001.jpg, etc.
+# Это извлекает все изображения как output_prefix-000.jpg, output_prefix-001.jpg и т.д.
 ```
 
-### Password Protection
+### Защита Паролем
 ```python
 from pypdf import PdfReader, PdfWriter
 
@@ -286,29 +280,29 @@ writer = PdfWriter()
 for page in reader.pages:
     writer.add_page(page)
 
-# Add password
+# Добавление пароля
 writer.encrypt("userpassword", "ownerpassword")
 
 with open("encrypted.pdf", "wb") as output:
     writer.write(output)
 ```
 
-## Quick Reference
+## Краткий Справочник
 
-| Task | Best Tool | Command/Code |
-|------|-----------|--------------|
-| Merge PDFs | pypdf | `writer.add_page(page)` |
-| Split PDFs | pypdf | One page per file |
-| Extract text | pdfplumber | `page.extract_text()` |
-| Extract tables | pdfplumber | `page.extract_tables()` |
-| Create PDFs | reportlab | Canvas or Platypus |
-| Command line merge | qpdf | `qpdf --empty --pages ...` |
-| OCR scanned PDFs | pytesseract | Convert to image first |
-| Fill PDF forms | pdf-lib or pypdf (see FORMS.md) | See FORMS.md |
+| Задача | Лучший Инструмент | Команда/Код |
+|--------|-------------------|-------------|
+| Объединение PDF | pypdf | `writer.add_page(page)` |
+| Разделение PDF | pypdf | Одна страница на файл |
+| Извлечение текста | pdfplumber | `page.extract_text()` |
+| Извлечение таблиц | pdfplumber | `page.extract_tables()` |
+| Создание PDF | reportlab | Canvas или Platypus |
+| Объединение (CLI) | qpdf | `qpdf --empty --pages ...` |
+| OCR сканированных PDF | pytesseract | Конвертировать в изображение сначала |
+| Заполнение форм PDF | pdf-lib или pypdf (см. FORMS.md) | См. FORMS.md |
 
-## Next Steps
+## Следующие Шаги
 
-- For advanced pypdfium2 usage, see REFERENCE.md
-- For JavaScript libraries (pdf-lib), see REFERENCE.md
-- If you need to fill out a PDF form, follow the instructions in FORMS.md
-- For troubleshooting guides, see REFERENCE.md
+- Для продвинутого использования pypdfium2 см. REFERENCE.md
+- Для библиотек JavaScript (pdf-lib) см. REFERENCE.md
+- Если вам нужно заполнить PDF-форму, следуйте инструкциям в FORMS.md
+- Для руководств по устранению неполадок см. REFERENCE.md

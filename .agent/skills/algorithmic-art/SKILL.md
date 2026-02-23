@@ -1,405 +1,405 @@
 ---
 name: algorithmic-art
-description: Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.
-license: Complete terms in LICENSE.txt
+description: Создание алгоритмического искусства с использованием p5.js с генерацией на основе сида и интерактивным исследованием параметров. Используйте это, когда пользователи запрашивают создание искусства с помощью кода, генеративное искусство, алгоритмическое искусство, поля потока или системы частиц. Создавайте оригинальное алгоритмическое искусство, а не копируйте работы существующих художников, чтобы избежать нарушения авторских прав.
+license: Полные условия в LICENSE.txt
 ---
 
-Algorithmic philosophies are computational aesthetic movements that are then expressed through code. Output .md files (philosophy), .html files (interactive viewer), and .js files (generative algorithms).
+Алгоритмические философии — это вычислительные эстетические движения, которые затем выражаются через код. Выходные файлы: .md (философия), .html (интерактивный просмотрщик) и .js (генеративные алгоритмы).
 
-This happens in two steps:
-1. Algorithmic Philosophy Creation (.md file)
-2. Express by creating p5.js generative art (.html + .js files)
+Это происходит в два этапа:
+1. Создание Алгоритмической Философии (файл .md)
+2. Выражение через создание генеративного искусства на p5.js (файлы .html + .js)
 
-First, undertake this task:
+Сначала выполните эту задачу:
 
-## ALGORITHMIC PHILOSOPHY CREATION
+## СОЗДАНИЕ АЛГОРИТМИЧЕСКОЙ ФИЛОСОФИИ
 
-To begin, create an ALGORITHMIC PHILOSOPHY (not static images or templates) that will be interpreted through:
-- Computational processes, emergent behavior, mathematical beauty
-- Seeded randomness, noise fields, organic systems
-- Particles, flows, fields, forces
-- Parametric variation and controlled chaos
+Для начала создайте АЛГОРИТМИЧЕСКУЮ ФИЛОСОФИЮ (не статические изображения или шаблоны), которая будет интерпретироваться через:
+- Вычислительные процессы, эмерджентное поведение, математическую красоту
+- Случайность на основе сида (seed), шумовые поля, органические системы
+- Частицы, потоки, поля, силы
+- Параметрическую вариацию и контролируемый хаос
 
-### THE CRITICAL UNDERSTANDING
-- What is received: Some subtle input or instructions by the user to take into account, but use as a foundation; it should not constrain creative freedom.
-- What is created: An algorithmic philosophy/generative aesthetic movement.
-- What happens next: The same version receives the philosophy and EXPRESSES IT IN CODE - creating p5.js sketches that are 90% algorithmic generation, 10% essential parameters.
+### КРИТИЧЕСКОЕ ПОНИМАНИЕ
+- Что получено: Некоторый тонкий вход или инструкции от пользователя, которые нужно учесть как основу, но они не должны ограничивать творческую свободу.
+- Что создается: Алгоритмическая философия/движение генеративной эстетики.
+- Что происходит дальше: Та же версия получает философию и ВЫРАЖАЕТ ЕЕ В КОДЕ - создавая скетчи p5.js, которые на 90% состоят из алгоритмической генерации и на 10% из основных параметров.
 
-Consider this approach:
-- Write a manifesto for a generative art movement
-- The next phase involves writing the algorithm that brings it to life
+Рассмотрите этот подход:
+- Напишите манифест движения генеративного искусства
+- Следующая фаза включает написание алгоритма, который воплощает его в жизнь
 
-The philosophy must emphasize: Algorithmic expression. Emergent behavior. Computational beauty. Seeded variation.
+Философия должна подчеркивать: Алгоритмическое выражение. Эмерджентное поведение. Вычислительную красоту. Вариацию на основе сида.
 
-### HOW TO GENERATE AN ALGORITHMIC PHILOSOPHY
+### КАК ГЕНЕРИРОВАТЬ АЛГОРИТМИЧЕСКУЮ ФИЛОСОФИЮ
 
-**Name the movement** (1-2 words): "Organic Turbulence" / "Quantum Harmonics" / "Emergent Stillness"
+**Назовите движение** (1-2 слова): "Органическая Турбулентность" / "Квантовые Гармоники" / "Эмерджентная Тишина"
 
-**Articulate the philosophy** (4-6 paragraphs - concise but complete):
+**Сформулируйте философию** (4-6 абзацев - кратко, но полно):
 
-To capture the ALGORITHMIC essence, express how this philosophy manifests through:
-- Computational processes and mathematical relationships?
-- Noise functions and randomness patterns?
-- Particle behaviors and field dynamics?
-- Temporal evolution and system states?
-- Parametric variation and emergent complexity?
+Чтобы передать АЛГОРИТМИЧЕСКУЮ суть, выразите, как эта философия проявляется через:
+- Вычислительные процессы и математические отношения?
+- Функции шума и паттерны случайности?
+- Поведение частиц и динамику полей?
+- Временную эволюцию и состояния системы?
+- Параметрическую вариацию и эмерджентную сложность?
 
-**CRITICAL GUIDELINES:**
-- **Avoid redundancy**: Each algorithmic aspect should be mentioned once. Avoid repeating concepts about noise theory, particle dynamics, or mathematical principles unless adding new depth.
-- **Emphasize craftsmanship REPEATEDLY**: The philosophy MUST stress multiple times that the final algorithm should appear as though it took countless hours to develop, was refined with care, and comes from someone at the absolute top of their field. This framing is essential - repeat phrases like "meticulously crafted algorithm," "the product of deep computational expertise," "painstaking optimization," "master-level implementation."
-- **Leave creative space**: Be specific about the algorithmic direction, but concise enough that the next Claude has room to make interpretive implementation choices at an extremely high level of craftsmanship.
+**КРИТИЧЕСКИЕ РУКОВОДЯЩИЕ ПРИНЦИПЫ:**
+- **Избегайте избыточности**: Каждый алгоритмический аспект должен упоминаться один раз. Избегайте повторения концепций о теории шума, динамике частиц или математических принципах, если это не добавляет новой глубины.
+- **МНОГОКРАТНО подчеркивайте мастерство**: Философия ДОЛЖНА несколько раз подчеркнуть, что финальный алгоритм должен выглядеть так, будто на его разработку ушли бесчисленные часы, он был тщательно доработан и создан кем-то на абсолютной вершине своей области. Это обрамление важно - повторяйте фразы вроде "тщательно созданный алгоритм", "продукт глубокой вычислительной экспертизы", "кропотливая оптимизация", "реализация уровня мастера".
+- **Оставляйте творческое пространство**: Будьте конкретны в алгоритмическом направлении, но достаточно кратки, чтобы у следующего Клода было пространство для интерпретационных решений по реализации на чрезвычайно высоком уровне мастерства.
 
-The philosophy must guide the next version to express ideas ALGORITHMICALLY, not through static images. Beauty lives in the process, not the final frame.
+Философия должна направлять следующую версию выражать идеи АЛГОРИТМИЧЕСКИ, а не через статические изображения. Красота живет в процессе, а не в финальном кадре.
 
-### PHILOSOPHY EXAMPLES
+### ПРИМЕРЫ ФИЛОСОФИЙ
 
-**"Organic Turbulence"**
-Philosophy: Chaos constrained by natural law, order emerging from disorder.
-Algorithmic expression: Flow fields driven by layered Perlin noise. Thousands of particles following vector forces, their trails accumulating into organic density maps. Multiple noise octaves create turbulent regions and calm zones. Color emerges from velocity and density - fast particles burn bright, slow ones fade to shadow. The algorithm runs until equilibrium - a meticulously tuned balance where every parameter was refined through countless iterations by a master of computational aesthetics.
+**"Органическая Турбулентность"**
+Философия: Хаос, ограниченный естественным законом, порядок, возникающий из беспорядка.
+Алгоритмическое выражение: Поля потока, управляемые слоистым шумом Перлина. Тысячи частиц, следующих за векторными силами, их следы накапливаются в органические карты плотности. Множественные октавы шума создают турбулентные регионы и спокойные зоны. Цвет возникает из скорости и плотности - быстрые частицы горят ярко, медленные угасают в тень. Алгоритм работает до равновесия - тщательно настроенного баланса, где каждый параметр был уточнен через бесчисленные итерации мастером вычислительной эстетики.
 
-**"Quantum Harmonics"**
-Philosophy: Discrete entities exhibiting wave-like interference patterns.
-Algorithmic expression: Particles initialized on a grid, each carrying a phase value that evolves through sine waves. When particles are near, their phases interfere - constructive interference creates bright nodes, destructive creates voids. Simple harmonic motion generates complex emergent mandalas. The result of painstaking frequency calibration where every ratio was carefully chosen to produce resonant beauty.
+**"Квантовые Гармоники"**
+Философия: Дискретные сущности, демонстрирующие волновые интерференционные паттерны.
+Алгоритмическое выражение: Частицы, инициализированные на сетке, каждая несет значение фазы, которое эволюционирует через синусоидальные волны. Когда частицы рядом, их фазы интерферируют - конструктивная интерференция создает яркие узлы, деструктивная создает пустоты. Простое гармоническое движение генерирует сложные эмерджентные мандалы. Результат кропотливой калибровки частот, где каждое соотношение было тщательно выбрано для создания резонансной красоты.
 
-**"Recursive Whispers"**
-Philosophy: Self-similarity across scales, infinite depth in finite space.
-Algorithmic expression: Branching structures that subdivide recursively. Each branch slightly randomized but constrained by golden ratios. L-systems or recursive subdivision generate tree-like forms that feel both mathematical and organic. Subtle noise perturbations break perfect symmetry. Line weights diminish with each recursion level. Every branching angle the product of deep mathematical exploration.
+**"Рекурсивный Шепот"**
+Философия: Самоподобие через масштабы, бесконечная глубина в конечном пространстве.
+Алгоритмическое выражение: Ветвящиеся структуры, которые подразделяются рекурсивно. Каждая ветвь немного рандомизирована, но ограничена золотыми сечениями. L-системы или рекурсивное подразделение генерируют древовидные формы, которые ощущаются и математическими, и органическими. Тонкие возмущения шума нарушают идеальную симметрию. Толщина линий уменьшается с каждым уровнем рекурсии. Каждый угол ветвления - продукт глубокого математического исследования.
 
-**"Field Dynamics"**
-Philosophy: Invisible forces made visible through their effects on matter.
-Algorithmic expression: Vector fields constructed from mathematical functions or noise. Particles born at edges, flowing along field lines, dying when they reach equilibrium or boundaries. Multiple fields can attract, repel, or rotate particles. The visualization shows only the traces - ghost-like evidence of invisible forces. A computational dance meticulously choreographed through force balance.
+**"Динамика Полей"**
+Философия: Невидимые силы, сделанные видимыми через их влияние на материю.
+Алгоритмическое выражение: Векторные поля, построенные из математических функций или шума. Частицы рождаются на краях, текут вдоль силовых линий, умирают, достигая равновесия или границ. Множественные поля могут притягивать, отталкивать или вращать частицы. Визуализация показывает только следы - призрачные доказательства невидимых сил. Вычислительный танец, тщательно хореографированный через баланс сил.
 
-**"Stochastic Crystallization"**
-Philosophy: Random processes crystallizing into ordered structures.
-Algorithmic expression: Randomized circle packing or Voronoi tessellation. Start with random points, let them evolve through relaxation algorithms. Cells push apart until equilibrium. Color based on cell size, neighbor count, or distance from center. The organic tiling that emerges feels both random and inevitable. Every seed produces unique crystalline beauty - the mark of a master-level generative algorithm.
+**"Стохастическая Кристаллизация"**
+Философия: Случайные процессы, кристаллизующиеся в упорядоченные структуры.
+Алгоритмическое выражение: Рандомизированная упаковка кругов или тесселяция Вороного. Начните со случайных точек, позвольте им эволюционировать через алгоритмы релаксации. Ячейки отталкиваются до равновесия. Цвет основан на размере ячейки, количестве соседей или расстоянии от центра. Органическая плитка, которая возникает, ощущается и случайной, и неизбежной. Каждый сид производит уникальную кристаллическую красоту - знак генеративного алгоритма уровня мастера.
 
-*These are condensed examples. The actual algorithmic philosophy should be 4-6 substantial paragraphs.*
+*Это сокращенные примеры. Фактическая алгоритмическая философия должна быть 4-6 содержательных абзацев.*
 
-### ESSENTIAL PRINCIPLES
-- **ALGORITHMIC PHILOSOPHY**: Creating a computational worldview to be expressed through code
-- **PROCESS OVER PRODUCT**: Always emphasize that beauty emerges from the algorithm's execution - each run is unique
-- **PARAMETRIC EXPRESSION**: Ideas communicate through mathematical relationships, forces, behaviors - not static composition
-- **ARTISTIC FREEDOM**: The next Claude interprets the philosophy algorithmically - provide creative implementation room
-- **PURE GENERATIVE ART**: This is about making LIVING ALGORITHMS, not static images with randomness
-- **EXPERT CRAFTSMANSHIP**: Repeatedly emphasize the final algorithm must feel meticulously crafted, refined through countless iterations, the product of deep expertise by someone at the absolute top of their field in computational aesthetics
+### ОСНОВНЫЕ ПРИНЦИПЫ
+- **АЛГОРИТМИЧЕСКАЯ ФИЛОСОФИЯ**: Создание вычислительного мировоззрения для выражения через код
+- **ПРОЦЕСС ВЫШЕ ПРОДУКТА**: Всегда подчеркивайте, что красота возникает из выполнения алгоритма - каждый запуск уникален
+- **ПАРАМЕТРИЧЕСКОЕ ВЫРАЖЕНИЕ**: Идеи коммуницируют через математические отношения, силы, поведение - не статическую композицию
+- **ТВОРЧЕСКАЯ СВОБОДА**: Следующий Клод интерпретирует философию алгоритмически - предоставьте пространство для творческой реализации
+- **ЧИСТОЕ ГЕНЕРАТИВНОЕ ИСКУССТВО**: Речь идет о создании ЖИВЫХ АЛГОРИТМОВ, а не статических изображений со случайностью
+- **ЭКСПЕРТНОЕ МАСТЕРСТВО**: Многократно подчеркивайте, что финальный алгоритм должен ощущаться тщательно созданным, уточненным через бесчисленные итерации, продуктом глубокой экспертизы кем-то на абсолютной вершине своей области в вычислительной эстетике
 
-**The algorithmic philosophy should be 4-6 paragraphs long.** Fill it with poetic computational philosophy that brings together the intended vision. Avoid repeating the same points. Output this algorithmic philosophy as a .md file.
-
----
-
-## DEDUCING THE CONCEPTUAL SEED
-
-**CRITICAL STEP**: Before implementing the algorithm, identify the subtle conceptual thread from the original request.
-
-**THE ESSENTIAL PRINCIPLE**:
-The concept is a **subtle, niche reference embedded within the algorithm itself** - not always literal, always sophisticated. Someone familiar with the subject should feel it intuitively, while others simply experience a masterful generative composition. The algorithmic philosophy provides the computational language. The deduced concept provides the soul - the quiet conceptual DNA woven invisibly into parameters, behaviors, and emergence patterns.
-
-This is **VERY IMPORTANT**: The reference must be so refined that it enhances the work's depth without announcing itself. Think like a jazz musician quoting another song through algorithmic harmony - only those who know will catch it, but everyone appreciates the generative beauty.
+**Алгоритмическая философия должна быть длиной 4-6 абзацев.** Наполните ее поэтической вычислительной философией, которая объединяет предполагаемое видение. Избегайте повторения одних и тех же пунктов. Выведите эту алгоритмическую философию как файл .md.
 
 ---
 
-## P5.JS IMPLEMENTATION
+## ВЫВОД КОНЦЕПТУАЛЬНОГО СИДА
 
-With the philosophy AND conceptual framework established, express it through code. Pause to gather thoughts before proceeding. Use only the algorithmic philosophy created and the instructions below.
+**КРИТИЧЕСКИЙ ШАГ**: Перед реализацией алгоритма определите тонкую концептуальную нить из исходного запроса.
 
-### ⚠️ STEP 0: READ THE TEMPLATE FIRST ⚠️
+**СУЩЕСТВЕННЫЙ ПРИНЦИП**:
+Концепция — это **тонкая, нишевая ссылка, встроенная в сам алгоритм** - не всегда буквальная, всегда утонченная. Тот, кто знаком с предметом, должен почувствовать это интуитивно, в то время как другие просто испытывают мастерскую генеративную композицию. Алгоритмическая философия предоставляет вычислительный язык. Выведенная концепция дает душу - тихую концептуальную ДНК, невидимо вплетенную в параметры, поведение и паттерны эмерджентности.
 
-**CRITICAL: BEFORE writing any HTML:**
-
-1. **Read** `templates/viewer.html` using the Read tool
-2. **Study** the exact structure, styling, and Anthropic branding
-3. **Use that file as the LITERAL STARTING POINT** - not just inspiration
-4. **Keep all FIXED sections exactly as shown** (header, sidebar structure, Anthropic colors/fonts, seed controls, action buttons)
-5. **Replace only the VARIABLE sections** marked in the file's comments (algorithm, parameters, UI controls for parameters)
-
-**Avoid:**
-- ❌ Creating HTML from scratch
-- ❌ Inventing custom styling or color schemes
-- ❌ Using system fonts or dark themes
-- ❌ Changing the sidebar structure
-
-**Follow these practices:**
-- ✅ Copy the template's exact HTML structure
-- ✅ Keep Anthropic branding (Poppins/Lora fonts, light colors, gradient backdrop)
-- ✅ Maintain the sidebar layout (Seed → Parameters → Colors? → Actions)
-- ✅ Replace only the p5.js algorithm and parameter controls
-
-The template is the foundation. Build on it, don't rebuild it.
+Это **ОЧЕНЬ ВАЖНО**: Ссылка должна быть настолько утонченной, чтобы она усиливала глубину работы, не объявляя о себе. Думайте как джазовый музыкант, цитирующий другую песню через алгоритмическую гармонию - только те, кто знает, поймают это, но все оценят генеративную красоту.
 
 ---
 
-To create gallery-quality computational art that lives and breathes, use the algorithmic philosophy as the foundation.
+## РЕАЛИЗАЦИЯ НА P5.JS
 
-### TECHNICAL REQUIREMENTS
+С установленной философией И концептуальной структурой, выразите это через код. Сделайте паузу, чтобы собраться с мыслями, прежде чем продолжить. Используйте только созданную алгоритмическую философию и инструкции ниже.
 
-**Seeded Randomness (Art Blocks Pattern)**:
+### ⚠️ ШАГ 0: СНАЧАЛА ПРОЧИТАЙТЕ ШАБЛОН ⚠️
+
+**КРИТИЧЕСКИ: ПЕРЕД написанием любого HTML:**
+
+1. **Прочитайте** `templates/viewer.html` используя инструмент Read
+2. **Изучите** точную структуру, стилизацию и брендинг Anthropic
+3. **Используйте этот файл как БУКВАЛЬНУЮ ОТПРАВНУЮ ТОЧКУ** - не просто для вдохновения
+4. **Сохраните все ФИКСИРОВАННЫЕ секции точно как показано** (заголовок, структура боковой панели, цвета/шрифты Anthropic, управление сидом, кнопки действий)
+5. **Замените только ПЕРЕМЕННЫЕ секции**, отмеченные в комментариях файла (алгоритм, параметры, UI элементы управления для параметров)
+
+**Избегайте:**
+- ❌ Создания HTML с нуля
+- ❌ Изобретения собственной стилизации или цветовых схем
+- ❌ Использования системных шрифтов или темных тем
+- ❌ Изменения структуры боковой панели
+
+**Следуйте этим практикам:**
+- ✅ Скопируйте точную HTML структуру шаблона
+- ✅ Сохраните брендинг Anthropic (шрифты Poppins/Lora, светлые цвета, градиентный фон)
+- ✅ Поддерживайте макет боковой панели (Сид → Параметры → Цвета? → Действия)
+- ✅ Замените только алгоритм p5.js и управление параметрами
+
+Шаблон — это фундамент. Стройте на нем, не перестраивайте его.
+
+---
+
+Чтобы создать вычислительное искусство галерейного качества, которое живет и дышит, используйте алгоритмическую философию как основу.
+
+### ТЕХНИЧЕСКИЕ ТРЕБОВАНИЯ
+
+**Случайность на основе сида (Паттерн Art Blocks)**:
 ```javascript
-// ALWAYS use a seed for reproducibility
-let seed = 12345; // or hash from user input
+// ВСЕГДА используйте сид для воспроизводимости
+let seed = 12345; // или хеш из ввода пользователя
 randomSeed(seed);
 noiseSeed(seed);
 ```
 
-**Parameter Structure - FOLLOW THE PHILOSOPHY**:
+**Структура Параметров - СЛЕДУЙТЕ ФИЛОСОФИИ**:
 
-To establish parameters that emerge naturally from the algorithmic philosophy, consider: "What qualities of this system can be adjusted?"
+Чтобы установить параметры, которые возникают естественным образом из алгоритмической философии, подумайте: "Какие качества этой системы можно регулировать?"
 
 ```javascript
 let params = {
-  seed: 12345,  // Always include seed for reproducibility
-  // colors
-  // Add parameters that control YOUR algorithm:
-  // - Quantities (how many?)
-  // - Scales (how big? how fast?)
-  // - Probabilities (how likely?)
-  // - Ratios (what proportions?)
-  // - Angles (what direction?)
-  // - Thresholds (when does behavior change?)
+  seed: 12345,  // Всегда включайте сид для воспроизводимости
+  // цвета
+  // Добавьте параметры, которые управляют ВАШИМ алгоритмом:
+  // - Количества (сколько?)
+  // - Масштабы (как велико? как быстро?)
+  // - Вероятности (как вероятно?)
+  // - Соотношения (какие пропорции?)
+  // - Углы (какое направление?)
+  // - Пороги (когда меняется поведение?)
 };
 ```
 
-**To design effective parameters, focus on the properties the system needs to be tunable rather than thinking in terms of "pattern types".**
+**Чтобы спроектировать эффективные параметры, сосредоточьтесь на свойствах, которые система должна иметь возможность настраивать, а не думайте в терминах "типов паттернов".**
 
-**Core Algorithm - EXPRESS THE PHILOSOPHY**:
+**Основной Алгоритм - ВЫРАЗИТЕ ФИЛОСОФИЮ**:
 
-**CRITICAL**: The algorithmic philosophy should dictate what to build.
+**КРИТИЧЕСКИ**: Алгоритмическая философия должна диктовать, что строить.
 
-To express the philosophy through code, avoid thinking "which pattern should I use?" and instead think "how to express this philosophy through code?"
+Чтобы выразить философию через код, избегайте мыслей "какой паттерн мне использовать?", а вместо этого думайте "как выразить эту философию через код?"
 
-If the philosophy is about **organic emergence**, consider using:
-- Elements that accumulate or grow over time
-- Random processes constrained by natural rules
-- Feedback loops and interactions
+Если философия об **органической эмерджентности**, рассмотрите использование:
+- Элементов, которые накапливаются или растут со временем
+- Случайных процессов, ограниченных естественными правилами
+- Петель обратной связи и взаимодействий
 
-If the philosophy is about **mathematical beauty**, consider using:
-- Geometric relationships and ratios
-- Trigonometric functions and harmonics
-- Precise calculations creating unexpected patterns
+Если философия о **математической красоте**, рассмотрите использование:
+- Геометрических отношений и соотношений
+- Тригонометрических функций и гармоник
+- Точных вычислений, создающих неожиданные паттерны
 
-If the philosophy is about **controlled chaos**, consider using:
-- Random variation within strict boundaries
-- Bifurcation and phase transitions
-- Order emerging from disorder
+Если философия о **контролируемом хаосе**, рассмотрите использование:
+- Случайной вариации в строгих границах
+- Бифуркации и фазовых переходов
+- Порядка, возникающего из беспорядка
 
-**The algorithm flows from the philosophy, not from a menu of options.**
+**Алгоритм вытекает из философии, а не из меню опций.**
 
-To guide the implementation, let the conceptual essence inform creative and original choices. Build something that expresses the vision for this particular request.
+Чтобы направить реализацию, позвольте концептуальной сути информировать творческие и оригинальные выборы. Постройте что-то, что выражает видение для этого конкретного запроса.
 
-**Canvas Setup**: Standard p5.js structure:
+**Настройка Холста**: Стандартная структура p5.js:
 ```javascript
 function setup() {
   createCanvas(1200, 1200);
-  // Initialize your system
+  // Инициализируйте вашу систему
 }
 
 function draw() {
-  // Your generative algorithm
-  // Can be static (noLoop) or animated
+  // Ваш генеративный алгоритм
+  // Может быть статическим (noLoop) или анимированным
 }
 ```
 
-### CRAFTSMANSHIP REQUIREMENTS
+### ТРЕБОВАНИЯ К МАСТЕРСТВУ
 
-**CRITICAL**: To achieve mastery, create algorithms that feel like they emerged through countless iterations by a master generative artist. Tune every parameter carefully. Ensure every pattern emerges with purpose. This is NOT random noise - this is CONTROLLED CHAOS refined through deep expertise.
+**КРИТИЧЕСКИ**: Чтобы достичь мастерства, создавайте алгоритмы, которые ощущаются так, будто они возникли через бесчисленные итерации мастером генеративного искусства. Тщательно настраивайте каждый параметр. Убедитесь, что каждый паттерн возникает с целью. Это НЕ случайный шум - это КОНТРОЛИРУЕМЫЙ ХАОС, уточненный глубокой экспертизой.
 
-- **Balance**: Complexity without visual noise, order without rigidity
-- **Color Harmony**: Thoughtful palettes, not random RGB values
-- **Composition**: Even in randomness, maintain visual hierarchy and flow
-- **Performance**: Smooth execution, optimized for real-time if animated
-- **Reproducibility**: Same seed ALWAYS produces identical output
+- **Баланс**: Сложность без визуального шума, порядок без жесткости
+- **Цветовая Гармония**: Продуманные палитры, не случайные RGB значения
+- **Композиция**: Даже в случайности сохраняйте визуальную иерархию и поток
+- **Производительность**: Плавное выполнение, оптимизировано для реального времени, если анимировано
+- **Воспроизводимость**: Тот же сид ВСЕГДА производит идентичный результат
 
-### OUTPUT FORMAT
+### ФОРМАТ ВЫВОДА
 
-Output:
-1. **Algorithmic Philosophy** - As markdown or text explaining the generative aesthetic
-2. **Single HTML Artifact** - Self-contained interactive generative art built from `templates/viewer.html` (see STEP 0 and next section)
+Вывод:
+1. **Алгоритмическая Философия** - Как markdown или текст, объясняющий генеративную эстетику
+2. **Одиночный HTML Артефакт** - Автономное интерактивное генеративное искусство, построенное из `templates/viewer.html` (см. ШАГ 0 и следующий раздел)
 
-The HTML artifact contains everything: p5.js (from CDN), the algorithm, parameter controls, and UI - all in one file that works immediately in claude.ai artifacts or any browser. Start from the template file, not from scratch.
+HTML артефакт содержит все: p5.js (из CDN), алгоритм, управление параметрами и UI - все в одном файле, который работает немедленно в артефактах claude.ai или любом браузере. Начинайте с файла шаблона, а не с нуля.
 
 ---
 
-## INTERACTIVE ARTIFACT CREATION
+## СОЗДАНИЕ ИНТЕРАКТИВНОГО АРТЕФАКТА
 
-**REMINDER: `templates/viewer.html` should have already been read (see STEP 0). Use that file as the starting point.**
+**НАПОМИНАНИЕ: `templates/viewer.html` уже должен быть прочитан (см. ШАГ 0). Используйте этот файл как отправную точку.**
 
-To allow exploration of the generative art, create a single, self-contained HTML artifact. Ensure this artifact works immediately in claude.ai or any browser - no setup required. Embed everything inline.
+Чтобы позволить исследование генеративного искусства, создайте один, автономный HTML артефакт. Убедитесь, что этот артефакт работает немедленно в claude.ai или любом браузере - настройка не требуется. Встраивайте все инлайн.
 
-### CRITICAL: WHAT'S FIXED VS VARIABLE
+### КРИТИЧЕСКИ: ЧТО ФИКСИРОВАНО VS ПЕРЕМЕННО
 
-The `templates/viewer.html` file is the foundation. It contains the exact structure and styling needed.
+Файл `templates/viewer.html` — это фундамент. Он содержит точную структуру и стилизацию, которые необходимы.
 
-**FIXED (always include exactly as shown):**
-- Layout structure (header, sidebar, main canvas area)
-- Anthropic branding (UI colors, fonts, gradients)
-- Seed section in sidebar:
-  - Seed display
-  - Previous/Next buttons
-  - Random button
-  - Jump to seed input + Go button
-- Actions section in sidebar:
-  - Regenerate button
-  - Reset button
+**ФИКСИРОВАНО (всегда включать точно как показано):**
+- Структура макета (заголовок, боковая панель, основная область холста/canvas)
+- Брендинг Anthropic (цвета UI, шрифты, градиенты)
+- Секция Сида в боковой панели:
+  - Отображение Сида
+  - Кнопки Предыдущий/Следующий
+  - Кнопка Случайный
+  - Прыжок к вводу сида + кнопка Go
+- Секция Действий в боковой панели:
+  - Кнопка Регенерировать
+  - Кнопка Сброс
 
-**VARIABLE (customize for each artwork):**
-- The entire p5.js algorithm (setup/draw/classes)
-- The parameters object (define what the art needs)
-- The Parameters section in sidebar:
-  - Number of parameter controls
-  - Parameter names
-  - Min/max/step values for sliders
-  - Control types (sliders, inputs, etc.)
-- Colors section (optional):
-  - Some art needs color pickers
-  - Some art might use fixed colors
-  - Some art might be monochrome (no color controls needed)
-  - Decide based on the art's needs
+**ПЕРЕМЕННО (настраивается для каждой работы):**
+- Весь алгоритм p5.js (setup/draw/классы)
+- Объект параметров (определить, что нужно искусству)
+- Секция Параметров в боковой панели:
+  - Количество элементов управления параметрами
+  - Имена параметров
+  - Мин/макс/шаг значения для слайдеров
+  - Типы управления (слайдеры, вводы и т.д.)
+- Секция Цветов (опционально):
+  - Некоторым работам нужны выборы цвета
+  - Некоторые работы могут использовать фиксированные цвета
+  - Некоторые работы могут быть монохромными (управление цветом не нужно)
+  - Решайте на основе потребностей искусства
 
-**Every artwork should have unique parameters and algorithm!** The fixed parts provide consistent UX - everything else expresses the unique vision.
+**Каждая работа должна иметь уникальные параметры и алгоритм!** Фиксированные части обеспечивают последовательный UX - все остальное выражает уникальное видение.
 
-### REQUIRED FEATURES
+### ТРЕБУЕМЫЕ ФУНКЦИИ
 
-**1. Parameter Controls**
-- Sliders for numeric parameters (particle count, noise scale, speed, etc.)
-- Color pickers for palette colors
-- Real-time updates when parameters change
-- Reset button to restore defaults
+**1. Управление Параметрами**
+- Слайдеры для числовых параметров (количество частиц, масштаб шума, скорость и т.д.)
+- Выбор цвета для цветов палитры
+- Обновления в реальном времени при изменении параметров
+- Кнопка Сброс для восстановления значений по умолчанию
 
-**2. Seed Navigation**
-- Display current seed number
-- "Previous" and "Next" buttons to cycle through seeds
-- "Random" button for random seed
-- Input field to jump to specific seed
-- Generate 100 variations when requested (seeds 1-100)
+**2. Навигация по Сидам**
+- Отображение текущего номера сида
+- Кнопки "Предыдущий" и "Следующий" для перебора сидов
+- Кнопка "Случайный" для случайного сида
+- Поле ввода для прыжка к конкретному сиду
+- Генерация 100 вариаций по запросу (сиды 1-100)
 
-**3. Single Artifact Structure**
+**3. Структура Одиночного Артефакта**
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- p5.js from CDN - always available -->
+  <!-- p5.js из CDN - всегда доступен -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
   <style>
-    /* All styling inline - clean, minimal */
-    /* Canvas on top, controls below */
+    /* Вся стилизация инлайн - чисто, минималистично */
+    /* Холст сверху, управление снизу */
   </style>
 </head>
 <body>
   <div id="canvas-container"></div>
   <div id="controls">
-    <!-- All parameter controls -->
+    <!-- Все элементы управления параметрами -->
   </div>
   <script>
-    // ALL p5.js code inline here
-    // Parameter objects, classes, functions
-    // setup() and draw()
-    // UI handlers
-    // Everything self-contained
+    // ВЕСЬ код p5.js инлайн здесь
+    // Объекты параметров, классы, функции
+    // setup() и draw()
+    // UI обработчики
+    // Все автономно
   </script>
 </body>
 </html>
 ```
 
-**CRITICAL**: This is a single artifact. No external files, no imports (except p5.js CDN). Everything inline.
+**КРИТИЧЕСКИ**: Это одиночный артефакт. Никаких внешних файлов, никаких импортов (кроме p5.js CDN). Все инлайн.
 
-**4. Implementation Details - BUILD THE SIDEBAR**
+**4. Детали Реализации - ПОСТРОЙТЕ БОКОВУЮ ПАНЕЛЬ**
 
-The sidebar structure:
+Структура боковой панели:
 
-**1. Seed (FIXED)** - Always include exactly as shown:
-- Seed display
-- Prev/Next/Random/Jump buttons
+**1. Сид (ФИКСИРОВАНО)** - Всегда включайте точно как показано:
+- Отображение сида
+- Кнопки Пред/След/Случайный/Прыжок
 
-**2. Parameters (VARIABLE)** - Create controls for the art:
+**2. Параметры (ПЕРЕМЕННО)** - Создайте управление для искусства:
 ```html
 <div class="control-group">
-    <label>Parameter Name</label>
+    <label>Имя Параметра</label>
     <input type="range" id="param" min="..." max="..." step="..." value="..." oninput="updateParam('param', this.value)">
     <span class="value-display" id="param-value">...</span>
 </div>
 ```
-Add as many control-group divs as there are parameters.
+Добавьте столько div control-group, сколько параметров.
 
-**3. Colors (OPTIONAL/VARIABLE)** - Include if the art needs adjustable colors:
-- Add color pickers if users should control palette
-- Skip this section if the art uses fixed colors
-- Skip if the art is monochrome
+**3. Цвета (ОПЦИОНАЛЬНО/ПЕРЕМЕННО)** - Включите, если искусству нужны регулируемые цвета:
+- Добавьте выбор цвета, если пользователи должны управлять палитрой
+- Пропустите эту секцию, если искусство использует фиксированные цвета
+- Пропустите, если искусство монохромное
 
-**4. Actions (FIXED)** - Always include exactly as shown:
-- Regenerate button
-- Reset button
-- Download PNG button
+**4. Действия (ФИКСИРОВАНО)** - Всегда включайте точно как показано:
+- Кнопка Регенерировать
+- Кнопка Сброс
+- Кнопка Скачать PNG
 
-**Requirements**:
-- Seed controls must work (prev/next/random/jump/display)
-- All parameters must have UI controls
-- Regenerate, Reset, Download buttons must work
-- Keep Anthropic branding (UI styling, not art colors)
+**Требования**:
+- Управление сидом должно работать (пред/след/случайный/прыжок/отображение)
+- Все параметры должны иметь UI управление
+- Кнопки Регенерировать, Сброс, Скачать должны работать
+- Сохраняйте брендинг Anthropic (стилизация UI, не цвета искусства)
 
-### USING THE ARTIFACT
+### ИСПОЛЬЗОВАНИЕ АРТЕФАКТА
 
-The HTML artifact works immediately:
-1. **In claude.ai**: Displayed as an interactive artifact - runs instantly
-2. **As a file**: Save and open in any browser - no server needed
-3. **Sharing**: Send the HTML file - it's completely self-contained
-
----
-
-## VARIATIONS & EXPLORATION
-
-The artifact includes seed navigation by default (prev/next/random buttons), allowing users to explore variations without creating multiple files. If the user wants specific variations highlighted:
-
-- Include seed presets (buttons for "Variation 1: Seed 42", "Variation 2: Seed 127", etc.)
-- Add a "Gallery Mode" that shows thumbnails of multiple seeds side-by-side
-- All within the same single artifact
-
-This is like creating a series of prints from the same plate - the algorithm is consistent, but each seed reveals different facets of its potential. The interactive nature means users discover their own favorites by exploring the seed space.
+HTML артефакт работает немедленно:
+1. **В claude.ai**: Отображается как интерактивный артефакт - запускается мгновенно
+2. **Как файл**: Сохраните и откройте в любом браузере - сервер не нужен
+3. **Обмен**: Отправьте HTML файл - он полностью автономен
 
 ---
 
-## THE CREATIVE PROCESS
+## ВАРИАЦИИ И ИССЛЕДОВАНИЕ
 
-**User request** → **Algorithmic philosophy** → **Implementation**
+Артефакт включает навигацию по сидам по умолчанию (кнопки пред/след/случайный), позволяя пользователям исследовать вариации без создания множества файлов. Если пользователь хочет, чтобы конкретные вариации были выделены:
 
-Each request is unique. The process involves:
+- Включите пресеты сидов (кнопки для "Вариация 1: Сид 42", "Вариация 2: Сид 127" и т.д.)
+- Добавьте "Режим Галереи", который показывает миниатюры нескольких сидов бок о бок
+- Все в том же одиночном артефакте
 
-1. **Interpret the user's intent** - What aesthetic is being sought?
-2. **Create an algorithmic philosophy** (4-6 paragraphs) describing the computational approach
-3. **Implement it in code** - Build the algorithm that expresses this philosophy
-4. **Design appropriate parameters** - What should be tunable?
-5. **Build matching UI controls** - Sliders/inputs for those parameters
-
-**The constants**:
-- Anthropic branding (colors, fonts, layout)
-- Seed navigation (always present)
-- Self-contained HTML artifact
-
-**Everything else is variable**:
-- The algorithm itself
-- The parameters
-- The UI controls
-- The visual outcome
-
-To achieve the best results, trust creativity and let the philosophy guide the implementation.
+Это как создание серии отпечатков с одной пластины - алгоритм последователен, но каждый сид раскрывает разные грани его потенциала. Интерактивная природа означает, что пользователи открывают своих фаворитов, исследуя пространство сидов.
 
 ---
 
-## RESOURCES
+## ТВОРЧЕСКИЙ ПРОЦЕСС
 
-This skill includes helpful templates and documentation:
+**Запрос пользователя** → **Алгоритмическая философия** → **Реализация**
 
-- **templates/viewer.html**: REQUIRED STARTING POINT for all HTML artifacts.
-  - This is the foundation - contains the exact structure and Anthropic branding
-  - **Keep unchanged**: Layout structure, sidebar organization, Anthropic colors/fonts, seed controls, action buttons
-  - **Replace**: The p5.js algorithm, parameter definitions, and UI controls in Parameters section
-  - The extensive comments in the file mark exactly what to keep vs replace
+Каждый запрос уникален. Процесс включает:
 
-- **templates/generator_template.js**: Reference for p5.js best practices and code structure principles.
-  - Shows how to organize parameters, use seeded randomness, structure classes
-  - NOT a pattern menu - use these principles to build unique algorithms
-  - Embed algorithms inline in the HTML artifact (don't create separate .js files)
+1. **Интерпретация намерения пользователя** - Какая эстетика ищется?
+2. **Создание алгоритмической философии** (4-6 абзацев) описывающей вычислительный подход
+3. **Реализация в коде** - Построение алгоритма, который выражает эту философию
+4. **Проектирование подходящих параметров** - Что должно быть настраиваемым?
+5. **Построение соответствующего UI управления** - Слайдеры/вводы для этих параметров
 
-**Critical reminder**:
-- The **template is the STARTING POINT**, not inspiration
-- The **algorithm is where to create** something unique
-- Don't copy the flow field example - build what the philosophy demands
-- But DO keep the exact UI structure and Anthropic branding from the template
+**Константы**:
+- Брендинг Anthropic (цвета, шрифты, макет)
+- Навигация по сидам (всегда присутствует)
+- Автономный HTML артефакт
+
+**Все остальное переменно**:
+- Сам алгоритм
+- Параметры
+- UI управление
+- Визуальный результат
+
+Чтобы достичь лучших результатов, доверяйте творчеству и позвольте философии направлять реализацию.
+
+---
+
+## РЕСУРСЫ
+
+Этот навык включает полезные шаблоны и документацию:
+
+- **templates/viewer.html**: ТРЕБУЕМАЯ ОТПРАВНАЯ ТОЧКА для всех HTML артефактов.
+  - Это фундамент - содержит точную структуру и брендинг Anthropic
+  - **Оставьте без изменений**: Структуру макета, организацию боковой панели, цвета/шрифты Anthropic, управление сидом, кнопки действий
+  - **Замените**: Алгоритм p5.js, определения параметров и UI управление в секции Параметров
+  - Обширные комментарии в файле отмечают, что именно оставить vs заменить
+
+- **templates/generator_template.js**: Ссылка для лучших практик p5.js и принципов структуры кода.
+  - Показывает, как организовать параметры, использовать сеяную случайность, структурировать классы
+  - НЕ меню паттернов - используйте эти принципы для построения уникальных алгоритмов
+  - Встраивайте алгоритмы инлайн в HTML артефакт (не создавайте отдельные .js файлы)
+
+**Критическое напоминание**:
+- **Шаблон — это ОТПРАВНАЯ ТОЧКА**, а не вдохновение
+- **Алгоритм — это место для создания** чего-то уникального
+- Не копируйте пример поля потока - стройте то, что требует философия
+- Но сохраняйте точную структуру UI и брендинг Anthropic из шаблона

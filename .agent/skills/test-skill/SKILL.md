@@ -1,14 +1,15 @@
 ---
 name: test-skill
-description: Test skill to verify skill-creator functionality. Use this skill for testing purposes only.
+description: Тестовый навык для проверки функциональности создателя навыков. Используйте этот навык только для тестирования.
+license: Полные условия в LICENSE.txt
 ---
 
-# Test Skill
+# Тестовый Навык (Test Skill)
 
-## Overview
+## Обзор
 
-This is a test skill created to verify that the skill-creator is working correctly.
+Это тестовый навык, созданный для проверки правильности работы создателя навыков.
 
-## Test Section
+## Тестовый Раздел
 
-This skill does nothing useful - it's purely for validation testing.
+Этот навык не делает ничего полезного - он предназначен исключительно для проверочного тестирования.

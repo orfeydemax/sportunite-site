@@ -1,130 +1,130 @@
 ---
 name: canvas-design
-description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.
-license: Complete terms in LICENSE.txt
+description: Создавайте красивое визуальное искусство в документах .png и .pdf, используя философию дизайна. Вы должны использовать этот навык, когда пользователь просит создать плакат, произведение искусства, дизайн или другую статическую вещь. Создавайте оригинальные визуальные дизайны, никогда не копируя работы существующих художников, чтобы избежать нарушения авторских прав.
+license: Полные условия в LICENSE.txt
 ---
 
-These are instructions for creating design philosophies - aesthetic movements that are then EXPRESSED VISUALLY. Output only .md files, .pdf files, and .png files.
+Это инструкции для создания философии дизайна - эстетических движений, которые затем ВЫРАЖАЮТСЯ ВИЗУАЛЬНО. Выводите только файлы .md, .pdf и .png.
 
-Complete this in two steps:
-1. Design Philosophy Creation (.md file)
-2. Express by creating it on a canvas (.pdf file or .png file)
+Выполните это в два этапа:
+1. Создание Философии Дизайна (файл .md)
+2. Выражение через создание на холсте (файл .pdf или .png)
 
-First, undertake this task:
+Сначала выполните эту задачу:
 
-## DESIGN PHILOSOPHY CREATION
+## СОЗДАНИЕ ФИЛОСОФИИ ДИЗАЙНА
 
-To begin, create a VISUAL PHILOSOPHY (not layouts or templates) that will be interpreted through:
-- Form, space, color, composition
-- Images, graphics, shapes, patterns
-- Minimal text as visual accent
+Для начала создайте ВИЗУАЛЬНУЮ ФИЛОСОФИЮ (не макеты или шаблоны), которая будет интерпретироваться через:
+- Форму, пространство, цвет, композицию
+- Изображения, графику, формы, узоры
+- Минимальный текст как визуальный акцент
 
-### THE CRITICAL UNDERSTANDING
-- What is received: Some subtle input or instructions by the user that should be taken into account, but used as a foundation; it should not constrain creative freedom.
-- What is created: A design philosophy/aesthetic movement.
-- What happens next: Then, the same version receives the philosophy and EXPRESSES IT VISUALLY - creating artifacts that are 90% visual design, 10% essential text.
+### КРИТИЧЕСКОЕ ПОНИМАНИЕ
+- Что получено: Некоторый тонкий вход или инструкции от пользователя, которые нужно учесть как основу, но они не должны ограничивать творческую свободу.
+- Что создается: Философия дизайна/эстетическое движение.
+- Что происходит дальше: Затем, та же версия получает философию и ВЫРАЖАЕТ ЕЕ ВИЗУАЛЬНО - создавая артефакты, которые на 90% состоят из визуального дизайна и на 10% из необходимого текста.
 
-Consider this approach:
-- Write a manifesto for an art movement
-- The next phase involves making the artwork
+Рассмотрите этот подход:
+- Напишите манифест движения искусства
+- Следующая фаза включает создание произведения искусства
 
-The philosophy must emphasize: Visual expression. Spatial communication. Artistic interpretation. Minimal words.
+Философия должна подчеркивать: Визуальное выражение. Пространственную коммуникацию. Художественную интерпретацию. Минимум слов.
 
-### HOW TO GENERATE A VISUAL PHILOSOPHY
+### КАК ГЕНЕРИРОВАТЬ ВИЗУАЛЬНУЮ ФИЛОСОФИЮ
 
-**Name the movement** (1-2 words): "Brutalist Joy" / "Chromatic Silence" / "Metabolist Dreams"
+**Назовите движение** (1-2 слова): "Бруталистская Радость" / "Хроматическая Тишина" / "Метаболистские Мечты"
 
-**Articulate the philosophy** (4-6 paragraphs - concise but complete):
+**Сформулируйте философию** (4-6 абзацев - кратко, но полно):
 
-To capture the VISUAL essence, express how the philosophy manifests through:
-- Space and form
-- Color and material
-- Scale and rhythm
-- Composition and balance
-- Visual hierarchy
+Чтобы передать ВИЗУАЛЬНУЮ суть, выразите, как философия проявляется через:
+- Пространство и форму
+- Цвет и материал
+- Масштаб и ритм
+- Композицию и баланс
+- Визуальную иерархию
 
-**CRITICAL GUIDELINES:**
-- **Avoid redundancy**: Each design aspect should be mentioned once. Avoid repeating points about color theory, spatial relationships, or typographic principles unless adding new depth.
-- **Emphasize craftsmanship REPEATEDLY**: The philosophy MUST stress multiple times that the final work should appear as though it took countless hours to create, was labored over with care, and comes from someone at the absolute top of their field. This framing is essential - repeat phrases like "meticulously crafted," "the product of deep expertise," "painstaking attention," "master-level execution."
-- **Leave creative space**: Remain specific about the aesthetic direction, but concise enough that the next Claude has room to make interpretive choices also at a extremely high level of craftmanship.
+**КРИТИЧЕСКИЕ РУКОВОДЯЩИЕ ПРИНЦИПЫ:**
+- **Избегайте избыточности**: Каждый аспект дизайна должен упоминаться один раз. Избегайте повторения пунктов о теории цвета, пространственных отношениях или типографических принципах, если это не добавляет новой глубины.
+- **МНОГОКРАТНО подчеркивайте мастерство**: Философия ДОЛЖНА несколько раз подчеркнуть, что финальная работа должна выглядеть так, будто на ее создание ушли бесчисленные часы, она была проработана с заботой и создана кем-то на абсолютной вершине своей области. Это обрамление важно - повторяйте фразы вроде "тщательно созданный", "продукт глубокой экспертизы", "кропотливое внимание", "исполнение уровня мастера".
+- **Оставляйте творческое пространство**: Будьте конкретны в эстетическом направлении, но достаточно кратки, чтобы у следующего Клода было пространство для интерпретационных решений также на чрезвычайно высоком уровне мастерства.
 
-The philosophy must guide the next version to express ideas VISUALLY, not through text. Information lives in design, not paragraphs.
+Философия должна направлять следующую версию выражать идеи ВИЗУАЛЬНО, а не через текст. Информация живет в дизайне, а не в абзацах.
 
-### PHILOSOPHY EXAMPLES
+### ПРИМЕРЫ ФИЛОСОФИЙ
 
-**"Concrete Poetry"**
-Philosophy: Communication through monumental form and bold geometry.
-Visual expression: Massive color blocks, sculptural typography (huge single words, tiny labels), Brutalist spatial divisions, Polish poster energy meets Le Corbusier. Ideas expressed through visual weight and spatial tension, not explanation. Text as rare, powerful gesture - never paragraphs, only essential words integrated into the visual architecture. Every element placed with the precision of a master craftsman.
+**"Бетонная Поэзия"**
+Философия: Коммуникация через монументальную форму и смелую геометрию.
+Визуальное выражение: Массивные цветные блоки, скульптурная типографика (огромные одиночные слова, крошечные метки), Бруталистские пространственные разделения, энергия Польского плаката встречает Ле Корбюзье. Идеи выражаются через визуальный вес и пространственное напряжение, не объяснение. Текст как редкий, мощный жест - никогда не абзацы, только существенные слова, интегрированные в визуальную архитектуру. Каждый элемент размещен с точностью мастера.
 
-**"Chromatic Language"**
-Philosophy: Color as the primary information system.
-Visual expression: Geometric precision where color zones create meaning. Typography minimal - small sans-serif labels letting chromatic fields communicate. Think Josef Albers' interaction meets data visualization. Information encoded spatially and chromatically. Words only to anchor what color already shows. The result of painstaking chromatic calibration.
+**"Хроматический Язык"**
+Философия: Цвет как основная информационная система.
+Визуальное выражение: Геометрическая точность, где цветные зоны создают смысл. Типографика минимальна - маленькие метки без засечек, позволяющие хроматическим полям взаимодействовать. Думайте о взаимодействии Йозефа Альберса, встречающем визуализацию данных. Информация закодирована пространственно и хроматически. Слова только для того, чтобы закрепить то, что цвет уже показывает. Результат кропотливой хроматической калибровки.
 
-**"Analog Meditation"**
-Philosophy: Quiet visual contemplation through texture and breathing room.
-Visual expression: Paper grain, ink bleeds, vast negative space. Photography and illustration dominate. Typography whispered (small, restrained, serving the visual). Japanese photobook aesthetic. Images breathe across pages. Text appears sparingly - short phrases, never explanatory blocks. Each composition balanced with the care of a meditation practice.
+**"Аналоговая Медитация"**
+Философия: Тихая визуальная созерцательность через текстуру и пространство для дыхания.
+Визуальное выражение: Зернистость бумаги, растекание чернил, обширное негативное пространство. Фотография и иллюстрация доминируют. Типографика шепчет (маленькая, сдержанная, обслуживающая визуальное). Эстетика японской фотокниги. Изображения дышат на страницах. Текст появляется экономно - короткие фразы, никогда не пояснительные блоки. Каждая композиция сбалансирована с заботой практики медитации.
 
-**"Organic Systems"**
-Philosophy: Natural clustering and modular growth patterns.
-Visual expression: Rounded forms, organic arrangements, color from nature through architecture. Information shown through visual diagrams, spatial relationships, iconography. Text only for key labels floating in space. The composition tells the story through expert spatial orchestration.
+**"Органические Системы"**
+Философия: Естественная кластеризация и модульные паттерны роста.
+Визуальное выражение: Округлые формы, органические расположения, цвет от природы через архитектуру. Информация показана через визуальные диаграммы, пространственные отношения, иконографию. Текст только для ключевых меток, плавающих в пространстве. Композиция рассказывает историю через экспертную пространственную оркестровку.
 
-**"Geometric Silence"**
-Philosophy: Pure order and restraint.
-Visual expression: Grid-based precision, bold photography or stark graphics, dramatic negative space. Typography precise but minimal - small essential text, large quiet zones. Swiss formalism meets Brutalist material honesty. Structure communicates, not words. Every alignment the work of countless refinements.
+**"Геометрическая Тишина"**
+Философия: Чистый порядок и сдержанность.
+Визуальное выражение: Точность на основе сетки, смелая фотография или строгая графика, драматическое негативное пространство. Типографика точная, но минимальная - маленький существенный текст, большие тихие зоны. Швейцарский формализм встречает Бруталистскую честность материала. Структура коммуницирует, не слова. Каждое выравнивание - работа бесчисленных уточнений.
 
-*These are condensed examples. The actual design philosophy should be 4-6 substantial paragraphs.*
+*Это сокращенные примеры. Фактическая философия дизайна должна быть 4-6 содержательных абзацев.*
 
-### ESSENTIAL PRINCIPLES
-- **VISUAL PHILOSOPHY**: Create an aesthetic worldview to be expressed through design
-- **MINIMAL TEXT**: Always emphasize that text is sparse, essential-only, integrated as visual element - never lengthy
-- **SPATIAL EXPRESSION**: Ideas communicate through space, form, color, composition - not paragraphs
-- **ARTISTIC FREEDOM**: The next Claude interprets the philosophy visually - provide creative room
-- **PURE DESIGN**: This is about making ART OBJECTS, not documents with decoration
-- **EXPERT CRAFTSMANSHIP**: Repeatedly emphasize the final work must look meticulously crafted, labored over with care, the product of countless hours by someone at the top of their field
+### ОСНОВНЫЕ ПРИНЦИПЫ
+- **ВИЗУАЛЬНАЯ ФИЛОСОФИЯ**: Создание эстетического мировоззрения для выражения через дизайн
+- **МИНИМАЛЬНЫЙ ТЕКСТ**: Всегда подчеркивайте, что текст скуп, только существенное, интегрирован как визуальный элемент - никогда не длинный
+- **ПРОСТРАНСТВЕННОЕ ВЫРАЖЕНИЕ**: Идеи коммуницируют через пространство, форму, цвет, композицию - не абзацы
+- **ТВОРЧЕСКАЯ СВОБОДА**: Следующий Клод интерпретирует философию визуально - предоставьте творческое пространство
+- **ЧИСТЫЙ ДИЗАЙН**: Речь идет о создании ОБЪЕКТОВ ИСКУССТВА, а не документов с украшением
+- **ЭКСПЕРТНОЕ МАСТЕРСТВО**: Многократно подчеркивайте, что финальная работа должна выглядеть тщательно созданной, проработанной с заботой, продуктом бесчисленных часов кем-то на вершине своей области
 
-**The design philosophy should be 4-6 paragraphs long.** Fill it with poetic design philosophy that brings together the core vision. Avoid repeating the same points. Keep the design philosophy generic without mentioning the intention of the art, as if it can be used wherever. Output the design philosophy as a .md file.
-
----
-
-## DEDUCING THE SUBTLE REFERENCE
-
-**CRITICAL STEP**: Before creating the canvas, identify the subtle conceptual thread from the original request.
-
-**THE ESSENTIAL PRINCIPLE**:
-The topic is a **subtle, niche reference embedded within the art itself** - not always literal, always sophisticated. Someone familiar with the subject should feel it intuitively, while others simply experience a masterful abstract composition. The design philosophy provides the aesthetic language. The deduced topic provides the soul - the quiet conceptual DNA woven invisibly into form, color, and composition.
-
-This is **VERY IMPORTANT**: The reference must be refined so it enhances the work's depth without announcing itself. Think like a jazz musician quoting another song - only those who know will catch it, but everyone appreciates the music.
+**Философия дизайна должна быть длиной 4-6 абзацев.** Наполните ее поэтической философией дизайна, которая объединяет основное видение. Избегайте повторения одних и тех же пунктов. Сохраняйте философию дизайна общей, не упоминая намерение искусства, как будто она может быть использована где угодно. Выведите философию дизайна как файл .md.
 
 ---
 
-## CANVAS CREATION
+## ВЫВОД ТОНКОЙ ССЫЛКИ
 
-With both the philosophy and the conceptual framework established, express it on a canvas. Take a moment to gather thoughts and clear the mind. Use the design philosophy created and the instructions below to craft a masterpiece, embodying all aspects of the philosophy with expert craftsmanship.
+**КРИТИЧЕСКИЙ ШАГ**: Перед созданием холста определите тонкую концептуальную нить из исходного запроса.
 
-**IMPORTANT**: For any type of content, even if the user requests something for a movie/game/book, the approach should still be sophisticated. Never lose sight of the idea that this should be art, not something that's cartoony or amateur.
+**СУЩЕСТВЕННЫЙ ПРИНЦИП**:
+Тема — это **тонкая, нишевая ссылка, встроенная в само искусство** - не всегда буквальная, всегда утонченная. Тот, кто знаком с предметом, должен почувствовать это интуитивно, в то время как другие просто испытывают мастерскую абстрактную композицию. Философия дизайна предоставляет эстетический язык. Выведенная тема дает душу - тихую концептуальную ДНК, невидимо вплетенную в форму, цвет и композицию.
 
-To create museum or magazine quality work, use the design philosophy as the foundation. Create one single page, highly visual, design-forward PDF or PNG output (unless asked for more pages). Generally use repeating patterns and perfect shapes. Treat the abstract philosophical design as if it were a scientific bible, borrowing the visual language of systematic observation—dense accumulation of marks, repeated elements, or layered patterns that build meaning through patient repetition and reward sustained viewing. Add sparse, clinical typography and systematic reference markers that suggest this could be a diagram from an imaginary discipline, treating the invisible subject with the same reverence typically reserved for documenting observable phenomena. Anchor the piece with simple phrase(s) or details positioned subtly, using a limited color palette that feels intentional and cohesive. Embrace the paradox of using analytical visual language to express ideas about human experience: the result should feel like an artifact that proves something ephemeral can be studied, mapped, and understood through careful attention. This is true art. 
-
-**Text as a contextual element**: Text is always minimal and visual-first, but let context guide whether that means whisper-quiet labels or bold typographic gestures. A punk venue poster might have larger, more aggressive type than a minimalist ceramics studio identity. Most of the time, font should be thin. All use of fonts must be design-forward and prioritize visual communication. Regardless of text scale, nothing falls off the page and nothing overlaps. Every element must be contained within the canvas boundaries with proper margins. Check carefully that all text, graphics, and visual elements have breathing room and clear separation. This is non-negotiable for professional execution. **IMPORTANT: Use different fonts if writing text. Search the `./canvas-fonts` directory. Regardless of approach, sophistication is non-negotiable.**
-
-Download and use whatever fonts are needed to make this a reality. Get creative by making the typography actually part of the art itself -- if the art is abstract, bring the font onto the canvas, not typeset digitally.
-
-To push boundaries, follow design instinct/intuition while using the philosophy as a guiding principle. Embrace ultimate design freedom and choice. Push aesthetics and design to the frontier. 
-
-**CRITICAL**: To achieve human-crafted quality (not AI-generated), create work that looks like it took countless hours. Make it appear as though someone at the absolute top of their field labored over every detail with painstaking care. Ensure the composition, spacing, color choices, typography - everything screams expert-level craftsmanship. Double-check that nothing overlaps, formatting is flawless, every detail perfect. Create something that could be shown to people to prove expertise and rank as undeniably impressive.
-
-Output the final result as a single, downloadable .pdf or .png file, alongside the design philosophy used as a .md file.
+Это **ОЧЕНЬ ВАЖНО**: Ссылка должна быть уточнена так, чтобы она усиливала глубину работы, не объявляя о себе. Думайте как джазовый музыкант, цитирующий другую песню - только те, кто знает, поймают это, но все оценят музыку.
 
 ---
 
-## FINAL STEP
+## СОЗДАНИЕ ХОЛСТА (CANVAS)
 
-**IMPORTANT**: The user ALREADY said "It isn't perfect enough. It must be pristine, a masterpiece if craftsmanship, as if it were about to be displayed in a museum."
+С установленной философией и концептуальной структурой, выразите это на холсте. Уделите момент, чтобы собраться с мыслями и очистить разум. Используйте созданную философию дизайна и инструкции ниже, чтобы создать шедевр, воплощая все аспекты философии с экспертным мастерством.
 
-**CRITICAL**: To refine the work, avoid adding more graphics; instead refine what has been created and make it extremely crisp, respecting the design philosophy and the principles of minimalism entirely. Rather than adding a fun filter or refactoring a font, consider how to make the existing composition more cohesive with the art. If the instinct is to call a new function or draw a new shape, STOP and instead ask: "How can I make what's already here more of a piece of art?"
+**ВАЖНО**: Для любого типа контента, даже если пользователь запрашивает что-то для фильма/игры/книги, подход все равно должен быть утонченным. Никогда не теряйте из виду идею, что это должно быть искусством, а не чем-то мультяшным или любительским.
 
-Take a second pass. Go back to the code and refine/polish further to make this a philosophically designed masterpiece.
+Чтобы создать работу музейного или журнального качества, используйте философию дизайна как основу. Создайте одну страницу, высоко визуальный, ориентированный на дизайн вывод PDF или PNG (если не запрошено больше страниц). Обычно используйте повторяющиеся паттерны и идеальные формы. Относитесь к абстрактному философскому дизайну так, как если бы это была научная библия, заимствуя визуальный язык систематического наблюдения — плотное накопление меток, повторяющиеся элементы или слоистые паттерны, которые строят смысл через терпеливое повторение и вознаграждают длительное рассмотрение. Добавьте скупую, клиническую типографику и систематические референсные маркеры, которые предполагают, что это может быть диаграмма из воображаемой дисциплины, относясь к невидимому предмету с тем же благоговением, которое обычно зарезервировано для документирования наблюдаемых явлений. Закрепите произведение простой фразой(ами) или деталями, расположенными тонко, используя ограниченную палитру цветов, которая ощущается намеренной и связной. Примите парадокс использования аналитического визуального языка для выражения идей о человеческом опыте: результат должен ощущаться как артефакт, который доказывает, что что-то эфемерное может быть изучено, нанесено на карту и понято через внимательное отношение. Это настоящее искусство.
 
-## MULTI-PAGE OPTION
+**Текст как контекстуальный элемент**: Текст всегда минимален и ориентирован на визуальное, но позвольте контексту определять, означает ли это шепчущие метки или смелые типографические жесты. Плакат панк-площадки может иметь более крупный, агрессивный шрифт, чем айдентика минималистичной студии керамики. Большую часть времени шрифт должен быть тонким. Все использование шрифтов должно быть ориентировано на дизайн и приоритизировать визуальную коммуникацию. Независимо от масштаба текста, ничто не выпадает за пределы страницы и ничто не перекрывается. Каждый элемент должен содержаться в границах холста с правильными полями. Тщательно проверьте, чтобы весь текст, графика и визуальные элементы имели пространство для дыхания и четкое разделение. Это не подлежит обсуждению для профессионального исполнения. **ВАЖНО: Используйте разные шрифты при написании текста. Ищите в директории `./canvas-fonts`. Независимо от подхода, утонченность не подлежит обсуждению.**
 
-To create additional pages when requested, create more creative pages along the same lines as the design philosophy but distinctly different as well. Bundle those pages in the same .pdf or many .pngs. Treat the first page as just a single page in a whole coffee table book waiting to be filled. Make the next pages unique twists and memories of the original. Have them almost tell a story in a very tasteful way. Exercise full creative freedom.
+Скачайте и используйте любые шрифты, необходимые для воплощения этого в реальность. Проявите творческий подход, сделав типографику действительно частью самого искусства -- если искусство абстрактно, привнесите шрифт на холст, а не набирайте его цифровым способом.
+
+Чтобы раздвинуть границы, следуйте дизайнерскому инстинкту/интуиции, используя философию как руководящий принцип. Примите полную свободу дизайна и выбора. Толкайте эстетику и дизайн к границе.
+
+**КРИТИЧЕСКИ**: Чтобы достичь качества ручной работы (не сгенерированного ИИ), создавайте работу, которая выглядит так, будто на нее ушли бесчисленные часы. Сделайте так, чтобы казалось, что кто-то на абсолютной вершине своей области трудился над каждой деталью с кропотливой заботой. Убедитесь, что композиция, интервалы, выбор цвета, типографика - все кричит о мастерстве экспертного уровня. Перепроверьте, что ничто не перекрывается, форматирование безупречно, каждая деталь совершенна. Создайте что-то, что можно показать людям, чтобы доказать экспертизу и оценить как неоспоримо впечатляющее.
+
+Выведите финальный результат как один загружаемый файл .pdf или .png, наряду с использованной философией дизайна как файл .md.
+
+---
+
+## ФИНАЛЬНЫЙ ШАГ
+
+**ВАЖНО**: Пользователь УЖЕ сказал "Это недостаточно идеально. Это должно быть безупречно, шедевр мастерства, как если бы это вот-вот выставили в музее."
+
+**КРИТИЧЕСКИ**: Чтобы уточнить работу, избегайте добавления большего количества графики; вместо этого уточните то, что было создано, и сделайте это чрезвычайно четким, уважая философию дизайна и принципы минимализма полностью. Вместо добавления веселого фильтра или рефакторинга шрифта, подумайте, как сделать существующую композицию более связной с искусством. Если инстинкт подсказывает вызвать новую функцию или нарисовать новую форму, ОСТАНОВИТЕСЬ и вместо этого спросите: "Как я могу сделать то, что уже здесь, большим произведением искусства?"
+
+Сделайте второй проход. Вернитесь к коду и уточните/отполируйте дальше, чтобы сделать это философски спроектированным шедевром.
+
+## МНОГОСТРАНИЧНАЯ ОПЦИЯ
+
+Чтобы создать дополнительные страницы по запросу, создайте больше творческих страниц в том же духе, что и философия дизайна, но также отчетливо отличающихся. Объедините эти страницы в один .pdf или множество .png. Относитесь к первой странице просто как к одной странице в целой книге для журнального столика, ожидающей заполнения. Сделайте следующие страницы уникальными поворотами и воспоминаниями оригинала. Пусть они почти рассказывают историю очень вкусным образом. Проявляйте полную творческую свободу.

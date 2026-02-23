@@ -1,32 +1,32 @@
 ---
 name: internal-comms
-description: A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
-license: Complete terms in LICENSE.txt
+description: Набор ресурсов, помогающих мне писать все виды внутренней коммуникации, используя форматы, которые предпочитает моя компания. Клод должен использовать этот навык всякий раз, когда его просят написать какую-либо внутреннюю коммуникацию (отчеты о статусе, обновления от руководства, обновления 3P, информационные бюллетени компании, FAQ, отчеты об инцидентах, обновления проектов и т.д.).
+license: Полные условия в LICENSE.txt
 ---
 
-## When to use this skill
-To write internal communications, use this skill for:
-- 3P updates (Progress, Plans, Problems)
-- Company newsletters
-- FAQ responses
-- Status reports
-- Leadership updates
-- Project updates
-- Incident reports
+## Когда использовать этот навык
+Для написания внутренней коммуникации используйте этот навык для:
+- Обновлений 3P (Прогресс, Планы, Проблемы)
+- Информационных бюллетеней компании
+- Ответов на FAQ
+- Отчетов о статусе
+- Обновлений от руководства
+- Обновлений проектов
+- Отчетов об инцидентах
 
-## How to use this skill
+## Как использовать этот навык
 
-To write any internal communication:
+Чтобы написать любую внутреннюю коммуникацию:
 
-1. **Identify the communication type** from the request
-2. **Load the appropriate guideline file** from the `examples/` directory:
-    - `examples/3p-updates.md` - For Progress/Plans/Problems team updates
-    - `examples/company-newsletter.md` - For company-wide newsletters
-    - `examples/faq-answers.md` - For answering frequently asked questions
-    - `examples/general-comms.md` - For anything else that doesn't explicitly match one of the above
-3. **Follow the specific instructions** in that file for formatting, tone, and content gathering
+1. **Определите тип коммуникации** из запроса
+2. **Загрузите соответствующий файл руководства** из директории `examples/`:
+    - `examples/3p-updates.md` - Для обновлений команды Прогресс/Планы/Проблемы
+    - `examples/company-newsletter.md` - Для общекорпоративных информационных бюллетеней
+    - `examples/faq-answers.md` - Для ответов на часто задаваемые вопросы
+    - `examples/general-comms.md` - Для всего остального, что явно не соответствует ни одному из вышеперечисленных
+3. **Следуйте конкретным инструкциям** в этом файле для форматирования, тона и сбора контента
 
-If the communication type doesn't match any existing guideline, ask for clarification or more context about the desired format.
+Если тип коммуникации не соответствует ни одному существующему руководству, попросите уточнения или больше контекста о желаемом формате.
 
-## Keywords
-3P updates, company newsletter, company comms, weekly update, faqs, common questions, updates, internal comms
+## Ключевые слова
+3P updates, company newsletter, company comms, weekly update, faqs, common questions, updates, internal comms, внутренние коммуникации, обновления компании, еженедельные отчеты

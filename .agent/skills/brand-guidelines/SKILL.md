@@ -1,73 +1,73 @@
 ---
 name: brand-guidelines
-description: Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.
-license: Complete terms in LICENSE.txt
+description: Применяет официальные цвета и типографику бренда Anthropic к любому типу артефактов, которым может быть полезен внешний вид и ощущение Anthropic. Используйте этот навык, когда применяются цвета бренда или руководства по стилю, визуальное форматирование или стандарты дизайна компании.
+license: Полные условия в LICENSE.txt
 ---
 
-# Anthropic Brand Styling
+# Стилизация Бренда Anthropic
 
-## Overview
+## Обзор
 
-To access Anthropic's official brand identity and style resources, use this skill.
+Чтобы получить доступ к официальной айдентике и ресурсам стиля бренда Anthropic, используйте этот навык.
 
-**Keywords**: branding, corporate identity, visual identity, post-processing, styling, brand colors, typography, Anthropic brand, visual formatting, visual design
+**Ключевые слова**: брендинг, корпоративная айдентика, визуальная айдентика, постобработка, стилизация, цвета бренда, типографика, бренд Anthropic, визуальное форматирование, визуальный дизайн
 
-## Brand Guidelines
+## Руководство по Бренду
 
-### Colors
+### Цвета
 
-**Main Colors:**
+**Основные Цвета:**
 
-- Dark: `#141413` - Primary text and dark backgrounds
-- Light: `#faf9f5` - Light backgrounds and text on dark
-- Mid Gray: `#b0aea5` - Secondary elements
-- Light Gray: `#e8e6dc` - Subtle backgrounds
+- Тёмный: `#141413` - Основной текст и темные фоны
+- Светлый: `#faf9f5` - Светлые фоны и текст на темном
+- Средне-серый: `#b0aea5` - Вторичные элементы
+- Светло-серый: `#e8e6dc` - Тонкие фоны
 
-**Accent Colors:**
+**Акцентные Цвета:**
 
-- Orange: `#d97757` - Primary accent
-- Blue: `#6a9bcc` - Secondary accent
-- Green: `#788c5d` - Tertiary accent
+- Оранжевый: `#d97757` - Первичный акцент
+- Синий: `#6a9bcc` - Вторичный акцент
+- Зеленый: `#788c5d` - Третичный акцент
 
-### Typography
+### Типографика
 
-- **Headings**: Poppins (with Arial fallback)
-- **Body Text**: Lora (with Georgia fallback)
-- **Note**: Fonts should be pre-installed in your environment for best results
+- **Заголовки**: Poppins (с откатом/fallback на Arial)
+- **Основной Текст**: Lora (с откатом/fallback на Georgia)
+- **Примечание**: Шрифты должны быть предустановлены в вашей среде для лучших результатов
 
-## Features
+## Функции
 
-### Smart Font Application
+### Умное Применение Шрифтов
 
-- Applies Poppins font to headings (24pt and larger)
-- Applies Lora font to body text
-- Automatically falls back to Arial/Georgia if custom fonts unavailable
-- Preserves readability across all systems
+- Применяет шрифт Poppins к заголовкам (24pt и больше)
+- Применяет шрифт Lora к основному тексту
+- Автоматически откатывается на Arial/Georgia, если пользовательские шрифты недоступны
+- Сохраняет читаемость на всех системах
 
-### Text Styling
+### Стилизация Текста
 
-- Headings (24pt+): Poppins font
-- Body text: Lora font
-- Smart color selection based on background
-- Preserves text hierarchy and formatting
+- Заголовки (24pt+): шрифт Poppins
+- Основной текст: шрифт Lora
+- Умный выбор цвета на основе фона
+- Сохраняет иерархию текста и форматирование
 
-### Shape and Accent Colors
+### Цвета Форм и Акцентов
 
-- Non-text shapes use accent colors
-- Cycles through orange, blue, and green accents
-- Maintains visual interest while staying on-brand
+- Нетекстовые формы используют акцентные цвета
+- Циклически переключается через оранжевый, синий и зеленый акценты
+- Поддерживает визуальный интерес, оставаясь в рамках бренда
 
-## Technical Details
+## Технические Детали
 
-### Font Management
+### Управление Шрифтами
 
-- Uses system-installed Poppins and Lora fonts when available
-- Provides automatic fallback to Arial (headings) and Georgia (body)
-- No font installation required - works with existing system fonts
-- For best results, pre-install Poppins and Lora fonts in your environment
+- Использует системно установленные шрифты Poppins и Lora, когда они доступны
+- Обеспечивает автоматический откат на Arial (заголовки) и Georgia (основной текст)
+- Установка шрифтов не требуется - работает с существующими системными шрифтами
+- Для наилучших результатов предустановите шрифты Poppins и Lora в вашей среде
 
-### Color Application
+### Применение Цвета
 
-- Uses RGB color values for precise brand matching
-- Applied via python-pptx's RGBColor class
-- Maintains color fidelity across different systems
+- Использует значения цветов RGB для точного соответствия бренду
+- Применяется через класс RGBColor библиотеки python-pptx
+- Сохраняет верность цвета на разных системах

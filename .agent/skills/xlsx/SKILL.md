@@ -1,259 +1,259 @@
 ---
 name: xlsx
-description: "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \"the xlsx in my downloads\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved."
-license: Proprietary. LICENSE.txt has complete terms
+description: Используйте этот навык в любое время, когда файл электронной таблицы является основным входом или выходом. Это означает любую задачу, где пользователь хочет: открыть, прочитать, отредактировать или исправить существующий файл .xlsx, .xlsm, .csv или .tsv (например, добавление столбцов, вычисление формул, форматирование, создание графиков, очистка грязных данных); создать новую таблицу с нуля или из других источников данных; или конвертировать между форматами табличных файлов. Запускайте особенно тогда, когда пользователь ссылается на файл электронной таблицы по имени или пути — даже небрежно (например, "xlsx в моих загрузках") — и хочет, чтобы с ним что-то сделали или из него что-то произвели. Также запускайте для очистки или реструктуризации грязных табличных файлов данных (неправильные строки, смещенные заголовки, мусорные данные) в правильные таблицы. Результатом должен быть файл электронной таблицы. НЕ запускайте, когда основным результатом является документ Word, HTML отчет, отдельный скрипт Python, конвейер базы данных или интеграция Google Sheets API, даже если задействованы табличные данные.
+license: Proprietary. Полные условия в LICENSE.txt
 ---
 
-# Requirements for Outputs
+# Требования к Выходным Данным
 
-## All Excel files
+## Все файлы Excel
 
-### Professional Font
-- Use a consistent, professional font (e.g., Arial, Times New Roman) for all deliverables unless otherwise instructed by the user
+### Профессиональный Шрифт
+- Используйте последовательный, профессиональный шрифт (например, Arial, Times New Roman) для всех результатов, если пользователь не указал иное
 
-### Zero Formula Errors
-- Every Excel model MUST be delivered with ZERO formula errors (#REF!, #DIV/0!, #VALUE!, #N/A, #NAME?)
+### Ноль Ошибок в Формулах
+- Каждая модель Excel ДОЛЖНА быть предоставлена с НУЛЕВЫМИ ошибками в формулах (#REF!, #DIV/0!, #VALUE!, #N/A, #NAME?)
 
-### Preserve Existing Templates (when updating templates)
-- Study and EXACTLY match existing format, style, and conventions when modifying files
-- Never impose standardized formatting on files with established patterns
-- Existing template conventions ALWAYS override these guidelines
+### Сохранение Существующих Шаблонов (при обновлении шаблонов)
+- Изучайте и ТОЧНО соответствуйте существующему формату, стилю и соглашениям при модификации файлов
+- Никогда не навязывайте стандартизированное форматирование файлам с установленными паттернами
+- Соглашения существующего шаблона ВСЕГДА переопределяют эти рекомендации
 
-## Financial models
+## Финансовые модели
 
-### Color Coding Standards
-Unless otherwise stated by the user or existing template
+### Стандарты Цветовой Кодировки
+Если не указано иное пользователем или существующим шаблоном
 
-#### Industry-Standard Color Conventions
-- **Blue text (RGB: 0,0,255)**: Hardcoded inputs, and numbers users will change for scenarios
-- **Black text (RGB: 0,0,0)**: ALL formulas and calculations
-- **Green text (RGB: 0,128,0)**: Links pulling from other worksheets within same workbook
-- **Red text (RGB: 255,0,0)**: External links to other files
-- **Yellow background (RGB: 255,255,0)**: Key assumptions needing attention or cells that need to be updated
+#### Отраслевые Стандарты Цветовых Соглашений
+- **Синий текст (RGB: 0,0,255)**: Жестко заданные входные данные и числа, которые пользователи будут менять для сценариев
+- **Черный текст (RGB: 0,0,0)**: ВСЕ формулы и вычисления
+- **Зеленый текст (RGB: 0,128,0)**: Ссылки, извлекающие данные из других листов внутри той же рабочей книги
+- **Красный текст (RGB: 255,0,0)**: Внешние ссылки на другие файлы
+- **Желтый фон (RGB: 255,255,0)**: Ключевые предположения, требующие внимания, или ячейки, которые нужно обновить
 
-### Number Formatting Standards
+### Стандарты Форматирования Чисел
 
-#### Required Format Rules
-- **Years**: Format as text strings (e.g., "2024" not "2,024")
-- **Currency**: Use $#,##0 format; ALWAYS specify units in headers ("Revenue ($mm)")
-- **Zeros**: Use number formatting to make all zeros "-", including percentages (e.g., "$#,##0;($#,##0);-")
-- **Percentages**: Default to 0.0% format (one decimal)
-- **Multiples**: Format as 0.0x for valuation multiples (EV/EBITDA, P/E)
-- **Negative numbers**: Use parentheses (123) not minus -123
+#### Обязательные Правила Формата
+- **Годы**: Форматируйте как текстовые строки (например, "2024" а не "2,024")
+- **Валюта**: Используйте формат $#,##0; ВСЕГДА указывайте единицы измерения в заголовках ("Revenue ($mm)")
+- **Нули**: Используйте форматирование чисел, чтобы сделать все нули "-", включая проценты (например, "$#,##0;($#,##0);-")
+- **Проценты**: По умолчанию формат 0.0% (один десятичный знак)
+- **Множители**: Форматируйте как 0.0x для мультипликаторов оценки (EV/EBITDA, P/E)
+- **Отрицательные числа**: Используйте скобки (123) а не минус -123
 
-### Formula Construction Rules
+### Правила Построения Формул
 
-#### Assumptions Placement
-- Place ALL assumptions (growth rates, margins, multiples, etc.) in separate assumption cells
-- Use cell references instead of hardcoded values in formulas
-- Example: Use =B5*(1+$B$6) instead of =B5*1.05
+#### Размещение Предположений
+- Размещайте ВСЕ предположения (темпы роста, маржу, множители и т.д.) в отдельных ячейках предположений
+- Используйте ссылки на ячейки вместо жестко заданных значений в формулах
+- Пример: Используйте =B5*(1+$B$6) вместо =B5*1.05
 
-#### Formula Error Prevention
-- Verify all cell references are correct
-- Check for off-by-one errors in ranges
-- Ensure consistent formulas across all projection periods
-- Test with edge cases (zero values, negative numbers)
-- Verify no unintended circular references
+#### Предотвращение Ошибок в Формулах
+- Проверьте, что все ссылки на ячейки верны
+- Проверьте ошибки на единицу (off-by-one) в диапазонах
+- Обеспечьте согласованность формул во всех периодах прогнозирования
+- Тестируйте с граничными случаями (нулевые значения, отрицательные числа)
+- Проверьте отсутствие непреднамеренных циклических ссылок
 
-#### Documentation Requirements for Hardcodes
-- Comment or in cells beside (if end of table). Format: "Source: [System/Document], [Date], [Specific Reference], [URL if applicable]"
-- Examples:
+#### Требования к Документации для Жестко Заданных Значений
+- Комментируйте или пишите в ячейках рядом (если конец таблицы). Формат: "Source: [System/Document], [Date], [Specific Reference], [URL if applicable]"
+- Примеры:
   - "Source: Company 10-K, FY2024, Page 45, Revenue Note, [SEC EDGAR URL]"
   - "Source: Company 10-Q, Q2 2025, Exhibit 99.1, [SEC EDGAR URL]"
   - "Source: Bloomberg Terminal, 8/15/2025, AAPL US Equity"
   - "Source: FactSet, 8/20/2025, Consensus Estimates Screen"
 
-# XLSX creation, editing, and analysis
+# Создание, редактирование и анализ XLSX
 
-## Overview
+## Обзор
 
-A user may ask you to create, edit, or analyze the contents of an .xlsx file. You have different tools and workflows available for different tasks.
+Пользователь может попросить вас создать, отредактировать или проанализировать содержимое файла .xlsx. У вас есть разные инструменты и рабочие процессы для разных задач.
 
-## Important Requirements
+## Важные Требования
 
-**LibreOffice Required for Formula Recalculation**: You can assume LibreOffice is installed for recalculating formula values using the `scripts/recalc.py` script. The script automatically configures LibreOffice on first run, including in sandboxed environments where Unix sockets are restricted (handled by `scripts/office/soffice.py`)
+**LibreOffice Требуется для Пересчета Формул**: Вы можете предполагать, что LibreOffice установлен для пересчета значений формул с использованием скрипта `scripts/recalc.py`. Скрипт автоматически настраивает LibreOffice при первом запуске, в том числе в изолированных средах, где Unix сокеты ограничены (обрабатывается `scripts/office/soffice.py`)
 
-## Reading and analyzing data
+## Чтение и анализ данных
 
-### Data analysis with pandas
-For data analysis, visualization, and basic operations, use **pandas** which provides powerful data manipulation capabilities:
+### Анализ данных с pandas
+Для анализа данных, визуализации и базовых операций используйте **pandas**, который предоставляет мощные возможности манипуляции данными:
 
 ```python
 import pandas as pd
 
-# Read Excel
-df = pd.read_excel('file.xlsx')  # Default: first sheet
-all_sheets = pd.read_excel('file.xlsx', sheet_name=None)  # All sheets as dict
+# Чтение Excel
+df = pd.read_excel('file.xlsx')  # По умолчанию: первый лист
+all_sheets = pd.read_excel('file.xlsx', sheet_name=None)  # Все листы как словарь
 
-# Analyze
-df.head()      # Preview data
-df.info()      # Column info
-df.describe()  # Statistics
+# Анализ
+df.head()      # Предпросмотр данных
+df.info()      # Информация о столбцах
+df.describe()  # Статистика
 
-# Write Excel
+# Запись Excel
 df.to_excel('output.xlsx', index=False)
 ```
 
-## Excel File Workflows
+## Рабочие Процессы с Файлами Excel
 
-## CRITICAL: Use Formulas, Not Hardcoded Values
+## КРИТИЧНО: Используйте Формулы, А Не Жестко Заданные Значения
 
-**Always use Excel formulas instead of calculating values in Python and hardcoding them.** This ensures the spreadsheet remains dynamic and updateable.
+**Всегда используйте формулы Excel вместо вычисления значений в Python и их жесткого задавания.** Это гарантирует, что таблица останется динамической и обновляемой.
 
-### ❌ WRONG - Hardcoding Calculated Values
+### ❌ НЕПРАВИЛЬНО - Жесткое Задание Вычисленных Значений
 ```python
-# Bad: Calculating in Python and hardcoding result
+# Плохо: Вычисление в Python и жесткое задание результата
 total = df['Sales'].sum()
-sheet['B10'] = total  # Hardcodes 5000
+sheet['B10'] = total  # Жестко задает 5000
 
-# Bad: Computing growth rate in Python
+# Плохо: Вычисление темпа роста в Python
 growth = (df.iloc[-1]['Revenue'] - df.iloc[0]['Revenue']) / df.iloc[0]['Revenue']
-sheet['C5'] = growth  # Hardcodes 0.15
+sheet['C5'] = growth  # Жестко задает 0.15
 
-# Bad: Python calculation for average
+# Плохо: Вычисление среднего в Python
 avg = sum(values) / len(values)
-sheet['D20'] = avg  # Hardcodes 42.5
+sheet['D20'] = avg  # Жестко задает 42.5
 ```
 
-### ✅ CORRECT - Using Excel Formulas
+### ✅ ПРАВИЛЬНО - Использование Формул Excel
 ```python
-# Good: Let Excel calculate the sum
+# Хорошо: Пусть Excel считает сумму
 sheet['B10'] = '=SUM(B2:B9)'
 
-# Good: Growth rate as Excel formula
+# Хорошо: Темп роста как формула Excel
 sheet['C5'] = '=(C4-C2)/C2'
 
-# Good: Average using Excel function
+# Хорошо: Среднее используя функцию Excel
 sheet['D20'] = '=AVERAGE(D2:D19)'
 ```
 
-This applies to ALL calculations - totals, percentages, ratios, differences, etc. The spreadsheet should be able to recalculate when source data changes.
+Это применимо ко ВСЕМ вычислениям - итогом, процентам, соотношениям, разницам и т.д. Таблица должна уметь пересчитываться, когда исходные данные меняются.
 
-## Common Workflow
-1. **Choose tool**: pandas for data, openpyxl for formulas/formatting
-2. **Create/Load**: Create new workbook or load existing file
-3. **Modify**: Add/edit data, formulas, and formatting
-4. **Save**: Write to file
-5. **Recalculate formulas (MANDATORY IF USING FORMULAS)**: Use the scripts/recalc.py script
+## Общий Рабочий Процесс
+1. **Выберите инструмент**: pandas для данных, openpyxl для формул/форматирования
+2. **Создайте/Загрузите**: Создайте новую рабочую книгу или загрузите существующий файл
+3. **Модифицируйте**: Добавьте/отредактируйте данные, формулы и форматирование
+4. **Сохраните**: Запишите в файл
+5. **Пересчитайте формулы (ОБЯЗАТЕЛЬНО ЕСЛИ ИСПОЛЬЗУЮТСЯ ФОРМУЛЫ)**: Используйте скрипт scripts/recalc.py
    ```bash
    python scripts/recalc.py output.xlsx
    ```
-6. **Verify and fix any errors**: 
-   - The script returns JSON with error details
-   - If `status` is `errors_found`, check `error_summary` for specific error types and locations
-   - Fix the identified errors and recalculate again
-   - Common errors to fix:
-     - `#REF!`: Invalid cell references
-     - `#DIV/0!`: Division by zero
-     - `#VALUE!`: Wrong data type in formula
-     - `#NAME?`: Unrecognized formula name
+6. **Проверьте и исправьте любые ошибки**: 
+   - Скрипт возвращает JSON с деталями ошибок
+   - Если `status` равен `errors_found`, проверьте `error_summary` на конкретные типы ошибок и местоположения
+   - Исправьте идентифицированные ошибки и пересчитайте снова
+   - Распространенные ошибки для исправления:
+     - `#REF!`: Неверные ссылки на ячейки
+     - `#DIV/0!`: Деление на ноль
+     - `#VALUE!`: Неверный тип данных в формуле
+     - `#NAME?`: Нераспознанное имя формулы
 
-### Creating new Excel files
+### Создание новых файлов Excel
 
 ```python
-# Using openpyxl for formulas and formatting
+# Использование openpyxl для формул и форматирования
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 
 wb = Workbook()
 sheet = wb.active
 
-# Add data
+# Добавление данных
 sheet['A1'] = 'Hello'
 sheet['B1'] = 'World'
 sheet.append(['Row', 'of', 'data'])
 
-# Add formula
+# Добавление формулы
 sheet['B2'] = '=SUM(A1:A10)'
 
-# Formatting
+# Форматирование
 sheet['A1'].font = Font(bold=True, color='FF0000')
 sheet['A1'].fill = PatternFill('solid', start_color='FFFF00')
 sheet['A1'].alignment = Alignment(horizontal='center')
 
-# Column width
+# Ширина столбца
 sheet.column_dimensions['A'].width = 20
 
 wb.save('output.xlsx')
 ```
 
-### Editing existing Excel files
+### Редактирование существующих файлов Excel
 
 ```python
-# Using openpyxl to preserve formulas and formatting
+# Использование openpyxl для сохранения формул и форматирования
 from openpyxl import load_workbook
 
-# Load existing file
+# Загрузка существующего файла
 wb = load_workbook('existing.xlsx')
-sheet = wb.active  # or wb['SheetName'] for specific sheet
+sheet = wb.active  # или wb['SheetName'] для конкретного листа
 
-# Working with multiple sheets
+# Работа с несколькими листами
 for sheet_name in wb.sheetnames:
     sheet = wb[sheet_name]
     print(f"Sheet: {sheet_name}")
 
-# Modify cells
+# Модификация ячеек
 sheet['A1'] = 'New Value'
-sheet.insert_rows(2)  # Insert row at position 2
-sheet.delete_cols(3)  # Delete column 3
+sheet.insert_rows(2)  # Вставить строку в позицию 2
+sheet.delete_cols(3)  # Удалить столбец 3
 
-# Add new sheet
+# Добавление нового листа
 new_sheet = wb.create_sheet('NewSheet')
 new_sheet['A1'] = 'Data'
 
 wb.save('modified.xlsx')
 ```
 
-## Recalculating formulas
+## Пересчет формул
 
-Excel files created or modified by openpyxl contain formulas as strings but not calculated values. Use the provided `scripts/recalc.py` script to recalculate formulas:
+Файлы Excel, созданные или модифицированные openpyxl, содержат формулы как строки, но не вычисленные значения. Используйте предоставленный скрипт `scripts/recalc.py` для пересчета формул:
 
 ```bash
 python scripts/recalc.py <excel_file> [timeout_seconds]
 ```
 
-Example:
+Пример:
 ```bash
 python scripts/recalc.py output.xlsx 30
 ```
 
-The script:
-- Automatically sets up LibreOffice macro on first run
-- Recalculates all formulas in all sheets
-- Scans ALL cells for Excel errors (#REF!, #DIV/0!, etc.)
-- Returns JSON with detailed error locations and counts
-- Works on both Linux and macOS
+Скрипт:
+- Автоматически настраивает макрос LibreOffice при первом запуске
+- Пересчитывает все формулы во всех листах
+- Сканирует ВСЕ ячейки на ошибки Excel (#REF!, #DIV/0!, и т.д.)
+- Возвращает JSON с детальными местоположениями ошибок и количеством
+- Работает и на Linux, и на macOS
 
-## Formula Verification Checklist
+## Чек-лист Верификации Формул
 
-Quick checks to ensure formulas work correctly:
+Быстрые проверки, чтобы убедиться, что формулы работают правильно:
 
-### Essential Verification
-- [ ] **Test 2-3 sample references**: Verify they pull correct values before building full model
-- [ ] **Column mapping**: Confirm Excel columns match (e.g., column 64 = BL, not BK)
-- [ ] **Row offset**: Remember Excel rows are 1-indexed (DataFrame row 5 = Excel row 6)
+### Основная Верификация
+- [ ] **Тест 2-3 примеров ссылок**: Проверьте, что они тянут правильные значения перед построением полной модели
+- [ ] **Маппинг столбцов**: Подтвердите соответствие столбцов Excel (например, столбец 64 = BL, а не BK)
+- [ ] **Смещение строк**: Помните, что строки Excel индексируются с 1 (строка DataFrame 5 = строка Excel 6)
 
-### Common Pitfalls
-- [ ] **NaN handling**: Check for null values with `pd.notna()`
-- [ ] **Far-right columns**: FY data often in columns 50+ 
-- [ ] **Multiple matches**: Search all occurrences, not just first
-- [ ] **Division by zero**: Check denominators before using `/` in formulas (#DIV/0!)
-- [ ] **Wrong references**: Verify all cell references point to intended cells (#REF!)
-- [ ] **Cross-sheet references**: Use correct format (Sheet1!A1) for linking sheets
+### Распространенные Ловушки
+- [ ] **Обработка NaN**: Проверяйте на null значения с `pd.notna()`
+- [ ] **Крайние правые столбцы**: Данные FY часто в столбцах 50+ 
+- [ ] **Множественные совпадения**: Ищите все вхождения, а не только первое
+- [ ] **Деление на ноль**: Проверяйте знаменатели перед использованием `/` в формулах (#DIV/0!)
+- [ ] **Неверные ссылки**: Проверьте, что все ссылки на ячейки указывают на нужные ячейки (#REF!)
+- [ ] **Ссылки между листами**: Используйте правильный формат (Sheet1!A1) для связывания листов
 
-### Formula Testing Strategy
-- [ ] **Start small**: Test formulas on 2-3 cells before applying broadly
-- [ ] **Verify dependencies**: Check all cells referenced in formulas exist
-- [ ] **Test edge cases**: Include zero, negative, and very large values
+### Стратегия Тестирования Формул
+- [ ] **Начните с малого**: Протестируйте формулы на 2-3 ячейках перед широким применением
+- [ ] **Проверьте зависимости**: Проверьте, что все ячейки, на которые ссылаются формулы, существуют
+- [ ] **Тестируйте граничные случаи**: Включайте ноль, отрицательные и очень большие значения
 
-### Interpreting scripts/recalc.py Output
-The script returns JSON with error details:
+### Интерпретация Вывода scripts/recalc.py
+Скрипт возвращает JSON с деталями ошибок:
 ```json
 {
-  "status": "success",           // or "errors_found"
-  "total_errors": 0,              // Total error count
-  "total_formulas": 42,           // Number of formulas in file
-  "error_summary": {              // Only present if errors found
+  "status": "success",           // или "errors_found"
+  "total_errors": 0,              // Общее количество ошибок
+  "total_formulas": 42,           // Количество формул в файле
+  "error_summary": {              // Присутствует только если найдены ошибки
     "#REF!": {
       "count": 2,
       "locations": ["Sheet1!B5", "Sheet1!C10"]
@@ -262,31 +262,31 @@ The script returns JSON with error details:
 }
 ```
 
-## Best Practices
+## Лучшие Практики
 
-### Library Selection
-- **pandas**: Best for data analysis, bulk operations, and simple data export
-- **openpyxl**: Best for complex formatting, formulas, and Excel-specific features
+### Выбор Библиотеки
+- **pandas**: Лучше для анализа данных, массовых операций и простого экспорта данных
+- **openpyxl**: Лучше для сложного форматирования, формул и специфичных функций Excel
 
-### Working with openpyxl
-- Cell indices are 1-based (row=1, column=1 refers to cell A1)
-- Use `data_only=True` to read calculated values: `load_workbook('file.xlsx', data_only=True)`
-- **Warning**: If opened with `data_only=True` and saved, formulas are replaced with values and permanently lost
-- For large files: Use `read_only=True` for reading or `write_only=True` for writing
-- Formulas are preserved but not evaluated - use scripts/recalc.py to update values
+### Работа с openpyxl
+- Индексы ячеек начинаются с 1 (row=1, column=1 ссылается на ячейку A1)
+- Используйте `data_only=True` для чтения вычисленных значений: `load_workbook('file.xlsx', data_only=True)`
+- **Предупреждение**: Если открыто с `data_only=True` и сохранено, формулы заменяются значениями и навсегда теряются
+- Для больших файлов: Используйте `read_only=True` для чтения или `write_only=True` для записи
+- Формулы сохраняются, но не вычисляются - используйте scripts/recalc.py для обновления значений
 
-### Working with pandas
-- Specify data types to avoid inference issues: `pd.read_excel('file.xlsx', dtype={'id': str})`
-- For large files, read specific columns: `pd.read_excel('file.xlsx', usecols=['A', 'C', 'E'])`
-- Handle dates properly: `pd.read_excel('file.xlsx', parse_dates=['date_column'])`
+### Работа с pandas
+- Указывайте типы данных, чтобы избежать проблем с выводом: `pd.read_excel('file.xlsx', dtype={'id': str})`
+- Для больших файлов, читайте конкретные столбцы: `pd.read_excel('file.xlsx', usecols=['A', 'C', 'E'])`
+- Обрабатывайте даты правильно: `pd.read_excel('file.xlsx', parse_dates=['date_column'])`
 
-## Code Style Guidelines
-**IMPORTANT**: When generating Python code for Excel operations:
-- Write minimal, concise Python code without unnecessary comments
-- Avoid verbose variable names and redundant operations
-- Avoid unnecessary print statements
+## Руководство по Стилю Кода
+**ВАЖНО**: При генерации кода Python для операций Excel:
+- Пишите минимальный, лаконичный код Python без ненужных комментариев
+- Избегайте многословных имен переменных и избыточных операций
+- Избегайте ненужных print выражений
 
-**For Excel files themselves**:
-- Add comments to cells with complex formulas or important assumptions
-- Document data sources for hardcoded values
-- Include notes for key calculations and model sections
+**Для самих файлов Excel**:
+- Добавляйте комментарии к ячейкам со сложными формулами или важными предположениями
+- Документируйте источники данных для жестко заданных значений
+- Включайте заметки для ключевых вычислений и разделов модели

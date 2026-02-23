@@ -1,74 +1,74 @@
 ---
 name: web-artifacts-builder
-description: Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.
-license: Complete terms in LICENSE.txt
+description: Набор инструментов для создания сложных, многокомпонентных HTML артефактов claude.ai с использованием современных веб-технологий фронтенда (React, Tailwind CSS, shadcn/ui). Используйте для сложных артефактов, требующих управления состоянием, маршрутизации или компонентов shadcn/ui - не для простых однофайловых артефактов HTML/JSX.
+license: Полные условия в LICENSE.txt
 ---
 
 # Web Artifacts Builder
 
-To build powerful frontend claude.ai artifacts, follow these steps:
-1. Initialize the frontend repo using `scripts/init-artifact.sh`
-2. Develop your artifact by editing the generated code
-3. Bundle all code into a single HTML file using `scripts/bundle-artifact.sh`
-4. Display artifact to user
-5. (Optional) Test the artifact
+Чтобы создать мощные интерфейсные артефакты claude.ai, выполните следующие шаги:
+1. Инициализируйте репозиторий фронтенда с помощью `scripts/init-artifact.sh`
+2. Разработайте свой артефакт, редактируя сгенерированный код
+3. Соберите весь код в один HTML файл с помощью `scripts/bundle-artifact.sh`
+4. Покажите артефакт пользователю
+5. (Опционально) Протестируйте артефакт
 
-**Stack**: React 18 + TypeScript + Vite + Parcel (bundling) + Tailwind CSS + shadcn/ui
+**Стек**: React 18 + TypeScript + Vite + Parcel (сборка) + Tailwind CSS + shadcn/ui
 
-## Design & Style Guidelines
+## Руководство по Дизайну и Стилю
 
-VERY IMPORTANT: To avoid what is often referred to as "AI slop", avoid using excessive centered layouts, purple gradients, uniform rounded corners, and Inter font.
+ОЧЕНЬ ВАЖНО: Чтобы избежать того, что часто называют "AI slop", избегайте использования чрезмерно центрированных макетов, фиолетовых градиентов, однообразных закругленных углов и шрифта Inter.
 
-## Quick Start
+## Быстрый Старт
 
-### Step 1: Initialize Project
+### Шаг 1: Инициализация Проекта
 
-Run the initialization script to create a new React project:
+Запустите скрипт инициализации, чтобы создать новый проект React:
 ```bash
 bash scripts/init-artifact.sh <project-name>
 cd <project-name>
 ```
 
-This creates a fully configured project with:
-- ✅ React + TypeScript (via Vite)
-- ✅ Tailwind CSS 3.4.1 with shadcn/ui theming system
-- ✅ Path aliases (`@/`) configured
-- ✅ 40+ shadcn/ui components pre-installed
-- ✅ All Radix UI dependencies included
-- ✅ Parcel configured for bundling (via .parcelrc)
-- ✅ Node 18+ compatibility (auto-detects and pins Vite version)
+Это создает полностью настроенный проект с:
+- ✅ React + TypeScript (через Vite)
+- ✅ Tailwind CSS 3.4.1 с системой темизации shadcn/ui
+- ✅ Настроенными алиасами путей (`@/`)
+- ✅ 40+ предустановленными компонентами shadcn/ui
+- ✅ Всеми зависимостями Radix UI
+- ✅ Parcel, настроенным для сборки (через .parcelrc)
+- ✅ Соответствием Node 18+ (авто-обнаружение и фиксация версии Vite)
 
-### Step 2: Develop Your Artifact
+### Шаг 2: Разработка Вашего Артефакта
 
-To build the artifact, edit the generated files. See **Common Development Tasks** below for guidance.
+Чтобы создать артефакт, отредактируйте сгенерированные файлы. Смотрите **Общие Задачи Разработки** ниже для руководства.
 
-### Step 3: Bundle to Single HTML File
+### Шаг 3: Сборка в Один HTML Файл
 
-To bundle the React app into a single HTML artifact:
+Чтобы собрать приложение React в один HTML артефакт:
 ```bash
 bash scripts/bundle-artifact.sh
 ```
 
-This creates `bundle.html` - a self-contained artifact with all JavaScript, CSS, and dependencies inlined. This file can be directly shared in Claude conversations as an artifact.
+Это создает `bundle.html` - самодостаточный артефакт со всеми встроенными JavaScript, CSS и зависимостями. Этот файл можно напрямую поделиться в разговорах Claude как артефактом.
 
-**Requirements**: Your project must have an `index.html` in the root directory.
+**Требования**: Ваш проект должен иметь `index.html` в корневой директории.
 
-**What the script does**:
-- Installs bundling dependencies (parcel, @parcel/config-default, parcel-resolver-tspaths, html-inline)
-- Creates `.parcelrc` config with path alias support
-- Builds with Parcel (no source maps)
-- Inlines all assets into single HTML using html-inline
+**Что делает скрипт**:
+- Устанавливает зависимости сборки (parcel, @parcel/config-default, parcel-resolver-tspaths, html-inline)
+- Создает конфиг `.parcelrc` с поддержкой алиасов путей
+- Собирает с Parcel (без source maps)
+- Встраивает все ассеты в один HTML используя html-inline
 
-### Step 4: Share Artifact with User
+### Шаг 4: Поделитесь Артефактом с Пользователем
 
-Finally, share the bundled HTML file in conversation with the user so they can view it as an artifact.
+Наконец, поделитесь собранным HTML файлом в разговоре с пользователем, чтобы они могли видеть его как артефакт.
 
-### Step 5: Testing/Visualizing the Artifact (Optional)
+### Шаг 5: Тестирование/Визуализация Артефакта (Опционально)
 
-Note: This is a completely optional step. Only perform if necessary or requested.
+Примечание: Это полностью опциональный шаг. Выполняйте только при необходимости или по запросу.
 
-To test/visualize the artifact, use available tools (including other Skills or built-in tools like Playwright or Puppeteer). In general, avoid testing the artifact upfront as it adds latency between the request and when the finished artifact can be seen. Test later, after presenting the artifact, if requested or if issues arise.
+Чтобы протестировать/визуализировать артефакт, используйте доступные инструменты (включая другие Навыки или встроенные инструменты вроде Playwright или Puppeteer). В общем, избегайте тестирования артефакта заранее, так как это добавляет задержку между запросом и моментом, когда готовый артефакт можно увидеть. Тестируйте позже, после представления артефакта, если запрошено или возникли проблемы.
 
-## Reference
+## Справочник
 
-- **shadcn/ui components**: https://ui.shadcn.com/docs/components
+- **Компоненты shadcn/ui**: https://ui.shadcn.com/docs/components

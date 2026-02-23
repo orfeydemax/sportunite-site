@@ -1,0 +1,21 @@
+{
+    "root": {
+        "title": "🚀 Test Creative Map",
+        "children": [
+            {
+                "title": "💡 Idea 1",
+                "children": [
+                    {
+                        "title": "🔥 Hot"
+                    },
+                    {
+                        "title": "❄️ Cold"
+                    }
+                ]
+            },
+            {
+                "title": "🎨 Art"
+            }
+        ]
+    }
+}

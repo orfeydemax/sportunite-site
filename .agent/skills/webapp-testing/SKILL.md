@@ -1,47 +1,47 @@
 ---
 name: webapp-testing
-description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
-license: Complete terms in LICENSE.txt
+description: Инструментарий для взаимодействия и тестирования локальных веб-приложений с использованием Playwright. Поддерживает проверку функциональности фронтенда, отладку поведения UI, захват скриншотов браузера и просмотр логов браузера.
+license: Полные условия в LICENSE.txt
 ---
 
-# Web Application Testing
+# Тестирование Веб-Приложений (Web Application Testing)
 
-To test local web applications, write native Python Playwright scripts.
+Чтобы тестировать локальные веб-приложения, пишите нативные Python Playwright скрипты.
 
-**Helper Scripts Available**:
-- `scripts/with_server.py` - Manages server lifecycle (supports multiple servers)
+**Доступные Скрипты-Помощники**:
+- `scripts/with_server.py` - Управляет жизненным циклом сервера (поддерживает несколько серверов)
 
-**Always run scripts with `--help` first** to see usage. DO NOT read the source until you try running the script first and find that a customized solution is abslutely necessary. These scripts can be very large and thus pollute your context window. They exist to be called directly as black-box scripts rather than ingested into your context window.
+**Всегда запускайте скрипты с `--help` сначала**, чтобы увидеть использование. НЕ читайте исходный код, пока сначала не попробуете запустить скрипт и не обнаружите, что кастомизированное решение абсолютно необходимо. Эти скрипты могут быть очень большими и, следовательно, засорять ваше окно контекста. Они существуют, чтобы вызываться напрямую как "черные ящики", а не загружаться в ваше окно контекста.
 
-## Decision Tree: Choosing Your Approach
+## Дерево Решений: Выбор Подхода
 
 ```
-User task → Is it static HTML?
-    ├─ Yes → Read HTML file directly to identify selectors
-    │         ├─ Success → Write Playwright script using selectors
-    │         └─ Fails/Incomplete → Treat as dynamic (below)
+Задача пользователя → Это статический HTML?
+    ├─ Да → Читайте HTML файл напрямую, чтобы определить селекторы
+    │         ├─ Успех → Пишите Playwright скрипт используя селекторы
+    │         └─ Неудача/Неполно → Рассматривайте как динамическое (ниже)
     │
-    └─ No (dynamic webapp) → Is the server already running?
-        ├─ No → Run: python scripts/with_server.py --help
-        │        Then use the helper + write simplified Playwright script
+    └─ Нет (динамическое веб-приложение) → Сервер уже запущен?
+        ├─ Нет → Запустите: python scripts/with_server.py --help
+        │        Затем используйте помощник + пишите упрощенный Playwright скрипт
         │
-        └─ Yes → Reconnaissance-then-action:
-            1. Navigate and wait for networkidle
-            2. Take screenshot or inspect DOM
-            3. Identify selectors from rendered state
-            4. Execute actions with discovered selectors
+        └─ Да → Разведка-затем-действие (Reconnaissance-then-action):
+            1. Перейдите и ждите networkidle
+            2. Сделайте скриншот или инспектируйте DOM
+            3. Определите селекторы из отрисованного состояния
+            4. Выполните действия с обнаруженными селекторами
 ```
 
-## Example: Using with_server.py
+## Пример: Использование with_server.py
 
-To start a server, run `--help` first, then use the helper:
+Чтобы запустить сервер, запустите `--help` сначала, затем используйте помощник:
 
-**Single server:**
+**Один сервер:**
 ```bash
 python scripts/with_server.py --server "npm run dev" --port 5173 -- python your_automation.py
 ```
 
-**Multiple servers (e.g., backend + frontend):**
+**Несколько серверов (например, бэкенд + фронтенд):**
 ```bash
 python scripts/with_server.py \
   --server "cd backend && python server.py" --port 3000 \
@@ -49,48 +49,48 @@ python scripts/with_server.py \
   -- python your_automation.py
 ```
 
-To create an automation script, include only Playwright logic (servers are managed automatically):
+Чтобы создать скрипт автоматизации, включите только логику Playwright (серверы управляются автоматически):
 ```python
 from playwright.sync_api import sync_playwright
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True) # Always launch chromium in headless mode
+    browser = p.chromium.launch(headless=True) # Всегда запускайте chromium в headless режиме
     page = browser.new_page()
-    page.goto('http://localhost:5173') # Server already running and ready
-    page.wait_for_load_state('networkidle') # CRITICAL: Wait for JS to execute
-    # ... your automation logic
+    page.goto('http://localhost:5173') # Сервер уже запущен и готов
+    page.wait_for_load_state('networkidle') # КРИТИЧНО: Ждите выполнения JS
+    # ... ваша логика автоматизации
     browser.close()
 ```
 
-## Reconnaissance-Then-Action Pattern
+## Паттерн Разведка-Затем-Действие (Reconnaissance-Then-Action)
 
-1. **Inspect rendered DOM**:
+1. **Инспектируйте отрисованный DOM**:
    ```python
    page.screenshot(path='/tmp/inspect.png', full_page=True)
    content = page.content()
    page.locator('button').all()
    ```
 
-2. **Identify selectors** from inspection results
+2. **Определите селекторы** из результатов инспекции
 
-3. **Execute actions** using discovered selectors
+3. **Выполните действия** используя обнаруженные селекторы
 
-## Common Pitfall
+## Распространенная Ловушка
 
-❌ **Don't** inspect the DOM before waiting for `networkidle` on dynamic apps
-✅ **Do** wait for `page.wait_for_load_state('networkidle')` before inspection
+❌ **Не** инспектируйте DOM до ожидания `networkidle` на динамических приложениях
+✅ **Обязательно** ждите `page.wait_for_load_state('networkidle')` перед инспекцией
 
-## Best Practices
+## Лучшие Практики
 
-- **Use bundled scripts as black boxes** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly. 
-- Use `sync_playwright()` for synchronous scripts
-- Always close the browser when done
-- Use descriptive selectors: `text=`, `role=`, CSS selectors, or IDs
-- Add appropriate waits: `page.wait_for_selector()` or `page.wait_for_timeout()`
+- **Используйте встроенные скрипты как "черные ящики"** - Чтобы выполнить задачу, подумайте, может ли один из скриптов, доступных в `scripts/`, помочь. Эти скрипты надежно обрабатывают общие, сложные рабочие процессы, не загромождая окно контекста. Используйте `--help`, чтобы увидеть использование, затем вызывайте напрямую.
+- Используйте `sync_playwright()` для синхронных скриптов
+- Всегда закрывайте браузер, когда закончите
+- Используйте описательные селекторы: `text=`, `role=`, CSS селекторы, или ID
+- Добавляйте соответствующие ожидания: `page.wait_for_selector()` или `page.wait_for_timeout()`
 
-## Reference Files
+## Справочные Файлы
 
-- **examples/** - Examples showing common patterns:
-  - `element_discovery.py` - Discovering buttons, links, and inputs on a page
-  - `static_html_automation.py` - Using file:// URLs for local HTML
-  - `console_logging.py` - Capturing console logs during automation
+- **examples/** - Примеры, показывающие общие паттерны:
+  - `element_discovery.py` - Обнаружение кнопок, ссылок и полей ввода на странице
+  - `static_html_automation.py` - Использование file:// URL для локального HTML
+  - `console_logging.py` - Захват логов консоли во время автоматизации

@@ -1,122 +1,122 @@
 ---
 name: mcp-builder
-description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
-license: Complete terms in LICENSE.txt
+description: Руководство по созданию высококачественных серверов MCP (Model Context Protocol), которые позволяют LLM взаимодействовать с внешними сервисами через хорошо спроектированные инструменты. Используйте при создании серверов MCP для интеграции внешних API или сервисов, будь то на Python (FastMCP) или Node/TypeScript (MCP SDK).
+license: Полные условия в LICENSE.txt
 ---
 
-# MCP Server Development Guide
+# Руководство по Разработке Серверов MCP
 
-## Overview
+## Обзор
 
-Create MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. The quality of an MCP server is measured by how well it enables LLMs to accomplish real-world tasks.
-
----
-
-# Process
-
-## 🚀 High-Level Workflow
-
-Creating a high-quality MCP server involves four main phases:
-
-### Phase 1: Deep Research and Planning
-
-#### 1.1 Understand Modern MCP Design
-
-**API Coverage vs. Workflow Tools:**
-Balance comprehensive API endpoint coverage with specialized workflow tools. Workflow tools can be more convenient for specific tasks, while comprehensive coverage gives agents flexibility to compose operations. Performance varies by client—some clients benefit from code execution that combines basic tools, while others work better with higher-level workflows. When uncertain, prioritize comprehensive API coverage.
-
-**Tool Naming and Discoverability:**
-Clear, descriptive tool names help agents find the right tools quickly. Use consistent prefixes (e.g., `github_create_issue`, `github_list_repos`) and action-oriented naming.
-
-**Context Management:**
-Agents benefit from concise tool descriptions and the ability to filter/paginate results. Design tools that return focused, relevant data. Some clients support code execution which can help agents filter and process data efficiently.
-
-**Actionable Error Messages:**
-Error messages should guide agents toward solutions with specific suggestions and next steps.
-
-#### 1.2 Study MCP Protocol Documentation
-
-**Navigate the MCP specification:**
-
-Start with the sitemap to find relevant pages: `https://modelcontextprotocol.io/sitemap.xml`
-
-Then fetch specific pages with `.md` suffix for markdown format (e.g., `https://modelcontextprotocol.io/specification/draft.md`).
-
-Key pages to review:
-- Specification overview and architecture
-- Transport mechanisms (streamable HTTP, stdio)
-- Tool, resource, and prompt definitions
-
-#### 1.3 Study Framework Documentation
-
-**Recommended stack:**
-- **Language**: TypeScript (high-quality SDK support and good compatibility in many execution environments e.g. MCPB. Plus AI models are good at generating TypeScript code, benefiting from its broad usage, static typing and good linting tools)
-- **Transport**: Streamable HTTP for remote servers, using stateless JSON (simpler to scale and maintain, as opposed to stateful sessions and streaming responses). stdio for local servers.
-
-**Load framework documentation:**
-
-- **MCP Best Practices**: [📋 View Best Practices](./reference/mcp_best_practices.md) - Core guidelines
-
-**For TypeScript (recommended):**
-- **TypeScript SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
-- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - TypeScript patterns and examples
-
-**For Python:**
-- **Python SDK**: Use WebFetch to load `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- [🐍 Python Guide](./reference/python_mcp_server.md) - Python patterns and examples
-
-#### 1.4 Plan Your Implementation
-
-**Understand the API:**
-Review the service's API documentation to identify key endpoints, authentication requirements, and data models. Use web search and WebFetch as needed.
-
-**Tool Selection:**
-Prioritize comprehensive API coverage. List endpoints to implement, starting with the most common operations.
+Создавайте серверы MCP (Model Context Protocol), которые позволяют LLM взаимодействовать с внешними сервисами через хорошо спроектированные инструменты. Качество сервера MCP измеряется тем, насколько хорошо он позволяет LLM выполнять реальные задачи.
 
 ---
 
-### Phase 2: Implementation
+# Процесс
 
-#### 2.1 Set Up Project Structure
+## 🚀 Высокоуровневый Рабочий Процесс
 
-See language-specific guides for project setup:
-- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - Project structure, package.json, tsconfig.json
-- [🐍 Python Guide](./reference/python_mcp_server.md) - Module organization, dependencies
+Создание высококачественного сервера MCP включает четыре основных этапа:
 
-#### 2.2 Implement Core Infrastructure
+### Этап 1: Глубокое Исследование и Планирование
 
-Create shared utilities:
-- API client with authentication
-- Error handling helpers
-- Response formatting (JSON/Markdown)
-- Pagination support
+#### 1.1 Понимание Современного Дизайна MCP
 
-#### 2.3 Implement Tools
+**Покрытие API против Инструментов Рабочего Процесса:**
+Балансируйте полное покрытие конечных точек API со специализированными инструментами рабочего процесса. Инструменты рабочего процесса могут быть удобнее для конкретных задач, в то время как полное покрытие дает агентам гибкость в компоновке операций. Производительность варьируется в зависимости от клиента — некоторые получают выгоду от выполнения кода, объединяющего базовые инструменты, в то время как другие работают лучше с высокоуровневыми рабочими процессами. Когда не уверены, приоритизируйте полное покрытие API.
 
-For each tool:
+**Именование Инструментов и Обнаружимость:**
+Четкие, описательные имена инструментов помогают агентам быстро находить нужные инструменты. Используйте последовательные префиксы (например, `github_create_issue`, `github_list_repos`) и именование, ориентированное на действие.
 
-**Input Schema:**
-- Use Zod (TypeScript) or Pydantic (Python)
-- Include constraints and clear descriptions
-- Add examples in field descriptions
+**Управление Контекстом:**
+Агенты выигрывают от кратких описаний инструментов и способности фильтровать/пагинировать результаты. Проектируйте инструменты, которые возвращают сфокусированные, релевантные данные. Некоторые клиенты поддерживают выполнение кода, что может помочь агентам эффективно фильтровать и обрабатывать данные.
 
-**Output Schema:**
-- Define `outputSchema` where possible for structured data
-- Use `structuredContent` in tool responses (TypeScript SDK feature)
-- Helps clients understand and process tool outputs
+**Действенные Сообщения об Ошибках:**
+Сообщения об ошибках должны направлять агентов к решениям с конкретными предложениями и следующими шагами.
 
-**Tool Description:**
-- Concise summary of functionality
-- Parameter descriptions
-- Return type schema
+#### 1.2 Изучение Документации Протокола MCP
 
-**Implementation:**
-- Async/await for I/O operations
-- Proper error handling with actionable messages
-- Support pagination where applicable
-- Return both text content and structured data when using modern SDKs
+**Навигация по спецификации MCP:**
 
-**Annotations:**
+Начните с карты сайта, чтобы найти релевантные страницы: `https://modelcontextprotocol.io/sitemap.xml`
+
+Затем загрузите конкретные страницы с суффиксом `.md` для формата markdown (например, `https://modelcontextprotocol.io/specification/draft.md`).
+
+Ключевые страницы для обзора:
+- Обзор спецификации и архитектура
+- Механизмы транспорта (потоковый HTTP, stdio)
+- Определения инструментов, ресурсов и промптов
+
+#### 1.3 Изучение Документации Фреймворка
+
+**Рекомендуемый стек:**
+- **Язык**: TypeScript (высококачественная поддержка SDK и хорошая совместимость во многих средах выполнения, например, MCPB. К тому же модели ИИ хороши в генерации TypeScript кода, извлекая выгоду из его широкого использования, статической типизации и хороших инструментов линтинга)
+- **Транспорт**: Потоковый HTTP для удаленных серверов, используя stateless JSON (проще масштабировать и поддерживать, в отличие от сессий с состоянием и потоковых ответов). stdio для локальных серверов.
+
+**Загрузка документации фреймворка:**
+
+- **Лучшие Практики MCP**: [📋 View Best Practices](./reference/mcp_best_practices.md) - Основные руководства
+
+**Для TypeScript (рекомендуется):**
+- **TypeScript SDK**: Используйте WebFetch для загрузки `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - Шаблоны и примеры TypeScript
+
+**Для Python:**
+- **Python SDK**: Используйте WebFetch для загрузки `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+- [🐍 Python Guide](./reference/python_mcp_server.md) - Шаблоны и примеры Python
+
+#### 1.4 Планирование Вашей Реализации
+
+**Понимание API:**
+Просмотрите документацию API сервиса, чтобы определить ключевые конечные точки, требования аутентификации и модели данных. Используйте веб-поиск и WebFetch по необходимости.
+
+**Выбор Инструментов:**
+Приоритизируйте полное покрытие API. Составьте список конечных точек для реализации, начиная с самых распространенных операций.
+
+---
+
+### Этап 2: Реализация
+
+#### 2.1 Настройка Структуры Проекта
+
+Смотрите руководства, специфичные для языка, для настройки проекта:
+- [⚡ TypeScript Guide](./reference/node_mcp_server.md) - Структура проекта, package.json, tsconfig.json
+- [🐍 Python Guide](./reference/python_mcp_server.md) - Организация модулей, зависимости
+
+#### 2.2 Реализация Основной Инфраструктуры
+
+Создайте общие утилиты:
+- Клиент API с аутентификацией
+- Помощники обработки ошибок
+- Форматирование ответа (JSON/Markdown)
+- Поддержка пагинации
+
+#### 2.3 Реализация Инструментов
+
+Для каждого инструмента:
+
+**Схема Ввода:**
+- Используйте Zod (TypeScript) или Pydantic (Python)
+- Включите ограничения и четкие описания
+- Добавьте примеры в описания полей
+
+**Схема Вывода:**
+- Определите `outputSchema`, где возможно, для структурированных данных
+- Используйте `structuredContent` в ответах инструментов (функция TypeScript SDK)
+- Помогает клиентам понимать и обрабатывать выводы инструментов
+
+**Описание Инструмента:**
+- Краткое резюме функциональности
+- Описания параметров
+- Схема типа возвращаемого значения
+
+**Реализация:**
+- Async/await для операций ввода-вывода
+- Правильная обработка ошибок с действенными сообщениями
+- Поддержка пагинации, где применимо
+- Возврат как текстового контента, так и структурированных данных при использовании современных SDK
+
+**Аннотации:**
 - `readOnlyHint`: true/false
 - `destructiveHint`: true/false
 - `idempotentHint`: true/false
@@ -124,113 +124,113 @@ For each tool:
 
 ---
 
-### Phase 3: Review and Test
+### Этап 3: Обзор и Тестирование
 
-#### 3.1 Code Quality
+#### 3.1 Качество Кода
 
-Review for:
-- No duplicated code (DRY principle)
-- Consistent error handling
-- Full type coverage
-- Clear tool descriptions
+Проверьте на:
+- Отсутствие дублированного кода (принцип DRY)
+- Последовательную обработку ошибок
+- Полное покрытие типами
+- Четкие описания инструментов
 
-#### 3.2 Build and Test
+#### 3.2 Сборка и Тестирование
 
 **TypeScript:**
-- Run `npm run build` to verify compilation
-- Test with MCP Inspector: `npx @modelcontextprotocol/inspector`
+- Запустите `npm run build` для проверки компиляции
+- Тестируйте с MCP Inspector: `npx @modelcontextprotocol/inspector`
 
 **Python:**
-- Verify syntax: `python -m py_compile your_server.py`
-- Test with MCP Inspector
+- Проверьте синтаксис: `python -m py_compile your_server.py`
+- Тестируйте с MCP Inspector
 
-See language-specific guides for detailed testing approaches and quality checklists.
+Смотрите руководства, специфичные для языка, для детальных подходов к тестированию и чек-листов качества.
 
 ---
 
-### Phase 4: Create Evaluations
+### Этап 4: Создание Оценок
 
-After implementing your MCP server, create comprehensive evaluations to test its effectiveness.
+После реализации вашего сервера MCP, создайте всесторонние оценки для проверки его эффективности.
 
-**Load [✅ Evaluation Guide](./reference/evaluation.md) for complete evaluation guidelines.**
+**Загрузите [✅ Evaluation Guide](./reference/evaluation.md) для полных руководств по оценке.**
 
-#### 4.1 Understand Evaluation Purpose
+#### 4.1 Понимание Цели Оценки
 
-Use evaluations to test whether LLMs can effectively use your MCP server to answer realistic, complex questions.
+Используйте оценки, чтобы проверить, могут ли LLM эффективно использовать ваш сервер MCP для ответа на реалистичные, сложные вопросы.
 
-#### 4.2 Create 10 Evaluation Questions
+#### 4.2 Создание 10 Вопросов для Оценки
 
-To create effective evaluations, follow the process outlined in the evaluation guide:
+Чтобы создать эффективные оценки, следуйте процессу, изложенному в руководстве по оценке:
 
-1. **Tool Inspection**: List available tools and understand their capabilities
-2. **Content Exploration**: Use READ-ONLY operations to explore available data
-3. **Question Generation**: Create 10 complex, realistic questions
-4. **Answer Verification**: Solve each question yourself to verify answers
+1. **Инспекция Инструментов**: Перечислите доступные инструменты и поймите их возможности
+2. **Исследование Контента**: Используйте операции ТОЛЬКО ДЛЯ ЧТЕНИЯ для исследования доступных данных
+3. **Генерация Вопросов**: Создайте 10 сложных, реалистичных вопросов
+4. **Верификация Ответов**: Решите каждый вопрос самостоятельно, чтобы проверить ответы
 
-#### 4.3 Evaluation Requirements
+#### 4.3 Требования к Оценке
 
-Ensure each question is:
-- **Independent**: Not dependent on other questions
-- **Read-only**: Only non-destructive operations required
-- **Complex**: Requiring multiple tool calls and deep exploration
-- **Realistic**: Based on real use cases humans would care about
-- **Verifiable**: Single, clear answer that can be verified by string comparison
-- **Stable**: Answer won't change over time
+Убедитесь, что каждый вопрос:
+- **Независимый**: Не зависит от других вопросов
+- **Только для чтения**: Требуются только неразрушающие операции
+- **Сложный**: Требует нескольких вызовов инструментов и глубокого исследования
+- **Реалистичный**: Основан на реальных сценариях использования, которые важны для людей
+- **Проверяемый**: Единый, четкий ответ, который можно проверить сравнением строк
+- **Стабильный**: Ответ не изменится со временем
 
-#### 4.4 Output Format
+#### 4.4 Формат Вывода
 
-Create an XML file with this structure:
+Создайте XML файл с такой структурой:
 
 ```xml
 <evaluation>
   <qa_pair>
-    <question>Find discussions about AI model launches with animal codenames. One model needed a specific safety designation that uses the format ASL-X. What number X was being determined for the model named after a spotted wild cat?</question>
+    <question>Найдите обсуждения о запусках моделей ИИ с кодовыми именами животных. Одной модели требовалось специфическое обозначение безопасности, использующее формат ASL-X. Какой номер X определялся для модели, названной в честь пятнистой дикой кошки?</question>
     <answer>3</answer>
   </qa_pair>
-<!-- More qa_pairs... -->
+<!-- Больше qa_pairs... -->
 </evaluation>
 ```
 
 ---
 
-# Reference Files
+# Файлы Ссылок
 
-## 📚 Documentation Library
+## 📚 Библиотека Документации
 
-Load these resources as needed during development:
+Загружайте эти ресурсы по необходимости во время разработки:
 
-### Core MCP Documentation (Load First)
-- **MCP Protocol**: Start with sitemap at `https://modelcontextprotocol.io/sitemap.xml`, then fetch specific pages with `.md` suffix
-- [📋 MCP Best Practices](./reference/mcp_best_practices.md) - Universal MCP guidelines including:
-  - Server and tool naming conventions
-  - Response format guidelines (JSON vs Markdown)
-  - Pagination best practices
-  - Transport selection (streamable HTTP vs stdio)
-  - Security and error handling standards
+### Основная Документация MCP (Загружать Первой)
+- **Протокол MCP**: Начните с карты сайта по адресу `https://modelcontextprotocol.io/sitemap.xml`, затем загрузите конкретные страницы с суффиксом `.md`
+- [📋 MCP Best Practices](./reference/mcp_best_practices.md) - Универсальные руководства MCP, включая:
+  - Соглашения об именовании серверов и инструментов
+  - Руководства по формату ответа (JSON vs Markdown)
+  - Лучшие практики пагинации
+  - Выбор транспорта (потоковый HTTP vs stdio)
+  - Стандарты безопасности и обработки ошибок
 
-### SDK Documentation (Load During Phase 1/2)
-- **Python SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
-- **TypeScript SDK**: Fetch from `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
+### Документация SDK (Загружать во время Этапа 1/2)
+- **Python SDK**: Загрузите с `https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md`
+- **TypeScript SDK**: Загрузите с `https://raw.githubusercontent.com/modelcontextprotocol/typescript-sdk/main/README.md`
 
-### Language-Specific Implementation Guides (Load During Phase 2)
-- [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Complete Python/FastMCP guide with:
-  - Server initialization patterns
-  - Pydantic model examples
-  - Tool registration with `@mcp.tool`
-  - Complete working examples
-  - Quality checklist
+### Руководства по Реализации для Языков (Загружать во время Этапа 2)
+- [🐍 Python Implementation Guide](./reference/python_mcp_server.md) - Полное руководство Python/FastMCP с:
+  - Шаблонами инициализации сервера
+  - Примерами моделей Pydantic
+  - Регистрацией инструментов с `@mcp.tool`
+  - Полными рабочими примерами
+  - Чек-листом качества
 
-- [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Complete TypeScript guide with:
-  - Project structure
-  - Zod schema patterns
-  - Tool registration with `server.registerTool`
-  - Complete working examples
-  - Quality checklist
+- [⚡ TypeScript Implementation Guide](./reference/node_mcp_server.md) - Полное руководство TypeScript с:
+  - Структурой проекта
+  - Шаблонами схем Zod
+  - Регистрацией инструментов с `server.registerTool`
+  - Полными рабочими примерами
+  - Чек-листом качества
 
-### Evaluation Guide (Load During Phase 4)
-- [✅ Evaluation Guide](./reference/evaluation.md) - Complete evaluation creation guide with:
-  - Question creation guidelines
-  - Answer verification strategies
-  - XML format specifications
-  - Example questions and answers
-  - Running an evaluation with the provided scripts
+### Руководство по Оценке (Загружать во время Этапа 4)
+- [✅ Evaluation Guide](./reference/evaluation.md) - Полное руководство по созданию оценок с:
+  - Руководствами по созданию вопросов
+  - Стратегиями верификации ответов
+  - Спецификациями формата XML
+  - Примерами вопросов и ответов
+  - Запуском оценки с предоставленными скриптами

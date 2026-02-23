@@ -1,0 +1,28 @@
+{
+    "name": "repo-hygiene-git",
+    "version": "1.0.0",
+    "description": "Auto-clean Git repository: ignore generated files, secure .env, remove trash from index",
+    "main": "index.js",
+    "bin": {
+        "repo-hygiene": "./index.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "git",
+        "clean",
+        "gitignore",
+        "security"
+    ],
+    "author": "Antigravity",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "commander": "^11.1.0",
+        "execa": "^5.1.1",
+        "glob": "^10.3.10",
+        "prompts": "^2.4.2"
+    },
+    "type": "module"
+}
