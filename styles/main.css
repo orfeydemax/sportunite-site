@@ -315,6 +315,7 @@ button {
     align-items: center;
     gap: 0.6rem;
     transition: var(--transition-base);
+    margin-left: -20px;
 }
 
 .logo:hover {
@@ -1887,7 +1888,7 @@ button {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
     .nav {
         display: none;
     }
@@ -1895,6 +1896,9 @@ button {
     .burger {
         display: flex;
     }
+}
+
+@media (max-width: 768px) {
 
     /* Hide ring decorations on mobile */
     .hero__ropes,
