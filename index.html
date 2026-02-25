@@ -66,6 +66,7 @@
     <link rel="stylesheet" href="styles/main.css?v=1.0.2">
 
     <!-- Scripts (Defer for performance) -->
+    <script src="js/i18n.js" defer></script>
     <script src="js/main.js" defer></script>
 </head>
 
@@ -81,23 +82,28 @@
             </a>
 
             <nav class="nav" id="nav" role="navigation" aria-label="Главное меню">
-                <a href="#directions" class="nav__link">Направления</a>
-                <a href="#about" class="nav__link">О клубе</a>
-                <a href="#gallery" class="nav__link">Галерея</a>
-                <a href="#results" class="nav__link">Результаты</a>
-                <a href="#rehab" class="nav__link">Реабилитация</a>
-                <a href="#prices" class="nav__link">Цены</a>
-                <a href="#map" class="nav__link">Клубы</a>
-                <a href="#reviews" class="nav__link">Отзывы</a>
+                <a href="#directions" class="nav__link" data-i18n="nav_directions">Направления</a>
+                <a href="#about" class="nav__link" data-i18n="nav_about">О клубе</a>
+                <a href="#gallery" class="nav__link" data-i18n="nav_gallery">Галерея</a>
+                <a href="#results" class="nav__link" data-i18n="nav_results">Результаты</a>
+                <a href="#rehab" class="nav__link" data-i18n="nav_rehab">Реабилитация</a>
+                <a href="#prices" class="nav__link" data-i18n="nav_prices">Цены</a>
+                <a href="#map" class="nav__link" data-i18n="nav_map">Клубы</a>
+                <a href="#reviews" class="nav__link" data-i18n="nav_reviews">Отзывы</a>
             </nav>
 
             <div class="header__actions">
+                <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+                    <span class="lang-toggle__ru is-active">RU</span>
+                    <span class="lang-toggle__separator">/</span>
+                    <span class="lang-toggle__en">EN</span>
+                </button>
                 <a href="https://t.me/sportunite" class="btn btn--outline header__cta" target="_blank" rel="noopener">
                     <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.1.154.234.169.327.016.093.035.306.02.472z" />
                     </svg>
-                    Написать
+                    <span data-i18n="btn_write">Написать</span>
                 </a>
                 <button class="burger" id="burger" aria-label="Открыть меню">
                     <span></span>
@@ -144,15 +150,15 @@
             <div class="hero__content">
                 <div class="hero__badge" data-animate>
                     <span class="hero__badge-dot"></span>
-                    Нячанг, Вьетнам
+                    <span data-i18n="hero_badge">Нячанг, Вьетнам</span>
                 </div>
 
-                <h1 class="hero__title" data-animate>
+                <h1 class="hero__title" data-animate data-i18n="hero_title">
                     ВЕРНИ КОНТРОЛЬ<br>
                     НАД <span class="hero__title--accent">СВОИМ ТЕЛОМ</span>
                 </h1>
 
-                <p class="hero__subtitle" data-animate>
+                <p class="hero__subtitle" data-animate data-i18n="hero_subtitle">
                     Экспертный клуб единоборств от действующего чемпиона ММА.
                     <strong>Система подготовки</strong>, которая даёт силу, уверенность
                     и тело без боли — даже если раньше ничего не получалось.
@@ -162,34 +168,35 @@
                     <a href="https://t.me/sportunite" class="btn btn--primary btn--large" target="_blank"
                         rel="noopener">
                         <span class="btn__pulse"></span>
-                        Записаться на пробную
+                        <span data-i18n="hero_cta">Записаться на пробную</span>
                     </a>
-                    <p class="hero__cta-note">Бесплатно · Без обязательств · Диагностика тела в подарок</p>
+                    <p class="hero__cta-note" data-i18n="hero_cta_note">Бесплатно · Без обязательств · Диагностика тела
+                        в подарок</p>
                 </div>
 
                 <div class="hero__stats" data-animate>
                     <div class="stat">
                         <span class="stat__number" data-count="17">0</span>
-                        <span class="stat__label">лет опыта</span>
+                        <span class="stat__label" data-i18n="stat_years">лет опыта</span>
                     </div>
                     <div class="stat">
                         <span class="stat__number" data-count="500" data-suffix="+">0</span>
-                        <span class="stat__label">учеников</span>
+                        <span class="stat__label" data-i18n="stat_students">учеников</span>
                     </div>
                     <div class="stat">
                         <span class="stat__number" data-count="9">0</span>
-                        <span class="stat__label">направлений</span>
+                        <span class="stat__label" data-i18n="stat_directions">направлений</span>
                     </div>
                     <div class="stat">
                         <span class="stat__number" data-count="10">0</span>
-                        <span class="stat__label">тренеров</span>
+                        <span class="stat__label" data-i18n="stat_coaches">тренеров</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="hero__scroll-hint">
-            <span>Узнать больше</span>
+            <span data-i18n="hero_scroll">Узнать больше</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
             </svg>
@@ -200,9 +207,11 @@
     <section class="directions" id="directions">
         <div class="container">
             <div class="section-header" data-animate>
-                <span class="section-tag">Направления</span>
-                <h2 class="section-title">Выбери свой <span class="accent">путь</span></h2>
-                <p class="section-desc">От боевых искусств до реабилитации — полная система подготовки тела</p>
+                <span class="section-tag" data-i18n="section_directions_tag">Направления</span>
+                <h2 class="section-title" data-i18n="section_directions_title">Выбери свой <span
+                        class="accent">путь</span></h2>
+                <p class="section-desc" data-i18n="section_directions_desc">От боевых искусств до реабилитации — полная
+                    система подготовки тела</p>
             </div>
 
             <div class="directions__grid">
@@ -215,10 +224,11 @@
                             <path d="M20 28h8" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">ММА</h3>
-                    <p class="direction-card__desc">Смешанные единоборства. Полная боевая подготовка — ударка, борьба,
+                    <h3 class="direction-card__title" data-i18n="dir_mma">ММА</h3>
+                    <p class="direction-card__desc" data-i18n="dir_mma_desc">Смешанные единоборства. Полная боевая
+                        подготовка — ударка, борьба,
                         работа в партере.</p>
-                    <span class="direction-card__tag">Хит</span>
+                    <span class="direction-card__tag" data-i18n="dir_mma_tag">Хит</span>
                 </div>
 
                 <div class="direction-card" data-animate>
@@ -229,8 +239,9 @@
                             <path d="M12 30h4M32 30h4" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">Бокс</h3>
-                    <p class="direction-card__desc">Классический бокс. Техника ударов, работа на лапах, спарринги.</p>
+                    <h3 class="direction-card__title" data-i18n="dir_boxing">Бокс</h3>
+                    <p class="direction-card__desc" data-i18n="dir_boxing_desc">Классический бокс. Техника ударов,
+                        работа на лапах, спарринги.</p>
                 </div>
 
                 <div class="direction-card" data-animate>
@@ -241,8 +252,9 @@
                             <path d="M10 22l6 4M38 22l-6 4" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">Кикбоксинг</h3>
-                    <p class="direction-card__desc">Ударная техника руками и ногами. Скорость, мощь, координация.</p>
+                    <h3 class="direction-card__title" data-i18n="dir_kickboxing">Кикбоксинг</h3>
+                    <p class="direction-card__desc" data-i18n="dir_kickboxing_desc">Ударная техника руками и ногами.
+                        Скорость, мощь, координация.</p>
                 </div>
 
                 <div class="direction-card" data-animate>
@@ -253,8 +265,9 @@
                             <path d="M14 44l2-12-4-8 6-4h8l-4 8c4 2 8 1 10-2l4 4-6 8-4 6" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">BJJ</h3>
-                    <p class="direction-card__desc">Бразильское джиу-джитсу. Борьба в партере, болевые, удушения.</p>
+                    <h3 class="direction-card__title" data-i18n="dir_bjj">BJJ</h3>
+                    <p class="direction-card__desc" data-i18n="dir_bjj_desc">Бразильское джиу-джитсу. Борьба в партере,
+                        болевые, удушения.</p>
                 </div>
 
                 <div class="direction-card" data-animate>
@@ -265,8 +278,9 @@
                             <path d="M18 28c4 2 8 2 12 0" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">Грэпплинг</h3>
-                    <p class="direction-card__desc">Борьба без ударов. Захваты, броски, контроль, сабмишены.</p>
+                    <h3 class="direction-card__title" data-i18n="dir_grappling">Грэпплинг</h3>
+                    <p class="direction-card__desc" data-i18n="dir_grappling_desc">Борьба без ударов. Захваты, броски,
+                        контроль, сабмишены.</p>
                 </div>
 
                 <!-- Фитнес -->
@@ -277,8 +291,9 @@
                             <rect x="16" y="22" width="16" height="4" rx="1" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">Кроссфит</h3>
-                    <p class="direction-card__desc">Функциональный тренинг. Сила, выносливость, гибкость в одной
+                    <h3 class="direction-card__title" data-i18n="dir_crossfit">Кроссфит</h3>
+                    <p class="direction-card__desc" data-i18n="dir_crossfit_desc">Функциональный тренинг. Сила,
+                        выносливость, гибкость в одной
                         программе.</p>
                 </div>
 
@@ -290,8 +305,9 @@
                             <path d="M10 26h6M32 26h6" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">Фитнес</h3>
-                    <p class="direction-card__desc">Общая физическая подготовка. Тонус, форма, энергия каждый день.</p>
+                    <h3 class="direction-card__title" data-i18n="dir_fitness">Фитнес</h3>
+                    <p class="direction-card__desc" data-i18n="dir_fitness_desc">Общая физическая подготовка. Тонус,
+                        форма, энергия каждый день.</p>
                 </div>
 
                 <div class="direction-card" data-animate>
@@ -303,8 +319,9 @@
                             <path d="M22 28h4M22 32h4" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">Персональные</h3>
-                    <p class="direction-card__desc">Индивидуальная работа 1-на-1. Программа под твои цели и ограничения.
+                    <h3 class="direction-card__title" data-i18n="dir_personal">Персональные</h3>
+                    <p class="direction-card__desc" data-i18n="dir_personal_desc">Индивидуальная работа 1-на-1.
+                        Программа под твои цели и ограничения.
                     </p>
                 </div>
 
@@ -315,10 +332,11 @@
                             <circle cx="24" cy="24" r="16" />
                         </svg>
                     </div>
-                    <h3 class="direction-card__title">Реабилитация</h3>
-                    <p class="direction-card__desc">Восстановление после травм. Спина, колени, плечи — без боли и
+                    <h3 class="direction-card__title" data-i18n="dir_rehab">Реабилитация</h3>
+                    <p class="direction-card__desc" data-i18n="dir_rehab_desc">Восстановление после травм. Спина,
+                        колени, плечи — без боли и
                         откатов.</p>
-                    <span class="direction-card__tag direction-card__tag--green">Новое</span>
+                    <span class="direction-card__tag direction-card__tag--green" data-i18n="dir_rehab_tag">Новое</span>
                 </div>
             </div>
         </div>
@@ -329,17 +347,21 @@
         <div class="container">
             <div class="about__grid">
                 <div class="about__content" data-animate>
-                    <span class="section-tag">О клубе</span>
-                    <h2 class="section-title">Создан бойцом.<br><span class="accent">Для тех, кто готов.</span></h2>
+                    <span class="section-tag" data-i18n="about_tag">О клубе</span>
+                    <h2 class="section-title" data-i18n="about_title">Создан бойцом.<br><span class="accent">Для тех,
+                            кто готов.</span></h2>
 
                     <div class="about__text">
-                        <p><strong>17 лет</strong> в индустрии единоборств и фитнеса. Путь от тренера в зале до
+                        <p data-i18n="about_p1"><strong>17 лет</strong> в индустрии единоборств и фитнеса. Путь от
+                            тренера в зале до
                             создателя системы, которая воспитывает людей, а не просто даёт нагрузку.</p>
 
-                        <p>Через наши тренировки прошли <strong>сотни учеников</strong>: новички, ставшие уверенными;
+                        <p data-i18n="about_p2">Через наши тренировки прошли <strong>сотни учеников</strong>: новички,
+                            ставшие уверенными;
                             спортсмены, ставшие чемпионами; тренеры, ведущие собственные залы.</p>
 
-                        <p>Я сам выходил в клетку, проигрывал, выигрывал, восстанавливался после травм и возвращался
+                        <p data-i18n="about_p3">Я сам выходил в клетку, проигрывал, выигрывал, восстанавливался после
+                            травм и возвращался
                             сильнее. Поэтому наш клуб — не про «фитнес ради фото». Он про <strong>дисциплину, характер и
                                 рост</strong>.</p>
                     </div>
@@ -348,22 +370,22 @@
                         <div class="about__feature">
                             <div class="about__feature-icon">🏆</div>
                             <div>
-                                <strong>Действующий чемпион ММА</strong>
-                                <span>Методика из реального спорта</span>
+                                <strong data-i18n="about_feat1_title">Действующий чемпион ММА</strong>
+                                <span data-i18n="about_feat1_desc">Методика из реального спорта</span>
                             </div>
                         </div>
                         <div class="about__feature">
                             <div class="about__feature-icon">🎯</div>
                             <div>
-                                <strong>Авторская система</strong>
-                                <span>Поэтапное развитие с контролем</span>
+                                <strong data-i18n="about_feat2_title">Авторская система</strong>
+                                <span data-i18n="about_feat2_desc">Поэтапное развитие с контролем</span>
                             </div>
                         </div>
                         <div class="about__feature">
                             <div class="about__feature-icon">🛡️</div>
                             <div>
-                                <strong>Безопасность</strong>
-                                <span>Учёт травм, возраста и ограничений</span>
+                                <strong data-i18n="about_feat3_title">Безопасность</strong>
+                                <span data-i18n="about_feat3_desc">Учёт травм, возраста и ограничений</span>
                             </div>
                         </div>
                     </div>
@@ -374,7 +396,8 @@
                         <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0724.JPG"
                             alt="Чемпион ММА — основатель Sport Unite" class="about__champion-img" loading="lazy">
                         <div class="about__image-overlay">
-                            <p class="about__quote">«Клуб — это продолжение меня. Моих ценностей. Моего отношения к
+                            <p class="about__quote" data-i18n="about_quote">«Клуб — это продолжение меня. Моих
+                                ценностей. Моего отношения к
                                 работе.»</p>
                         </div>
                     </div>
@@ -388,57 +411,62 @@
     <section class="method" id="method">
         <div class="container">
             <div class="section-header" data-animate>
-                <span class="section-tag">Методика</span>
-                <h2 class="section-title">Система, а не <span class="accent">хаос</span></h2>
-                <p class="section-desc">Каждый понимает: зачем тренируется, куда идёт, какой следующий шаг</p>
+                <span class="section-tag" data-i18n="method_tag">Методика</span>
+                <h2 class="section-title" data-i18n="method_title">Система, а не <span class="accent">хаос</span></h2>
+                <p class="section-desc" data-i18n="method_desc">Каждый понимает: зачем тренируется, куда идёт, какой
+                    следующий шаг</p>
             </div>
 
             <div class="method__grid">
                 <div class="method__card" data-animate>
                     <div class="method__step">01</div>
-                    <h3 class="method__card-title">Диагностика</h3>
-                    <p>Оценим текущее состояние тела, выявим ограничения и составим план. Не «Не работаем на износ» — а
+                    <h3 class="method__card-title" data-i18n="method_step1">Диагностика</h3>
+                    <p data-i18n="method_step1_desc">Оценим текущее состояние тела, выявим ограничения и составим план.
+                        Не «Не работаем на износ» — а
                         готовим
                         тело к нагрузкам.</p>
                 </div>
 
                 <div class="method__card" data-animate>
                     <div class="method__step">02</div>
-                    <h3 class="method__card-title">Адаптация</h3>
-                    <p>Мягкий вход: техника, базовые движения, укрепление слабых зон. Без травм и надрыва.</p>
+                    <h3 class="method__card-title" data-i18n="method_step2">Адаптация</h3>
+                    <p data-i18n="method_step2_desc">Мягкий вход: техника, базовые движения, укрепление слабых зон. Без
+                        травм и надрыва.</p>
                 </div>
 
                 <div class="method__card" data-animate>
                     <div class="method__step">03</div>
-                    <h3 class="method__card-title">Прогресс</h3>
-                    <p>Постепенное усложнение: больше техники, силы, выносливости. Каждая тренировка — шаг вперёд.</p>
+                    <h3 class="method__card-title" data-i18n="method_step3">Прогресс</h3>
+                    <p data-i18n="method_step3_desc">Постепенное усложнение: больше техники, силы, выносливости. Каждая
+                        тренировка — шаг вперёд.</p>
                 </div>
 
                 <div class="method__card" data-animate>
                     <div class="method__step">04</div>
-                    <h3 class="method__card-title">Мастерство</h3>
-                    <p>Уверенное тело, стабильный навык, привычка тренироваться. Тело поддерживает жизнь, а не мешает
+                    <h3 class="method__card-title" data-i18n="method_step4">Мастерство</h3>
+                    <p data-i18n="method_step4_desc">Уверенное тело, стабильный навык, привычка тренироваться. Тело
+                        поддерживает жизнь, а не мешает
                         ей.</p>
                 </div>
             </div>
 
             <div class="method__formats" data-animate>
-                <h3 class="method__formats-title">Форматы занятий</h3>
+                <h3 class="method__formats-title" data-i18n="method_formats_title">Форматы занятий</h3>
                 <div class="method__formats-grid">
                     <div class="method__format">
                         <span class="method__format-icon">👥</span>
-                        <strong>Групповые</strong>
-                        <span>8–25 человек</span>
+                        <strong data-i18n="format_group">Групповые</strong>
+                        <span data-i18n="format_group_size">8–25 человек</span>
                     </div>
                     <div class="method__format">
                         <span class="method__format-icon">🤝</span>
-                        <strong>Мини-группы</strong>
-                        <span>2–4 человека</span>
+                        <strong data-i18n="format_mini">Мини-группы</strong>
+                        <span data-i18n="format_mini_size">2–4 человека</span>
                     </div>
                     <div class="method__format">
                         <span class="method__format-icon">🎯</span>
-                        <strong>Персональные</strong>
-                        <span>1 на 1 с тренером</span>
+                        <strong data-i18n="format_personal">Персональные</strong>
+                        <span data-i18n="format_personal_size">1 на 1 с тренером</span>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,10 @@
 // ============================================
-// SPORT UNITE — Main JavaScript
+// SPORT UNITE — Основной JavaScript
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ---- Hero Ring Atmosphere: Canvas Sparks ----
+    // ---- Атмосфера ринга: Искры на холсте (Canvas) ----
     const heroCanvas = document.getElementById('hero-canvas');
     if (heroCanvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const ctx = heroCanvas.getContext('2d');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Spark particles
+        // Частицы искр
         const sparks = [];
         const SPARK_COUNT = 50;
 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alpha: Math.random() * 0.5 + 0.1,
                 pulse: Math.random() * Math.PI * 2,
                 pulseSpeed: Math.random() * 0.02 + 0.005,
-                hue: Math.random() > 0.7 ? 30 : 0, // orange or red
+                hue: Math.random() > 0.7 ? 30 : 0, // оранжевый или красный
                 sat: 80 + Math.random() * 20
             });
         }
@@ -47,13 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const flickerAlpha = s.alpha * (0.5 + 0.5 * Math.sin(s.pulse));
 
-                // Wrap around
+                // Зацикливание движения
                 if (s.x < -10) s.x = w + 10;
                 if (s.x > w + 10) s.x = -10;
                 if (s.y < -10) s.y = h + 10;
                 if (s.y > h + 10) s.y = -10;
 
-                // Draw spark with glow
+                // Отрисовка искры со свечением
                 ctx.save();
                 ctx.globalAlpha = flickerAlpha;
                 ctx.shadowBlur = s.size * 6;
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateSparks();
     }
 
-    // ---- Hero Ring Atmosphere: Dust Particles (CSS) ----
+    // ---- Атмосфера ринга: Частицы пыли (CSS) ----
     const dustContainer = document.getElementById('hero-dust');
     if (dustContainer) {
         const DUST_COUNT = 25;
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ---- Scroll Animations (IntersectionObserver) ----
+    // ---- Анимации при прокрутке (IntersectionObserver) ----
     const animatedElements = document.querySelectorAll('[data-animate]');
 
     const observerOptions = {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const animObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // Stagger animation for siblings
+                // Ступенчатая анимация для соседних элементов
                 const siblings = entry.target.parentElement.querySelectorAll('[data-animate]');
                 let delay = 0;
                 siblings.forEach((sibling, i) => {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animatedElements.forEach(el => animObserver.observe(el));
 
-    // ---- Header scroll effect ----
+    // ---- Эффект шапки при прокрутке ----
     const header = document.getElementById('header');
     let lastScroll = 0;
 
@@ -138,17 +138,17 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     }, { passive: true });
 
-    // ---- Burger Menu ----
+    // ---- Бургер-меню ----
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
 
-    // Create mobile overlay
+    // Создание мобильного оверлея
     const overlay = document.createElement('div');
     overlay.className = 'nav-overlay';
     overlay.innerHTML = nav.innerHTML;
     document.body.appendChild(overlay);
 
-    // Add close on link click
+    // Закрытие при клике на ссылку
     overlay.querySelectorAll('.nav__link').forEach(link => {
         link.addEventListener('click', () => {
             closeMobileMenu();
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    // ---- Stats Counter Animation ----
+    // ---- Анимация счетчиков статистики ----
     const statNumbers = document.querySelectorAll('.stat__number[data-count]');
 
     const counterObserver = new IntersectionObserver((entries) => {
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, stepTime);
     }
 
-    // ---- Smooth scroll for anchor links ----
+    // ---- Плавная прокрутка для якорных ссылок ----
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -226,13 +226,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth'
                 });
 
-                // Close mobile menu if open
+                // Закрыть мобильное меню, если открыто
                 closeMobileMenu();
             }
         });
     });
 
-    // ---- Particles effect on hero ----
+    // ---- Эффект частиц в секции Hero ----
     const particlesContainer = document.getElementById('particles');
     if (particlesContainer) {
         createParticles(particlesContainer, 30);
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             container.appendChild(particle);
         }
 
-        // Add particle animation keyframes
+        // Добавление стилей для анимации частиц
         if (!document.getElementById('particle-style')) {
             const style = document.createElement('style');
             style.id = 'particle-style';
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ---- Active nav link highlight on scroll ----
+    // ---- Подсветка активной ссылки в меню при прокрутке ----
     const sections = document.querySelectorAll('section[id]');
 
     function highlightNav() {
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', highlightNav, { passive: true });
 
-    // ---- Card hover tilt effect (subtle) ----
+    // ---- Эффект наклона при наведении на карточки (легкий) ----
     document.querySelectorAll('.direction-card, .price-card, .review-card').forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ---- Custom Cursor (Boxing Glove) ----
+    // ---- Кастомный курсор (Боксерская перчатка) ----
     const glove = document.getElementById('cursor-glove');
     if (glove && window.matchMedia('(hover: hover)').matches) {
         let mouseX = 0, mouseY = 0;
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateGlove();
     }
 
-    // ---- Gallery Toggle ----
+    // ---- Переключатель галереи ----
     const galleryGrid = document.querySelector('.gallery__grid');
     const galleryToggle = document.getElementById('gallery-toggle');
 
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Gallery Lightbox ----
+    // ---- Лайтбокс галереи ----
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.getElementById('lightbox-close');
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryItems = document.querySelectorAll('.gallery__item[data-gallery]');
     let currentIndex = 0;
 
-    // Collect all gallery image URLs
+    // Сбор всех URL изображений галереи
     const galleryImages = [];
     galleryItems.forEach(item => {
         const img = item.querySelector('img');
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Open lightbox
+    // Открытие лайтбокса
     galleryItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             currentIndex = index;
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Close lightbox
+    // Закрытие лайтбокса
     function closeLightbox() {
         lightbox.classList.remove('is-active');
         document.body.style.overflow = '';
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxClose.addEventListener('click', closeLightbox);
     }
 
-    // Navigate
+    // Навигация в лайтбоксе
     if (lightboxPrev) {
         lightboxPrev.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Keyboard navigation
+    // Управление с клавиатуры
     document.addEventListener('keydown', (e) => {
         if (!lightbox || !lightbox.classList.contains('is-active')) return;
 
@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close on background click
+    // Закрытие при клике на фон
     if (lightbox) {
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox || e.target.classList.contains('lightbox__content')) {
@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Video Cards: Hover Play ----
+    // ---- Видео-карточки: Воспроизведение при наведении ----
     document.querySelectorAll('.video-card').forEach(card => {
         const video = card.querySelector('video');
         if (!video) return;

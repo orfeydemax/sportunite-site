@@ -271,6 +271,44 @@ button {
     gap: 1rem;
 }
 
+/* Language Toggle */
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 0.08em;
+    color: var(--gray-500);
+    transition: var(--transition-base);
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.lang-toggle:hover {
+    border-color: var(--accent);
+    background: rgba(230, 32, 32, 0.05);
+}
+
+.lang-toggle__separator {
+    color: var(--gray-700);
+    font-weight: 400;
+}
+
+.lang-toggle__ru,
+.lang-toggle__en {
+    transition: color 0.2s ease;
+}
+
+.lang-toggle__ru.is-active,
+.lang-toggle__en.is-active {
+    color: var(--white);
+}
+
 /* Logo */
 .logo {
     display: flex;
