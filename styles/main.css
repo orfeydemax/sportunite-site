@@ -1928,6 +1928,20 @@ button {
         padding: 0.5rem 0;
     }
 
+    .header__inner {
+        gap: 0.5rem;
+        padding: 0 1rem;
+    }
+
+    .header__actions {
+        gap: 0.6rem;
+    }
+
+    .logo {
+        margin-left: 0;
+        gap: 0.4rem;
+    }
+
     .logo__img {
         width: 32px;
         height: 32px;
@@ -1938,7 +1952,7 @@ button {
     }
 
     .header__actions .btn {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.75rem;
         font-size: 0.8rem;
     }
 
@@ -2151,6 +2165,19 @@ button {
     .hero__cta-group .btn {
         font-size: 0.9rem;
         padding: 0.85rem 1.25rem;
+    }
+
+    /* Header Extra Small */
+    .logo__text {
+        font-size: 1rem;
+    }
+
+    .lang-toggle {
+        padding: 0.35rem 0.45rem;
+    }
+
+    .header__actions {
+        gap: 0.4rem;
     }
 
     /* Cards */
