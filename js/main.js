@@ -558,4 +558,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     }
 
+    // ---- Аналитика: Цели Яндекс.Метрики ----
+    const COUNTER_ID = 107040995;
+
+    function reachMetricGoal(target) {
+        if (typeof ym !== 'undefined') {
+            ym(COUNTER_ID, 'reachGoal', target);
+            console.log(`[Goal] ${target} fired`);
+        }
+    }
+
+    // Кнопка в хедере
+    const headerCta = document.querySelector('.header__cta');
+    if (headerCta) {
+        headerCta.addEventListener('click', () => reachMetricGoal('header_write'));
+    }
+
+    // Главная кнопка в Hero
+    const heroCta = document.querySelector('.hero__cta-group .btn--primary');
+    if (heroCta) {
+        heroCta.addEventListener('click', () => reachMetricGoal('hero_order'));
+    }
+
+    // Кнопка в блоке реабилитации
+    const rehabCta = document.querySelector('.rehab-info .btn--green');
+    if (rehabCta) {
+        rehabCta.addEventListener('click', () => reachMetricGoal('rehab_order'));
+    }
+
+    // Кнопка в Bottom CTA (Final CTA)
+    const bottomCta = document.querySelector('.final-cta__inner .btn--primary');
+    if (bottomCta) {
+        bottomCta.addEventListener('click', () => reachMetricGoal('bottom_order'));
+    }
+
+    // Ссылка в футере
+    const footerTg = document.querySelector('.footer__tg');
+    if (footerTg) {
+        footerTg.addEventListener('click', () => reachMetricGoal('footer_tg'));
+    }
+
 });
