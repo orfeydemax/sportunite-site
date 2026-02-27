@@ -561,41 +561,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- Аналитика: Цели Яндекс.Метрики ----
     const COUNTER_ID = 107040995;
 
-    function reachMetricGoal(target) {
+    function trackEvent(ymTarget, fbEvent) {
         if (typeof ym !== 'undefined') {
-            ym(COUNTER_ID, 'reachGoal', target);
-            console.log(`[Goal] ${target} fired`);
+            ym(COUNTER_ID, 'reachGoal', ymTarget);
+            console.log(`[YM Goal] ${ymTarget} fired`);
+        }
+        if (typeof fbq !== 'undefined') {
+            fbq('track', fbEvent);
+            console.log(`[FB Event] ${fbEvent} fired`);
         }
     }
 
     // Кнопка в хедере
     const headerCta = document.querySelector('.header__cta');
     if (headerCta) {
-        headerCta.addEventListener('click', () => reachMetricGoal('header_write'));
+        headerCta.addEventListener('click', () => trackEvent('header_write', 'Contact'));
     }
 
     // Главная кнопка в Hero
     const heroCta = document.querySelector('.hero__cta-group .btn--primary');
     if (heroCta) {
-        heroCta.addEventListener('click', () => reachMetricGoal('hero_order'));
+        heroCta.addEventListener('click', () => trackEvent('hero_order', 'Lead'));
     }
 
     // Кнопка в блоке реабилитации
     const rehabCta = document.querySelector('.rehab-info .btn--green');
     if (rehabCta) {
-        rehabCta.addEventListener('click', () => reachMetricGoal('rehab_order'));
+        rehabCta.addEventListener('click', () => trackEvent('rehab_order', 'Lead'));
     }
 
     // Кнопка в Bottom CTA (Final CTA)
     const bottomCta = document.querySelector('.final-cta__inner .btn--primary');
     if (bottomCta) {
-        bottomCta.addEventListener('click', () => reachMetricGoal('bottom_order'));
+        bottomCta.addEventListener('click', () => trackEvent('bottom_order', 'Lead'));
     }
 
     // Ссылка в футере
     const footerTg = document.querySelector('.footer__tg');
     if (footerTg) {
-        footerTg.addEventListener('click', () => reachMetricGoal('footer_tg'));
+        footerTg.addEventListener('click', () => trackEvent('footer_tg', 'Contact'));
     }
 
 });
