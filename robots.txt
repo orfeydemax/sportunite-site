@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mvprofi.org/sitemap.xml
+Sitemap: https://sportunitevn.com/sitemap.xml

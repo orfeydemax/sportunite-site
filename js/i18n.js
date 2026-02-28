@@ -49,6 +49,32 @@
             }
         });
 
+        // 2. Перевод атрибутов alt для изображений
+        document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+            const key = el.getAttribute('data-i18n-alt');
+            if (dict[key] !== undefined) {
+                el.setAttribute('alt', dict[key]);
+            }
+        });
+
+        // 3. Перевод атрибутов placeholder для инпутов
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (dict[key] !== undefined) {
+                el.setAttribute('placeholder', dict[key]);
+            }
+        });
+
+        // --- SEO: Динамические мета-теги ---
+        if (dict['seo_title']) {
+            document.title = dict['seo_title'];
+        }
+        if (dict['seo_description']) {
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', dict['seo_description']);
+        }
+        // ----------------------------------
+
         // Обновляем атрибут lang на <html>
         document.documentElement.lang = currentLang;
 
