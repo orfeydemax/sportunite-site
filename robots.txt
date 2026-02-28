@@ -1,4 +1,23 @@
+# robots.txt — sportunitevn.com
+# Общие правила для всех роботов
 User-agent: *
 Allow: /
+Disallow: /.tmp/
+Disallow: /.git/
+Disallow: /.agent/
+Disallow: /.agents/
+Disallow: /.env
 
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+
+# Карта сайта
 Sitemap: https://sportunitevn.com/sitemap.xml
+
+# Хост для Яндекса
+Host: https://sportunitevn.com
