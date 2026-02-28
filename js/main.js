@@ -354,6 +354,14 @@ document.addEventListener('DOMContentLoaded', () => {
         animateGlove();
     }
 
+    // ---- Аналитика: Отслеживание хэшей (SPA-поведение) ----
+    window.addEventListener('hashchange', () => {
+        if (typeof ym !== 'undefined') {
+            ym(COUNTER_ID, 'hit', window.location.hash);
+            console.log(`[YM Hit] ${window.location.hash} tracked`);
+        }
+    });
+
     // ---- Переключатель галереи ----
     const galleryGrid = document.querySelector('.gallery__grid');
     const galleryToggle = document.getElementById('gallery-toggle');
@@ -597,9 +605,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Ссылка в футере
-    const footerTg = document.querySelector('.footer__tg');
     if (footerTg) {
         footerTg.addEventListener('click', () => trackEvent('footer_tg', 'Contact'));
     }
+
+    // Кнопки в карточках цен
+    document.querySelectorAll('.price-card').forEach(card => {
+        const title = card.querySelector('.price-card__title')?.textContent || 'unknown';
+        const priceText = card.querySelector('.price-card__amount')?.textContent || '0';
+        const price = parseInt(priceText.replace(/\D/g, '')) || 0;
+
+        card.addEventListener('click', () => {
+            const goalName = `price_click_${title.toLowerCase().replace(/\s+/g, '_')}`;
+            if (typeof ym !== 'undefined') {
+                ym(COUNTER_ID, 'reachGoal', goalName);
+
+                // E-commerce: detail view
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    "ecommerce": {
+                        "currencyCode": "VND",
+                        "detail": {
+                            "products": [
+                                {
+                                    "name": title,
+                                    "id": goalName,
+                                    "price": price,
+                                    "brand": "Sport Unite",
+                                    "category": "Training Services"
+                                }
+                            ]
+                        }
+                    }
+                });
+                console.log(`[YM Goal & Ecommerce] ${goalName} fired with price ${price}`);
+            }
+        });
+    });
+
+    // Обработка Intent To Order (клики по кнопкам записи)
+    const orderButtons = [headerCta, heroCta, rehabCta, bottomCta];
+    orderButtons.forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', () => {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    "ecommerce": {
+                        "currencyCode": "VND",
+                        "add": {
+                            "products": [
+                                {
+                                    "name": "Consultation / Order Intent",
+                                    "id": "order_intent",
+                                    "price": 0,
+                                    "brand": "Sport Unite",
+                                    "category": "Lead"
+                                }
+                            ]
+                        }
+                    }
+                });
+                console.log(`[YM Ecommerce] Order Intent pushed to dataLayer`);
+            });
+        }
+    });
 
 });
