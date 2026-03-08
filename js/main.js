@@ -605,6 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Ссылка в футере
+    const footerTg = document.querySelector('.footer__tg');
     if (footerTg) {
         footerTg.addEventListener('click', () => trackEvent('footer_tg', 'Contact'));
     }

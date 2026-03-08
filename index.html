@@ -116,7 +116,7 @@
 <body id="top">
     <!-- Yandex.Metrika noscript -->
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/107040995" style="position:absolute; left:-9999px;" alt="" /></div>
+        <div><img src="https://mc.yandex.ru/watch/107040995" style="position:absolute; left:-9999px;" alt="" width="1" height="1" /></div>
     </noscript>
     <!-- /Yandex.Metrika noscript -->
 
@@ -141,17 +141,18 @@
             </nav>
 
             <div class="header__actions">
-                <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
-                    <span class="lang-toggle__ru is-active">RU</span>
-                    <span class="lang-toggle__separator">/</span>
-                    <span class="lang-toggle__en">EN</span>
+                <button class="lang-toggle" id="lang-toggle" aria-label="ru / en (Switch language)">
+                    <span class="lang-toggle__ru is-active" aria-hidden="true">RU</span>
+                    <span class="lang-toggle__separator" aria-hidden="true">/</span>
+                    <span class="lang-toggle__en" aria-hidden="true">EN</span>
                 </button>
-                <a href="https://t.me/sportunite" class="btn btn--outline header__cta" target="_blank" rel="noopener">
+                <a href="https://t.me/sportunite?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A3%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BE%20%D0%BA%D0%BB%D1%83%D0%B1%D0%B5."
+                    class="btn btn--outline header__cta" target="_blank" rel="noopener">
                     <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.1.154.234.169.327.016.093.035.306.02.472z" />
                     </svg>
-                    <span data-i18n="btn_write">Написать</span>
+                    <span data-i18n="btn_write">Задать вопрос</span>
                 </a>
                 <button class="burger" id="burger" aria-label="Открыть меню">
                     <span></span>
@@ -213,8 +214,8 @@
                 </p>
 
                 <div class="hero__cta-group" data-animate>
-                    <a href="https://t.me/sportunite" class="btn btn--primary btn--large" target="_blank"
-                        rel="noopener">
+                    <a href="https://t.me/sportunite?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D1%83%D1%8E%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D1%83%D1%8E%20%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D1%83."
+                        class="btn btn--primary btn--large" target="_blank" rel="noopener">
                         <span class="btn__pulse"></span>
                         <span data-i18n="hero_cta">Записаться на пробную</span>
                     </a>
@@ -442,7 +443,8 @@
                 <div class="about__visual" data-animate>
                     <div class="about__image-frame">
                         <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0724.JPG"
-                            alt="Чемпион ММА — основатель Sport Unite" class="about__champion-img" loading="lazy">
+                            loading="lazy" alt="Чемпион ММА — основатель Sport Unite" class="about__champion-img"
+                            loading="lazy">
                         <div class="about__image-overlay">
                             <p class="about__quote" data-i18n="about_quote">«Клуб — это продолжение меня. Моих
                                 ценностей. Моего отношения к
@@ -534,132 +536,132 @@
             <div class="gallery__grid" data-animate>
                 <div class="gallery__item gallery__item--tall" data-gallery="0">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0718.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        loading="lazy" alt="Тренировка в Sport Unite"  width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="1">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0615.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        loading="lazy" alt="Тренировка в Sport Unite"  width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="2">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1778.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        loading="lazy" alt="Тренировка в Sport Unite"  width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="3">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0912.JPG"
-                        alt="Зал Sport Unite" loading="lazy">
+                        loading="lazy" alt="Зал Sport Unite"  width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item gallery__item--wide" data-gallery="4">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1798.JPG"
-                        alt="Спарринг в Sport Unite" loading="lazy">
+                        loading="lazy" alt="Спарринг в Sport Unite"  width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="5">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1167.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        loading="lazy" alt="Тренировка в Sport Unite"  width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="6">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1195.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item gallery__item--tall" data-gallery="7">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1834.JPG"
-                        alt="Тренер Sport Unite" loading="lazy">
+                        alt="Тренер Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="8">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1201.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="9">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0414.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="10">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0433.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item gallery__item--wide" data-gallery="11">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1836.JPG"
-                        alt="Команда Sport Unite" loading="lazy">
+                        alt="Команда Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="12">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_1842.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="13">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_2102.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item gallery__item--tall" data-gallery="14">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_0724.JPG"
-                        alt="Тренер Sport Unite" data-i18n-alt="gallery_alt_trainer" loading="lazy">
+                        alt="Тренер Sport Unite" data-i18n-alt="gallery_alt_trainer" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="15">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_4096.JPG"
-                        alt="Тренировка в Sport Unite" data-i18n-alt="gallery_alt_training" loading="lazy">
+                        alt="Тренировка в Sport Unite" data-i18n-alt="gallery_alt_training" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="16">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_5793.JPG"
-                        alt="Тренировка в Sport Unite" data-i18n-alt="gallery_alt_training" loading="lazy">
+                        alt="Тренировка в Sport Unite" data-i18n-alt="gallery_alt_training" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="17">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_6087.JPG"
-                        alt="Тренировка в Sport Unite" data-i18n-alt="gallery_alt_training" loading="lazy">
+                        alt="Тренировка в Sport Unite" data-i18n-alt="gallery_alt_training" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="18">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_6567.JPG"
-                        alt="Спорт в Sport Unite" data-i18n-alt="gallery_alt_gym" loading="lazy">
+                        alt="Спорт в Sport Unite" data-i18n-alt="gallery_alt_gym" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item gallery__item--wide" data-gallery="19">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_6836.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="20">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_7009.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="21">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_7029.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="22">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_8330.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="23">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_8331.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="24">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_8416.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
                 <div class="gallery__item" data-gallery="25">
                     <img src="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/IMG_8610.JPG"
-                        alt="Тренировка в Sport Unite" loading="lazy">
+                        alt="Тренировка в Sport Unite" loading="lazy" width="600" height="800">
                     <div class="gallery__overlay"><span class="gallery__zoom">🔍</span></div>
                 </div>
             </div>
@@ -681,28 +683,32 @@
             <div class="videos__grid" data-animate>
                 <div class="video-card">
                     <video class="video-card__player" src="images/IMG_5010.MP4" muted playsinline loop
-                        preload="metadata"></video>
+                        preload="metadata"
+                        poster="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png"></video>
                     <div class="video-card__info">
                         <span class="video-card__tag" data-i18n="video_tag_training">Тренировка</span>
                     </div>
                 </div>
                 <div class="video-card">
                     <video class="video-card__player" src="images/IMG_5380.MP4" muted playsinline loop
-                        preload="metadata"></video>
+                        preload="metadata"
+                        poster="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png"></video>
                     <div class="video-card__info">
                         <span class="video-card__tag" data-i18n="video_tag_sparring">Спарринг</span>
                     </div>
                 </div>
                 <div class="video-card">
                     <video class="video-card__player" src="images/IMG_4328.MOV" muted playsinline loop
-                        preload="metadata"></video>
+                        preload="metadata"
+                        poster="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png"></video>
                     <div class="video-card__info">
                         <span class="video-card__tag" data-i18n="video_tag_technique">Техника</span>
                     </div>
                 </div>
                 <div class="video-card">
                     <video class="video-card__player" src="images/IMG_4329.MOV" muted playsinline loop
-                        preload="metadata"></video>
+                        preload="metadata"
+                        poster="https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png"></video>
                     <div class="video-card__info">
                         <span class="video-card__tag" data-i18n="video_tag_gym">Зал</span>
                     </div>
@@ -832,8 +838,8 @@
                         </div>
                     </div>
 
-                    <a href="https://t.me/sportunite" class="btn btn--green btn--large" target="_blank" rel="noopener"
-                        data-i18n="rehab_cta">
+                    <a href="https://t.me/sportunite?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B5%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F."
+                        class="btn btn--green btn--large" target="_blank" rel="noopener" data-i18n="rehab_cta">
                         Записаться на диагностику
                     </a>
                 </div>
@@ -1140,7 +1146,8 @@
                 <p class="final-cta__text" data-i18n="cta_text">Первая тренировка — бесплатно. Без обязательств. Просто
                     приходи и попробуй.
                 </p>
-                <a href="https://t.me/sportunite" class="btn btn--primary btn--xl" target="_blank" rel="noopener">
+                <a href="https://t.me/sportunite?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BD%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B8%20%D0%B2%20Sport%20Unite."
+                    class="btn btn--primary btn--xl" target="_blank" rel="noopener">
                     <span class="btn__pulse"></span>
                     <span data-i18n="cta_btn">Написать в Telegram</span>
                 </a>
@@ -1170,13 +1177,15 @@
                     <a href="#about" data-i18n="footer_nav_2">О клубе</a>
                     <a href="#results" data-i18n="footer_nav_3">Результаты</a>
                     <a href="#prices" data-i18n="footer_nav_4">Цены</a>
+                    <a href="privacy-policy.html" data-i18n="footer_nav_privacy">Privacy Policy</a>
                 </div>
 
                 <div class="footer__contact">
                     <h4 class="footer__heading" data-i18n="footer_contact_title">Контакты</h4>
                     <p data-i18n="footer_location">📍 Нячанг, Вьетнам</p>
                     <p data-i18n="footer_areas">Районы: Север · Центр · An Viên</p>
-                    <a href="https://t.me/sportunite" class="footer__tg" target="_blank" rel="noopener">
+                    <a href="https://t.me/sportunite?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A3%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81."
+                        class="footer__tg" target="_blank" rel="noopener">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path
                                 d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.1.154.234.169.327.016.093.035.306.02.472z" />
@@ -1250,56 +1259,105 @@
     </div>
 
     <!-- ========== LIGHTBOX ========== -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox__close" id="lightbox-close" aria-label="Закрыть галерею">&times;</button>
-        <button class="lightbox__prev" id="lightbox-prev" aria-label="Предыдущее фото">&#10094;</button>
-        <button class="lightbox__next" id="lightbox-next" aria-label="Следующее фото">&#10095;</button>
+    <div class="lightbox" id="lightbox" aria-label="Галерея изображений">
+        <button class="lightbox__close" id="lightbox-close" aria-label="Закрыть галерею"><span
+                aria-hidden="true">&times;</span></button>
+        <button class="lightbox__prev" id="lightbox-prev" aria-label="Предыдущее фото"><span
+                aria-hidden="true">&#10094;</span></button>
+        <button class="lightbox__next" id="lightbox-next" aria-label="Следующее фото"><span
+                aria-hidden="true">&#10095;</span></button>
         <div class="lightbox__content">
             <img class="lightbox__img" id="lightbox-img" src="" alt="Фото из галереи SPORT UNITE">
         </div>
         <div class="lightbox__counter" id="lightbox-counter"></div>
     </div>
 
-    <!-- JSON-LD: Структурированные данные LocalBusiness -->
+    <!-- JSON-LD: Структурированные данные -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "SportsActivityLocation",
-        "name": "SPORT UNITE",
-        "description": "Экспертный клуб единоборств в Нячанге. ММА, бокс, кикбоксинг, BJJ, реабилитация.",
-        "url": "https://sportunitevn.com/",
-        "logo": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
-        "image": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Nha Trang",
-            "addressCountry": "VN"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 12.2451,
-            "longitude": 109.1943
-        },
-        "sameAs": [
-            "https://t.me/sportunite",
-            "https://www.facebook.com/nhatrangsportuniteclub",
-            "https://www.instagram.com/nhatrang_sportunite/",
-            "https://www.youtube.com/@alekseifilonenko3781"
-        ],
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "07:00",
-            "closes": "21:00"
-        },
-        "priceRange": "200000-10000000 VND",
-        "currenciesAccepted": "VND",
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "500",
-            "bestRating": "5"
-        }
+        "@graph": [
+            {
+                "@type": "SportsActivityLocation",
+                "name": "SPORT UNITE",
+                "description": "Экспертный клуб единоборств в Нячанге. ММА, бокс, кикбоксинг, BJJ, реабилитация.",
+                "url": "https://sportunitevn.com/",
+                "logo": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+                "image": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Nha Trang",
+                    "addressCountry": "VN"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 12.2451,
+                    "longitude": 109.1943
+                },
+                "sameAs": [
+                    "https://t.me/sportunite",
+                    "https://www.facebook.com/nhatrangsportuniteclub",
+                    "https://www.instagram.com/nhatrang_sportunite/",
+                    "https://www.youtube.com/@alekseifilonenko3781"
+                ],
+                "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                    "opens": "07:00",
+                    "closes": "21:00"
+                },
+                "priceRange": "200000-10000000 VND",
+                "currenciesAccepted": "VND",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.9",
+                    "reviewCount": "500",
+                    "bestRating": "5"
+                }
+            },
+            {
+                "@type": "Organization",
+                "name": "SPORT UNITE",
+                "url": "https://sportunitevn.com/",
+                "logo": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+                "sameAs": [
+                    "https://t.me/sportunite",
+                    "https://www.instagram.com/nhatrang_sportunite/"
+                ]
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Тренировка по ММА в Sport Unite",
+                "description": "Процесс тренировки и спаррингов в бойцовском клубе Sport Unite, Нячанг",
+                "thumbnailUrl": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+                "uploadDate": "2024-01-01T08:00:00+08:00",
+                "contentUrl": "https://sportunitevn.com/images/IMG_5010.MP4"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Тренировка по Боксу в Sport Unite",
+                "description": "Работа на лапах и мешках, постановка удара",
+                "thumbnailUrl": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+                "uploadDate": "2024-01-01T08:00:00+08:00",
+                "contentUrl": "https://sportunitevn.com/images/IMG_5380.MP4"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Грэпплинг и BJJ",
+                "description": "Отработка приемов бразильского джиу-джитсу на ковре",
+                "thumbnailUrl": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+                "uploadDate": "2024-01-01T08:00:00+08:00",
+                "contentUrl": "https://sportunitevn.com/images/IMG_4328.MOV"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "Кроссфит и ОФП",
+                "description": "Функциональная тренировка и развитие выносливости",
+                "thumbnailUrl": "https://knazzfxnzklentpbsnnl.supabase.co/storage/v1/object/public/Sport%20unite/logotip.png",
+                "uploadDate": "2024-01-01T08:00:00+08:00",
+                "contentUrl": "https://sportunitevn.com/images/IMG_4329.MOV"
+            }
+        ]
     }
     </script>
 </body>
