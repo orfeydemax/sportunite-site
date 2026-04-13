@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let delay = 0;
                 siblings.forEach((sibling, i) => {
                     if (sibling === entry.target) {
-                        delay = i * 80;
+                        delay = i * 30;
                     }
                 });
 
