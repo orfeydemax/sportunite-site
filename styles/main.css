@@ -1926,7 +1926,6 @@ button {
     /* Header */
     .header {
         padding: 0.5rem 0;
-        overflow: hidden;
     }
 
     .header__inner {
@@ -1936,7 +1935,6 @@ button {
 
     .header__actions {
         gap: 0.5rem;
-        margin-right: 0.25rem;
     }
 
     .logo {
@@ -1953,9 +1951,18 @@ button {
         font-size: 1.1rem;
     }
 
-    .header__actions .btn {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.8rem;
+    /* На мобильном скрываем текст кнопки CTA, оставляем только иконку Telegram */
+    .header__cta span {
+        display: none;
+    }
+
+    .header__cta {
+        padding: 0.5rem;
+        min-width: unset;
+    }
+
+    .header__cta .btn__icon {
+        margin: 0;
     }
 
     /* Hero */
