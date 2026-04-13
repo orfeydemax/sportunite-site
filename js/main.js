@@ -460,12 +460,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Видео-карточки: Воспроизведение при наведении ----
+    // ---- Видео-карточки: Превью первого кадра + воспроизведение при наведении ----
     document.querySelectorAll('.video-card').forEach(card => {
         const video = card.querySelector('video');
         if (!video) return;
 
+        // Загружаем первый кадр: ставим currentTime, чтобы браузер отрендерил кадр
+        video.addEventListener('loadeddata', () => {
+            video.currentTime = 0.5; // Перемотка на 0.5 сек для захвата кадра
+        }, { once: true });
+
+        // После перемотки ставим паузу — видео покажет кадр
+        video.addEventListener('seeked', () => {
+            video.pause();
+        }, { once: true });
+
         card.addEventListener('mouseenter', () => {
+            video.currentTime = 0;
             video.play().catch(() => { });
         });
 
