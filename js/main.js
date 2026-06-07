@@ -226,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth'
                 });
 
+                history.pushState(null, '', targetId);
+
                 // Закрыть мобильное меню, если открыто
                 closeMobileMenu();
             }

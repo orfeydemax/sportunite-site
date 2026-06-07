@@ -105,6 +105,7 @@
     --container-max: 1200px;
     --section-padding: clamp(1.5rem, 5vw, 4rem);
     --section-gap: clamp(4rem, 10vw, 8rem);
+    --anchor-offset: 96px;
 
     --radius-sm: 6px;
     --radius-md: 12px;
@@ -130,7 +131,12 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--anchor-offset);
     -webkit-font-smoothing: antialiased;
+}
+
+section[id] {
+    scroll-margin-top: var(--anchor-offset);
 }
 
 body {
