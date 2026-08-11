@@ -45,6 +45,7 @@
     </script>
     <!-- /Yandex.Metrika counter -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090909">
     <meta name="google-site-verification" content="ssmSKmgypGgTVD1YEjjL0gIInxHN44Z2DRK7FrB2dFc" />
     <title>SPORT UNITE — Бойцовский клуб в Нячанге | ММА, Бокс, BJJ</title>
     <meta name="description"
@@ -60,7 +61,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sportunitevn.com/">
     <meta property="og:image"
-        content="https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png">
+        content="https://sportunitevn.com/images/logotip.png">
     <meta property="og:site_name" content="SPORT UNITE">
     <meta property="og:locale" content="ru_RU">
 
@@ -70,7 +71,7 @@
     <meta name="twitter:description"
         content="Экспертный клуб единоборств. ММА, бокс, BJJ, реабилитация. Тренировки в Нячанге.">
     <meta name="twitter:image"
-        content="https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png">
+        content="https://sportunitevn.com/images/logotip.png">
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
@@ -92,8 +93,8 @@
     </script>
 
     <!-- Preconnect к Supabase Storage (изображения) -->
-    <link rel="preconnect" href="https://knazzfxnzklentpbsnnl.supabase.co" crossorigin>
-    <link rel="dns-prefetch" href="https://knazzfxnzklentpbsnnl.supabase.co">
+    <link rel="preconnect" href="https://supabase.mvprofi.org" crossorigin>
+    <link rel="dns-prefetch" href="https://supabase.mvprofi.org">
 
     <!-- Meta: robots, referrer -->
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -118,7 +119,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 
-    <link rel="stylesheet" href="styles/main.css?v=1.0.2">
+    <link rel="stylesheet" href="styles/main.css?v=1.0.5">
 
     <!-- Scripts (Defer for performance) -->
     <script src="js/i18n.js" defer></script>
@@ -133,11 +134,13 @@
     </noscript>
     <!-- /Yandex.Metrika noscript -->
 
+    <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
     <!-- ========== HEADER ========== -->
     <header class="header" id="header">
         <div class="container header__inner">
             <a href="/" class="logo">
-                <img src="https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png"
+                <img src="images/logotip.png"
                     alt="SPORT UNITE" class="logo__img" width="40" height="40" fetchpriority="high">
                 <span class="logo__text">SPORT<span class="logo__accent">UNITE</span></span>
             </a>
@@ -175,6 +178,8 @@
             </div>
         </div>
     </header>
+
+    <main id="main-content">
 
     <!-- ========== HERO ========== -->
     <section class="hero" id="hero">
@@ -852,11 +857,51 @@
                         </div>
                     </div>
 
-                    <a href="https://t.me/slavayarilo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B5%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F."
-                        class="btn btn--green btn--large" target="_blank" rel="noopener" data-i18n="rehab_cta">
-                        Записаться на диагностику
-                    </a>
                 </div>
+            </div>
+
+            <div class="rehab__offers" data-animate>
+                <div class="rehab__offers-heading">
+                    <span class="rehab__offers-kicker" data-i18n="rehab_offers_kicker">Форматы и стоимость</span>
+                    <h3 data-i18n="rehab_offers_title">Выберите формат восстановления</h3>
+                </div>
+
+                <div class="rehab__offers-grid">
+                    <article class="rehab-offer rehab-offer--featured">
+                        <span class="rehab-offer__badge" data-i18n="rehab_offer_author_badge">Авторский курс</span>
+                        <h4 data-i18n="rehab_offer_author_title">Персонально с Алексеем Филоненко</h4>
+                        <p data-i18n="rehab_offer_author_desc">Личное ведение: восстановление и решение конкретной проблемы</p>
+                        <div class="rehab-offer__footer">
+                            <span class="rehab-offer__format" data-i18n="rehab_offer_author_format">Курс на 1 месяц</span>
+                            <strong>26 000 000 ₫</strong>
+                        </div>
+                    </article>
+
+                    <article class="rehab-offer">
+                        <span class="rehab-offer__badge" data-i18n="rehab_offer_specialist_badge">Индивидуально</span>
+                        <h4 data-i18n="rehab_offer_specialist_title">С реабилитологом клуба</h4>
+                        <p data-i18n="rehab_offer_specialist_desc">Персональные занятия с реабилитологом в зале</p>
+                        <div class="rehab-offer__footer">
+                            <span class="rehab-offer__format" data-i18n="rehab_offer_specialist_format">12 занятий</span>
+                            <strong>8 000 000 ₫</strong>
+                        </div>
+                    </article>
+
+                    <article class="rehab-offer">
+                        <span class="rehab-offer__badge" data-i18n="rehab_offer_group_badge">В группе</span>
+                        <h4 data-i18n="rehab_offer_group_title">С Алексеем Филоненко</h4>
+                        <p data-i18n="rehab_offer_group_desc">Групповые занятия по восстановлению под руководством Алексея</p>
+                        <div class="rehab-offer__footer">
+                            <span class="rehab-offer__format" data-i18n="rehab_offer_group_format">10 занятий</span>
+                            <strong>8 000 000 ₫</strong>
+                        </div>
+                    </article>
+                </div>
+
+                <a href="https://t.me/slavayarilo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B5%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D1%8F."
+                    class="btn btn--green btn--large" target="_blank" rel="noopener" data-i18n="rehab_cta">
+                    Записаться на диагностику
+                </a>
             </div>
         </div>
     </section>
@@ -867,150 +912,144 @@
             <div class="section-header" data-animate>
                 <span class="section-tag" data-i18n="prices_tag">Цены</span>
                 <h2 class="section-title" data-i18n="prices_title">Прозрачные <span class="accent">условия</span></h2>
-                <p class="section-desc" data-i18n="prices_desc">Выберите подходящий формат — от разовых тренировок до
-                    безлимита</p>
+                <p class="section-desc" data-i18n="prices_desc">Выберите направление и удобную частоту тренировок</p>
+                <p class="prices__effective" data-i18n="prices_effective">Новый прайс действует с 1 августа 2026 года</p>
             </div>
 
-            <div class="prices__grid" data-animate>
-                <!-- Групповые -->
-                <div class="price-card">
+            <div class="prices__featured" data-animate>
+                <div class="price-card price-card--compact">
                     <div class="price-card__header">
-                        <h3 class="price-card__title" data-i18n="price_group_title">Групповые</h3>
-                        <p class="price-card__subtitle" data-i18n="price_group_sub">Бокс, Кикбоксинг, BJJ, Грэпплинг,
-                            Фитнес, Кроссфит</p>
+                        <h3 class="price-card__title" data-i18n="price_gym_title">Зал</h3>
+                        <p class="price-card__subtitle" data-i18n="price_gym_sub">Самостоятельные тренировки</p>
                     </div>
                     <div class="price-card__body">
                         <div class="price-card__option price-card__option--single">
-                            <span class="price-card__freq" data-i18n="price_single">Разовая</span>
-                            <span class="price-card__amount">300 000 ₫</span>
+                            <span class="price-card__freq" data-i18n="price_single_visit">Разовое посещение</span>
+                            <span class="price-card__amount">150 000 ₫</span>
                         </div>
                         <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_2pw">2 занятия / нед</span>
-                            <span class="price-card__amount">1 400 000 ₫</span>
-                        </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_3pw">3 занятия / нед</span>
-                            <span class="price-card__amount">1 700 000 ₫</span>
+                            <span class="price-card__freq" data-i18n="price_month_pass">Абонемент на месяц</span>
+                            <span class="price-card__amount">550 000 ₫</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- ММА -->
-                <div class="price-card">
+                <div class="price-card price-card--featured price-card--compact">
+                    <span class="price-card__badge" data-i18n="price_mix_badge">Все направления</span>
                     <div class="price-card__header">
-                        <h3 class="price-card__title" data-i18n="price_mma_title">ММА</h3>
-                        <p class="price-card__subtitle" data-i18n="price_mma_sub">Смешанные единоборства (Взрослые)</p>
-                    </div>
-                    <div class="price-card__body">
-                        <div class="price-card__option price-card__option--single">
-                            <span class="price-card__freq" data-i18n="price_single">Разовая</span>
-                            <span class="price-card__amount">350 000 ₫</span>
-                        </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_2pw">2 занятия / нед</span>
-                            <span class="price-card__amount">1 500 000 ₫</span>
-                        </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_3pw">3 занятия / нед</span>
-                            <span class="price-card__amount">1 900 000 ₫</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Детские занятия -->
-                <div class="price-card">
-                    <div class="price-card__header">
-                        <h3 class="price-card__title" data-i18n="price_kids_title">Детские</h3>
-                        <p class="price-card__subtitle" data-i18n="price_kids_sub">Бокс, Кикбоксинг, Джиу-джитсу</p>
-                    </div>
-                    <div class="price-card__body">
-                        <div class="price-card__option price-card__option--single">
-                            <span class="price-card__freq" data-i18n="price_single">Разовая</span>
-                            <span class="price-card__amount">200 000 ₫</span>
-                        </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_2pw">2 занятия / нед</span>
-                            <span class="price-card__amount">1 100 000 ₫</span>
-                        </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_3pw">3 занятия / нед</span>
-                            <span class="price-card__amount">1 300 000 ₫</span>
-                        </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_unlimited_label">Безлимит</span>
-                            <span class="price-card__amount">2 000 000 ₫</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Безлимит -->
-                <div class="price-card price-card--featured">
-                    <span class="price-card__badge" data-i18n="price_unlimited_badge">Популярный</span>
-                    <div class="price-card__header">
-                        <h3 class="price-card__title" data-i18n="price_unlimited_title">Безлимит</h3>
-                        <p class="price-card__subtitle" data-i18n="price_unlimited_sub">Все групповые направления
-                            (Взрослые)</p>
+                        <h3 class="price-card__title" data-i18n="price_mix_title">Микс</h3>
+                        <p class="price-card__subtitle" data-i18n="price_mix_sub">Единый абонемент на месяц</p>
                     </div>
                     <div class="price-card__body">
                         <div class="price-card__option price-card__option--big">
-                            <span class="price-card__amount">3 000 000 ₫</span>
-                            <span class="price-card__freq" data-i18n="price_unlimited_per">/ месяц</span>
+                            <span class="price-card__amount">3 300 000 ₫</span>
+                            <span class="price-card__freq" data-i18n="price_per_month">/ месяц</span>
                         </div>
-                        <ul class="price-card__perks">
-                            <li data-i18n="price_unlimited_p1">Все групповые направления</li>
-                            <li data-i18n="price_unlimited_p2">Более 3-х посещений в неделю</li>
-                            <li data-i18n="price_unlimited_p3">Посещение разных занятий</li>
-                            <li data-i18n="price_unlimited_p4">Диагностика тела в подарок</li>
-                        </ul>
                     </div>
                 </div>
+            </div>
 
-                <!-- Персональные -->
-                <div class="price-card">
-                    <div class="price-card__header">
-                        <h3 class="price-card__title" data-i18n="price_personal_title">Персональные</h3>
-                        <p class="price-card__subtitle" data-i18n="price_personal_sub">От разных тренеров —
-                            индивидуальный подход</p>
+            <div class="prices__group" data-animate>
+                <div class="prices__group-heading">
+                    <span class="prices__group-kicker" data-i18n="prices_adults_kicker">18+</span>
+                    <h3 data-i18n="prices_adults_title">Взрослые</h3>
+                </div>
+                <div class="prices__grid">
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title">BJJ</h4><p class="price-card__subtitle" data-i18n="price_bjj_sub">Бразильское джиу-джитсу</p></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">300 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 500 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 800 000 ₫</span></div>
+                        </div>
                     </div>
-                    <div class="price-card__body">
-                        <div class="price-card__option price-card__option--single">
-                            <span class="price-card__freq" data-i18n="price_single">Разовая</span>
-                            <span class="price-card__amount">от 400 000 ₫</span>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_grappling_title">Грэпплинг</h4></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">300 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 500 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 800 000 ₫</span></div>
                         </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_personal_pack12">Пакет 12 занятий</span>
-                            <span class="price-card__amount">от 6 000 000 ₫</span>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_judo_title">Дзюдо</h4></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">300 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 500 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 800 000 ₫</span></div>
                         </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_personal_max">Максимальный пакет</span>
-                            <span class="price-card__amount">до 10 000 000 ₫</span>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_boxing_title">Бокс</h4></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">300 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 500 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 800 000 ₫</span></div>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_muay_title">Муай-тай</h4></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">300 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 600 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 900 000 ₫</span></div>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_mma_title">ММА</h4></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">350 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 600 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">2 000 000 ₫</span></div>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_kickboxing_title">Кикбоксинг</h4></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">300 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 600 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 900 000 ₫</span></div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Реабилитация -->
-                <div class="price-card">
-                    <span class="price-card__badge" style="background: var(--green);"
-                        data-i18n="price_rehab_badge">Новое</span>
-                    <div class="price-card__header">
-                        <h3 class="price-card__title" data-i18n="price_rehab_title">Реабилитация</h3>
-                        <p class="price-card__subtitle" data-i18n="price_rehab_sub">Восстановление и работа с болью</p>
+            <div class="prices__group" data-animate>
+                <div class="prices__group-heading">
+                    <span class="prices__group-kicker" data-i18n="prices_youth_kicker">До 18</span>
+                    <h3 data-i18n="prices_youth_title">Дети и подростки</h3>
+                </div>
+                <div class="prices__grid prices__grid--youth">
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title">BJJ</h4><p class="price-card__subtitle" data-i18n="price_kids_label">Дети</p></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">250 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 200 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 400 000 ₫</span></div>
+                        </div>
                     </div>
-                    <div class="price-card__body">
-                        <div class="price-card__option price-card__option--single">
-                            <span class="price-card__freq" data-i18n="price_rehab_consult">Консультация</span>
-                            <span class="price-card__amount" data-i18n="price_rehab_consult_price">Бесплатно</span>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_kickboxing_title">Кикбоксинг</h4><p class="price-card__subtitle" data-i18n="price_teens_label">Подростки</p></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">250 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 300 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 500 000 ₫</span></div>
                         </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_rehab_diag">Диагностика</span>
-                            <span class="price-card__amount">500 000 ₫</span>
-                        </div>
-                        <div class="price-card__option">
-                            <span class="price-card__freq" data-i18n="price_rehab_course">Курс 10 занятий</span>
-                            <span class="price-card__amount">10 000 000 ₫</span>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-card__header"><h4 class="price-card__title" data-i18n="price_kickboxing_title">Кикбоксинг</h4><p class="price-card__subtitle" data-i18n="price_kids_label">Дети</p></div>
+                        <div class="price-card__body">
+                            <div class="price-card__option price-card__option--single"><span class="price-card__freq" data-i18n="price_single_class">Разовое занятие</span><span class="price-card__amount">200 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_2pw">2 раза / нед</span><span class="price-card__amount">1 200 000 ₫</span></div>
+                            <div class="price-card__option"><span class="price-card__freq" data-i18n="price_3pw">3 раза / нед</span><span class="price-card__amount">1 400 000 ₫</span></div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="prices__note" data-animate>
+                <p data-i18n="prices_note">Все цены указаны во вьетнамских донгах. Абонементы рассчитаны на один месяц.</p>
+                <a href="https://t.me/slavayarilo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84." class="btn btn--outline" target="_blank" rel="noopener" data-i18n="prices_cta">Уточнить тариф</a>
             </div>
         </div>
     </section>
@@ -1170,13 +1209,15 @@
         </div>
     </section>
 
+    </main>
+
     <!-- ========== FOOTER ========== -->
     <footer class="footer" id="footer">
         <div class="container">
             <div class="footer__grid">
                 <div class="footer__brand">
                     <a href="/" class="logo logo--footer">
-                        <img src="https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png"
+                        <img src="images/logotip.png"
                             alt="SPORT UNITE" class="logo__img" loading="lazy" width="40" height="40">
                         <span class="logo__text">SPORT<span class="logo__accent">UNITE</span></span>
                     </a>
@@ -1191,7 +1232,8 @@
                     <a href="#about" data-i18n="footer_nav_2">О клубе</a>
                     <a href="#results" data-i18n="footer_nav_3">Результаты</a>
                     <a href="#prices" data-i18n="footer_nav_4">Цены</a>
-                    <a href="privacy-policy.html" data-i18n="footer_nav_privacy">Privacy Policy</a>
+                    <a href="privacy-policy.html" data-i18n="footer_nav_privacy">Политика конфиденциальности</a>
+                    <a href="legal-info.html" data-i18n="footer_nav_legal">Юридическая информация</a>
                 </div>
 
                 <div class="footer__contact">
@@ -1232,10 +1274,18 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="footer__legal">
+                    <h4 class="footer__heading" data-i18n="footer_legal_title">Юридическая информация</h4>
+                    <p>CÔNG TY TNHH NT SPORT UNITE</p>
+                    <p><span data-i18n="footer_business_id">Код предприятия</span>: 4202055150</p>
+                    <p>17-19 Đoàn Trần Nghiệp, Phường Bắc Nha Trang, Tỉnh Khánh Hòa, Việt Nam</p>
+                    <a href="tel:+84963190193">0963 190 193</a>
+                </div>
             </div>
 
             <div class="footer__bottom">
-                <p data-i18n="footer_copy">&copy; 2025 SPORT UNITE. Нячанг, Вьетнам.</p>
+                <p data-i18n="footer_copy">&copy; 2026 SPORT UNITE. Нячанг, Вьетнам.</p>
             </div>
         </div>
     </footer>
@@ -1296,8 +1346,8 @@
                 "name": "SPORT UNITE",
                 "description": "Экспертный клуб единоборств в Нячанге. ММА, бокс, кикбоксинг, BJJ, реабилитация.",
                 "url": "https://sportunitevn.com/",
-                "logo": "https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png",
-                "image": "https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png",
+                "logo": "https://sportunitevn.com/images/logotip.png",
+                "image": "https://sportunitevn.com/images/logotip.png",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Nha Trang",
@@ -1314,13 +1364,16 @@
                     "https://www.instagram.com/nhatrang_sportunite/",
                     "https://www.youtube.com/@alekseifilonenko3781"
                 ],
+                "legalName": "CÔNG TY TNHH NT SPORT UNITE",
+                "taxID": "4202055150",
+                "telephone": "+84 963 190 193",
                 "openingHoursSpecification": {
                     "@type": "OpeningHoursSpecification",
                     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
                     "opens": "07:00",
                     "closes": "21:00"
                 },
-                "priceRange": "200000-10000000 VND",
+                "priceRange": "150000-26000000 VND",
                 "currenciesAccepted": "VND",
                 "aggregateRating": {
                     "@type": "AggregateRating",
@@ -1332,8 +1385,17 @@
             {
                 "@type": "Organization",
                 "name": "SPORT UNITE",
+                "legalName": "CÔNG TY TNHH NT SPORT UNITE",
+                "taxID": "4202055150",
+                "telephone": "+84 963 190 193",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "17-19 Đoàn Trần Nghiệp, Phường Bắc Nha Trang",
+                    "addressRegion": "Khánh Hòa",
+                    "addressCountry": "VN"
+                },
                 "url": "https://sportunitevn.com/",
-                "logo": "https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png",
+                "logo": "https://sportunitevn.com/images/logotip.png",
                 "sameAs": [
                     "https://t.me/slavayarilo",
                     "https://www.instagram.com/nhatrang_sportunite/"
@@ -1343,7 +1405,7 @@
                 "@type": "VideoObject",
                 "name": "Тренировка по ММА в Sport Unite",
                 "description": "Процесс тренировки и спаррингов в бойцовском клубе Sport Unite, Нячанг",
-                "thumbnailUrl": "https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png",
+                "thumbnailUrl": "https://sportunitevn.com/images/logotip.png",
                 "uploadDate": "2024-01-01T08:00:00+08:00",
                 "contentUrl": "https://sportunitevn.com/images/IMG_5010.MP4"
             },
@@ -1351,7 +1413,7 @@
                 "@type": "VideoObject",
                 "name": "Тренировка по Боксу в Sport Unite",
                 "description": "Работа на лапах и мешках, постановка удара",
-                "thumbnailUrl": "https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png",
+                "thumbnailUrl": "https://sportunitevn.com/images/logotip.png",
                 "uploadDate": "2024-01-01T08:00:00+08:00",
                 "contentUrl": "https://sportunitevn.com/images/IMG_5380.MP4"
             },
@@ -1359,7 +1421,7 @@
                 "@type": "VideoObject",
                 "name": "Грэпплинг и BJJ",
                 "description": "Отработка приемов бразильского джиу-джитсу на ковре",
-                "thumbnailUrl": "https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png",
+                "thumbnailUrl": "https://sportunitevn.com/images/logotip.png",
                 "uploadDate": "2024-01-01T08:00:00+08:00",
                 "contentUrl": "https://sportunitevn.com/images/IMG_4328.MOV"
             },
@@ -1367,7 +1429,7 @@
                 "@type": "VideoObject",
                 "name": "Кроссфит и ОФП",
                 "description": "Функциональная тренировка и развитие выносливости",
-                "thumbnailUrl": "https://supabase.mvprofi.org/storage/v1/object/public/sportunite-site/logotip.png",
+                "thumbnailUrl": "https://sportunitevn.com/images/logotip.png",
                 "uploadDate": "2024-01-01T08:00:00+08:00",
                 "contentUrl": "https://sportunitevn.com/images/IMG_4329.MOV"
             }
