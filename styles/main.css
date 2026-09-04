@@ -529,6 +529,21 @@ h4 {
     pointer-events: none;
 }
 
+.cta-with-note {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.cta-bot-note {
+    max-width: 320px;
+    color: var(--gray-600);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    text-align: center;
+}
+
 @keyframes pulse {
 
     0%,
@@ -1772,6 +1787,19 @@ h4 {
     flex: 0 0 auto;
 }
 
+.prices__note .cta-with-note {
+    flex: 0 0 auto;
+    align-items: flex-end;
+}
+
+.prices__note .cta-bot-note {
+    max-width: 260px;
+    color: var(--gray-600);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    text-align: right;
+}
+
 .price-card__option--big .price-card__amount {
     font-size: 2rem;
     color: var(--accent);
@@ -2366,6 +2394,16 @@ h4 {
 
     .prices__note .btn {
         width: 100%;
+    }
+
+    .prices__note .cta-with-note {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .prices__note .cta-bot-note {
+        max-width: none;
+        text-align: center;
     }
 
     .price-card__header {
