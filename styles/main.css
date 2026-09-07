@@ -1430,6 +1430,81 @@ h4 {
     color: var(--white);
 }
 
+.rehab-consult {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+    max-width: 960px;
+    padding: 1.35rem 1.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(34, 197, 94, 0.38);
+    border-radius: var(--radius-lg);
+    background:
+        linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(34, 197, 94, 0.035) 58%),
+        var(--bg-card);
+    box-shadow: 0 0 36px rgba(34, 197, 94, 0.12);
+}
+
+.rehab-consult::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-left: 4px solid var(--green);
+    pointer-events: none;
+}
+
+.rehab-consult__mark {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: var(--green);
+    color: var(--bg-primary);
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 0 26px var(--green-glow);
+}
+
+.rehab-consult__content {
+    min-width: 0;
+}
+
+.rehab-consult__label {
+    display: inline-flex;
+    margin-bottom: 0.5rem;
+    color: var(--green);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.rehab-consult__text {
+    color: var(--white);
+    font-size: clamp(1rem, 1.7vw, 1.16rem);
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.rehab-consult__location {
+    display: inline-flex;
+    margin-top: 0.85rem;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid rgba(34, 197, 94, 0.26);
+    border-radius: var(--radius-sm);
+    background: rgba(34, 197, 94, 0.08);
+    color: var(--gray-200);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
 .rehab__what {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2350,6 +2425,26 @@ h4 {
     }
 
     /* Rehab */
+    .rehab-consult {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.15rem;
+    }
+
+    .rehab-consult__mark {
+        width: 2.35rem;
+        height: 2.35rem;
+        font-size: 1.6rem;
+    }
+
+    .rehab-consult__text {
+        font-size: 0.96rem;
+    }
+
+    .rehab-consult__location {
+        display: flex;
+    }
+
     .rehab__what {
         grid-template-columns: 1fr;
     }
