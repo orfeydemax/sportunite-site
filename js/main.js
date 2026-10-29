@@ -500,12 +500,18 @@ document.addEventListener('DOMContentLoaded', () => {
             doubleClickZoom: false,
             boxZoom: false,
             keyboard: false,
-            attributionControl: false
+            touchZoom: false
         }).setView([12.240, 109.185], 13); // Центр Нячанга, зум чтоб влезли все 3
 
-        // Тёмный минималистичный слой карты (CartoDB Dark Matter)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            maxZoom: 19
+        // Подложка — статичная картинка с нашего домена (зум 13, данные OpenStreetMap,
+        // плитки OSM France). Сторонние серверы плиток не годятся: CARTO с 2026 года
+        // отдаёт «API KEY REQUIRED», openstreetmap.org у Viettel не открывается.
+        // Тёмный вид даёт CSS-фильтр на .leaflet-tile-pane
+        map.attributionControl.setPrefix(false);
+        L.imageOverlay('images/map-nhatrang.webp', [[12.179636, 109.075184], [12.300423, 109.294910]], {
+            pane: 'tilePane',
+            alt: '',
+            attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · OSM France'
         }).addTo(map);
 
         // Координаты клубов (на основе реальной географии)
@@ -576,6 +582,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // чтобы тайлы не загружались обрезанными в CSS-grid
         setTimeout(() => {
             map.invalidateSize();
+
+            // На узкой карте (телефон) крайние клубы обрезаются — центрируем по ним
+            const clubBounds = L.latLngBounds(Object.values(coords));
+            if (!map.getBounds().pad(-0.08).contains(clubBounds)) {
+                map.setView(clubBounds.getCenter(), 13, { animate: false });
+            }
         }, 300);
     }
 
