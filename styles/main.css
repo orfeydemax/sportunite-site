@@ -3052,11 +3052,6 @@ h4 {
     width: 100%;
 }
 
-/* Светлые плитки OpenStreetMap переводим в тёмную гамму сайта */
-.leaflet-tile-pane {
-    filter: invert(1) hue-rotate(180deg) grayscale(0.55) brightness(0.95) contrast(0.9);
-}
-
 .map-canvas .leaflet-control-attribution {
     background: rgba(10, 10, 10, 0.75);
     color: var(--gray-400);

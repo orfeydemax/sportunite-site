@@ -503,12 +503,11 @@ document.addEventListener('DOMContentLoaded', () => {
             touchZoom: false
         }).setView([12.240, 109.185], 13); // Центр Нячанга, зум чтоб влезли все 3
 
-        // Подложка — статичная картинка с нашего домена (зум 13, данные OpenStreetMap,
-        // плитки OSM France). Сторонние серверы плиток не годятся: CARTO с 2026 года
-        // отдаёт «API KEY REQUIRED», openstreetmap.org у Viettel не открывается.
-        // Тёмный вид даёт CSS-фильтр на .leaflet-tile-pane
+        // Подложка — статичная фирменная карта с нашего домена (зум 13, данные OpenStreetMap,
+        // перекрашены GPT Image, исходники в _src/map). Сторонние серверы плиток не годятся:
+        // CARTO с 2026 года отдаёт «API KEY REQUIRED», openstreetmap.org у Viettel не открывается
         map.attributionControl.setPrefix(false);
-        L.imageOverlay('images/map-nhatrang.webp', [[12.179636, 109.075184], [12.300423, 109.294910]], {
+        L.imageOverlay('images/map-nhatrang-v2.webp', [[12.154130, 109.053211], [12.325915, 109.316883]], {
             pane: 'tilePane',
             alt: '',
             attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · OSM France'
