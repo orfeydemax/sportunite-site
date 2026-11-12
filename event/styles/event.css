@@ -56,6 +56,45 @@
     color: var(--white);
 }
 
+/* переключатель языка: как на главной, но три языка */
+.ev-lang {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+.ev-lang button {
+    min-width: 34px;
+    min-height: 34px;
+    padding: 0.3rem 0.45rem;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--gray-500);
+    transition: var(--transition-fast);
+}
+
+.ev-lang button + button {
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ev-lang button:hover {
+    color: var(--white);
+}
+
+.ev-lang button.is-active {
+    color: var(--white);
+    background: rgba(230, 32, 32, 0.18);
+}
+
+.ev-lang button:focus-visible {
+    outline-offset: -3px;
+}
+
 .nav__link--active::after {
     width: 100%;
 }

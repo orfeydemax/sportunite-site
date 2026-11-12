@@ -46,7 +46,145 @@
         } catch (e) { /* аналитика не должна ломать страницу */ }
     }
 
+
+    /* ---------- языки: RU (исходный) / EN / VI ---------- */
+    var LANGS = ['ru', 'en', 'vi'];
+    var LANG_KEY = 'su_lang';
+    var I18N_VERSION = '1';
+    var dicts = { ru: {} };
+    var lang = 'ru';
+    var SKIP = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, svg: 1, SVG: 1 };
+
+    function detectLang() {
+        var m = /[?&]lang=(ru|en|vi)\b/.exec(location.search);
+        if (m) return m[1];
+        try {
+            var saved = localStorage.getItem(LANG_KEY);
+            if (saved && LANGS.indexOf(saved) !== -1) return saved;
+        } catch (e) { /* хранилище недоступно */ }
+        var b = (navigator.language || '').slice(0, 2).toLowerCase();
+        return (b === 'en' || b === 'vi') ? b : 'ru';
+    }
+
+    // Текст элемента как ключ: «Вопросы по турниру: <0>@harian17</0>».
+    // Вложенные теги заменяются номерами, их атрибуты (ссылки, классы) в словарь не попадают.
+    function ser(el, kids) {
+        var out = '';
+        for (var n = el.firstChild; n; n = n.nextSibling) {
+            if (n.nodeType === 3) out += n.nodeValue.replace(/[ \t\r\n]+/g, ' ');
+            else if (n.nodeType === 1) {
+                var i = kids.length;
+                kids.push(n);
+                var inner = ser(n, kids);
+                out += inner === '' && !n.firstChild ? '<' + i + '/>' : '<' + i + '>' + inner + '</' + i + '>';
+            }
+        }
+        return out;
+    }
+
+    function build(el, str, kids) {
+        var frag = document.createDocumentFragment();
+        var stack = [frag];
+        var re = /<(\d+)\/>|<(\d+)>|<\/(\d+)>|([^<]+)/g, m;
+        while ((m = re.exec(str))) {
+            var top = stack[stack.length - 1];
+            if (m[1] !== undefined) top.appendChild(kids[+m[1]].cloneNode(false));
+            else if (m[2] !== undefined) { var c = kids[+m[2]].cloneNode(false); top.appendChild(c); stack.push(c); }
+            else if (m[3] !== undefined) { if (stack.length > 1) stack.pop(); }
+            else top.appendChild(document.createTextNode(m[4]));
+        }
+        while (el.firstChild) el.removeChild(el.firstChild);
+        el.appendChild(frag);
+    }
+
+    function hasOwnText(el) {
+        for (var n = el.firstChild; n; n = n.nextSibling) {
+            if (n.nodeType === 3 && /\S/.test(n.nodeValue)) return true;
+        }
+        return false;
+    }
+
+    function collect(root, list) {
+        for (var el = root.firstElementChild; el; el = el.nextElementSibling) {
+            if (SKIP[el.tagName] || el.hasAttribute('data-no-i18n')) continue;
+            if (hasOwnText(el)) list.push(el);
+            else collect(el, list);
+        }
+        return list;
+    }
+
+    function lookup(key) {
+        var d = dicts[lang] || {};
+        if (d[key] !== undefined) return d[key];
+        var m = /^Ещё (\d+) (?:день|дня|дней)$/.exec(key);
+        if (m && lang === 'en') return m[1] + (m[1] === '1' ? ' day left' : ' days left');
+        if (m && lang === 'vi') return 'Còn ' + m[1] + ' ngày';
+        return null;
+    }
+
+    function T(s) {
+        if (lang === 'ru') return s;
+        var v = lookup(s);
+        return v === null ? s : v;
+    }
+
+    var pristine = [];   // исходный русский: [элемент, ключ, вложенные теги]
+    var attrs = [];      // [элемент, имя атрибута, русское значение]
+    var missing = {};
+
+    function snapshot() {
+        collect(document.body, []).forEach(function (el) {
+            var kids = [];
+            var key = ser(el, kids).trim();
+            pristine.push([el, key, kids.map(function (k) { return k.cloneNode(false); })]);
+        });
+        $$('[alt], [aria-label], meta[name="description"], meta[property="og:title"], meta[property="og:description"]').forEach(function (el) {
+            ['alt', 'aria-label', 'content'].forEach(function (a) {
+                var v = el.getAttribute(a);
+                if (v && el.id !== 'burger') attrs.push([el, a, v]);
+            });
+        });
+        attrs.push([null, 'title', document.title]);
+    }
+
+    function restoreRu() {
+        pristine.forEach(function (p) { build(p[0], p[1], p[2]); });
+    }
+
+    function translatePage() {
+        document.documentElement.lang = lang;
+        attrs.forEach(function (a) {
+            var v = T(a[2]);
+            if (a[0]) a[0].setAttribute(a[1], v); else document.title = v;
+        });
+        if (lang === 'ru') return;
+        collect(document.body, []).forEach(function (el) {
+            var kids = [];
+            var key = ser(el, kids).trim();
+            if (!key || !/[А-Яа-яЁё]/.test(key)) return;
+            var v = lookup(key);
+            if (v === null) { missing[key] = 1; return; }
+            build(el, v, kids);
+        });
+    }
+
+    // для проверки: какие русские строки остались без перевода
+    window.__evMissing = function () { return Object.keys(missing); };
+    window.__evKeys = function () {
+        return collect(document.body, []).map(function (el) { return ser(el, []).trim(); })
+            .concat(attrs.map(function (a) { return a[2]; }))
+            .filter(function (k, i, a) { return k && /[А-Яа-яЁё]/.test(k) && a.indexOf(k) === i; });
+    };
+
+    function loadDict(l) {
+        if (dicts[l]) return Promise.resolve(dicts[l]);
+        return fetch('i18n/' + l + '.json?v=' + I18N_VERSION)
+            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+            .then(function (d) { dicts[l] = d; return d; });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
+        snapshot();
         var t = now();
         var st = state(t);
         var open = st === 'open-early' || st === 'open-late';
@@ -74,6 +212,7 @@
             }
         }
 
+        function renderState() {
         if (ticket) {
             ticket.setAttribute('data-state', st);
 
@@ -82,7 +221,6 @@
                 statusEl.textContent = days <= 1
                     ? 'Последний день'
                     : 'Ещё ' + days + ' ' + plural(days, 'день', 'дня', 'дней');
-                $$('input[name="who"]').forEach(function (r) { r.addEventListener('change', renderFee); });
                 renderFee();
             } else {
                 $$('[data-open-only]').forEach(function (el) { el.hidden = true; });
@@ -132,6 +270,13 @@
             if (fText2) fText2.textContent = 'Регистрация закрывается 25 ноября. В день турнира записаться нельзя.';
         }
 
+        syncGallery();
+        }
+
+        $$('input[name="who"]').forEach(function (r) {
+            r.addEventListener('change', function () { applyLang(); });
+        });
+
         /* ---------- календарь: прошедшие дни и сегодня ---------- */
         $$('.ev-day[data-date]').forEach(function (li) {
             var start = Date.parse(li.getAttribute('data-date') + 'T00:00:00+07:00');
@@ -154,7 +299,7 @@
             burger.classList.toggle('is-active', on);
             overlay.classList.toggle('is-active', on);
             burger.setAttribute('aria-expanded', on ? 'true' : 'false');
-            burger.setAttribute('aria-label', on ? 'Закрыть меню' : 'Открыть меню');
+            burger.setAttribute('aria-label', T(on ? 'Закрыть меню' : 'Открыть меню'));
             document.body.style.overflow = on ? 'hidden' : '';
         }
         if (burger && overlay) {
@@ -210,12 +355,16 @@
         /* ---------- галерея и лайтбокс ---------- */
         var grid = $('#gallery-grid');
         var toggle = $('#gallery-toggle');
+        function syncGallery() {
+            if (!grid || !toggle) return;
+            var on = grid.classList.contains('is-expanded');
+            toggle.setAttribute('aria-expanded', on ? 'true' : 'false');
+            toggle.textContent = on ? 'Свернуть фото' : 'Показать все фото';
+        }
         if (grid && toggle) {
             toggle.addEventListener('click', function () {
-                var on = !grid.classList.contains('is-expanded');
-                grid.classList.toggle('is-expanded', on);
-                toggle.setAttribute('aria-expanded', on ? 'true' : 'false');
-                toggle.textContent = on ? 'Свернуть фото' : 'Показать все фото';
+                grid.classList.toggle('is-expanded');
+                applyLang();
             });
         }
 
@@ -275,6 +424,39 @@
                 x0 = null;
             });
         }
+
+        /* ---------- язык ---------- */
+        // Порядок всегда один: вернуть русский, выставить состояние по дате, перевести.
+        function applyLang() {
+            restoreRu();
+            renderState();
+            translatePage();
+            if (burger) burger.setAttribute('aria-label', T(overlay && overlay.classList.contains('is-active') ? 'Закрыть меню' : 'Открыть меню'));
+            $$('[data-lang]').forEach(function (b) {
+                var on = b.getAttribute('data-lang') === lang;
+                b.classList.toggle('is-active', on);
+                b.setAttribute('aria-pressed', on ? 'true' : 'false');
+            });
+        }
+        function setLang(l, save) {
+            if (LANGS.indexOf(l) === -1) l = 'ru';
+            loadDict(l).then(function () {
+                lang = l;
+                if (save) { try { localStorage.setItem(LANG_KEY, l); } catch (e) { /* не страшно */ } }
+                applyLang();
+            }).catch(function () {
+                lang = 'ru';   // словарь не загрузился — остаёмся на русском
+                applyLang();
+            });
+        }
+        $$('[data-lang]').forEach(function (b) {
+            b.addEventListener('click', function () {
+                setLang(b.getAttribute('data-lang'), true);
+                track('event_lang_' + b.getAttribute('data-lang'));
+            });
+        });
+        var first = detectLang();
+        if (first !== 'ru') { renderState(); setLang(first, false); } else applyLang();
 
         /* ---------- аналитика ---------- */
         document.addEventListener('click', function (e) {

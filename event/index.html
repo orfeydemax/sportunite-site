@@ -94,8 +94,8 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles/main.css?v=2.0.0">
-    <link rel="stylesheet" href="styles/event.css?v=2.0.0">
-    <script src="js/event.js?v=2.0.0" defer></script>
+    <link rel="stylesheet" href="styles/event.css?v=3.0.0">
+    <script src="js/event.js?v=3.0.0" defer></script>
 </head>
 
 <body id="top">
@@ -126,6 +126,11 @@
             </nav>
 
             <div class="header__actions">
+                <div class="ev-lang" role="group" aria-label="Язык страницы" data-no-i18n>
+                    <button type="button" data-lang="ru" class="is-active" aria-pressed="true" lang="ru">RU</button>
+                    <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+                    <button type="button" data-lang="vi" aria-pressed="false" lang="vi">VI</button>
+                </div>
                 <a href="#register" class="btn btn--primary header__cta" data-goal="event_header_register">
                     <svg class="btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
