@@ -1,0 +1,1183 @@
+/* ============================================
+   SPORT UNITE — страница события «Интерклуб №8»
+   Дополнение к main.css основного сайта (тёмный стиль):
+   только компоненты, которых на главной нет.
+   ============================================ */
+
+/* на главной курсор заменён перчаткой через JS; здесь её нет — возвращаем обычный */
+@media (hover: hover) {
+    body {
+        cursor: auto !important;
+    }
+
+    a,
+    button,
+    summary,
+    label,
+    [role="button"],
+    .gallery__item {
+        cursor: pointer !important;
+    }
+}
+
+.ev-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.ev-link {
+    color: var(--accent-light);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(230, 32, 32, 0.5);
+    text-underline-offset: 4px;
+    transition: var(--transition-fast);
+}
+
+.ev-link:hover {
+    color: var(--white);
+    text-decoration-color: var(--accent);
+}
+
+.ev-footnote {
+    margin: 1.5rem auto 0;
+    max-width: 720px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--gray-400);
+    text-align: center;
+}
+
+.nav__link--active {
+    color: var(--white);
+}
+
+.nav__link--active::after {
+    width: 100%;
+}
+
+/* общий ритм разделов */
+.ev-calendar,
+.ev-packages,
+.ev-register,
+.ev-rules,
+.ev-place,
+.ev-faq {
+    padding: var(--section-gap) 0;
+    position: relative;
+}
+
+.ev-calendar,
+.ev-register,
+.ev-place {
+    background: var(--bg-secondary);
+}
+
+.ev-calendar::before,
+.ev-register::before,
+.ev-place::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(230, 32, 32, 0.2), transparent);
+}
+
+/* фото в рамке */
+.ev-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.ev-frame img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.ev-caption {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ============================================
+   Первый экран
+   ============================================ */
+.ev-hero {
+    min-height: auto;
+    padding-top: 110px;
+    padding-bottom: 4rem;
+}
+
+.ev-hero .hero__bg {
+    z-index: 0;
+}
+
+.ev-hero .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.ev-hero .hero__content {
+    max-width: none;
+}
+
+.ev-hero__sport {
+    display: block;
+    font-size: 0.62em;
+    margin-top: 0.15em;
+}
+
+.ev-hero .hero__cta-note {
+    max-width: 480px;
+    line-height: 1.55;
+}
+
+.ev-facts {
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+}
+
+.ev-facts .stat__number {
+    order: -1;
+    font-size: 1.7rem;
+    white-space: nowrap;
+}
+
+.ev-facts sup {
+    font-size: 0.55em;
+    color: var(--gray-400);
+}
+
+.ev-hero .ev-footnote {
+    margin: 1rem 0 0;
+    text-align: left;
+    font-size: 0.78rem;
+    color: var(--gray-500);
+}
+
+.ev-hero__figure {
+    margin: 0;
+}
+
+.ev-hero__figure .ev-frame {
+    border-color: rgba(230, 32, 32, 0.25);
+    box-shadow: 0 30px 80px -30px rgba(230, 32, 32, 0.45), var(--shadow-card);
+}
+
+.ev-hero__figure img {
+    aspect-ratio: 4 / 5;
+}
+
+/* ============================================
+   Календарь
+   ============================================ */
+.ev-timeline {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.ev-day {
+    display: grid;
+    grid-template-columns: 7.5rem 9.5rem 1fr;
+    column-gap: 1.5rem;
+    align-items: center;
+    padding: 1.15rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+}
+
+.ev-day:hover {
+    border-color: rgba(230, 32, 32, 0.2);
+}
+
+.ev-day__date {
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+}
+
+.ev-day__date small {
+    margin-left: 0.2rem;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+}
+
+.ev-day__time {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--gray-400);
+    font-variant-numeric: tabular-nums;
+}
+
+.ev-day__title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.ev-day__body p {
+    margin-top: 0.3rem;
+    font-size: 0.88rem;
+    color: var(--gray-400);
+}
+
+.ev-day--rehab .ev-day__date {
+    color: var(--green);
+}
+
+.ev-day--note {
+    background: transparent;
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ev-day--note .ev-day__date {
+    color: var(--gray-300);
+}
+
+.ev-day--note .ev-day__title {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.ev-day--main {
+    border-color: rgba(230, 32, 32, 0.45);
+    background: linear-gradient(135deg, rgba(230, 32, 32, 0.22) 0%, var(--bg-card) 70%);
+    box-shadow: var(--shadow-glow);
+}
+
+.ev-day--main .ev-day__date {
+    color: var(--white);
+}
+
+.ev-day--main .ev-day__time {
+    color: var(--gray-200);
+}
+
+.ev-day.is-past {
+    opacity: 0.45;
+}
+
+.ev-day.is-past .ev-day__title {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+}
+
+.ev-day.is-today {
+    border-color: var(--accent);
+}
+
+.ev-day.is-today .ev-day__date::after {
+    content: 'сегодня';
+    display: block;
+    margin-top: 0.35rem;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+}
+
+/* ============================================
+   Взнос и пакеты
+   ============================================ */
+.ev-packs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+}
+
+.ev-packs .price-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.ev-packs .price-card__header {
+    padding: 2rem 1.5rem 0.75rem;
+}
+
+.ev-packs .price-card__subtitle {
+    min-height: 2.4em;
+}
+
+.ev-packs .price-card__body,
+.ev-packs .price-card > .price-card__option,
+.ev-includes {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.ev-packs .price-card__option {
+    gap: 0.75rem;
+}
+
+.ev-packs .price-card__amount {
+    white-space: nowrap;
+    text-align: right;
+}
+
+.ev-packs .price-card__option--big {
+    align-items: flex-start;
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ev-packs .price-card__option--big .price-card__amount {
+    font-size: 1.9rem;
+}
+
+.ev-packs .price-card__amount small {
+    font-size: 0.5em;
+    letter-spacing: 0.06em;
+    color: var(--gray-400);
+}
+
+.ev-includes {
+    padding-top: 0.75rem;
+    padding-bottom: 1.25rem;
+}
+
+.ev-includes li {
+    position: relative;
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    font-size: 0.86rem;
+    line-height: 1.45;
+    color: var(--gray-300);
+}
+
+.ev-includes li::before {
+    content: '';
+    position: absolute;
+    left: 0.1rem;
+    top: 0.85rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.ev-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin: auto 1.5rem 1.5rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition-base);
+}
+
+.ev-card-link:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+    background: rgba(230, 32, 32, 0.05);
+}
+
+.price-card--featured .ev-card-link {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+    box-shadow: var(--shadow-glow);
+}
+
+.price-card--featured .ev-card-link:hover {
+    background: var(--accent-light);
+    color: var(--white);
+}
+
+/* ============================================
+   Регистрация
+   ============================================ */
+.ev-reg {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.ev-steps {
+    display: grid;
+    gap: 1rem;
+}
+
+.ev-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+}
+
+.ev-step__no {
+    min-width: 2.2rem;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.55;
+}
+
+.ev-step__title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.ev-step p {
+    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--gray-400);
+}
+
+.ev-ticket {
+    position: sticky;
+    top: 96px;
+    padding: 1.75rem;
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(230, 32, 32, 0.07) 100%);
+    border: 1px solid rgba(230, 32, 32, 0.3);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.ev-ticket__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ev-ticket__title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.ev-ticket__status {
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 50px;
+    background: var(--green-subtle);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    white-space: nowrap;
+}
+
+.ev-ticket[data-state='open-late'] .ev-ticket__status {
+    border-color: rgba(230, 32, 32, 0.35);
+    background: var(--accent-subtle);
+    color: var(--accent-light);
+}
+
+.ev-ticket[data-state='closed'] .ev-ticket__status,
+.ev-ticket[data-state='passed'] .ev-ticket__status {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gray-300);
+}
+
+.ev-who {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    border: 0;
+}
+
+.ev-who legend {
+    margin-bottom: 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+}
+
+.ev-who__opt {
+    position: relative;
+}
+
+.ev-who__opt input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ev-who__opt span {
+    display: grid;
+    place-items: center;
+    min-height: 48px;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--gray-300);
+    transition: var(--transition-fast);
+}
+
+.ev-who__opt:hover span {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.ev-who__opt input:checked + span {
+    border-color: var(--accent);
+    background: rgba(230, 32, 32, 0.15);
+    color: var(--white);
+}
+
+.ev-who__opt input:focus-visible + span {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.ev-ticket__price {
+    margin-top: 1.25rem;
+}
+
+.ev-ticket__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--gray-400);
+    font-size: 0.9rem;
+}
+
+.ev-ticket__row strong {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.ev-ticket__hint,
+.ev-ticket__note {
+    margin-top: 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--gray-400);
+}
+
+.ev-ticket__closed {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gray-200);
+}
+
+.ev-ticket__cta {
+    width: 100%;
+    margin-top: 1.25rem;
+}
+
+.ev-ticket__terms {
+    margin-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ev-ticket__terms > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.82rem;
+}
+
+.ev-ticket__terms dt {
+    color: var(--gray-400);
+}
+
+.ev-ticket__terms dd {
+    font-weight: 600;
+    text-align: right;
+}
+
+.ev-ticket__contact {
+    margin-top: 1rem;
+    font-size: 0.88rem;
+    color: var(--gray-400);
+}
+
+[data-open-only][hidden],
+[data-closed-text][hidden] {
+    display: none;
+}
+
+/* ============================================
+   Правила
+   ============================================ */
+.ev-rules__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem 2rem;
+    align-items: start;
+}
+
+.ev-rules .prices__group-heading {
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.ev-rules .prices__group-kicker {
+    background: var(--accent-subtle);
+    border: 1px solid rgba(230, 32, 32, 0.3);
+    color: var(--accent-light);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ev-table-wrap {
+    overflow-x: auto;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+}
+
+.ev-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ev-table th,
+.ev-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.ev-table tbody tr:last-child th,
+.ev-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.ev-table thead th {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+}
+
+.ev-table tbody th {
+    font-weight: 600;
+}
+
+.ev-table td {
+    font-size: 0.92rem;
+    color: var(--gray-300);
+    font-variant-numeric: tabular-nums;
+}
+
+.ev-rules .ev-footnote {
+    margin: 1rem 0 0;
+    text-align: left;
+}
+
+.ev-weights {
+    margin-top: 1.25rem;
+}
+
+.ev-weights > div {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ev-weights dt {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+}
+
+.ev-weights dd {
+    margin-top: 0.2rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--gray-200);
+    font-variant-numeric: tabular-nums;
+}
+
+.ev-details,
+.ev-q {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+}
+
+.ev-details {
+    margin-top: 1.25rem;
+    padding: 0 1.25rem;
+}
+
+.ev-details[open],
+.ev-q[open] {
+    border-color: rgba(230, 32, 32, 0.25);
+}
+
+.ev-details summary,
+.ev-q summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 56px;
+    padding: 0.8rem 0;
+    font-weight: 600;
+    list-style: none;
+}
+
+.ev-details summary::-webkit-details-marker,
+.ev-q summary::-webkit-details-marker {
+    display: none;
+}
+
+.ev-details summary::after,
+.ev-q summary::after {
+    content: '';
+    flex-shrink: 0;
+    width: 9px;
+    height: 9px;
+    margin-right: 0.3rem;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.3s ease;
+}
+
+.ev-details[open] summary::after,
+.ev-q[open] summary::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+}
+
+.ev-details .ev-weights {
+    margin-top: 0;
+}
+
+.ev-details .ev-footnote {
+    margin: 0.9rem 0 1.1rem;
+}
+
+.ev-doc {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   Фото
+   ============================================ */
+.ev-gallery {
+    grid-auto-rows: 190px;
+    max-height: none;
+}
+
+.ev-gallery .gallery__item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.ev-gallery .gallery__item:nth-child(n + 12) {
+    display: none;
+}
+
+.ev-gallery.is-expanded .gallery__item:nth-child(n + 12) {
+    display: block;
+}
+
+/* ============================================
+   Массаж
+   ============================================ */
+.ev-massage__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.ev-data {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1.5rem;
+}
+
+.ev-data > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ev-data > div:last-child {
+    border-bottom: 0;
+}
+
+.ev-data dt {
+    font-size: 0.88rem;
+    color: var(--gray-400);
+}
+
+.ev-data dd {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.ev-data--light {
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+.ev-massage__note {
+    max-width: none;
+    margin: 0;
+}
+
+.ev-massage__note .rehab-consult__text {
+    font-weight: 500;
+}
+
+.ev-massage__cta {
+    align-items: flex-start;
+    margin-top: 1.25rem;
+}
+
+.ev-massage__hint {
+    font-size: 0.8rem;
+    color: var(--gray-400);
+}
+
+/* ============================================
+   Зал
+   ============================================ */
+.ev-place__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.ev-place__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.ev-place__info .ev-data {
+    width: 100%;
+}
+
+.ev-place__info .ev-data dd {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+}
+
+.ev-place__figure {
+    margin: 0;
+}
+
+.ev-place__figure img {
+    aspect-ratio: 3 / 2;
+}
+
+/* ============================================
+   Вопросы
+   ============================================ */
+.ev-faq__list {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.ev-q {
+    padding: 0 1.5rem;
+}
+
+.ev-q summary {
+    min-height: 64px;
+    font-size: 1.02rem;
+}
+
+.ev-q p {
+    padding-bottom: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--gray-400);
+}
+
+.ev-faq .section-desc .ev-link {
+    white-space: nowrap;
+}
+
+/* подвал */
+.ev-footer__grid .footer__tg {
+    display: flex;
+    margin-top: 0;
+}
+
+/* ============================================
+   Панель записи на телефоне
+   ============================================ */
+.ev-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .ev-bar:not([hidden]) {
+        position: fixed;
+        inset: auto 0 0;
+        z-index: 900;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+        background: rgba(5, 5, 5, 0.97);
+        border-top: 1px solid rgba(230, 32, 32, 0.3);
+    }
+
+    .ev-bar__text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+    }
+
+    .ev-bar__text strong {
+        font-family: var(--font-heading);
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .ev-bar__text span {
+        font-size: 0.72rem;
+        color: var(--gray-400);
+    }
+
+    body.has-bar .footer {
+        padding-bottom: 6rem;
+    }
+}
+
+/* ============================================
+   Адаптивность
+   ============================================ */
+@media (max-width: 1150px) {
+    .ev-packs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1024px) {
+    .ev-hero .hero__inner,
+    .ev-reg,
+    .ev-rules__grid,
+    .ev-massage__grid,
+    .ev-place__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ev-hero__figure {
+        max-width: 440px;
+    }
+
+    .ev-ticket {
+        position: static;
+        max-width: 560px;
+    }
+
+    .ev-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .ev-hero {
+        padding-top: 84px;
+        padding-bottom: 3rem;
+    }
+
+    .ev-hero .hero__inner {
+        padding: 1rem 0;
+    }
+
+    .ev-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem 1rem;
+    }
+
+    .ev-facts .stat__number {
+        font-size: 1.45rem;
+    }
+
+    .ev-day {
+        grid-template-columns: 4.8rem 1fr;
+        column-gap: 1rem;
+        row-gap: 0.4rem;
+        align-items: start;
+        padding: 1rem;
+    }
+
+    .ev-day__date {
+        grid-row: 1 / span 2;
+        font-size: 1.55rem;
+    }
+
+    .ev-day__date small {
+        display: block;
+        margin: 0.3rem 0 0;
+    }
+
+    .ev-day__body {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .ev-day__time {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .ev-packs {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ev-packs .price-card__subtitle {
+        min-height: 0;
+    }
+
+    .ev-step {
+        padding: 1.25rem 1rem;
+        column-gap: 0.9rem;
+    }
+
+    .ev-step__no {
+        font-size: 2rem;
+        min-width: 1.6rem;
+    }
+
+    .ev-ticket {
+        padding: 1.25rem 1rem;
+    }
+
+    .ev-ticket__row strong {
+        font-size: 1.7rem;
+    }
+
+    .ev-table th,
+    .ev-table td {
+        padding: 0.75rem 0.55rem;
+        font-size: 0.8rem;
+    }
+
+    .ev-table thead th {
+        font-size: 0.64rem;
+    }
+
+    .ev-data {
+        padding: 0.25rem 1rem;
+    }
+
+    .ev-data > div {
+        flex-wrap: wrap;
+        gap: 0.2rem 1rem;
+    }
+
+    .ev-q {
+        padding: 0 1rem;
+    }
+
+    .ev-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 150px;
+    }
+
+    .ev-gallery .gallery__item:nth-child(n + 8) {
+        display: none;
+    }
+
+    .ev-gallery.is-expanded .gallery__item:nth-child(n + 8) {
+        display: block;
+    }
+
+    .ev-massage__note {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ev-details summary::after,
+    .ev-q summary::after {
+        transition: none;
+    }
+}
