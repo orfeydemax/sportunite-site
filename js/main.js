@@ -617,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Кнопка в блоке реабилитации
-    const rehabCta = document.querySelector('.rehab-info .btn--green');
+    const rehabCta = document.querySelector('#rehab .btn--green');
     if (rehabCta) {
         rehabCta.addEventListener('click', () => trackEvent('rehab_order', 'Lead'));
     }
